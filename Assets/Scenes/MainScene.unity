@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.24648513, g: 0.28232977, b: 0.34567365, a: 1}
+  m_IndirectSpecularColor: {r: 0.18068248, g: 0.22619323, b: 0.30727062, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -123,8 +123,8 @@ SpringJoint:
   m_AutoConfigureConnectedAnchor: 0
   m_ConnectedAnchor: {x: -2.62, y: 3.319, z: -0.203}
   serializedVersion: 2
-  m_Spring: 20
-  m_Damper: 0.7
+  m_Spring: 100
+  m_Damper: 9.95
   m_MinDistance: 0
   m_MaxDistance: 0.001
   m_Tolerance: 0.025
@@ -667,10 +667,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1052595095}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalRotation: {x: 0.5099162, y: -0.41890287, z: -0.0069937273, w: 0.75130355}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 49.489002, y: -78.82001, z: -42.483}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1

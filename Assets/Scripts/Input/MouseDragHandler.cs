@@ -42,7 +42,7 @@ public class MouseDragHandler : InputDragHandler
 
     public void OnDrag ()
     {
-        spring.connectedAnchor = CalculateCollisionPoint() + Vector3.up * dragObject.GroundOffset;
+        spring.connectedAnchor = CalculateCollisionWorldPoint() + Vector3.up * dragObject.GroundOffset;
 
         if (rigidbody.IsSleeping())
             rigidbody.WakeUp();
@@ -52,6 +52,7 @@ public class MouseDragHandler : InputDragHandler
 
     public void OnSelected ()
     {
+        spring.anchor = dragObject.transform.InverseTransformPoint(CalculateCollisionForObject());
         spring.spring = originalSpringStrength;
     }
 
@@ -70,16 +71,54 @@ public class MouseDragHandler : InputDragHandler
         spring.spring = 0;
     }
 
-    private Vector3 CalculateCollisionPoint()
+    private Vector3 CalculateCollisionWorldPoint()
+    {
+        Vector3 hit;
+
+        //if (CalculateCollisionFor(9, out hit))
+        //{
+        //    Vector3 groundPoint;
+        //    CastRayToGround(hit, out groundPoint);
+        //    return groundPoint;
+        //}
+
+        CalculateCollisionFor(8, out hit);
+        return hit;
+    }
+
+    private Vector3 CalculateCollisionForObject()
+    {
+        Vector3 hit;
+        CalculateCollisionFor(9, out hit);
+        return hit;
+    }
+
+    private bool CastRayToGround(Vector3 origin, out Vector3 hitPoint)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(origin, Vector3.down, out hit, 10f, 1 << 8))
+        {
+            hitPoint = hit.point;
+            return true;
+        }
+        hitPoint = Vector3.zero;
+        return false;
+    }
+
+    private bool CalculateCollisionFor(int layerMask, out Vector3 hitPoint)
     {
         Ray r = CalculateCameraToObjectRay();
         RaycastHit hit;
 
-        if (Physics.Raycast(r, out hit, cam.farClipPlane, 1 << 8)) {
+        if (Physics.Raycast(r, out hit, cam.farClipPlane, 1 << layerMask))
+        {
             lastHit = hit.point;
-            return hit.point;
+            hitPoint = hit.point;
+            return true;
         }
-        return lastHit;
-    }
+        else
+            hitPoint = lastHit;
 
+        return false;
+    }
 }
