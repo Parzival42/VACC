@@ -1,11 +1,11 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 /// <summary>
 /// Drags the object with the mouse based on a spring component.
 /// </summary>
 public class MouseDragHandler : InputDragHandler
 {
+    #region Members
     private readonly DragScript dragObject;
     private readonly Collider dragCollider;
     private readonly Camera cam;
@@ -18,6 +18,18 @@ public class MouseDragHandler : InputDragHandler
     private Vector3 lastHit = Vector3.zero;
 
     private float originalSpringStrength;
+    #endregion
+
+    public bool IsSpringActive
+    {
+        get
+        {
+            if (spring.spring > 0f)
+                return true;
+            else
+                return false;
+        }
+    }
 
     public MouseDragHandler(DragScript dragableObject, Collider triggerCollider, SpringJoint springJoint)
     {
@@ -42,7 +54,7 @@ public class MouseDragHandler : InputDragHandler
 
     public void OnDrag ()
     {
-        spring.connectedAnchor = CalculateCollisionWorldPoint() + Vector3.up * dragObject.GroundOffset;
+        spring.connectedAnchor = CalculateCollisionWorldPoint();
 
         if (rigidbody.IsSleeping())
             rigidbody.WakeUp();
@@ -54,11 +66,6 @@ public class MouseDragHandler : InputDragHandler
     {
         spring.anchor = dragObject.transform.InverseTransformPoint(CalculateCollisionForObject());
         spring.spring = originalSpringStrength;
-    }
-
-    private Vector3 CalculateMouseWorldPosition ()
-    {
-        return cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private Ray CalculateCameraToObjectRay()
@@ -75,15 +82,13 @@ public class MouseDragHandler : InputDragHandler
     {
         Vector3 hit;
 
-        //if (CalculateCollisionFor(9, out hit))
-        //{
-        //    Vector3 groundPoint;
-        //    CastRayToGround(hit, out groundPoint);
-        //    return groundPoint;
-        //}
+        // Case 1: Object was hit -> Don't add additional height to collision point.
+        if (CalculateCollisionFor(9, out hit))
+            return hit;
 
+        // Case 2: Ground was hit -> Add additional height to contact point.
         CalculateCollisionFor(8, out hit);
-        return hit;
+        return hit + Vector3.up * dragObject.GroundOffset;
     }
 
     private Vector3 CalculateCollisionForObject()
@@ -91,18 +96,6 @@ public class MouseDragHandler : InputDragHandler
         Vector3 hit;
         CalculateCollisionFor(9, out hit);
         return hit;
-    }
-
-    private bool CastRayToGround(Vector3 origin, out Vector3 hitPoint)
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(origin, Vector3.down, out hit, 10f, 1 << 8))
-        {
-            hitPoint = hit.point;
-            return true;
-        }
-        hitPoint = Vector3.zero;
-        return false;
     }
 
     private bool CalculateCollisionFor(int layerMask, out Vector3 hitPoint)
