@@ -1,0 +1,55 @@
+﻿using UnityEngine;
+
+/// <summary>
+/// Drags the object with the mouse based on a spring component.
+/// </summary>
+public class MouseDragHandler : InputDragHandler
+{
+    private readonly GameObject dragObject;
+    private readonly Collider dragCollider;
+    private readonly Camera cam;
+    private readonly SpringJoint spring;
+    private readonly Rigidbody rigidbody;
+
+    private Vector3 worldScreenPoint = Vector3.zero;
+    private Vector3 offset = Vector3.zero;
+
+    public MouseDragHandler(GameObject dragableObject, Collider triggerCollider, SpringJoint springJoint)
+    {
+        rigidbody = dragableObject.GetComponent<Rigidbody>();
+        spring = springJoint;
+        spring.autoConfigureConnectedAnchor = false;
+        dragObject = dragableObject;
+        dragCollider = triggerCollider;
+        cam = Camera.main;
+    }
+
+    public void OnDrag ()
+    {
+        Vector3 currentScreenPoint = new Vector3(Input.mousePosition.x, Input.mousePosition.y, worldScreenPoint.z);
+        Vector3 currentPosition = cam.ScreenToWorldPoint(currentScreenPoint) + offset;
+        spring.connectedAnchor = currentPosition;
+
+        if (rigidbody.IsSleeping())
+            rigidbody.WakeUp();
+    }
+
+    public void OnSelected ()
+    {
+        worldScreenPoint = cam.WorldToScreenPoint(dragObject.transform.position);
+        offset = dragObject.transform.position 
+            - cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, worldScreenPoint.z));
+    }
+
+    private Vector3 CalculateMouseWorldPosition ()
+    {
+        return cam.ScreenToWorldPoint(Input.mousePosition);
+    }
+
+    private Ray CalculateCameraToObjectRay()
+    {
+        return cam.ScreenPointToRay(Input.mousePosition);
+    }
+
+
+}
