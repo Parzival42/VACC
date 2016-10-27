@@ -8,14 +8,24 @@ public class DragScript : MonoBehaviour
     [SerializeField]
     private float groundOffset = 1f;
 
+
+    private Material mat;
+    private SpringJoint spring;
     private InputDragHandler inputHandler;
 
     public float GroundOffset { get { return groundOffset; } }
 
 	private void Start ()
     {
-        inputHandler = new MouseDragHandler(this, GetTriggerCollider(), GetComponent<SpringJoint>());
+        spring = GetComponent<SpringJoint>();
+        inputHandler = new MouseDragHandler(this, GetTriggerCollider(), spring);
+        mat = GetComponent<Renderer>().material;
 	}
+
+    private void Update()
+    {
+        mat.SetVector("_MousePosition", transform.TransformPoint(spring.anchor));
+    }
 
     private void OnMouseDrag()
     {

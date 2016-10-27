@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: drawTestMat
-  m_Shader: {fileID: 4800000, guid: 32306fde0fb972e45bd869c5faf4b5f2, type: 3}
+  m_Name: TestPickingMaterial
+  m_Shader: {fileID: 4800000, guid: 4c6bc854c19a8d94b9f41a967a43b2c5, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,7 +48,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 3ee33f141d458f245b5b37b03a727b36, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -65,12 +65,6 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Stencil
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -110,6 +104,15 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _PickBlend
+      second: 1
+    - first:
+        name: _PickColorStrength
+      second: 1
+    - first:
+        name: _PickRadius
+      second: 0.31
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -127,7 +130,13 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 1, g: 0, b: 0, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _MousePosition
+      second: {r: 0, g: 0, b: 0, a: 0}
+    - first:
+        name: _PickColor
+      second: {r: 0.91764706, g: 0.6, b: 0.07058824, a: 1}
