@@ -16,8 +16,7 @@ public class MouseDragHandler : SpringDragHandler
 
     public MouseDragHandler(DragScript dragableObject, Collider triggerCollider, SpringJoint springJoint) 
         : base(dragableObject, triggerCollider, springJoint)
-    {
-    }
+    { }
 
     public override void OnDrag ()
     {
@@ -40,45 +39,27 @@ public class MouseDragHandler : SpringDragHandler
         DeactivateSpring();
     }
 
-    private Ray CalculateCameraToObjectRay()
-    {
-        return cam.ScreenPointToRay(Input.mousePosition);
-    }
-
     private Vector3 CalculateCollisionWorldPoint()
     {
         Vector3 hit;
 
         // Case 1: Object was hit -> Don't add additional height to collision point.
-        if (CalculateCollisionFor(9, out hit))
+        if (cam.CollisionFor(cam.ScreenPointToRayFor(Input.mousePosition), 9, out hit))
             return hit;
 
         // Case 2: Ground was hit -> Add additional height to contact point.
-        CalculateCollisionFor(8, out hit);
+        if (cam.CollisionFor(cam.ScreenPointToRayFor(Input.mousePosition), 8, out hit))
+            lastHit.Set(hit.x, hit.y, hit.z);
+        else
+            hit = new Vector3(lastHit.x, lastHit.y, lastHit.z);
+
         return hit + Vector3.up * dragObject.GroundOffset;
     }
 
     private Vector3 CalculateCollisionForObject()
     {
         Vector3 hit;
-        CalculateCollisionFor(9, out hit);
+        cam.CollisionFor(cam.ScreenPointToRayFor(Input.mousePosition), 9, out hit);
         return hit;
-    }
-
-    private bool CalculateCollisionFor(int layerMask, out Vector3 hitPoint)
-    {
-        Ray r = CalculateCameraToObjectRay();
-        RaycastHit hit;
-
-        if (Physics.Raycast(r, out hit, cam.farClipPlane, 1 << layerMask))
-        {
-            lastHit = hit.point;
-            hitPoint = hit.point;
-            return true;
-        }
-        else
-            hitPoint = lastHit;
-
-        return false;
     }
 }
