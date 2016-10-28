@@ -3,15 +3,9 @@
 /// <summary>
 /// Drags the object with the mouse based on a spring component.
 /// </summary>
-public class MouseDragHandler : InputDragHandler
+public class MouseDragHandler : SpringDragHandler
 {
     #region Members
-    private readonly DragScript dragObject;
-    private readonly Collider dragCollider;
-    private readonly Camera cam;
-    private readonly SpringJoint spring;
-    private readonly Rigidbody rigidbody;
-
     private Vector3 worldScreenPoint = Vector3.zero;
     private Vector3 offset = Vector3.zero;
 
@@ -20,39 +14,12 @@ public class MouseDragHandler : InputDragHandler
     private float originalSpringStrength;
     #endregion
 
-    public bool IsSpringActive
+    public MouseDragHandler(DragScript dragableObject, Collider triggerCollider, SpringJoint springJoint) 
+        : base(dragableObject, triggerCollider, springJoint)
     {
-        get
-        {
-            if (spring.spring > 0f)
-                return true;
-            else
-                return false;
-        }
     }
 
-    public MouseDragHandler(DragScript dragableObject, Collider triggerCollider, SpringJoint springJoint)
-    {
-        rigidbody = dragableObject.GetComponent<Rigidbody>();
-
-        // Init spring
-        spring = springJoint;
-        InitializeSpring();
-
-        // Drag object
-        dragObject = dragableObject;
-        dragCollider = triggerCollider;
-        cam = Camera.main;
-    }
-
-    private void InitializeSpring()
-    {
-        spring.autoConfigureConnectedAnchor = false;
-        originalSpringStrength = spring.spring;
-        spring.spring = 0f;
-    }
-
-    public void OnDrag ()
+    public override void OnDrag ()
     {
         spring.connectedAnchor = CalculateCollisionWorldPoint();
 
@@ -62,20 +29,20 @@ public class MouseDragHandler : InputDragHandler
         Debug.DrawLine(spring.connectedAnchor, new Vector3(spring.connectedAnchor.x, 0, spring.connectedAnchor.z), Color.red);
     }
 
-    public void OnSelected ()
+    public override void OnSelected ()
     {
         spring.anchor = dragObject.transform.InverseTransformPoint(CalculateCollisionForObject());
-        spring.spring = originalSpringStrength;
+        ActivateSpring();
+    }
+
+    public override void OnDeselected()
+    {
+        DeactivateSpring();
     }
 
     private Ray CalculateCameraToObjectRay()
     {
         return cam.ScreenPointToRay(Input.mousePosition);
-    }
-
-    public void OnDeselected()
-    {
-        spring.spring = 0;
     }
 
     private Vector3 CalculateCollisionWorldPoint()

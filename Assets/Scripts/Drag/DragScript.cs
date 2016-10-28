@@ -8,7 +8,6 @@ public class DragScript : MonoBehaviour
     [SerializeField]
     private float groundOffset = 1f;
 
-
     private Material mat;
     private SpringJoint spring;
     private InputDragHandler inputHandler;
