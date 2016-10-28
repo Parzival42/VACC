@@ -4,6 +4,8 @@
 	{
 		_MainTex ("Texture", 2D) = "white" {}
 		_uvHit ("UV Hit", Vector) = (0, 0, 0, 0)
+		_Radius ("Radius", Float) = 0.03
+		_PaintStrength ("Paint Strength", Range(-1.0, 1.0)) = 1
 	}
 	SubShader
 	{
@@ -41,13 +43,16 @@
 
 			sampler2D _MainTex;
 			half4 _uvHit;
+			half _Radius;
+			half _PaintStrength;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
 				fixed4 col = tex2D(_MainTex, i.uv);
 
-				if(distance(i.uv, _uvHit.xy) <= 0.03)
-					col.rgb = fixed3(0, 0, 0);
+				// TODO: Better way to add color?
+				if(distance(i.uv, _uvHit.xy) <= _Radius)
+					col.rgb += _PaintStrength;
 
 				return col;
 			}
