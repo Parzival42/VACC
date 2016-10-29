@@ -16,12 +16,15 @@ public class MeshPainter : MonoBehaviour
     private RenderTexture copyRT;
 
     [Header("Shader parameters")]
-    [SerializeField]
-    private float radius = 0.03f;
+    //[SerializeField]
+    //private float radius = 0.03f;
 
     [SerializeField]
     [Range(-1f, 1f)]
     private float paintStrength = 1f;
+
+    [SerializeField]
+    private float falloff = 100f;
 
     private Vector2 uvHit = new Vector2(10, 10);
     private Material objectMaterial;
@@ -52,8 +55,9 @@ public class MeshPainter : MonoBehaviour
 	private void Update ()
     {
         CurrentMaterial.SetVector("_uvHit", uvHit);
-        CurrentMaterial.SetFloat("_Radius", radius);
+        //CurrentMaterial.SetFloat("_Radius", radius);
         CurrentMaterial.SetFloat("_PaintStrength", paintStrength);
+        CurrentMaterial.SetFloat("_Falloff", falloff);
 
         Graphics.Blit(copyRT, renderTexture, CurrentMaterial);
         Graphics.Blit(renderTexture, copyRT);

@@ -468,8 +468,8 @@ MonoBehaviour:
   originalTexture: {fileID: 2800000, guid: 3ee33f141d458f245b5b37b03a727b36, type: 3}
   currentShader: {fileID: 4800000, guid: 0f57612cb050f3f4ab67878f01da1a6a, type: 3}
   copyRT: {fileID: 8400000, guid: c7929681ca8b5204295dd1bb08a705db, type: 2}
-  radius: 0.03
-  paintStrength: 1
+  paintStrength: 0.08
+  falloff: 100
 --- !u!64 &1127065824
 MeshCollider:
   m_ObjectHideFlags: 0
