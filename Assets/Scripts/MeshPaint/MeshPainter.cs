@@ -66,8 +66,8 @@ public class MeshPainter : MonoBehaviour
         RaycastHit rayHit;
         if (Camera.main.CollisionFor(Camera.main.ScreenPointToRayFor(Input.mousePosition), 8, out hit, out rayHit))
         {
+            // This only works with a Mesh Collider!!!
             uvHit = rayHit.textureCoord;
-            //Debug.Log(uvHit);
         }
     }
 
