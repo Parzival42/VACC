@@ -99,7 +99,7 @@ Material:
       second: 1
     - first:
         name: _HeightStrength
-      second: -7.03
+      second: 6
     - first:
         name: _Metallic
       second: 0

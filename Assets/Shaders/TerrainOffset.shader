@@ -1,4 +1,7 @@
-﻿Shader "DustSucker/TerrainOffset" {
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader "DustSucker/TerrainOffset" {
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
@@ -41,8 +44,12 @@
 
 		void vert (inout appdata_full v) {
 			float4 heightmap = tex2Dlod(_Heightmap, float4(v.texcoord.xy, 0, 0));
+			float4 pos = mul(unity_ObjectToWorld, v.vertex);
 
-			v.vertex.z += heightmap.r * _HeightStrength;
+			pos.y += heightmap.r * _HeightStrength;
+			v.vertex = mul(unity_WorldToObject, pos);
+
+			//v.vertex.z += heightmap.r * _HeightStrength;
       }
 		ENDCG
 	}

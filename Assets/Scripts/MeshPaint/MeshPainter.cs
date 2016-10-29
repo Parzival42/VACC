@@ -46,8 +46,7 @@ public class MeshPainter : MonoBehaviour
     {
         objectMaterial = GetComponent<Renderer>().material;
 
-        Graphics.Blit(originalTexture, renderTexture);
-        Graphics.Blit(originalTexture, copyRT);
+        InitializeRenderTextures();
     }
 	
 	private void Update ()
@@ -71,6 +70,12 @@ public class MeshPainter : MonoBehaviour
         }
     }
 
+    private void InitializeRenderTextures()
+    {
+        Graphics.Blit(originalTexture, renderTexture);
+        Graphics.Blit(originalTexture, copyRT);
+    }
+
     private void OnMouseUp()
     {
         uvHit.Set(float.MaxValue, float.MaxValue);
@@ -78,6 +83,8 @@ public class MeshPainter : MonoBehaviour
 
     private void OnDisable()
     {
+        InitializeRenderTextures();
+
         if (currentMaterial)
             DestroyImmediate(currentMaterial);
     }
