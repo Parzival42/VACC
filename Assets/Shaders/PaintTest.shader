@@ -1,4 +1,8 @@
-﻿Shader "Hidden/PaintTest"
+﻿// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
+Shader "Hidden/PaintTest"
 {
 	Properties
 	{
@@ -33,6 +37,8 @@
 				float2 uv : TEXCOORD0;
 				float4 vertex : SV_POSITION;
 			};
+			
+			half4 _uvHit;
 
 			v2f vert (appdata v)
 			{
@@ -43,13 +49,16 @@
 			}
 
 			sampler2D _MainTex;
-			half4 _uvHit;
 			half _Radius;
 			half _PaintStrength;
 			float _Falloff;
 
 			fixed4 frag (v2f i) : SV_Target
 			{
+			
+				half3 worldpos = mul(unity_WorldToObject, _uvHit);
+				_uvHit.xy = worldpos.xz/20;
+
 				fixed4 col = tex2D(_MainTex, i.uv);
 
 				float d = distance(i.uv, _uvHit.xy);

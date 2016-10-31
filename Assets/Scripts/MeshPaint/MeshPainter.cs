@@ -26,7 +26,7 @@ public class MeshPainter : MonoBehaviour
     [SerializeField]
     private float falloff = 100f;
 
-    private Vector2 uvHit = new Vector2(10, 10);
+    private Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
     private Material objectMaterial;
 
     private bool swap = false;
@@ -70,7 +70,7 @@ public class MeshPainter : MonoBehaviour
         if (Camera.main.CollisionFor(Camera.main.ScreenPointToRayFor(Input.mousePosition), 8, out hit, out rayHit))
         {
             // This only works with a Mesh Collider!!!
-            uvHit = rayHit.textureCoord;
+            uvHit = rayHit.point;
         }
     }
 
@@ -82,7 +82,7 @@ public class MeshPainter : MonoBehaviour
 
     private void OnMouseUp()
     {
-        uvHit.Set(float.MaxValue, float.MaxValue);
+        uvHit.Set(float.MaxValue, float.MaxValue, float.MaxValue);
     }
 
     private void OnDisable()
