@@ -10,6 +10,10 @@ public class ComputeMeshPainter : MonoBehaviour
     [SerializeField]
     private ComputeShader computeShader;
 
+    [Header("Brush settings")]
+    [SerializeField]
+    private float brushRadius = 0.05f;
+
     [Header("Render Texture settings")]
     [SerializeField]
     private int renderTextureWidth = 512;
@@ -54,6 +58,7 @@ public class ComputeMeshPainter : MonoBehaviour
         // TODO: Replace strings with constant strings.
         computeShader.SetInt("_TextureSize", renderTextureWidth);
         computeShader.SetVector("_UvHit", uvHit);
+        computeShader.SetFloat("_Radius", brushRadius);
         computeShader.SetTexture(kernelHandle, "Result", renderTexture);
 
         computeShader.Dispatch(kernelHandle, renderTexture.width / KERNEL_SIZE, renderTexture.height / KERNEL_SIZE, 1);
