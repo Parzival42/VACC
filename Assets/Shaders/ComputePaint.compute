@@ -9,7 +9,7 @@ float _Radius;
 [numthreads(32, 32, 1)]
 void Main (uint3 id : SV_DispatchThreadID)
 {
-	float2 uv = id.xy / 512.0;
+	float2 uv = id.xy / float(_TextureSize);
 	float dist = distance(uv, _UvHit.xy);
 
 	if(dist <= _Radius)
