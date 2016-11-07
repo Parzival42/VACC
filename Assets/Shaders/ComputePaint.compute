@@ -2,8 +2,8 @@
 
 // Use 'R Float' as rendertexture!!! (Or R32)
 RWTexture2D<float> Result;
-
-SamplerState samplerReadableTex;
+RWStructuredBuffer<float3> MeshVertices;
+StructuredBuffer<float2> MeshUvs;
 
 int _TextureSize;
 float4 _UvHit;		// Only use xy components
