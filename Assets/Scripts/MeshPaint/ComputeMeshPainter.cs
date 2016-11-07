@@ -14,6 +14,9 @@ public class ComputeMeshPainter : MonoBehaviour
     [SerializeField]
     private float brushRadius = 0.05f;
 
+    [SerializeField]
+    private float brushStrength = 0.02f;
+
     [Header("Render Texture settings")]
     [SerializeField]
     private int renderTextureWidth = 512;
@@ -32,6 +35,7 @@ public class ComputeMeshPainter : MonoBehaviour
     private Material objectMaterial;
 
     private RenderTexture renderTexture;
+    private RenderTexture copyTexture;
     #endregion
 
     #region Properties
@@ -42,13 +46,18 @@ public class ComputeMeshPainter : MonoBehaviour
         kernelHandle = computeShader.FindKernel(KERNEL_NAME);
         objectMaterial = GetComponent<Renderer>().material;
         InitializeRenderTextures();
+
     }
 
     private void InitializeRenderTextures()
     {
-        renderTexture = new RenderTexture(renderTextureWidth, renderTextureHeight, 16, RenderTextureFormat.ARGB32);
+        renderTexture = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
         renderTexture.enableRandomWrite = true;
         renderTexture.Create();
+
+        copyTexture = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
+        copyTexture.enableRandomWrite = true;
+        copyTexture.Create();
 
         Graphics.Blit(originalTexture, renderTexture);
     }
@@ -59,12 +68,14 @@ public class ComputeMeshPainter : MonoBehaviour
         computeShader.SetInt("_TextureSize", renderTextureWidth);
         computeShader.SetVector("_UvHit", uvHit);
         computeShader.SetFloat("_Radius", brushRadius);
+        computeShader.SetFloat("_BrushStrength", brushStrength);
         computeShader.SetTexture(kernelHandle, "Result", renderTexture);
 
         computeShader.Dispatch(kernelHandle, renderTexture.width / KERNEL_SIZE, renderTexture.height / KERNEL_SIZE, 1);
 
         objectMaterial.SetTexture("_Heightmap", renderTexture);
-	}
+        objectMaterial.SetTexture("_MainTex", renderTexture);
+    }
 
     #region Mouse methods
     private void OnMouseDrag()
