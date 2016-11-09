@@ -58,6 +58,7 @@ public class ComputeMeshPainter : MonoBehaviour
         objectMaterial = GetComponent<Renderer>().material;
 
         vertexBuffer = new ComputeBuffer(mesh.mesh.vertices.Length, 3 * 4);      // 3 Floats * 4 Bytes
+        vertexBuffer.SetData(mesh.mesh.vertices);
         uvBuffer = new ComputeBuffer(mesh.mesh.uv.Length, 2 * 4);                // 2 Floats * 4 Bytes
     }
 
@@ -86,10 +87,12 @@ public class ComputeMeshPainter : MonoBehaviour
         objectMaterial.SetTexture("_Heightmap", renderTexture);
         objectMaterial.SetTexture("_MainTex", renderTexture);
 
-        //Vector3[] vertices = new Vector3[mesh.mesh.vertices.Length];
-        //vertexBuffer.GetData(vertices);
-        //mesh.mesh.vertices = vertices;
-        //meshCollider.sharedMesh = mesh.mesh;
+        Vector3[] vertices = new Vector3[mesh.mesh.vertices.Length];
+        vertexBuffer.GetData(vertices);
+        mesh.mesh.vertices = vertices;
+        //mesh.mesh.RecalculateBounds();
+        //mesh.mesh.RecalculateNormals();
+        meshCollider.sharedMesh = mesh.mesh;
     }
 
     #region Mouse methods

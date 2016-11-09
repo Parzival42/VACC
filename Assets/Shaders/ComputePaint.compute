@@ -21,5 +21,9 @@ void Main (uint3 id : SV_DispatchThreadID)
 		// TODO: Find out how to add something on the existing color.
 		Result[id.xy].r += _BrushStrength;
 		Result[id.xy].r = clamp(Result[id.xy].r, 0, 1);
+
+		// TODO: Get the right index by thread id?
+		//int idx = id.y * 32 + id.x;
+		//MeshVertices[idx].z = Result[id.xy].r;
 	}
 }
