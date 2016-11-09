@@ -16,7 +16,7 @@ Shader "DustSucker/TerrainOffset" {
 		LOD 200
 
 		CGPROGRAM
-		#pragma surface surf Standard fullforwardshadows vertex:vert
+		#pragma surface surf Standard fullforwardshadows vertex:vert addshadow
 		#pragma target 3.0
 
 

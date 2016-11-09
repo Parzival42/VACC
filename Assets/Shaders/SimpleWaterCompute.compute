@@ -1,0 +1,66 @@
+#pragma kernel Main
+
+// Inputs ---------------------------------------
+RWTexture2D<float> WaterHeight;
+RWTexture2D<float> VelocityField;
+RWTexture2D<float> TempHeight;
+// ----------------------------------------------
+
+// Painting -------------------------------------
+int _TextureSize;
+float4 _UvHit;		// Only use xy components
+float _Radius;
+float _BrushStrength;
+// ----------------------------------------------
+
+void handleComputePaint(uint3 id) {
+	float2 uv = id.xy / float(_TextureSize);
+	float dist = distance(uv, _UvHit.xy);
+
+	if (dist <= _Radius) {
+		WaterHeight[id.xy].r += _BrushStrength;
+		VelocityField[id.xy].r += _BrushStrength;		// Maybe good idea?
+		WaterHeight[id.xy].r = clamp(WaterHeight[id.xy].r, 0, 1);
+	}
+}
+
+void calculateClamping(uint3 id, float h) {
+	float offset = (WaterHeight[uint2(id.x + 1, id.y)].r
+				  + WaterHeight[uint2(id.x - 1, id.y)].r
+			      + WaterHeight[uint2(id.x, id.y + 1)].r
+			      + WaterHeight[uint2(id.x, id.y - 1)].r) * 0.25 - WaterHeight[id.xy].r;
+
+	float maxSlope = 70.0;
+	float maxOffset = maxSlope * h;
+
+	if(offset > maxOffset) {
+		WaterHeight[id.xy].r += offset - maxOffset;
+	}
+	if(offset < -maxOffset) {
+		WaterHeight[id.xy].r += offset + maxOffset;
+	}
+}
+
+[numthreads(32, 32, 1)]
+void Main (uint3 id : SV_DispatchThreadID) {
+	float speed = 40;
+	float h = 1.0;
+	float deltaTime = 1.0 / 60.0;
+
+	float speedSquared = speed * speed;
+	float hSquared = h * h;
+
+	handleComputePaint(id);
+
+	float acceleration = speedSquared * (WaterHeight[uint2(id.x + 1, id.y)].r +
+	 						WaterHeight[uint2(id.x - 1, id.y)].r +
+							WaterHeight[uint2(id.x, id.y + 1)].r +
+							WaterHeight[uint2(id.x, id.y - 1)].r - 4.0 * WaterHeight[id.xy].r) / hSquared;
+
+	VelocityField[id.xy].r += acceleration * deltaTime;
+	VelocityField[id.xy].r *= 0.99;
+
+	// Update Heights
+	TempHeight[id.xy].r = WaterHeight[id.xy].r + VelocityField[id.xy].r * deltaTime;
+	//calculateClamping(id, h);
+}

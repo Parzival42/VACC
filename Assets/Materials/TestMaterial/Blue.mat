@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HeightMapTest 1
-  m_Shader: {fileID: 4800000, guid: 0d0c1fbbefc088c498f5b990ce278946, type: 3}
+  m_Name: Blue
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -43,12 +43,6 @@ Material:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Heightmap
-      second:
-        m_Texture: {fileID: 2800000, guid: 3ee33f141d458f245b5b37b03a727b36, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -93,21 +87,15 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0.925
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _HeightStrength
-      second: 6
-    - first:
         name: _Metallic
-      second: 1
-    - first:
-        name: _Mode
       second: 0
     - first:
-        name: _NormalStrength
+        name: _Mode
       second: 0
     - first:
         name: _OcclusionStrength
@@ -118,9 +106,6 @@ Material:
     - first:
         name: _SmoothnessTextureChannel
       second: 0
-    - first:
-        name: _SobelStrength
-      second: 0.21
     - first:
         name: _SpecularHighlights
       second: 1
@@ -136,7 +121,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.4122513, g: 0.5415895, b: 0.9191176, a: 1}
+      second: {r: 0.045036756, g: 0.39419365, b: 0.875, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
