@@ -23,7 +23,7 @@ void Main (uint3 id : SV_DispatchThreadID)
 		Result[id.xy].r = clamp(Result[id.xy].r, 0, 1);
 
 		// TODO: Get the right index by thread id?
-		//int idx = id.y * 32 + id.x;
+		//int idx = (uv.x + uv.y)*40;
 		//MeshVertices[idx].z = Result[id.xy].r;
 	}
 }
