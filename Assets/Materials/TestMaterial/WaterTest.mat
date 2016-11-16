@@ -60,7 +60,7 @@ Material:
     - first:
         name: _Heightmap
       second:
-        m_Texture: {fileID: 2800000, guid: 3ee33f141d458f245b5b37b03a727b36, type: 3}
+        m_Texture: {fileID: 2800000, guid: b9b466da59f310541b78c7128957ee7b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -102,7 +102,7 @@ Material:
       second: 0
     - first:
         name: _FoamBlendOffset
-      second: 0.201
+      second: 0.497
     - first:
         name: _GlossMapScale
       second: 1
@@ -147,7 +147,7 @@ Material:
       second: 0
     - first:
         name: _WaveStrength
-      second: -0.01
+      second: 0
     - first:
         name: _ZWrite
       second: 1

@@ -399,11 +399,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f3a5d7377ef5354599a84e3be2df6ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalTexture: {fileID: 2800000, guid: 3ee33f141d458f245b5b37b03a727b36, type: 3}
-  computeShader: {fileID: 7200000, guid: 5bec6a403877725478f53988a73d70fb, type: 3}
+  originalTexture: {fileID: 2800000, guid: b9b466da59f310541b78c7128957ee7b, type: 3}
+  computeShader: {fileID: 7200000, guid: 054f928815ae115479002ba08e18d8a4, type: 3}
   initTexture: {fileID: 2800000, guid: 7086342f062fdf945b45a84209788720, type: 3}
-  brushRadius: 0.1
-  brushStrength: 0.02
+  simulationSpeed: 0.3
+  brushRadius: 0.03
+  brushStrength: 0.05
   renderTextureWidth: 512
   renderTextureHeight: 512
 --- !u!114 &1477681417

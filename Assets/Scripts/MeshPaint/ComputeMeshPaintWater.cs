@@ -12,6 +12,9 @@ public class ComputeMeshPaintWater : MonoBehaviour
     [SerializeField]
     private Texture2D initTexture;
 
+    [SerializeField]
+    private float simulationSpeed = 0.3f;
+
     [Header("Brush settings")]
     [SerializeField]
     private float brushRadius = 0.05f;
@@ -27,7 +30,7 @@ public class ComputeMeshPaintWater : MonoBehaviour
     private int renderTextureHeight = 512;
 
     #region Internal members
-    private const int KERNEL_SIZE = 32;
+    private const int KERNEL_SIZE = 16;
     private const string KERNEL_NAME = "Main";
 
     private int kernelHandle;
@@ -95,6 +98,9 @@ public class ComputeMeshPaintWater : MonoBehaviour
         computeShader.SetVector("_UvHit", uvHit);
         computeShader.SetFloat("_Radius", brushRadius);
         computeShader.SetFloat("_BrushStrength", brushStrength);
+        computeShader.SetFloat("_DeltaTime", Time.deltaTime);
+        computeShader.SetFloat("_Speed", simulationSpeed);
+
 
         computeShader.SetTexture(kernelHandle, "WaterHeight", waterHeights);
         computeShader.SetTexture(kernelHandle, "VelocityField", waterVelocity);
