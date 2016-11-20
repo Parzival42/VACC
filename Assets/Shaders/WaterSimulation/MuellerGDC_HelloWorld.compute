@@ -41,7 +41,7 @@ void Main (uint3 id : SV_DispatchThreadID) {
 							WaterHeight[uint2(id.x, dyPositive)].r +
 							WaterHeight[uint2(id.x, dyNegative)].r - 4.0 * WaterHeight[id.xy].r);
 
-	VelocityField[id.xy].r += acceleration;
+	VelocityField[id.xy].r += acceleration * _DeltaTime;
 	VelocityField[id.xy].r *= 0.99;
 
 	// Update Heights
