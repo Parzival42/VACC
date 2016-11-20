@@ -1,14 +1,9 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class ComputeMeshPaintWater : MonoBehaviour
+public class ComputeMeshPaintWater : ComputeMeshModifier
 {
-    [Header("Inputs")]
-    [SerializeField]
-    private Texture originalTexture;
-
-    [SerializeField]
-    private ComputeShader computeShader;
-
+    [Header("Water Painter Inputs")]
     [SerializeField]
     private Texture2D initTexture;
 
@@ -30,13 +25,7 @@ public class ComputeMeshPaintWater : MonoBehaviour
     private int renderTextureHeight = 512;
 
     #region Internal members
-    private const int KERNEL_SIZE = 16;
-    private const string KERNEL_NAME = "Main";
-
-    private int kernelHandle;
-
     private Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-    private Material objectMaterial;
 
     private RenderTexture waterHeights;
     private RenderTexture waterVelocity;
@@ -45,28 +34,21 @@ public class ComputeMeshPaintWater : MonoBehaviour
     private MeshFilter mesh;
     private MeshCollider meshCollider;
 
-    private ComputeBuffer vertexBuffer;
-    private ComputeBuffer uvBuffer;
+    protected override int KERNEL_SIZE { get { return 16; } }
+
+    private const string KERNEL_METHOD_NAME = "Main";
+    protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
     #endregion
 
-    private void Start()
+    protected override void InitializeComponents()
     {
-        kernelHandle = computeShader.FindKernel(KERNEL_NAME);
-        InitializeComponents();
-        InitializeRenderTextures();
-    }
+        base.InitializeComponents();
 
-    private void InitializeComponents()
-    {
         mesh = GetComponent<MeshFilter>();
         meshCollider = GetComponent<MeshCollider>();
-        objectMaterial = GetComponent<Renderer>().material;
-
-        //vertexBuffer = new ComputeBuffer(mesh.mesh.vertices.Length, 3 * 4);      // 3 Floats * 4 Bytes
-        //uvBuffer = new ComputeBuffer(mesh.mesh.uv.Length, 2 * 4);                // 2 Floats * 4 Bytes
     }
 
-    private void InitializeRenderTextures()
+    protected override void InitializeRenderTextures()
     {
         waterHeights = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
         waterHeights.enableRandomWrite = true;
@@ -83,14 +65,11 @@ public class ComputeMeshPaintWater : MonoBehaviour
         Graphics.Blit(originalTexture, waterHeights);
         Graphics.Blit(initTexture, waterVelocity);
         Graphics.Blit(initTexture, tmpHeight);
-        //Graphics.Blit(originalTexture, otherRenderTexture);
     }
 
-    private void Update ()
+    protected override void ComputeValues()
     {
         // TODO: Replace strings with constant strings.
-        /*computeShader.SetBuffer(kernelHandle, "MeshVertices", vertexBuffer);
-        computeShader.SetBuffer(kernelHandle, "MeshUvs", uvBuffer);*/
         computeShader.SetInt("_TextureSize", renderTextureWidth);
         computeShader.SetVector("_UvHit", uvHit);
         computeShader.SetFloat("_Radius", brushRadius);
@@ -99,11 +78,11 @@ public class ComputeMeshPaintWater : MonoBehaviour
         computeShader.SetFloat("_Speed", simulationSpeed);
 
 
-        computeShader.SetTexture(kernelHandle, "WaterHeight", waterHeights);
-        computeShader.SetTexture(kernelHandle, "VelocityField", waterVelocity);
-        computeShader.SetTexture(kernelHandle, "TempHeight", tmpHeight);
+        computeShader.SetTexture(kernelHandleNumber, "WaterHeight", waterHeights);
+        computeShader.SetTexture(kernelHandleNumber, "VelocityField", waterVelocity);
+        computeShader.SetTexture(kernelHandleNumber, "TempHeight", tmpHeight);
 
-        computeShader.Dispatch(kernelHandle, waterHeights.width / KERNEL_SIZE, waterHeights.height / KERNEL_SIZE, 1);
+        computeShader.Dispatch(kernelHandleNumber, waterHeights.width / KERNEL_SIZE, waterHeights.height / KERNEL_SIZE, 1);
 
         // Copy temporary result back to the main water heightmap
         Graphics.Blit(tmpHeight, waterHeights);
@@ -125,12 +104,6 @@ public class ComputeMeshPaintWater : MonoBehaviour
     private void OnMouseUp()
     {
         uvHit.Set(float.MaxValue, float.MaxValue, float.MaxValue);
-    }
-
-    private void OnDestroy()
-    {
-        //vertexBuffer.Dispose();
-        //uvBuffer.Dispose();
     }
     #endregion
 }
