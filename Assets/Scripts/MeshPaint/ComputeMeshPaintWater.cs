@@ -49,9 +49,6 @@ public class ComputeMeshPaintWater : MonoBehaviour
     private ComputeBuffer uvBuffer;
     #endregion
 
-    #region Properties
-    #endregion
-
     private void Start()
     {
         kernelHandle = computeShader.FindKernel(KERNEL_NAME);

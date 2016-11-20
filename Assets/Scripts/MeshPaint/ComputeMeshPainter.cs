@@ -1,14 +1,7 @@
 ﻿using UnityEngine;
 
-public class ComputeMeshPainter : MonoBehaviour
+public class ComputeMeshPainter : ComputeMeshModifier
 {
-    [Header("Inputs")]
-    [SerializeField]
-    private Texture originalTexture;
-
-    [SerializeField]
-    private ComputeShader computeShader;
-
     [Header("Brush settings")]
     [SerializeField]
     private float brushRadius = 0.05f;
@@ -24,13 +17,7 @@ public class ComputeMeshPainter : MonoBehaviour
     private int renderTextureHeight = 512;
 
     #region Internal members
-    private const int KERNEL_SIZE = 32;
-    private const string KERNEL_NAME = "Main";
-
-    private int kernelHandle;
-
     private Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-    private Material objectMaterial;
 
     private RenderTexture renderTexture;
 
@@ -39,30 +26,26 @@ public class ComputeMeshPainter : MonoBehaviour
 
     private ComputeBuffer vertexBuffer;
     private ComputeBuffer uvBuffer;
+
+    protected override int KERNEL_SIZE { get { return 32; } }
+
+    private const string KERNEL_METHOD_NAME = "Main";
+    protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
     #endregion
 
-    #region Properties
-    #endregion
 
-    private void Start()
+    protected override void InitializeComponents()
     {
-        kernelHandle = computeShader.FindKernel(KERNEL_NAME);
-        InitializeComponents();
-        InitializeRenderTextures();
-    }
-
-    private void InitializeComponents()
-    {
+        base.InitializeComponents();
         mesh = GetComponent<MeshFilter>();
         meshCollider = GetComponent<MeshCollider>();
-        objectMaterial = GetComponent<Renderer>().material;
 
         vertexBuffer = new ComputeBuffer(mesh.mesh.vertices.Length, 3 * 4);      // 3 Floats * 4 Bytes
         vertexBuffer.SetData(mesh.mesh.vertices);
         uvBuffer = new ComputeBuffer(mesh.mesh.uv.Length, 2 * 4);                // 2 Floats * 4 Bytes
     }
 
-    private void InitializeRenderTextures()
+    protected override void InitializeRenderTextures()
     {
         renderTexture = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
         renderTexture.enableRandomWrite = true;
@@ -71,18 +54,18 @@ public class ComputeMeshPainter : MonoBehaviour
         Graphics.Blit(originalTexture, renderTexture);
     }
 
-    private void Update ()
+    protected override void ComputeValues()
     {
         // TODO: Replace strings with constant strings.
-        computeShader.SetBuffer(kernelHandle, "MeshVertices", vertexBuffer);
-        computeShader.SetBuffer(kernelHandle, "MeshUvs", uvBuffer);
+        computeShader.SetBuffer(kernelHandleNumber, "MeshVertices", vertexBuffer);
+        computeShader.SetBuffer(kernelHandleNumber, "MeshUvs", uvBuffer);
         computeShader.SetInt("_TextureSize", renderTextureWidth);
         computeShader.SetVector("_UvHit", uvHit);
         computeShader.SetFloat("_Radius", brushRadius);
         computeShader.SetFloat("_BrushStrength", brushStrength);
-        computeShader.SetTexture(kernelHandle, "Result", renderTexture);
+        computeShader.SetTexture(kernelHandleNumber, "Result", renderTexture);
 
-        computeShader.Dispatch(kernelHandle, renderTexture.width / KERNEL_SIZE, renderTexture.height / KERNEL_SIZE, 1);
+        computeShader.Dispatch(kernelHandleNumber, renderTexture.width / KERNEL_SIZE, renderTexture.height / KERNEL_SIZE, 1);
 
         objectMaterial.SetTexture("_Heightmap", renderTexture);
         objectMaterial.SetTexture("_MainTex", renderTexture);
