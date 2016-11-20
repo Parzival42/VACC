@@ -16,14 +16,19 @@ void Main (uint3 id : SV_DispatchThreadID)
 	float2 uv = id.xy / float(_TextureSize);
 	float dist = distance(uv, _UvHit.xy);
 
-	if (dist <= _Radius)
-	{
-		// TODO: Find out how to add something on the existing color.
+	if (dist <= _Radius) {
 		Result[id.xy].r += _BrushStrength;
 		Result[id.xy].r = clamp(Result[id.xy].r, 0, 1);
 
-		// TODO: Get the right index by thread id?
-		//int idx = (uv.x + uv.y)*40;
-		//MeshVertices[idx].z = Result[id.xy].r;
+		uint flatIndex = _TextureSize * id.y + id.x;
+		uint flatArrayHeightmapsize = _TextureSize * _TextureSize;
+		uint smallArraySize = 41 * 41;
+
+		float flatPercentage = float(flatIndex) / float(flatArrayHeightmapsize);
+
+		//if(fmod(flatIndex, ratio) < 0.07) {
+			uint smallIndex = smallArraySize * flatPercentage;
+			MeshVertices[smallIndex].z = -Result[id.xy].r * 6.0;
+		//}
 	}
 }

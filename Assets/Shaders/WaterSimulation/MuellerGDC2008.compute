@@ -33,14 +33,19 @@ void Main (uint3 id : SV_DispatchThreadID) {
 	float h = 1.0;
 	float deltaTime = 1.0 / 60.0;
 
-	float speedSquared = speed * speed;
-	float hSquared = h * h;*/
+	float speedSquared = speed * speed;*/
+	float hSquared = 0.7 * 0.7;
+
+	int dxPositive = clamp(id.x + 1, 0, _TextureSize);
+	int dyPositive = clamp(id.y + 1, 0, _TextureSize);
+	int dxNegative = clamp(id.x - 1, 0, _TextureSize);
+	int dyNegative = clamp(id.y - 1, 0, _TextureSize);
 
 	float speedSquared = _Speed * _Speed;
-	float acceleration = speedSquared * (WaterHeight[uint2(id.x + 1, id.y)].r +
-	 						WaterHeight[uint2(id.x - 1, id.y)].r +
-							WaterHeight[uint2(id.x, id.y + 1)].r +
-							WaterHeight[uint2(id.x, id.y - 1)].r - 4.0 * WaterHeight[id.xy].r);	// / texelSize
+	float acceleration = speedSquared * (WaterHeight[uint2(dxPositive, id.y)].r +
+	 						WaterHeight[uint2(dxNegative, id.y)].r +
+							WaterHeight[uint2(id.x, dyPositive)].r +
+							WaterHeight[uint2(id.x, dyNegative)].r - 4.0 * WaterHeight[id.xy].r) / hSquared;	// / texelSize
 
 	VelocityField[id.xy].r += acceleration;
 	VelocityField[id.xy].r *= 0.99;
