@@ -893,8 +893,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1238060913}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: -0.463, y: 1.415, z: 0.814}
-  m_LocalScale: {x: 0.08, y: 0.1, z: 0.09}
+  m_LocalPosition: {x: -0.335, y: 1.365, z: 0.999}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.09}
   m_LocalEulerAnglesHint: {x: 270, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 227776267}
@@ -913,7 +913,7 @@ MonoBehaviour:
   gravitationForce: {fileID: 1238060918}
   externalForces:
   - {fileID: 1238060916}
-  slider: 0
+  slider: 0.01
   collBoxSize: {x: 0, y: 0, z: 0}
   collBoxCenter: {x: 0, y: 0, z: 0}
 --- !u!114 &1238060916

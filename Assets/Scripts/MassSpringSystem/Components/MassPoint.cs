@@ -45,7 +45,7 @@ public class MassPoint {
         //position update using (no velocity) verlet integration 
         swapVector = currentPosition;
 
-        currentPosition = currentPosition + (currentPosition - lastPosition) * 0.99f + acceleration * 0.5f * dt * dt;
+        currentPosition = currentPosition + (currentPosition - lastPosition) * 0.96f + acceleration * 0.5f * dt * dt;
 
         lastPosition = swapVector;
 
@@ -73,7 +73,7 @@ public class MassPoint {
 
     public void ConnectTo(MassPoint massPoint)
     {
-        attachedSprings.Add(new Spring(this, massPoint, 0.75f));
+        attachedSprings.Add(new Spring(this, massPoint, 0.95f));
     }
 
     public void RemoveSpring(Spring spring)

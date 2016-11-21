@@ -43,8 +43,8 @@ public class Spring {
         Vector3 force = new Vector3();
         force = direction * distance * springConstant;
 
-        massPoint1.ApplyForce(force*200);
-        massPoint2.ApplyForce(-force*200);
+        massPoint1.ApplyForce(force*300);
+        massPoint2.ApplyForce(-force*300);
 
         //float influence1 = massPoint1.InverseMass / (massPoint1.InverseMass + massPoint2.InverseMass) * springConstant;
         //float influence2 = springConstant - influence1;
