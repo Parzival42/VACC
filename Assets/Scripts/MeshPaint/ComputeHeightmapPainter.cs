@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ComputeMeshPainter : ComputeMeshModifier
+public class ComputeHeightmapPainter : ComputeMeshModifier
 {
     [Header("Brush settings")]
     [SerializeField]

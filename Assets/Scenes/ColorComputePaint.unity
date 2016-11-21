@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.17720324, g: 0.2218128, b: 0.3040495, a: 1}
+  m_IndirectSpecularColor: {r: 0.17340927, g: 0.21674305, b: 0.29876098, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -361,10 +361,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 313213770}
-  m_LocalRotation: {x: 0.509732, y: -0.1858001, z: 0.085650384, w: 0.8356528}
-  m_LocalPosition: {x: -2.91, y: 3.17, z: 0}
+  m_LocalRotation: {x: 0.6508123, y: -0.017099498, z: 0.060245562, w: 0.7566515}
+  m_LocalPosition: {x: 3.01, y: 3.17, z: 3.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_LocalEulerAnglesHint: {x: 62.08, y: -28.443, z: -5.5150003}
+  m_LocalEulerAnglesHint: {x: 80.705, y: 18.738, z: 25.164001}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -401,7 +401,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 9a479f635b1d20a4e809e471a00313fb, type: 2}
+  - {fileID: 2100000, guid: 1a0e754b682fd3b4b913ffe40af0f095, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -461,15 +461,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1127065818}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3e0785c9413ac439157888e2da4ae0, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d02e3ead8c22154db89f7a5a7922c52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  renderTexture: {fileID: 8400000, guid: 7b9f438b8ee78844fa5d45946e775244, type: 2}
-  originalTexture: {fileID: 2800000, guid: 3ee33f141d458f245b5b37b03a727b36, type: 3}
-  currentShader: {fileID: 4800000, guid: 0f57612cb050f3f4ab67878f01da1a6a, type: 3}
-  copyRT: {fileID: 8400000, guid: c7929681ca8b5204295dd1bb08a705db, type: 2}
-  paintStrength: 0.08
-  falloff: 100
+  originalTexture: {fileID: 2800000, guid: 3b8b7f1ad811a3e43be7bb0ab533fb5a, type: 3}
+  computeShader: {fileID: 7200000, guid: 1543fe063b1ae4e4da2fc78e302290dd, type: 3}
+  brushRadius: 0.05
+  brushStrength: -0.02
+  renderTextureWidth: 1024
+  renderTextureHeight: 1024
 --- !u!64 &1127065824
 MeshCollider:
   m_ObjectHideFlags: 0
