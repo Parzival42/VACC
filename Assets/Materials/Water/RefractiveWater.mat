@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PaintMaterial
-  m_Shader: {fileID: 4800000, guid: a57d94b2ba4dfed4484be1348cf7a2cc, type: 3}
+  m_Name: RefractiveWater
+  m_Shader: {fileID: 4800000, guid: 074eca38c68f507478b52e0d11b8d3b3, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -46,33 +46,39 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _FoamTex
+      second:
+        m_Texture: {fileID: 2800000, guid: cd13d42670b70764999dab319caa6ca8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _FoamTexture
+      second:
+        m_Texture: {fileID: 2800000, guid: cd13d42670b70764999dab319caa6ca8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _GlossMap
       second:
-        m_Texture: {fileID: 2800000, guid: b499975726e1ab944a10d2b949485f34, type: 3}
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Heightmap
+      second:
+        m_Texture: {fileID: 2800000, guid: b9b466da59f310541b78c7128957ee7b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 409043403cd481b4fb4f025b93b60700, type: 3}
+        m_Texture: {fileID: 2800000, guid: 93025475403070a4d82e45c3c7a7c538, type: 3}
         m_Scale: {x: 4, y: 4}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Mask
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
         m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _NormalMap
-      second:
-        m_Texture: {fileID: 2800000, guid: d5e954e056c0a4340b732839c0166810, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -82,27 +88,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _OtherGlossMap
-      second:
-        m_Texture: {fileID: 2800000, guid: 0fe51ba6988c20443bc4af93a5d7b916, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OtherNormalMap
-      second:
-        m_Texture: {fileID: 2800000, guid: 3538dc0e64aeaa94b91fcd19e4b01da3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OtherTex
-      second:
-        m_Texture: {fileID: 2800000, guid: 2c0066c0fe30bc246b5f34c6ca1c4fad, type: 3}
-        m_Scale: {x: 3, y: 3}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _ParallaxMap
       second:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _WaterNormalMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 6d7a4c73c5e90b244a606f43bbed376a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -119,44 +113,47 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _FoamBlendOffset
+      second: 0.215
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 4.3
+      second: 0.816
     - first:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _MaskStrength
-      second: 1
+        name: _HeightStrength
+      second: 6
     - first:
         name: _Metallic
-      second: 0.09
+      second: 1
     - first:
         name: _Mode
       second: 0
     - first:
         name: _NormalStrength
-      second: 2
+      second: 0
     - first:
         name: _OcclusionStrength
       second: 1
     - first:
-        name: _OtherGlossiness
-      second: 3.9
-    - first:
-        name: _OtherMetallic
-      second: 0
-    - first:
-        name: _OtherNormalStrength
-      second: 0.55
-    - first:
         name: _Parallax
       second: 0.02
     - first:
+        name: _RefractionStrength
+      second: 90
+    - first:
+        name: _RimStrength
+      second: 1.07
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
+    - first:
+        name: _SobelStrength
+      second: 0.21
     - first:
         name: _SpecularHighlights
       second: 1
@@ -167,12 +164,27 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _WaterNormalStrength
+      second: 0.19
+    - first:
+        name: _WaveStrength
+      second: -0.02
+    - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 0.4606483, g: 0.43387762, b: 0.78676474, a: 0.122}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _GlossMap
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _UpVector
+      second: {r: 0, g: 0, b: 1, a: 1}
+    - first:
+        name: _WaterWaveColor
+      second: {r: 1, g: 1, b: 1, a: 1}

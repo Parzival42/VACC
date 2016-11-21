@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: WaterTest
-  m_Shader: {fileID: 4800000, guid: 074eca38c68f507478b52e0d11b8d3b3, type: 3}
+  m_Name: DeepOceanWater
+  m_Shader: {fileID: 4800000, guid: d7066d6664bccfe48bdd8153739e44d0, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -72,7 +72,7 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 93025475403070a4d82e45c3c7a7c538, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 4, y: 4}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -101,6 +101,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
+        name: _AttenuationStrength
+      second: 0.00001
+    - first:
         name: _BumpScale
       second: 1
     - first:
@@ -116,11 +119,14 @@ Material:
         name: _FoamBlendOffset
       second: 0.215
     - first:
+        name: _FresnelPower
+      second: 40.93
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
         name: _Glossiness
-      second: 0.816
+      second: 0.908
     - first:
         name: _GlossyReflections
       second: 1
@@ -129,7 +135,7 @@ Material:
       second: 6
     - first:
         name: _Metallic
-      second: 1
+      second: 0.916
     - first:
         name: _Mode
       second: 0
@@ -148,6 +154,9 @@ Material:
     - first:
         name: _RimStrength
       second: 1.07
+    - first:
+        name: _SeaHeight
+      second: -1.15
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -175,13 +184,16 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.4606483, g: 0.43387762, b: 0.78676474, a: 0.122}
+      second: {r: 0.733564, g: 0.8724496, b: 0.9411765, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _GlossMap
       second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _SeaBase
+      second: {r: 0.10229239, g: 0.28691086, b: 0.32352942, a: 1}
     - first:
         name: _UpVector
       second: {r: 0, g: 0, b: 1, a: 1}
