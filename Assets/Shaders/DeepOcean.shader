@@ -122,7 +122,7 @@ Shader "DustSucker/DeepOcean" {
 			o.Normal = normalize(float3(surfaceNormal.xy, surfaceNormal.z * _SobelStrength));
 
 			// Calculate water foam based on the steepness of the water (normal).
-			//waterColor = calculateFoam(IN, o.Normal, waterColor);
+			waterColor = calculateFoam(IN, o.Normal, waterColor);
 
 			o.Normal = normalize(o.Normal + waterNormal);
 
@@ -136,7 +136,6 @@ Shader "DustSucker/DeepOcean" {
 			half3 distance = IN.worldPos - half3(0, _ViewHeight, 0);//;_WorldSpaceCameraPos;
 			half atten = max(1.0 - dot(distance, distance) * _AttenuationStrength, 0.0);
 			colorResult += _Color * (distance.y - _SeaHeight) * 0.18 * atten;
-			// Combine the water color with refraction
 
 			// Set the shader parameters
 			o.Albedo = colorResult.rgb;
