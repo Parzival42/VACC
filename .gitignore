@@ -22,3 +22,5 @@ sysinfo.txt
 Sound/.*/*
 fmod.log
 fmod_editor.log
+Assets/FMODStudioCache.asset
+Assets/FMODStudioCache.asset.meta
