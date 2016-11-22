@@ -3,6 +3,7 @@ Shader "DustSucker/DeepOcean" {
 		_Color ("Sea Water Color", Color) = (0.8, 0.9, 0.22, 1.0)
 		_SeaBase ("Sea Base Color", Color) = (0.1, 0.19, 0.22, 1.0)
 		_SeaHeight ("Sea Height", Float) = 0.4
+		_ViewHeight ("View Height", Float) =  6.63
 		_AttenuationStrength ("Attenuation Strength", Range(0.01, 0.00001)) = 0.001
 		_FresnelPower ("Fresnel Power", Float) = 3.0
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
@@ -67,6 +68,7 @@ Shader "DustSucker/DeepOcean" {
 		half _SeaHeight;
 		half _FresnelPower;
 		float _AttenuationStrength;
+		half _ViewHeight;
 
 		half _WaterNormalStrength;
 		half _RimStrength;
@@ -131,7 +133,7 @@ Shader "DustSucker/DeepOcean" {
 			half3 refractColor = _SeaBase + waterColor;
 			half3 colorResult = lerp(refractColor, waterColor, fresnel);
 
-			half3 distance = IN.worldPos - _WorldSpaceCameraPos;
+			half3 distance = IN.worldPos - half3(0, _ViewHeight, 0);//;_WorldSpaceCameraPos;
 			half atten = max(1.0 - dot(distance, distance) * _AttenuationStrength, 0.0);
 			colorResult += _Color * (distance.y - _SeaHeight) * 0.18 * atten;
 			// Combine the water color with refraction
