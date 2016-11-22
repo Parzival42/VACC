@@ -20,4 +20,5 @@ sysinfo.txt
 
 #FMOD user data files
 Sound/.*/*
-*.log
+fmod.log
+fmod_editor.log
