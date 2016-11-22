@@ -55,7 +55,7 @@ Material:
         name: _MainTex
       second:
         m_Texture: {fileID: 2800000, guid: 409043403cd481b4fb4f025b93b60700, type: 3}
-        m_Scale: {x: 4, y: 4}
+        m_Scale: {x: 8, y: 8}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _Mask
@@ -97,7 +97,7 @@ Material:
         name: _OtherTex
       second:
         m_Texture: {fileID: 2800000, guid: 2c0066c0fe30bc246b5f34c6ca1c4fad, type: 3}
-        m_Scale: {x: 3, y: 3}
+        m_Scale: {x: 6, y: 6}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
@@ -123,7 +123,7 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 4.3
+      second: 6.5
     - first:
         name: _GlossyReflections
       second: 1
@@ -132,13 +132,13 @@ Material:
       second: 1
     - first:
         name: _Metallic
-      second: 0.09
+      second: 0
     - first:
         name: _Mode
       second: 0
     - first:
         name: _NormalStrength
-      second: 2
+      second: 0.77
     - first:
         name: _OcclusionStrength
       second: 1
