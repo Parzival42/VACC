@@ -15,8 +15,5 @@
 /*.pidb
 /*.booproj
 
-#FMOD user data files
-Sound/.*
-
 #Unity3D Generated File On Crash Reports
 sysinfo.txt
