@@ -1,5 +1,6 @@
-// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
-
+/* This shader uses a Grab pass for Refraction
+ * This shader is not Deferred!
+ */
 Shader "DustSucker/SimpleWater" {
 	Properties {
 		_Color ("Color", Color) = (1, 1, 1, 1)
@@ -9,7 +10,6 @@ Shader "DustSucker/SimpleWater" {
 		_GlossMap ("Gloss Map", 2D) = "white" {}
 		_Glossiness ("Smoothness", Range(0, 1)) = 0.5
 		_Metallic ("Metallic", Range(0, 1)) = 0.0
-
 
 		[Normal][NoScaleOffset]
 		_WaterNormalMap ("Water Normal", 2D) = "bump" {}
