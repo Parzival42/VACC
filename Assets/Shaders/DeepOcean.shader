@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
+
 Shader "DustSucker/DeepOcean" {
 	Properties {
 		_Color ("Sea Water Color", Color) = (0.8, 0.9, 0.22, 1.0)
@@ -81,16 +83,6 @@ Shader "DustSucker/DeepOcean" {
 		half _WaveStrength;
 		fixed4 _UpVector;
 
-		/*half3 calculateRefraction(Input IN, half3 surfaceNormal, half4 originalColor) {
-			float2 offset = surfaceNormal * _RefractionStrength * _GrabTexture_TexelSize.xy;
-			IN.screenPos.xy += offset * IN.screenPos.z;
-
-			fixed3 refractColor = tex2Dproj(_GrabTexture, IN.screenPos);
-			half rimValue = 1.0 - calculateRim(IN.viewDir, surfaceNormal, _RimStrength);
-			return lerp(originalColor.rgb, refractColor, rimValue);
-			//return lerp(originalColor.rgb, refractColor, 1.0 - originalColor.a);
-		}*/
-
 		half4 calculateFoam(Input IN, half3 normalizedNormal, half4 originalWaterColor) {
 			half waveStrength = dot(normalizedNormal, _UpVector.xyz);
 			_WaveStrength = -_WaveStrength;
@@ -133,9 +125,11 @@ Shader "DustSucker/DeepOcean" {
 			half3 refractColor = _SeaBase + waterColor;
 			half3 colorResult = lerp(refractColor, waterColor, fresnel);
 
-			half3 distance = IN.worldPos - half3(0, _ViewHeight, 0);//;_WorldSpaceCameraPos;
-			half atten = max(1.0 - dot(distance, distance) * _AttenuationStrength, 0.0);
-			colorResult += _Color * (distance.y - _SeaHeight) * 0.18 * atten;
+			// World space calculation -> Plane has to be at one specific y position!!!
+			half3 distance = IN.worldPos - half3(IN.worldPos.x, _ViewHeight, IN.worldPos.z);
+
+			half attenuation = max(1.0 - dot(distance, distance) * _AttenuationStrength, 0.0);
+			colorResult += _Color * (distance.y - _SeaHeight) * 0.18 * attenuation;
 
 			// Set the shader parameters
 			o.Albedo = colorResult.rgb;

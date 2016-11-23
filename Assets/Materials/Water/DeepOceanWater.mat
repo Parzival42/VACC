@@ -173,6 +173,9 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _ViewHeight
+      second: 6.63
+    - first:
         name: _WaterNormalStrength
       second: 0.19
     - first:
@@ -193,7 +196,7 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _SeaBase
-      second: {r: 0.10229239, g: 0.28691086, b: 0.32352942, a: 1}
+      second: {r: 0.22837368, g: 0.44276932, b: 0.4852941, a: 1}
     - first:
         name: _UpVector
       second: {r: 0, g: 0, b: 1, a: 1}
