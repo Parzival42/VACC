@@ -21,7 +21,7 @@ public class PipeModelEditorHelper : EditorWindow
 
         if (waterSimulation != null)
         {
-            GUILayout.Label("Pipe model script found! (" + waterSimulation.name + ")", EditorStyles.label);
+            GUILayout.Label("Pipe water simulation script found! (" + waterSimulation.name + ")", titleStyle);
 
             // Draw Flux
             DrawFlux(waterSimulation);
@@ -29,14 +29,16 @@ public class PipeModelEditorHelper : EditorWindow
             // Draw water and terrain texture
             DrawWaterAndTerrain(waterSimulation);
 
+            if(!EditorApplication.isPlaying)
+                GUILayout.Label("The render textures are only shown in Play-Mode!");
         }
         else
-            GUILayout.Label("No Pipe model script found! You made everything wrong! :D", EditorStyles.label);
+            GUILayout.Label("No Pipe model script found! You made everything wrong! :D", titleStyle);
     }
 
     private void DrawWaterAndTerrain(ComputeMeshPaintWaterPipe waterSimulation)
     {
-        EditorGUILayout.BeginHorizontal("box");
+        EditorGUILayout.BeginHorizontal();
             ShowImage("Water:", waterSimulation.WaterHeight, 320, 320);
             ShowImage("Terrain:", waterSimulation.TerrainHeight, 320, 320);
         EditorGUILayout.EndHorizontal();
@@ -44,7 +46,7 @@ public class PipeModelEditorHelper : EditorWindow
 
     private void DrawFlux(ComputeMeshPaintWaterPipe waterSimulation)
     {
-        EditorGUILayout.BeginHorizontal("box");
+        EditorGUILayout.BeginHorizontal();
             ShowImage("Flux Left:", waterSimulation.FluxLeft, 256, 256);
             ShowImage("Flux Right:", waterSimulation.FluxRight, 256, 256);
             ShowImage("Flux Top:", waterSimulation.FluxTop, 256, 256);
