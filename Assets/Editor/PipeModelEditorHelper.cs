@@ -11,7 +11,8 @@ public class PipeModelEditorHelper : EditorWindow
     [MenuItem("Window/WaterSimulation/PipeModelWaterHelper")]
     public static void ShowWindow()
     {
-        GetWindow(typeof(PipeModelEditorHelper));
+        EditorWindow window = GetWindow(typeof(PipeModelEditorHelper), true);
+        window.titleContent = new GUIContent("Pipe Water Simulation Debug View");
     }
 
     private void OnGUI()
