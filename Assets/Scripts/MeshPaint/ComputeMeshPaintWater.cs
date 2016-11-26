@@ -18,7 +18,7 @@ public class ComputeMeshPaintWater : ComputeMeshModifier
 
     [Header("Render Texture settings")]
     [SerializeField]
-    private int renderTextureWidth = 512;
+    protected int renderTextureWidth = 512;
 
     [SerializeField]
     protected int renderTextureHeight = 512;
@@ -28,7 +28,7 @@ public class ComputeMeshPaintWater : ComputeMeshModifier
 
     protected RenderTexture waterHeights;
     protected RenderTexture waterVelocity;
-    protected RenderTexture tmpHeight;
+    protected RenderTexture tmpWaterHeight;
 
     protected MeshFilter mesh;
     protected MeshCollider meshCollider;
@@ -51,11 +51,11 @@ public class ComputeMeshPaintWater : ComputeMeshModifier
     {
         waterHeights = GetComputeRenderTexture(renderTextureWidth, 32);
         waterVelocity = GetComputeRenderTexture(renderTextureWidth, 32);
-        tmpHeight = GetComputeRenderTexture(renderTextureWidth, 32);
+        tmpWaterHeight = GetComputeRenderTexture(renderTextureWidth, 32);
 
         Graphics.Blit(originalTexture, waterHeights);
         Graphics.Blit(initTexture, waterVelocity);
-        Graphics.Blit(initTexture, tmpHeight);
+        Graphics.Blit(initTexture, tmpWaterHeight);
     }
 
     protected override void ComputeValues()
@@ -71,12 +71,12 @@ public class ComputeMeshPaintWater : ComputeMeshModifier
 
         computeShader.SetTexture(kernelHandleNumber, "WaterHeight", waterHeights);
         computeShader.SetTexture(kernelHandleNumber, "VelocityField", waterVelocity);
-        computeShader.SetTexture(kernelHandleNumber, "TempHeight", tmpHeight);
+        computeShader.SetTexture(kernelHandleNumber, "TempHeight", tmpWaterHeight);
 
         computeShader.Dispatch(kernelHandleNumber, waterHeights.width / KERNEL_SIZE, waterHeights.height / KERNEL_SIZE, 1);
 
         // Copy temporary result back to the main water heightmap
-        Graphics.Blit(tmpHeight, waterHeights);
+        Graphics.Blit(tmpWaterHeight, waterHeights);
         objectMaterial.SetTexture("_Heightmap", waterHeights);
     }
 

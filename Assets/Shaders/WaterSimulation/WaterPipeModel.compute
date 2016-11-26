@@ -1,0 +1,20 @@
+#pragma kernel Main
+
+// Inputs ---------------------------------------
+RWTexture2D<float> WaterHeight;
+RWTexture2D<float> VelocityField;
+RWTexture2D<float> TempHeight;
+
+float _DeltaTime;
+float _Speed;
+int _TextureSize;
+// ----------------------------------------------
+
+[numthreads(16, 16, 1)]
+void Main (uint3 id : SV_DispatchThreadID) {
+	// Index Clamping
+	int dxPositive = clamp(id.x + 1, 0, _TextureSize);
+	int dyPositive = clamp(id.y + 1, 0, _TextureSize);
+	int dxNegative = clamp(id.x - 1, 0, _TextureSize);
+	int dyNegative = clamp(id.y - 1, 0, _TextureSize);
+}
