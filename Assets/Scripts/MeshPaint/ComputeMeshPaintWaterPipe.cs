@@ -47,10 +47,20 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
     protected int fluxKernelHandle;
     #endregion
+    #region Properties
     protected override int KERNEL_SIZE { get { return 16; } }
 
     protected const string KERNEL_METHOD_NAME = "Main";
     protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
+
+    public RenderTexture FluxLeft { get { return fluxLeft; } }
+    public RenderTexture FluxRight { get { return fluxRight; } }
+    public RenderTexture FluxBottom { get { return fluxBottom; } }
+    public RenderTexture FluxTop { get { return fluxTop; } }
+
+    public RenderTexture WaterHeight { get { return waterHeights; } }
+    public RenderTexture TerrainHeight { get { return terrainHeightmap; } }
+    #endregion
 
     protected override void Start()
     {
