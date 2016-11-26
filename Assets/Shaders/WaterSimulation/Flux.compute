@@ -2,11 +2,19 @@
 
 // Inputs ---------------------------------------
 RWTexture2D<float> WaterHeight;
-RWTexture2D<float> VelocityField;
-RWTexture2D<float> TempHeight;
+RWTexture2D<float> TerrainHeight;
 
-float _DeltaTime;
-float _Speed;
+RWTexture2D<float> FluxLeft;
+RWTexture2D<float> FluxRight;
+RWTexture2D<float> FluxBottom;
+RWTexture2D<float> FluxTop;
+
+float _DampingFactor;
+float _HeightToFluxFactor;
+float _SegmentSizeSquared;
+float _MinWaterHeight;
+
+//float _DeltaTime;
 int _TextureSize;
 // ----------------------------------------------
 

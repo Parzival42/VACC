@@ -10,14 +10,24 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
     [Header("Render Texture settings")]
     [SerializeField]
-    protected int renderTextureWidth = 512;
-
-    [SerializeField]
-    protected int renderTextureHeight = 512;
+    protected int textureSize = 512;
 
     [Header("Flux settings")]
     [SerializeField]
     private ComputeShader fluxComputeShader;
+
+    [SerializeField]
+    protected float dampingFactor = 0.995f;
+
+    [SerializeField]
+    protected float heightToFluxFactor = 1f;
+
+    [SerializeField]
+    protected float segmentSize = 1f;
+    private float squaredSegmentSize;
+
+    [SerializeField]
+    protected float minWaterHeight = 1f;
 
     [Header("Terrain")]
     [SerializeField]
@@ -31,7 +41,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     protected RenderTexture fluxLeft;
     protected RenderTexture fluxRight;
     protected RenderTexture fluxTop;
-    protected RenderTexture fluxDown;
+    protected RenderTexture fluxBottom;
     protected RenderTexture velocityX;
     protected RenderTexture velocityY;
 
@@ -41,6 +51,12 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
     protected const string KERNEL_METHOD_NAME = "Main";
     protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
+
+    protected override void Start()
+    {
+        base.Start();
+        squaredSegmentSize = segmentSize * segmentSize;
+    }
 
     protected override void InitializeKernelHandle()
     {
@@ -53,30 +69,30 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
         //base.InitializeRenderTextures();
 
         // Water
-        waterHeights = GetComputeRenderTexture(renderTextureWidth, 32);
+        waterHeights = GetComputeRenderTexture(textureSize, 32);
         Graphics.Blit(originalTexture, waterHeights);
-        tmpWaterHeight = GetComputeRenderTexture(renderTextureWidth, 32);
+        tmpWaterHeight = GetComputeRenderTexture(textureSize, 32);
         Graphics.Blit(initTexture, tmpWaterHeight);
 
         // Terrain
-        terrainHeightmap = GetComputeRenderTexture(renderTextureWidth, 32);
+        terrainHeightmap = GetComputeRenderTexture(textureSize, 32);
         Graphics.Blit(staticTerrainHeightmap, terrainHeightmap);
 
         // Flux
-        fluxLeft = GetComputeRenderTexture(renderTextureWidth, 32);
-        fluxRight = GetComputeRenderTexture(renderTextureWidth, 32);
-        fluxTop = GetComputeRenderTexture(renderTextureWidth, 32);
-        fluxDown = GetComputeRenderTexture(renderTextureWidth, 32);
+        fluxLeft = GetComputeRenderTexture(textureSize, 32);
+        fluxRight = GetComputeRenderTexture(textureSize, 32);
+        fluxTop = GetComputeRenderTexture(textureSize, 32);
+        fluxBottom = GetComputeRenderTexture(textureSize, 32);
 
         // Velocity
-        velocityX = GetComputeRenderTexture(renderTextureWidth, 32);
-        velocityY = GetComputeRenderTexture(renderTextureWidth, 32);
+        velocityX = GetComputeRenderTexture(textureSize, 32);
+        velocityY = GetComputeRenderTexture(textureSize, 32);
 
         // Init flux and velocity with black
         Graphics.Blit(initTexture, fluxLeft);
         Graphics.Blit(initTexture, fluxRight);
         Graphics.Blit(initTexture, fluxTop);
-        Graphics.Blit(initTexture, fluxDown);
+        Graphics.Blit(initTexture, fluxBottom);
         Graphics.Blit(initTexture, velocityX);
         Graphics.Blit(initTexture, velocityY);
     }
@@ -84,8 +100,49 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     protected override void ComputeValues()
     {
         // Calculate Flux
-        
+        ComputeFlux();
 
         // Calculate Water
+        ComputeWater();
+    }
+
+    private void ComputeFlux()
+    {
+        fluxComputeShader.SetTexture(fluxKernelHandle, "WaterHeight", waterHeights);
+        fluxComputeShader.SetTexture(fluxKernelHandle, "TerrainHeight", terrainHeightmap);
+
+        fluxComputeShader.SetTexture(fluxKernelHandle, "FluxLeft", fluxLeft);
+        fluxComputeShader.SetTexture(fluxKernelHandle, "FluxRight", fluxRight);
+        fluxComputeShader.SetTexture(fluxKernelHandle, "FluxBottom", fluxBottom);
+        fluxComputeShader.SetTexture(fluxKernelHandle, "FluxTop", fluxTop);
+
+        fluxComputeShader.SetFloat("_DampingFactor", dampingFactor);
+        fluxComputeShader.SetFloat("_HeightToFluxFactor", heightToFluxFactor);
+        fluxComputeShader.SetFloat("_SegmentSizeSquared", squaredSegmentSize);
+        fluxComputeShader.SetFloat("_MinWaterHeight", minWaterHeight);
+        fluxComputeShader.SetInt("_TextureSize", textureSize);
+
+        fluxComputeShader.Dispatch(fluxKernelHandle, textureSize / KERNEL_SIZE, textureSize / KERNEL_SIZE, 1);
+    }
+
+    private void ComputeWater()
+    {
+        computeShader.SetTexture(kernelHandleNumber, "WaterHeight", waterHeights);
+        computeShader.SetTexture(kernelHandleNumber, "TempHeight", tmpWaterHeight);
+
+        computeShader.SetTexture(fluxKernelHandle, "FluxLeft", fluxLeft);
+        computeShader.SetTexture(fluxKernelHandle, "FluxRight", fluxRight);
+        computeShader.SetTexture(fluxKernelHandle, "FluxBottom", fluxBottom);
+        computeShader.SetTexture(fluxKernelHandle, "FluxTop", fluxTop);
+
+        computeShader.SetFloat("_SegmentSizeSquared", squaredSegmentSize);
+        computeShader.SetFloat("_MinWaterHeight", minWaterHeight);
+        computeShader.SetInt("_TextureSize", textureSize);
+
+        computeShader.Dispatch(fluxKernelHandle, textureSize / KERNEL_SIZE, textureSize / KERNEL_SIZE, 1);
+
+        // Copy temporary result back to the main water heightmap
+        Graphics.Blit(tmpWaterHeight, waterHeights);
+        objectMaterial.SetTexture("_Heightmap", waterHeights);
     }
 }

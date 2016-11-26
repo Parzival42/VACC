@@ -5,8 +5,15 @@ RWTexture2D<float> WaterHeight;
 RWTexture2D<float> VelocityField;
 RWTexture2D<float> TempHeight;
 
-float _DeltaTime;
-float _Speed;
+RWTexture2D<float> FluxLeft;
+RWTexture2D<float> FluxRight;
+RWTexture2D<float> FluxBottom;
+RWTexture2D<float> FluxTop;
+
+//float _DeltaTime;
+//float _Speed;
+float _SegmentSizeSquared;
+float _MinWaterHeight;
 int _TextureSize;
 // ----------------------------------------------
 
