@@ -1,42 +1,41 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ComputeMeshPaintWater : ComputeMeshModifier
 {
     [Header("Water Painter Inputs")]
     [SerializeField]
-    private Texture2D initTexture;
+    protected Texture2D initTexture;
 
     [SerializeField]
-    private float simulationSpeed = 0.3f;
+    protected float simulationSpeed = 0.3f;
 
     [Header("Brush settings")]
     [SerializeField]
-    private float brushRadius = 0.05f;
+    protected float brushRadius = 0.05f;
 
     [SerializeField]
-    private float brushStrength = 0.02f;
+    protected float brushStrength = 0.02f;
 
     [Header("Render Texture settings")]
     [SerializeField]
     private int renderTextureWidth = 512;
 
     [SerializeField]
-    private int renderTextureHeight = 512;
+    protected int renderTextureHeight = 512;
 
     #region Internal members
-    private Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+    protected Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 
-    private RenderTexture waterHeights;
-    private RenderTexture waterVelocity;
-    private RenderTexture tmpHeight;
+    protected RenderTexture waterHeights;
+    protected RenderTexture waterVelocity;
+    protected RenderTexture tmpHeight;
 
-    private MeshFilter mesh;
-    private MeshCollider meshCollider;
+    protected MeshFilter mesh;
+    protected MeshCollider meshCollider;
 
     protected override int KERNEL_SIZE { get { return 16; } }
 
-    private const string KERNEL_METHOD_NAME = "Main";
+    protected const string KERNEL_METHOD_NAME = "Main";
     protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
     #endregion
 
@@ -50,17 +49,9 @@ public class ComputeMeshPaintWater : ComputeMeshModifier
 
     protected override void InitializeRenderTextures()
     {
-        waterHeights = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
-        waterHeights.enableRandomWrite = true;
-        waterHeights.Create();
-
-        waterVelocity = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
-        waterVelocity.enableRandomWrite = true;
-        waterVelocity.Create();
-
-        tmpHeight = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
-        tmpHeight.enableRandomWrite = true;
-        tmpHeight.Create();
+        waterHeights = GetComputeRenderTexture(renderTextureWidth, 32);
+        waterVelocity = GetComputeRenderTexture(renderTextureWidth, 32);
+        tmpHeight = GetComputeRenderTexture(renderTextureWidth, 32);
 
         Graphics.Blit(originalTexture, waterHeights);
         Graphics.Blit(initTexture, waterVelocity);

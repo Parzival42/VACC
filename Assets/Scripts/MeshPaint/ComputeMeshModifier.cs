@@ -59,4 +59,16 @@ public abstract class ComputeMeshModifier : MonoBehaviour
     {
         kernelHandleNumber = computeShader.FindKernel(KERNEL_NAME);
     }
+
+    /// <summary>
+    /// Returns a rendertexture which is usable in a compute shader.
+    /// (Only R-Channel!)
+    /// </summary>
+    protected RenderTexture GetComputeRenderTexture(int textureSize, int depth)
+    {
+        RenderTexture computeTex = new RenderTexture(textureSize, textureSize, 32, RenderTextureFormat.RFloat);
+        computeTex.enableRandomWrite = true;
+        computeTex.Create();
+        return computeTex;
+    }
 }
