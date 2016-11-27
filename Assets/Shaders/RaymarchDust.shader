@@ -1,4 +1,4 @@
-﻿Shader "DustSucker/SimpleDust"
+﻿Shader "DustSucker/RaymarchDust"
 {
 Properties
 	{

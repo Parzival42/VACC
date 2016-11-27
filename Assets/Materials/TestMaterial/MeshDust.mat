@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: 3DTest
-  m_Shader: {fileID: 4800000, guid: 4673b1a8da62f90489666ec916bd3300, type: 3}
+  m_Name: MeshDust
+  m_Shader: {fileID: 4800000, guid: edcee2eb86f6174479a689d35286efe1, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -69,12 +69,6 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Volume
-      second:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
         name: _BumpScale
@@ -86,6 +80,12 @@ Material:
         name: _DetailNormalMapScale
       second: 1
     - first:
+        name: _DispBias
+      second: 0.34
+    - first:
+        name: _DispScale
+      second: -0.17
+    - first:
         name: _DstBlend
       second: 0
     - first:
@@ -93,13 +93,13 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0.5
+      second: 0.127
     - first:
         name: _GlossyReflections
       second: 1
     - first:
         name: _Metallic
-      second: 0
+      second: 0.529
     - first:
         name: _Mode
       second: 0
@@ -110,6 +110,9 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _Scale
+      second: 0.9
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
@@ -118,6 +121,9 @@ Material:
     - first:
         name: _SrcBlend
       second: 1
+    - first:
+        name: _TimeFactor
+      second: 0.284
     - first:
         name: _UVSec
       second: 0
@@ -131,3 +137,6 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _Tint
+      second: {r: 0.6911765, g: 0.6911765, b: 0.6911765, a: 1}

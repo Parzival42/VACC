@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Dust
-  m_Shader: {fileID: 4800000, guid: 94cbc1e91931a5f47aa38e6b81b233b5, type: 3}
+  m_Name: Fog
+  m_Shader: {fileID: 4800000, guid: 9e103285c53adcd4493e1b422a220270, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -74,8 +74,14 @@ Material:
         name: _BumpScale
       second: 1
     - first:
+        name: _ColorFalloff
+      second: 16
+    - first:
         name: _Cutoff
       second: 0.5
+    - first:
+        name: _Density
+      second: 2.84
     - first:
         name: _DetailNormalMapScale
       second: 1
@@ -91,6 +97,9 @@ Material:
     - first:
         name: _GlossyReflections
       second: 1
+    - first:
+        name: _InnerRatio
+      second: 0.47
     - first:
         name: _Metallic
       second: 0
@@ -125,3 +134,9 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _FogBaseColor
+      second: {r: 1, g: 0.85537523, b: 0.5441177, a: 1}
+    - first:
+        name: _FogDenseColor
+      second: {r: 1, g: 0.90588236, b: 0.78676474, a: 1}
