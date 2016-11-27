@@ -1,0 +1,21 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSSimulate
+
+float deltaTime = 0.016f;
+
+struct PointMassComponents{
+   float3 currentPosition;
+   float3 previousPosition;
+   float3 acceleration;
+};
+
+RWStructuredBuffer<PointMassComponents> Result;
+
+[numthreads(12,1,1)]
+void CSSimulate (uint3 id : SV_DispatchThreadID)
+{
+  	float3 newPosition = Result[id.x].currentPosition + (Result[id.x].currentPosition - Result[id.x].previousPosition) * 0.99f + Result[id.x].acceleration * 0.5f * deltaTime * deltaTime;
+    Result[id.x].acceleration = float3(0,0,0);
+    Result[id.x].previousPosition = Result[id.x].currentPosition;
+    Result[id.x].currentPosition = newPosition;
+}

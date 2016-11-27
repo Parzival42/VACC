@@ -3,13 +3,13 @@ using System.Collections;
 using System;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class TubeGenerator : MonoBehaviour {
+public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
 
     #region variables
 
     [Header("tube cap config")]
     [SerializeField]
-    [Range(0.001f, 250.0f)]
+    [Range(0.001f, 25.0f)]
     private float outerRadius = 0.5f;
 
     [SerializeField]
@@ -69,13 +69,11 @@ public class TubeGenerator : MonoBehaviour {
         }
 	}
 
-    private void GenerateTube()
+    public Tube GenerateTube()
     {
         doneGenerating = false;
 
-        MeshFilter filter = gameObject.GetComponent<MeshFilter>();
-        Mesh mesh = filter.mesh;
-        mesh.Clear();
+        Mesh mesh = new Mesh();
 
 
 
@@ -110,9 +108,12 @@ public class TubeGenerator : MonoBehaviour {
         mesh.RecalculateBounds();
         mesh.Optimize();
 
+        
 
         doneGenerating = true;
         showDebug = true;
+
+        return new Tube(mesh, vertex2DArray, normal2DArray, uv2DArray);
     }
 
 
@@ -243,6 +244,9 @@ public class TubeGenerator : MonoBehaviour {
     }
 
 
+
+
+
     //void OnDrawGizmos()
     //{
     //    if (showDebug)
@@ -252,7 +256,7 @@ public class TubeGenerator : MonoBehaviour {
     //        {
     //            for (int j = 0; j < vertex2DArray.GetLength(1); j++)
     //            {
-    //                Gizmos.DrawLine(vertex2DArray[i, j], vertex2DArray[i, j]+normal2DArray[i,j]*0.2f) ;
+    //                Gizmos.DrawLine(vertex2DArray[i, j], vertex2DArray[i, j] + normal2DArray[i, j] * 0.2f);
     //            }
     //        }
 

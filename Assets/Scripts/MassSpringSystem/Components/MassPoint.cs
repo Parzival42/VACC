@@ -73,7 +73,7 @@ public class MassPoint {
 
     public void ConnectTo(MassPoint massPoint)
     {
-        attachedSprings.Add(new Spring(this, massPoint, 0.95f));
+        attachedSprings.Add(new Spring(this, massPoint, 0.7f));
     }
 
     public void RemoveSpring(Spring spring)
