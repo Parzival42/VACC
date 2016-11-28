@@ -7,8 +7,9 @@ public class PipeModelEditorHelper : EditorWindow
     // Styles
     private GUIStyle titleStyle;
     private GUIStyle centeredStyle;
+    private GUIStyle marginStyle;
 
-    [MenuItem("Window/WaterSimulation/PipeModelWaterHelper")]
+    [MenuItem("Window/Water Simulation/Pipe Model Water Helper")]
     public static void ShowWindow()
     {
         EditorWindow window = GetWindow(typeof(PipeModelEditorHelper), true);
@@ -28,7 +29,7 @@ public class PipeModelEditorHelper : EditorWindow
             DrawFlux(waterSimulation);
 
             // Draw water and terrain texture
-            DrawWaterAndTerrain(waterSimulation);
+            DrawWaterTerrainVelocity(waterSimulation);
 
             if(!EditorApplication.isPlaying)
                 GUILayout.Label("The render textures are only shown in Play-Mode!");
@@ -37,29 +38,34 @@ public class PipeModelEditorHelper : EditorWindow
             GUILayout.Label("No Pipe model script found! You made everything wrong! :D", titleStyle);
     }
 
-    private void DrawWaterAndTerrain(ComputeMeshPaintWaterPipe waterSimulation)
+    private void DrawWaterTerrainVelocity(ComputeMeshPaintWaterPipe waterSimulation)
     {
+        float size = EditorGUIUtility.currentViewWidth / 4.3f;
         EditorGUILayout.BeginHorizontal();
-            ShowImage("Water:", waterSimulation.WaterHeight, 320, 320);
-            ShowImage("Terrain:", waterSimulation.TerrainHeight, 320, 320);
+            ShowImage("Water:", waterSimulation.WaterHeight, size, size);
+            ShowImage("Terrain:", waterSimulation.TerrainHeight, size, size);
+
+            ShowImage("Velocity X:", waterSimulation.VelocityX, size, size);
+            ShowImage("Velocity Y:", waterSimulation.VelocityY, size, size);
         EditorGUILayout.EndHorizontal();
     }
 
     private void DrawFlux(ComputeMeshPaintWaterPipe waterSimulation)
     {
+        float size = EditorGUIUtility.currentViewWidth / 4.3f;
         EditorGUILayout.BeginHorizontal();
-            ShowImage("Flux Left:", waterSimulation.FluxLeft, 256, 256);
-            ShowImage("Flux Right:", waterSimulation.FluxRight, 256, 256);
-            ShowImage("Flux Top:", waterSimulation.FluxTop, 256, 256);
-            ShowImage("Flux Bottom:", waterSimulation.FluxBottom, 256, 256);
+            ShowImage("Flux Left:", waterSimulation.FluxLeft, size, size);
+            ShowImage("Flux Right:", waterSimulation.FluxRight, size, size);
+            ShowImage("Flux Top:", waterSimulation.FluxTop, size, size);
+            ShowImage("Flux Bottom:", waterSimulation.FluxBottom, size, size);
         EditorGUILayout.EndHorizontal();
     }
 
     private void ShowImage(string label, Texture img, float width, float height)
     {
         EditorGUILayout.BeginVertical("box");
-        EditorGUILayout.LabelField(label, titleStyle);
-        GUILayout.Label(img, GUILayout.Width(width), GUILayout.Height(height));
+            EditorGUILayout.LabelField(label, titleStyle, GUILayout.Width(width));
+            GUILayout.Label(img, GUILayout.Width(width), GUILayout.Height(height));
         EditorGUILayout.EndVertical();
     }
 
@@ -75,5 +81,8 @@ public class PipeModelEditorHelper : EditorWindow
 
         centeredStyle = new GUIStyle();
         centeredStyle.alignment = TextAnchor.MiddleCenter;
+
+        marginStyle = new GUIStyle();
+        marginStyle.margin = new RectOffset(0, 0, 0, 0);
     }
 }

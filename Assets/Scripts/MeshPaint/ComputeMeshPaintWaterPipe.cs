@@ -60,6 +60,9 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
     public RenderTexture WaterHeight { get { return waterHeights; } }
     public RenderTexture TerrainHeight { get { return terrainHeightmap; } }
+
+    public RenderTexture VelocityX { get { return velocityX; } }
+    public RenderTexture VelocityY { get { return velocityY; } }
     #endregion
 
     protected override void Start()
