@@ -22,10 +22,28 @@ public class MouseDragHandler : SpringDragHandler
     {
         spring.connectedAnchor = CalculateCollisionWorldPoint();
 
+        /*
+         * 
+        // calculate the angle between dragObj forward vector and the connected spring anchor
+        Vector3 springDir = Vector3.Normalize(-(spring.connectedAnchor - dragObject.transform.position));
+        float angle = Vector3.Dot(dragObject.transform.forward, springDir);
+
+        // is the connected anchor left or right of the dragObj?
+        float direction = -dragObject.transform.forward.x * springDir.y + dragObject.transform.forward.y * springDir.x;
+
+        // change anchor position based on angle and direction
+        if (direction < 0)
+            spring.anchor = new Vector3(dragObject.transform.position.x * +10f * (1f - Mathf.Abs(angle)), dragObject.transform.position.y, dragObject.transform.position.z);
+        else
+            spring.anchor = new Vector3(dragObject.transform.position.x * -10f * (1f - Mathf.Abs(angle)), dragObject.transform.position.y, dragObject.transform.position.z);
+        *
+        */
+
         if (rigidbody.IsSleeping())
             rigidbody.WakeUp();
 
         Debug.DrawLine(spring.connectedAnchor, new Vector3(spring.connectedAnchor.x, 0, spring.connectedAnchor.z), Color.red);
+        Debug.DrawLine(spring.connectedAnchor, dragObject.transform.TransformPoint(spring.anchor), Color.blue);
     }
 
     public override void OnSelected ()
