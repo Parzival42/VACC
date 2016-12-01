@@ -22,22 +22,17 @@ public class MouseDragHandler : SpringDragHandler
     {
         spring.connectedAnchor = CalculateCollisionWorldPoint();
 
-        /*
-         * 
-        // calculate the angle between dragObj forward vector and the connected spring anchor
-        Vector3 springDir = Vector3.Normalize(-(spring.connectedAnchor - dragObject.transform.position));
-        float angle = Vector3.Dot(dragObject.transform.forward, springDir);
-
         // is the connected anchor left or right of the dragObj?
-        float direction = -dragObject.transform.forward.x * springDir.y + dragObject.transform.forward.y * springDir.x;
+        Vector3 springDir = Vector3.Normalize(-(spring.connectedAnchor - dragObject.transform.position));
+        float direction = AngleDir(dragObject.transform.forward, springDir, dragObject.transform.up);
 
         // change anchor position based on angle and direction
         if (direction < 0)
-            spring.anchor = new Vector3(dragObject.transform.position.x * +10f * (1f - Mathf.Abs(angle)), dragObject.transform.position.y, dragObject.transform.position.z);
+            spring.anchor = new Vector3(dragObject.transform.position.x-7f, dragObject.transform.position.y, dragObject.transform.position.z);
+        else if (direction > 0)
+            spring.anchor = new Vector3(dragObject.transform.position.x+7f, dragObject.transform.position.y, dragObject.transform.position.z);
         else
-            spring.anchor = new Vector3(dragObject.transform.position.x * -10f * (1f - Mathf.Abs(angle)), dragObject.transform.position.y, dragObject.transform.position.z);
-        *
-        */
+            spring.anchor = new Vector3(dragObject.transform.position.x, dragObject.transform.position.y, dragObject.transform.position.z);
 
         if (rigidbody.IsSleeping())
             rigidbody.WakeUp();
@@ -79,5 +74,19 @@ public class MouseDragHandler : SpringDragHandler
         Vector3 hit;
         cam.CollisionFor(cam.ScreenPointToRayFor(Input.mousePosition), 9, out hit);
         return hit;
+    }
+
+    //returns -1 when to the left, 1 to the right, and 0 for forward/backward
+    public float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up)
+    {
+        Vector3 perp = Vector3.Cross(fwd, targetDir);
+        float dir = Vector3.Dot(perp, up);
+
+        if (dir > 0.0f)
+            return 1.0f;
+        else if (dir < 0.0f)
+            return -1.0f;
+
+        return 0.0f;
     }
 }

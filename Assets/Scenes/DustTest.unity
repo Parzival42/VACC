@@ -3075,38 +3075,6 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 057b3e140939f2243b4e1166bac7a5f2, type: 3}
---- !u!114 &1885939565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1885939559}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3913ae258a7b05f4687e0ff5c20c0db9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  groundOffset: 1
---- !u!145 &1885939566
-SpringJoint:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1885939559}
-  m_ConnectedBody: {fileID: 0}
-  m_Anchor: {x: 0, y: 0, z: 0}
-  m_AutoConfigureConnectedAnchor: 0
-  m_ConnectedAnchor: {x: -2.62, y: 3.319, z: -0.203}
-  serializedVersion: 2
-  m_Spring: 10
-  m_Damper: 5
-  m_MinDistance: 0
-  m_MaxDistance: 0.001
-  m_Tolerance: 0.025
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 0
 --- !u!1 &1962060413
 GameObject:
   m_ObjectHideFlags: 0
