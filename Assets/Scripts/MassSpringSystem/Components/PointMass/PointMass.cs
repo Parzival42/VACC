@@ -17,6 +17,11 @@ public abstract class PointMass{
     {
         get { return currentPosition; }
     }
+
+    public Vector3 PreviousPosition
+    {
+        get { return previousPosition; }
+    }
     #endregion
 
     #region methods
@@ -24,6 +29,7 @@ public abstract class PointMass{
     protected PointMass(Vector3 currentPosition)
     {
         this.currentPosition = currentPosition;
+        previousPosition = currentPosition;
     }
 
     public abstract void ApplyForce(Vector3 force);
