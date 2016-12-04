@@ -13,6 +13,11 @@ public abstract class ComputeMeshModifier : MonoBehaviour
     [SerializeField]
     protected ComputeShader computeShader;
 
+    [Header("User input")]
+    [SerializeField]
+    [Tooltip("Mouse input or external input.")]
+    protected bool mouseInput = true;
+
     #region Internal used fields
     protected Material objectMaterial;
     protected int kernelHandleNumber;

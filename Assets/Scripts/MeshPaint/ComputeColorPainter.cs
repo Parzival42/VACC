@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class ComputeColorPainter : ComputeMeshModifier
+public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
 {
     [Header("Brush settings")]
     [SerializeField]
@@ -28,8 +29,19 @@ public class ComputeColorPainter : ComputeMeshModifier
 
     private const string KERNEL_METHOD_NAME = "Main";
     protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
-    #endregion
 
+    public float Radius
+    {
+        get { return brushRadius; }
+        set { brushRadius = value; }
+    }
+
+    public float BrushStrength
+    {
+        get { return brushStrength; }
+        set { brushStrength = value; }
+    }
+    #endregion
 
     protected override void InitializeComponents()
     {
@@ -65,23 +77,29 @@ public class ComputeColorPainter : ComputeMeshModifier
     #region Mouse methods
     private void OnMouseDrag()
     {
-        Vector3 hit;
-        RaycastHit rayHit;
-        if (Camera.main.CollisionFor(Camera.main.ScreenPointToRayFor(Input.mousePosition), 8, out hit, out rayHit))
+        if (mouseInput)
         {
-            // This only works with a Mesh Collider!!!
-            uvHit = rayHit.textureCoord;
-            //Debug.Log(uvHit);
+            Vector3 hit;
+            RaycastHit rayHit;
+            if (Camera.main.CollisionFor(Camera.main.ScreenPointToRayFor(Input.mousePosition), 8, out hit, out rayHit))
+            {
+                // This only works with a Mesh Collider!!!
+                uvHit = rayHit.textureCoord;
+            }
         }
     }
 
     private void OnMouseUp()
     {
-        uvHit.Set(float.MaxValue, float.MaxValue, float.MaxValue);
+        if(mouseInput)
+            uvHit.Set(float.MaxValue, float.MaxValue, float.MaxValue);
     }
 
-    private void OnDestroy()
+    public void SetUVHitPosition(Vector2 uvHit)
     {
+        // Only if external input is activated.
+        if (!mouseInput)
+            this.uvHit.Set(uvHit.x, uvHit.y, 0);
     }
     #endregion
 }

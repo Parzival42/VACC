@@ -396,6 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   originalTexture: {fileID: 2800000, guid: 3b8b7f1ad811a3e43be7bb0ab533fb5a, type: 3}
   computeShader: {fileID: 7200000, guid: 1543fe063b1ae4e4da2fc78e302290dd, type: 3}
+  mouseInput: 0
   brushRadius: 0.05
   brushStrength: -0.02
   renderTextureWidth: 1024
@@ -960,6 +961,7 @@ GameObject:
   - 54: {fileID: 514273207}
   - 145: {fileID: 514273209}
   - 114: {fileID: 514273208}
+  - 114: {fileID: 514273210}
   m_Layer: 9
   m_Name: nozzle
   m_TagString: Untagged
@@ -979,6 +981,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 659322406}
+  - {fileID: 1641210763}
   m_Father: {fileID: 0}
   m_RootOrder: 1
 --- !u!23 &514273204
@@ -1078,6 +1081,22 @@ SpringJoint:
   m_BreakTorque: Infinity
   m_EnableCollision: 0
   m_EnablePreprocessing: 0
+--- !u!114 &514273210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 514273202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b8721115fe6b7b4aa6534ac59c85c9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  suckingPoint: {fileID: 1641210763}
+  suckingRadius: 0.016
+  brushStrength: -0.02
+  collisionLayer: 8
+  suckingDistance: 0.1
 --- !u!1 &516059145
 GameObject:
   m_ObjectHideFlags: 0
@@ -2965,6 +2984,42 @@ Transform:
   m_Children: []
   m_Father: {fileID: 53625105}
   m_RootOrder: 3
+--- !u!1 &1641210762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1641210763}
+  - 33: {fileID: 1641210764}
+  m_Layer: 9
+  m_Name: SuckingPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1641210763
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1641210762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: 0.39, z: -1.52}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_Children: []
+  m_Father: {fileID: 514273203}
+  m_RootOrder: 1
+--- !u!33 &1641210764
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1641210762}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1858086382
 GameObject:
   m_ObjectHideFlags: 0
