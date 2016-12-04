@@ -44,7 +44,7 @@ public abstract class ComputeMeshModifier : MonoBehaviour
         InitializeRenderTextures();
 	}
 
-    private void Update()
+    private void FixedUpdate()
     {
         ComputeValues();
     }

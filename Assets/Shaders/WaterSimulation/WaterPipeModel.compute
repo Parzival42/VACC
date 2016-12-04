@@ -2,26 +2,70 @@
 
 // Inputs ---------------------------------------
 RWTexture2D<float> WaterHeight;
-RWTexture2D<float> VelocityField;
-RWTexture2D<float> TempHeight;
+//RWTexture2D<float> VelocityField;
+//RWTexture2D<float> TempHeight;
 
-RWTexture2D<float> FluxLeft;
-RWTexture2D<float> FluxRight;
-RWTexture2D<float> FluxBottom;
-RWTexture2D<float> FluxTop;
+Texture2D<float> FluxLeft;
+Texture2D<float> FluxRight;
+Texture2D<float> FluxBottom;
+Texture2D<float> FluxTop;
+
+RWTexture2D<float> VelocityX;
+RWTexture2D<float> VelocityY;
 
 //float _DeltaTime;
 //float _Speed;
 float _SegmentSizeSquared;
+float _SegmentSize;
 float _MinWaterHeight;
 int _TextureSize;
 // ----------------------------------------------
 
-[numthreads(16, 16, 1)]
+[numthreads(32, 32, 1)]
 void Main (uint3 id : SV_DispatchThreadID) {
 	// Index Clamping
 	int dxPositive = clamp(id.x + 1, 0, _TextureSize);
 	int dyPositive = clamp(id.y + 1, 0, _TextureSize);
 	int dxNegative = clamp(id.x - 1, 0, _TextureSize);
 	int dyNegative = clamp(id.y - 1, 0, _TextureSize);
+
+	// Read water texture (R: Water, G: Velocity x, B: Velocity y, A: Unused)
+	float4 waterAndVelocity = float4(WaterHeight[id.xy], VelocityX[id.xy], VelocityY[id.xy], 0.0);
+
+	// Read flux
+	float4 fluxPixelMiddle = float4(FluxRight[id.xy], FluxLeft[id.xy], FluxBottom[id.xy], FluxTop[id.xy]);
+	float4 fluxPixelLeft = float4(FluxRight[uint2(dxNegative, id.y)], FluxLeft[uint2(dxNegative, id.y)], FluxBottom[uint2(dxNegative, id.y)], FluxTop[uint2(dxNegative, id.y)]);
+	float4 fluxPixelRight = float4(FluxRight[uint2(dxPositive, id.y)], FluxLeft[uint2(dxPositive, id.y)], FluxBottom[uint2(dxPositive, id.y)], FluxTop[uint2(dxPositive, id.y)]);
+	float4 fluxPixelTop = float4(FluxRight[uint2(id.x, dyPositive)], FluxLeft[uint2(id.x, dyPositive)], FluxBottom[uint2(id.x, dyPositive)], FluxTop[uint2(id.x, dyPositive)]);
+	float4 fluxPixelBottom = float4(FluxRight[uint2(id.x, dyNegative)], FluxLeft[uint2(id.x, dyNegative)], FluxBottom[uint2(id.x, dyNegative)], FluxTop[uint2(id.x, dyNegative)]);
+
+	// Water average
+	float avgWaterHeight = waterAndVelocity.r;
+
+	// Calculate new water height
+	float fluxOut = fluxPixelMiddle.r + fluxPixelMiddle.g + fluxPixelMiddle.b + fluxPixelMiddle.a;
+	float fluxIn = fluxPixelLeft.r + fluxPixelRight.g + fluxPixelTop.b + fluxPixelBottom.a;
+	waterAndVelocity.r += (fluxIn - fluxOut) / _SegmentSizeSquared;
+	waterAndVelocity.r = max(_MinWaterHeight, waterAndVelocity.r);
+
+	// Average height from before and after the change
+	avgWaterHeight = 0.5 * (avgWaterHeight + waterAndVelocity.r);
+
+	// Calculate horizontal velocities
+	if (avgWaterHeight == 0.0) {	// prevent division by 0
+		waterAndVelocity.g = 0.0;
+		waterAndVelocity.b = 0.0;
+	} else {
+		// Binary threshold for masking out strange edge velocities.
+		float threshold = float(waterAndVelocity.r > 0.2);
+		float segmentSizeTimesAvgWaterHeight = _SegmentSize * avgWaterHeight;
+
+		waterAndVelocity.g = threshold * 0.5 * (fluxPixelLeft.r - fluxPixelMiddle.g + fluxPixelMiddle.r - fluxPixelRight.g) / segmentSizeTimesAvgWaterHeight;
+		waterAndVelocity.b = threshold * 0.5 * (fluxPixelTop.b - fluxPixelMiddle.a + fluxPixelMiddle.b - fluxPixelBottom.a) / segmentSizeTimesAvgWaterHeight;
+	}
+
+	// Set output values
+	WaterHeight[id.xy] = waterAndVelocity.r;
+	VelocityX[id.xy] = waterAndVelocity.g;
+	VelocityY[id.xy] = waterAndVelocity.b;
 }

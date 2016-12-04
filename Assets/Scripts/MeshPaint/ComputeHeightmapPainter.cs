@@ -71,11 +71,11 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
         objectMaterial.SetTexture("_MainTex", renderTexture);
 
         Vector3[] vertices = new Vector3[mesh.mesh.vertices.Length];
-        vertexBuffer.GetData(vertices);
-        mesh.mesh.vertices = vertices;
+        //vertexBuffer.GetData(vertices);
+        //mesh.mesh.vertices = vertices;
         //mesh.mesh.RecalculateBounds();
         //mesh.mesh.RecalculateNormals();
-        meshCollider.sharedMesh = mesh.mesh;
+        //meshCollider.sharedMesh = mesh.mesh;
     }
 
     #region Mouse methods

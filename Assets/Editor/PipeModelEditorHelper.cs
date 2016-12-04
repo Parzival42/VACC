@@ -16,6 +16,11 @@ public class PipeModelEditorHelper : EditorWindow
         window.titleContent = new GUIContent("Pipe Water Simulation Debug View");
     }
 
+    private void Update()
+    {
+        Repaint();
+    }
+
     private void OnGUI()
     {
         InitStyles();

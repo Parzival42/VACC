@@ -142,7 +142,7 @@ Shader "DustSucker/DeepOcean" {
 			float4 heightmap = tex2Dlod(_Heightmap, float4(v.texcoord.xy, 0, 0));
 			float4 pos = mul(unity_ObjectToWorld, v.vertex);
 
-			pos.y += heightmap.r * _HeightStrength;
+			pos.y += clamp(heightmap.r, 0, 1) * _HeightStrength;
 			v.vertex = mul(unity_WorldToObject, pos);
       }
 	  ENDCG

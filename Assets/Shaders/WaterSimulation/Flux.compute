@@ -1,8 +1,8 @@
 #pragma kernel Main
 
 // Inputs ---------------------------------------
-RWTexture2D<float> WaterHeight;
-RWTexture2D<float> TerrainHeight;
+Texture2D<float> WaterHeight;
+Texture2D<float> TerrainHeight;
 
 RWTexture2D<float> FluxLeft;
 RWTexture2D<float> FluxRight;
@@ -18,11 +18,45 @@ float _MinWaterHeight;
 int _TextureSize;
 // ----------------------------------------------
 
-[numthreads(16, 16, 1)]
+[numthreads(32, 32, 1)]
 void Main (uint3 id : SV_DispatchThreadID) {
 	// Index Clamping
 	int dxPositive = clamp(id.x + 1, 0, _TextureSize);
 	int dyPositive = clamp(id.y + 1, 0, _TextureSize);
 	int dxNegative = clamp(id.x - 1, 0, _TextureSize);
 	int dyNegative = clamp(id.y - 1, 0, _TextureSize);
+
+	// Read terrain texture
+	float curTerrainHeight = TerrainHeight[id.xy];
+
+	// Read water texture
+	float currWaterHeight = WaterHeight[id.xy];
+
+	// Calculate total height
+	float totalHeight = curTerrainHeight + currWaterHeight;
+
+	// Read flux
+	float4 flux = float4(FluxRight[id.xy], FluxLeft[id.xy], FluxBottom[id.xy], FluxTop[id.xy]);
+	flux *= _DampingFactor;
+
+	float4 neighbourTotalHeights = float4(WaterHeight[uint2(dxPositive, id.y)] + TerrainHeight[uint2(dxPositive, id.y)],
+		 								  WaterHeight[uint2(dxNegative, id.y)] + TerrainHeight[uint2(dxNegative, id.y)],
+										  WaterHeight[uint2(id.x, dyNegative)] + TerrainHeight[uint2(id.x, dyNegative)],
+									  	  WaterHeight[uint2(id.x, dyPositive)] + TerrainHeight[uint2(id.x, dyPositive)]);
+
+	flux += (totalHeight - neighbourTotalHeights) * _HeightToFluxFactor;
+	flux = max(float4(0, 0, 0, 0), flux);
+
+	// TODO: Boundary texture -> flux *= BoundaryTexture[id.xy];
+
+	// Scale down outflow if it is more than available volume in the column
+	float currentVolume = (currWaterHeight - _MinWaterHeight) * _SegmentSizeSquared;
+	float outVolume = flux.r + flux.g + flux.b + flux.a;
+	flux *= min(1.0, currentVolume / outVolume);
+
+	// Write back the flux texture
+	FluxRight[id.xy] = flux.r;
+	FluxLeft[id.xy] = flux.g;
+	FluxBottom[id.xy] = flux.b;
+	FluxTop[id.xy] = flux.a;
 }

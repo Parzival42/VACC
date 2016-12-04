@@ -48,7 +48,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     protected int fluxKernelHandle;
     #endregion
     #region Properties
-    protected override int KERNEL_SIZE { get { return 16; } }
+    protected override int KERNEL_SIZE { get { return 32; } }
 
     protected const string KERNEL_METHOD_NAME = "Main";
     protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
@@ -74,7 +74,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     protected override void InitializeKernelHandle()
     {
         base.InitializeKernelHandle();
-        fluxKernelHandle = computeShader.FindKernel(KERNEL_NAME);
+        fluxKernelHandle = fluxComputeShader.FindKernel(KERNEL_NAME);
     }
 
     protected override void InitializeRenderTextures()
@@ -143,19 +143,24 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
         computeShader.SetTexture(kernelHandleNumber, "WaterHeight", waterHeights);
         computeShader.SetTexture(kernelHandleNumber, "TempHeight", tmpWaterHeight);
 
-        computeShader.SetTexture(fluxKernelHandle, "FluxLeft", fluxLeft);
-        computeShader.SetTexture(fluxKernelHandle, "FluxRight", fluxRight);
-        computeShader.SetTexture(fluxKernelHandle, "FluxBottom", fluxBottom);
-        computeShader.SetTexture(fluxKernelHandle, "FluxTop", fluxTop);
+        computeShader.SetTexture(kernelHandleNumber, "FluxLeft", fluxLeft);
+        computeShader.SetTexture(kernelHandleNumber, "FluxRight", fluxRight);
+        computeShader.SetTexture(kernelHandleNumber, "FluxBottom", fluxBottom);
+        computeShader.SetTexture(kernelHandleNumber, "FluxTop", fluxTop);
+
+        computeShader.SetTexture(kernelHandleNumber, "VelocityX", velocityX);
+        computeShader.SetTexture(kernelHandleNumber, "VelocityY", velocityY);
 
         computeShader.SetFloat("_SegmentSizeSquared", squaredSegmentSize);
+        computeShader.SetFloat("_SegmentSize", segmentSize);
+
         computeShader.SetFloat("_MinWaterHeight", minWaterHeight);
         computeShader.SetInt("_TextureSize", textureSize);
 
-        computeShader.Dispatch(fluxKernelHandle, textureSize / KERNEL_SIZE, textureSize / KERNEL_SIZE, 1);
+        computeShader.Dispatch(kernelHandleNumber, textureSize / KERNEL_SIZE, textureSize / KERNEL_SIZE, 1);
 
         // Copy temporary result back to the main water heightmap
-        Graphics.Blit(tmpWaterHeight, waterHeights);
+        //Graphics.Blit(tmpWaterHeight, waterHeights);
         objectMaterial.SetTexture("_Heightmap", waterHeights);
     }
 }
