@@ -21,10 +21,13 @@ public class SuckingScript : MonoBehaviour
     [Tooltip("The working distance of the dust sucking.")]
     protected float suckingDistance = 0.5f;
 
+    private DragScript drag;
+
 	private void Start ()
     {
         CheckFields();
-	}
+        drag = GetComponent<DragScript>();
+    }
 
     private void CheckFields()
     {
@@ -34,7 +37,10 @@ public class SuckingScript : MonoBehaviour
 	
 	private void Update ()
     {
-        CheckCollision();
+        if (drag.IsDragged)
+        {
+            CheckCollision();
+        }
 	}
 
     protected void CheckCollision()

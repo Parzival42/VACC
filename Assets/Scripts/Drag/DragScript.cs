@@ -8,9 +8,16 @@ public class DragScript : MonoBehaviour
     [SerializeField]
     private float groundOffset = 1f;
 
+    public bool IsDragged
+    {
+        get { return isDragged; }
+    }
+    private bool isDragged = false;
+
     private Material mat;
     private SpringJoint spring;
     private InputDragHandler inputHandler;
+    private VacuumSound sound;
 
     public float GroundOffset { get { return groundOffset; } }
 
@@ -19,7 +26,8 @@ public class DragScript : MonoBehaviour
         spring = GetComponent<SpringJoint>();
         inputHandler = new MouseDragHandler(this, GetTriggerCollider(), spring);
         mat = GetComponent<Renderer>().material;
-	}
+        sound = GetComponent<VacuumSound>();
+    }
 
     private void Update()
     {
@@ -33,12 +41,16 @@ public class DragScript : MonoBehaviour
 
     private void OnMouseDown()
     {
+        sound.StartEngine();
         inputHandler.OnSelected();
+        isDragged = true;
     }
 
     private void OnMouseUp()
     {
+        sound.StopEngine();
         inputHandler.OnDeselected();
+        isDragged = false;
     }
 
     private Collider GetTriggerCollider()
