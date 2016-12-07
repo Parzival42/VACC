@@ -31,6 +31,7 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
 
     private const string KERNEL_METHOD_NAME = "Main";
     protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
+    public RenderTexture HeightMapTexture { get { return renderTexture; } }
     #endregion
 
 

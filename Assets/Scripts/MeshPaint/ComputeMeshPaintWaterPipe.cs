@@ -34,6 +34,8 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     private Texture2D staticTerrainHeightmap;
 
     #region Internal members
+    private ComputeHeightmapPainter heightmapPainter;
+
     // Render textures
     protected RenderTexture waterHeights;
     protected RenderTexture tmpWaterHeight;
@@ -59,7 +61,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     public RenderTexture FluxTop { get { return fluxTop; } }
 
     public RenderTexture WaterHeight { get { return waterHeights; } }
-    public RenderTexture TerrainHeight { get { return terrainHeightmap; } }
+    public RenderTexture TerrainHeight { get { return heightmapPainter == null ? terrainHeightmap : heightmapPainter.HeightMapTexture; } }
 
     public RenderTexture VelocityX { get { return velocityX; } }
     public RenderTexture VelocityY { get { return velocityY; } }
@@ -68,6 +70,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     protected override void Start()
     {
         base.Start();
+        heightmapPainter = FindObjectOfType<ComputeHeightmapPainter>();
         squaredSegmentSize = segmentSize * segmentSize;
     }
 
@@ -122,7 +125,10 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     private void ComputeFlux()
     {
         fluxComputeShader.SetTexture(fluxKernelHandle, "WaterHeight", waterHeights);
-        fluxComputeShader.SetTexture(fluxKernelHandle, "TerrainHeight", terrainHeightmap);
+        if(heightmapPainter == null)
+            fluxComputeShader.SetTexture(fluxKernelHandle, "TerrainHeight", terrainHeightmap);
+        else
+            fluxComputeShader.SetTexture(fluxKernelHandle, "TerrainHeight", heightmapPainter.HeightMapTexture);
 
         fluxComputeShader.SetTexture(fluxKernelHandle, "FluxLeft", fluxLeft);
         fluxComputeShader.SetTexture(fluxKernelHandle, "FluxRight", fluxRight);
