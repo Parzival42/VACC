@@ -35,17 +35,26 @@ Shader "DustSucker/DeepOcean" {
 
 		_RefractionStrength("Refraction Strength", Float) = 20.0
 		_RimStrength("Rim Strength", Range(0, 2)) = 1.0
+
+		_TessellationFactor ("Tessellation", Range(1, 32)) = 3.0
 	}
 	SubShader {
 		Tags { "Queue" = "Geometry"}
 		LOD 200
 
 		CGPROGRAM
-		#pragma surface surf Standard fullforwardshadows vertex:vert addshadow
-		#pragma target 3.0
+		#pragma surface surf Standard fullforwardshadows vertex:vert tessellate:tessFixed addshadow
+		#pragma target 4.6
 		#include "Includes/TextureLookup.cginc"
 		#include "Includes/Util.cginc"
 		#include "Includes/Heightmap.cginc"
+
+		struct appdata {
+	        float4 vertex : POSITION;
+	        float4 tangent : TANGENT;
+	        float3 normal : NORMAL;
+	        float2 texcoord : TEXCOORD0;
+    	};
 
 		struct Input {
 			float2 uv_MainTex;
@@ -82,6 +91,11 @@ Shader "DustSucker/DeepOcean" {
 		half _SobelStrength;
 		half _WaveStrength;
 		fixed4 _UpVector;
+		float _TessellationFactor;
+
+		float4 tessFixed() {
+            return _TessellationFactor;
+        }
 
 		half4 calculateFoam(Input IN, half3 normalizedNormal, half4 originalWaterColor) {
 			half waveStrength = dot(normalizedNormal, _UpVector.xyz);
@@ -138,12 +152,13 @@ Shader "DustSucker/DeepOcean" {
 			o.Alpha = waterColor.a;
 		}
 
-		void vert (inout appdata_full v) {
+		void vert (inout appdata v) {
 			float4 heightmap = tex2Dlod(_Heightmap, float4(v.texcoord.xy, 0, 0));
 			float4 pos = mul(unity_ObjectToWorld, v.vertex);
 
-			pos.y += clamp(heightmap.r, 0, 1) * _HeightStrength;
-			v.vertex = mul(unity_WorldToObject, pos);
+			//pos.xyz += v.normal * clamp(heightmap.r, 0, 1) * _HeightStrength;
+			//v.vertex = mul(unity_WorldToObject, pos);
+			v.vertex.xyz += v.normal * clamp(heightmap.r, 0, 1) * _HeightStrength;
       }
 	  ENDCG
 	}

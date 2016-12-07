@@ -8,6 +8,9 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     [SerializeField]
     protected Texture2D initTexture;
 
+    [SerializeField]
+    protected Texture2D boundaryTexture;
+
     [Header("Render Texture settings")]
     [SerializeField]
     protected int textureSize = 512;
@@ -125,7 +128,8 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     private void ComputeFlux()
     {
         fluxComputeShader.SetTexture(fluxKernelHandle, "WaterHeight", waterHeights);
-        if(heightmapPainter == null)
+        fluxComputeShader.SetTexture(fluxKernelHandle, "BoundaryTexture", boundaryTexture);
+        if (heightmapPainter == null)
             fluxComputeShader.SetTexture(fluxKernelHandle, "TerrainHeight", terrainHeightmap);
         else
             fluxComputeShader.SetTexture(fluxKernelHandle, "TerrainHeight", heightmapPainter.HeightMapTexture);
@@ -135,6 +139,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
         fluxComputeShader.SetTexture(fluxKernelHandle, "FluxBottom", fluxBottom);
         fluxComputeShader.SetTexture(fluxKernelHandle, "FluxTop", fluxTop);
 
+        fluxComputeShader.SetFloat("_DeltaTime", Time.deltaTime);
         fluxComputeShader.SetFloat("_DampingFactor", dampingFactor);
         fluxComputeShader.SetFloat("_HeightToFluxFactor", heightToFluxFactor);
         fluxComputeShader.SetFloat("_SegmentSizeSquared", squaredSegmentSize);
@@ -159,6 +164,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
         computeShader.SetFloat("_SegmentSizeSquared", squaredSegmentSize);
         computeShader.SetFloat("_SegmentSize", segmentSize);
+        computeShader.SetFloat("_DeltaTime", Time.deltaTime);
 
         computeShader.SetFloat("_MinWaterHeight", minWaterHeight);
         computeShader.SetInt("_TextureSize", textureSize);

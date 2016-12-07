@@ -4,6 +4,8 @@
 Texture2D<float> WaterHeight;
 Texture2D<float> TerrainHeight;
 
+Texture2D<float> BoundaryTexture;
+
 RWTexture2D<float> FluxLeft;
 RWTexture2D<float> FluxRight;
 RWTexture2D<float> FluxBottom;
@@ -14,7 +16,7 @@ float _HeightToFluxFactor;
 float _SegmentSizeSquared;
 float _MinWaterHeight;
 
-//float _DeltaTime;
+float _DeltaTime;
 int _TextureSize;
 // ----------------------------------------------
 
@@ -48,10 +50,11 @@ void Main (uint3 id : SV_DispatchThreadID) {
 	flux = max(float4(0, 0, 0, 0), flux);
 
 	// TODO: Boundary texture -> flux *= BoundaryTexture[id.xy];
+	flux *= BoundaryTexture[id.xy];
 
 	// Scale down outflow if it is more than available volume in the column
 	float currentVolume = (currWaterHeight - _MinWaterHeight) * _SegmentSizeSquared;
-	float outVolume = flux.r + flux.g + flux.b + flux.a;
+	float outVolume = _DeltaTime * (flux.r + flux.g + flux.b + flux.a);
 	flux *= min(1.0, currentVolume / outVolume);
 
 	// Write back the flux texture

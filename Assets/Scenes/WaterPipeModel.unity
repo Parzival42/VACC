@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18412742, g: 0.22956386, b: 0.3048103, a: 1}
+  m_IndirectSpecularColor: {r: 0.18412788, g: 0.22956447, b: 0.30481136, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -312,7 +312,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 0
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 1885425087}
 --- !u!114 &1301014819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,8 +329,8 @@ MonoBehaviour:
   mouseInput: 1
   brushRadius: 0.05
   brushStrength: 0.02
-  renderTextureWidth: 256
-  renderTextureHeight: 256
+  renderTextureWidth: 512
+  renderTextureHeight: 512
 --- !u!114 &1301014820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,12 +518,13 @@ MonoBehaviour:
   computeShader: {fileID: 7200000, guid: d55cefd9cfc223046a391e7407b66696, type: 3}
   mouseInput: 1
   initTexture: {fileID: 2800000, guid: 7086342f062fdf945b45a84209788720, type: 3}
+  boundaryTexture: {fileID: 2800000, guid: 594af18a3d99a0648931061e81d6f9f1, type: 3}
   textureSize: 512
   fluxComputeShader: {fileID: 7200000, guid: b31e60329884e4a4caf3654798d874e7, type: 3}
   dampingFactor: 0.995
-  heightToFluxFactor: 0.24
-  segmentSize: 1.1
-  minWaterHeight: 0.001
+  heightToFluxFactor: 1
+  segmentSize: 0.4
+  minWaterHeight: 0.003
   staticTerrainHeightmap: {fileID: 2800000, guid: 3ee33f141d458f245b5b37b03a727b36,
     type: 3}
 --- !u!114 &1477681417

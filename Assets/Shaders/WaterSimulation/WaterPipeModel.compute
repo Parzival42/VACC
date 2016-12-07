@@ -13,7 +13,7 @@ Texture2D<float> FluxTop;
 RWTexture2D<float> VelocityX;
 RWTexture2D<float> VelocityY;
 
-//float _DeltaTime;
+float _DeltaTime;
 //float _Speed;
 float _SegmentSizeSquared;
 float _SegmentSize;
@@ -45,7 +45,7 @@ void Main (uint3 id : SV_DispatchThreadID) {
 	// Calculate new water height
 	float fluxOut = fluxPixelMiddle.r + fluxPixelMiddle.g + fluxPixelMiddle.b + fluxPixelMiddle.a;
 	float fluxIn = fluxPixelLeft.r + fluxPixelRight.g + fluxPixelTop.b + fluxPixelBottom.a;
-	waterAndVelocity.r += (fluxIn - fluxOut) / _SegmentSizeSquared;
+	waterAndVelocity.r += (fluxIn - fluxOut) * _DeltaTime / _SegmentSizeSquared;
 	waterAndVelocity.r = max(_MinWaterHeight, waterAndVelocity.r);
 
 	// Average height from before and after the change
