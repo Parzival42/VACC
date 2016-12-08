@@ -13,6 +13,10 @@ public abstract class ComputeMeshModifier : MonoBehaviour
     [SerializeField]
     protected ComputeShader computeShader;
 
+    [SerializeField]
+    [Tooltip("If checked, this script only computes the values without applying them on the mesh or the shader.")]
+    protected bool onlyCompute = false;
+
     [Header("User input")]
     [SerializeField]
     [Tooltip("Mouse input or external input.")]

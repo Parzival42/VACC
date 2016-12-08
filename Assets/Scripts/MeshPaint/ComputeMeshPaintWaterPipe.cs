@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System;
 
 public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 {
@@ -41,7 +39,6 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
     // Render textures
     protected RenderTexture waterHeights;
-    protected RenderTexture tmpWaterHeight;
     protected RenderTexture terrainHeightmap;
     protected RenderTexture fluxLeft;
     protected RenderTexture fluxRight;
@@ -81,17 +78,15 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     {
         base.InitializeKernelHandle();
         fluxKernelHandle = fluxComputeShader.FindKernel(KERNEL_NAME);
+        // Only upload the boundary texture once
+        fluxComputeShader.SetTexture(fluxKernelHandle, "BoundaryTexture", boundaryTexture);
     }
 
     protected override void InitializeRenderTextures()
     {
-        //base.InitializeRenderTextures();
-
         // Water
         waterHeights = GetComputeRenderTexture(textureSize, 32);
         Graphics.Blit(originalTexture, waterHeights);
-        tmpWaterHeight = GetComputeRenderTexture(textureSize, 32);
-        Graphics.Blit(initTexture, tmpWaterHeight);
 
         // Terrain
         terrainHeightmap = GetComputeRenderTexture(textureSize, 32);
@@ -128,7 +123,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     private void ComputeFlux()
     {
         fluxComputeShader.SetTexture(fluxKernelHandle, "WaterHeight", waterHeights);
-        fluxComputeShader.SetTexture(fluxKernelHandle, "BoundaryTexture", boundaryTexture);
+        
         if (heightmapPainter == null)
             fluxComputeShader.SetTexture(fluxKernelHandle, "TerrainHeight", terrainHeightmap);
         else
@@ -152,7 +147,6 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     private void ComputeWater()
     {
         computeShader.SetTexture(kernelHandleNumber, "WaterHeight", waterHeights);
-        computeShader.SetTexture(kernelHandleNumber, "TempHeight", tmpWaterHeight);
 
         computeShader.SetTexture(kernelHandleNumber, "FluxLeft", fluxLeft);
         computeShader.SetTexture(kernelHandleNumber, "FluxRight", fluxRight);
@@ -171,8 +165,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
         computeShader.Dispatch(kernelHandleNumber, textureSize / KERNEL_SIZE, textureSize / KERNEL_SIZE, 1);
 
-        // Copy temporary result back to the main water heightmap
-        //Graphics.Blit(tmpWaterHeight, waterHeights);
-        objectMaterial.SetTexture("_Heightmap", waterHeights);
+        if(!onlyCompute)
+            objectMaterial.SetTexture("_Heightmap", waterHeights);
     }
 }

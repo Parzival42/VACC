@@ -2,8 +2,6 @@
 
 // Inputs ---------------------------------------
 RWTexture2D<float> WaterHeight;
-//RWTexture2D<float> VelocityField;
-//RWTexture2D<float> TempHeight;
 
 Texture2D<float> FluxLeft;
 Texture2D<float> FluxRight;

@@ -1,5 +1,3 @@
-// Upgrade NOTE: replaced '_World2Object' with 'unity_WorldToObject'
-
 Shader "DustSucker/DeepOcean" {
 	Properties {
 		_Color ("Sea Water Color", Color) = (0.8, 0.9, 0.22, 1.0)
@@ -45,9 +43,9 @@ Shader "DustSucker/DeepOcean" {
 		CGPROGRAM
 		#pragma surface surf Standard fullforwardshadows vertex:vert tessellate:tessFixed addshadow
 		#pragma target 4.6
-		#include "Includes/TextureLookup.cginc"
-		#include "Includes/Util.cginc"
-		#include "Includes/Heightmap.cginc"
+		#include "../Includes/TextureLookup.cginc"
+		#include "../Includes/Util.cginc"
+		#include "../Includes/Heightmap.cginc"
 
 		struct appdata {
 	        float4 vertex : POSITION;
@@ -156,8 +154,6 @@ Shader "DustSucker/DeepOcean" {
 			float4 heightmap = tex2Dlod(_Heightmap, float4(v.texcoord.xy, 0, 0));
 			float4 pos = mul(unity_ObjectToWorld, v.vertex);
 
-			//pos.xyz += v.normal * clamp(heightmap.r, 0, 1) * _HeightStrength;
-			//v.vertex = mul(unity_WorldToObject, pos);
 			v.vertex.xyz += v.normal * clamp(heightmap.r, 0, 1) * _HeightStrength;
       }
 	  ENDCG

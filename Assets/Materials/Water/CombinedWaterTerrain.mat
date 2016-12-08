@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: HeightMapTest
-  m_Shader: {fileID: 4800000, guid: 8263edc70fc17bc41ac028721cbe57c9, type: 3}
+  m_Name: CombinedWaterTerrain
+  m_Shader: {fileID: 4800000, guid: 2ff4649ca7c191f438e17f896ac52f7b, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -48,13 +48,13 @@ Material:
     - first:
         name: _Heightmap
       second:
-        m_Texture: {fileID: 2800000, guid: 88e283ea674454140b02d2f413476179, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 8400000, guid: 7b9f438b8ee78844fa5d45946e775244, type: 2}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -71,6 +71,24 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _TerrainHeight
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _TerrainTexture
+      second:
+        m_Texture: {fileID: 2800000, guid: 2c0066c0fe30bc246b5f34c6ca1c4fad, type: 3}
+        m_Scale: {x: 10, y: 10}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _WaterHeight
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -93,13 +111,13 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
     - first:
         name: _HeightStrength
-      second: 6
+      second: 4
     - first:
         name: _Metallic
       second: 0
@@ -116,21 +134,45 @@ Material:
         name: _SmoothnessTextureChannel
       second: 0
     - first:
+        name: _SobelStrength
+      second: 0.51
+    - first:
         name: _SpecularHighlights
       second: 1
     - first:
         name: _SrcBlend
       second: 1
     - first:
+        name: _TerrainGloss
+      second: 0.33
+    - first:
+        name: _TerrainMetallic
+      second: 0.66
+    - first:
+        name: _TessellationFactor
+      second: 4
+    - first:
         name: _UVSec
       second: 0
+    - first:
+        name: _WaterGloss
+      second: 0.9
+    - first:
+        name: _WaterMetallic
+      second: 1
     - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
         name: _Color
-      second: {r: 0.9191176, g: 0.6534498, b: 0.4122513, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _TerrainColor
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _WaterColor
+      second: {r: 0.19777247, g: 0.20239241, b: 0.86764705, a: 1}
