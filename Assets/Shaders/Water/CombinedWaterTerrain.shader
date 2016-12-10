@@ -113,7 +113,7 @@
 			// Calculate values for the visible surface
 			float3 surfaceNormal;
 			// TODO: Eliminate magic number
-			if (waterHeight + 0.0 >= terrainHeight) {
+			if (waterHeight > 0.01) {
 				// Get water normals from texture
 				float3 waterNormal = UnpackNormal(tex2D(_WaterNormalMap, IN.uv_WaterNormalMap + uv));
 				waterNormal.xy *= _WaterNormalStrength;
