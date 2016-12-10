@@ -53,11 +53,12 @@ Shader "Hidden/PaintTest"
 			{
 
 				half3 worldpos = mul(unity_WorldToObject, _uvHit);
-				_uvHit.xy = worldpos.xz/20;
+				_uvHit.xy = worldpos.xz / 20;
 
 				fixed4 col = tex2D(_MainTex, i.uv);
 
 				float d = distance(i.uv, _uvHit.xy);
+				
 				float t = pow(1.0 - min(0.5, d) * 2.0, _Falloff);
 
 				// TODO: Better way to add color?

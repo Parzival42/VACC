@@ -161,6 +161,9 @@ Material:
         name: _Parallax
       second: 0.02
     - first:
+        name: _SeaShoreFoamBias
+      second: 1
+    - first:
         name: _SmoothnessTextureChannel
       second: 0
     - first:

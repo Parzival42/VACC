@@ -9,6 +9,9 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     [SerializeField]
     private float brushStrength = 0.02f;
 
+    [SerializeField]
+    private float brushFalloff = 0.8f;
+
     [Header("Render Texture settings")]
     [SerializeField]
     private int renderTextureWidth = 512;
@@ -64,6 +67,7 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
         computeShader.SetInt("_TextureSize", renderTextureWidth);
         computeShader.SetVector("_UvHit", uvHit);
         computeShader.SetFloat("_Radius", brushRadius);
+        computeShader.SetFloat("_Falloff", brushFalloff);
         computeShader.SetFloat("_BrushStrength", brushStrength);
         computeShader.SetTexture(kernelHandleNumber, "Result", renderTexture);
 

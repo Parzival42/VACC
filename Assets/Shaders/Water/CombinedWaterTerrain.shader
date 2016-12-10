@@ -94,9 +94,6 @@
 		// ==========================
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-			float offset = _Time[1] * 0.045;
-			float2 uv = float2(offset, offset);
-
 			half3 finalColor;
 			half finalSmoothness;
 			half finalMetallic;
@@ -109,6 +106,9 @@
 			fixed3 waterColor = lerp(_WaterColor, _WaterDeepColor, heightDifference / _WaterDepthBias);
 
 			float2 velocity = float2(tex2D(_VelocityX, IN.uv_WaterHeight).r, tex2D(_VelocityY, IN.uv_WaterHeight).r);
+
+			float offset = _Time[1] * 0.025;
+			float2 uv = float2(offset, offset);
 
 			// Calculate values for the visible surface
 			float3 surfaceNormal;

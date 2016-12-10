@@ -7,6 +7,7 @@ StructuredBuffer<float2> MeshUvs;
 
 int _TextureSize;
 float4 _UvHit;		// Only use xy components
+float _Falloff;
 float _Radius;
 float _BrushStrength;
 
@@ -16,9 +17,19 @@ void Main (uint3 id : SV_DispatchThreadID)
 	float2 uv = id.xy / float(_TextureSize);
 	float dist = distance(uv, _UvHit.xy);
 
+	float att = clamp(pow(1.0 - min(0.5, dist / abs(_Radius)) * 2.0, abs(_Falloff)), 0.0, 1.0);
+	att *= att;
+
+	if(_BrushStrength > 0) {
+		Result[id.xy].r += att * abs(_BrushStrength);
+	} else {
+		Result[id.xy].r -= att * abs(_BrushStrength);
+	}
+	Result[id.xy].r = clamp(Result[id.xy].r, 0, 1);
+
 	if (dist <= _Radius) {
-		Result[id.xy].r += _BrushStrength;
-		Result[id.xy].r = clamp(Result[id.xy].r, 0, 1);
+		//Result[id.xy].r += _BrushStrength;
+		//Result[id.xy].r = clamp(Result[id.xy].r, 0, 1);
 
 		uint flatIndex = _TextureSize * id.y + id.x;
 		uint flatArrayHeightmapsize = _TextureSize * _TextureSize;
