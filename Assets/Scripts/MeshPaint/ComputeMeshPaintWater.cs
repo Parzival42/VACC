@@ -37,6 +37,7 @@ public class ComputeMeshPaintWater : ComputeMeshModifier
 
     protected const string KERNEL_METHOD_NAME = "Main";
     protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
+    public int TextureSize { get { return renderTextureWidth; } }
     #endregion
 
     protected override void InitializeComponents()

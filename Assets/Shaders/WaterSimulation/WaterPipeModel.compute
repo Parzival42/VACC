@@ -3,6 +3,8 @@
 // Inputs ---------------------------------------
 RWTexture2D<float> WaterHeight;
 
+Texture2D<float> BoundaryTexture;
+
 Texture2D<float> FluxLeft;
 Texture2D<float> FluxRight;
 Texture2D<float> FluxBottom;
@@ -12,12 +14,23 @@ RWTexture2D<float> VelocityX;
 RWTexture2D<float> VelocityY;
 
 float _DeltaTime;
-//float _Speed;
+float4 _UvHit;		// Only use xy components
 float _SegmentSizeSquared;
 float _SegmentSize;
 float _MinWaterHeight;
 int _TextureSize;
 // ----------------------------------------------
+
+void handleComputePaint(uint3 id) {
+	float2 uv = id.xy / float(_TextureSize);
+	float dist = distance(uv, _UvHit.xy);
+
+	// Choose radius
+	if (dist <= 0.1) {
+		WaterHeight[id.xy].r += 0.2 * _DeltaTime;		// Brush strength
+		WaterHeight[id.xy].r = clamp(WaterHeight[id.xy].r, 0, 1);
+	}
+}
 
 [numthreads(32, 32, 1)]
 void Main (uint3 id : SV_DispatchThreadID) {
@@ -62,8 +75,12 @@ void Main (uint3 id : SV_DispatchThreadID) {
 		waterAndVelocity.b = threshold * 0.5 * (fluxPixelTop.b - fluxPixelMiddle.a + fluxPixelMiddle.b - fluxPixelBottom.a) / segmentSizeTimesAvgWaterHeight;
 	}
 
+	WaterHeight[id.xy] *= BoundaryTexture[id.xy];
+
 	// Set output values
 	WaterHeight[id.xy] = waterAndVelocity.r;
 	VelocityX[id.xy] = waterAndVelocity.g;
 	VelocityY[id.xy] = waterAndVelocity.b;
+
+	handleComputePaint(id);
 }

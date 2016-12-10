@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18412788, g: 0.22956447, b: 0.30481136, a: 1}
+  m_IndirectSpecularColor: {r: 0.18412742, g: 0.22956386, b: 0.3048103, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -389,8 +389,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2776379af1db7b448c1081a88cec693, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalTexture: {fileID: 0}
-  computeShader: {fileID: 0}
+  originalTexture: {fileID: 2800000, guid: 7086342f062fdf945b45a84209788720, type: 3}
+  computeShader: {fileID: 7200000, guid: 92b587890e0e5914f9af3cb8745b6def, type: 3}
   onlyCompute: 0
   mouseInput: 1
 --- !u!1 &1301014817
@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e837a34e492f04db5c119ad71cfbd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalTexture: {fileID: 2800000, guid: e047ffdb49497b646bffe1fd14b75a1f, type: 3}
+  originalTexture: {fileID: 2800000, guid: cc3aaf878a6401f418c2aae5b8cd7c0e, type: 3}
   computeShader: {fileID: 7200000, guid: 1543fe063b1ae4e4da2fc78e302290dd, type: 3}
   onlyCompute: 1
   mouseInput: 1
@@ -595,7 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73878fa2aea4e6b499b6fed08a4bf9c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalTexture: {fileID: 2800000, guid: b9b466da59f310541b78c7128957ee7b, type: 3}
+  originalTexture: {fileID: 2800000, guid: 7086342f062fdf945b45a84209788720, type: 3}
   computeShader: {fileID: 7200000, guid: d55cefd9cfc223046a391e7407b66696, type: 3}
   onlyCompute: 1
   mouseInput: 1
@@ -606,7 +606,7 @@ MonoBehaviour:
   dampingFactor: 0.995
   heightToFluxFactor: 1
   segmentSize: 0.4
-  minWaterHeight: 0.003
+  minWaterHeight: 0
   staticTerrainHeightmap: {fileID: 2800000, guid: 3ee33f141d458f245b5b37b03a727b36,
     type: 3}
 --- !u!23 &1477681418

@@ -48,8 +48,11 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     protected RenderTexture velocityY;
 
     protected int fluxKernelHandle;
+    protected Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
     #endregion
     #region Properties
+    public int TextureSize { get { return textureSize; } }
+    public Vector3 UVHit { get { return uvHit; } set { uvHit = value; } }
     protected override int KERNEL_SIZE { get { return 32; } }
 
     protected const string KERNEL_METHOD_NAME = "Main";
@@ -80,6 +83,7 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
         fluxKernelHandle = fluxComputeShader.FindKernel(KERNEL_NAME);
         // Only upload the boundary texture once
         fluxComputeShader.SetTexture(fluxKernelHandle, "BoundaryTexture", boundaryTexture);
+        computeShader.SetTexture(kernelHandleNumber, "BoundaryTexture", boundaryTexture);
     }
 
     protected override void InitializeRenderTextures()
@@ -155,7 +159,8 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
         computeShader.SetTexture(kernelHandleNumber, "VelocityX", velocityX);
         computeShader.SetTexture(kernelHandleNumber, "VelocityY", velocityY);
-
+        
+        computeShader.SetVector("_UvHit", uvHit);
         computeShader.SetFloat("_SegmentSizeSquared", squaredSegmentSize);
         computeShader.SetFloat("_SegmentSize", segmentSize);
         computeShader.SetFloat("_DeltaTime", Time.deltaTime);

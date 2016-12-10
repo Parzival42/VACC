@@ -32,6 +32,7 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     private const string KERNEL_METHOD_NAME = "Main";
     protected override string KERNEL_NAME { get { return KERNEL_METHOD_NAME; } }
     public RenderTexture HeightMapTexture { get { return renderTexture; } }
+    public Vector3 UVHit { get { return uvHit; } set { uvHit = value; } }
     #endregion
 
 
@@ -82,19 +83,25 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     #region Mouse methods
     private void OnMouseDrag()
     {
-        Vector3 hit;
-        RaycastHit rayHit;
-        if (Camera.main.CollisionFor(Camera.main.ScreenPointToRayFor(Input.mousePosition), 8, out hit, out rayHit))
+        if (!onlyCompute)
         {
-            // This only works with a Mesh Collider!!!
-            uvHit = rayHit.textureCoord;
-            //Debug.Log(uvHit);
+            Vector3 hit;
+            RaycastHit rayHit;
+            if (Camera.main.CollisionFor(Camera.main.ScreenPointToRayFor(Input.mousePosition), 8, out hit, out rayHit))
+            {
+                // This only works with a Mesh Collider!!!
+                uvHit = rayHit.textureCoord;
+                //Debug.Log(uvHit);
+            }
         }
     }
 
     private void OnMouseUp()
     {
-        uvHit.Set(float.MaxValue, float.MaxValue, float.MaxValue);
+        if (!onlyCompute)
+        {
+            uvHit.Set(float.MaxValue, float.MaxValue, float.MaxValue);
+        }
     }
 
     private void OnDestroy()

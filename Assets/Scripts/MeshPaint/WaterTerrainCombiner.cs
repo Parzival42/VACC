@@ -7,6 +7,8 @@ public class WaterTerrainCombiner : ComputeMeshModifier
     #region Inernal members
     private ComputeMeshPaintWaterPipe pipeSimulation;
     private ComputeHeightmapPainter terrainSimulation;
+
+    RenderTexture combinedWaterTerrain;
     #endregion
 
     #region Properties
@@ -18,8 +20,6 @@ public class WaterTerrainCombiner : ComputeMeshModifier
 
     protected override void Start()
     {
-        base.Start();
-
         pipeSimulation = FindObjectOfType<ComputeMeshPaintWaterPipe>();
         terrainSimulation = FindObjectOfType<ComputeHeightmapPainter>();
 
@@ -27,6 +27,8 @@ public class WaterTerrainCombiner : ComputeMeshModifier
             Debug.LogError("No water simulation in scene!");
         if (terrainSimulation == null)
             Debug.LogError("No terrain simulation in scene!");
+
+        base.Start();
     }
 
     protected override void InitializeKernelHandle()
@@ -36,13 +38,46 @@ public class WaterTerrainCombiner : ComputeMeshModifier
 
     protected override void ComputeValues()
     {
+        computeShader.SetTexture(kernelHandleNumber, "WaterHeight", pipeSimulation.WaterHeight);
+        computeShader.SetTexture(kernelHandleNumber, "TerrainHeight", terrainSimulation.HeightMapTexture);
+        computeShader.SetTexture(kernelHandleNumber, "CombinedTerrainWater", combinedWaterTerrain);
+
+        computeShader.Dispatch(kernelHandleNumber, pipeSimulation.TextureSize / KERNEL_SIZE, pipeSimulation.TextureSize / KERNEL_SIZE, 1);
+
         // TODO: Maybe blur water height a bit? (With compute shader)
         objectMaterial.SetTexture("_WaterHeight", pipeSimulation.WaterHeight);
         objectMaterial.SetTexture("_TerrainHeight", terrainSimulation.HeightMapTexture);
+        objectMaterial.SetTexture("_CombinedHeight", combinedWaterTerrain);
+        objectMaterial.SetTexture("_VelocityX", pipeSimulation.VelocityX);
+        objectMaterial.SetTexture("_VelocityY", pipeSimulation.VelocityY);
     }
 
     protected override void InitializeRenderTextures()
     {
-        // Nothing to do here
+        combinedWaterTerrain = GetComputeRenderTexture(pipeSimulation.TextureSize, 32);
+        Graphics.Blit(originalTexture, combinedWaterTerrain);
+    }
+
+    private void OnMouseDrag()
+    {
+        Vector3 hit;
+        RaycastHit rayHit;
+        if (Camera.main.CollisionFor(Camera.main.ScreenPointToRayFor(Input.mousePosition), 8, out hit, out rayHit))
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                pipeSimulation.UVHit = rayHit.textureCoord;
+            }
+            else
+            {
+                terrainSimulation.UVHit = rayHit.textureCoord;
+            }
+        }
+    }
+
+    private void OnMouseUp()
+    {
+        terrainSimulation.UVHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+        pipeSimulation.UVHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
     }
 }

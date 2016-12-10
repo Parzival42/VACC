@@ -1,0 +1,11 @@
+#pragma kernel CSMain
+
+Texture2D<float> WaterHeight;
+Texture2D<float> TerrainHeight;
+RWTexture2D<float> CombinedTerrainWater;
+
+[numthreads(32, 32, 1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	CombinedTerrainWater[id.xy] = WaterHeight[id.xy] + TerrainHeight[id.xy];
+}

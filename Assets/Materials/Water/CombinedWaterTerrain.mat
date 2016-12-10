@@ -22,6 +22,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _CombinedHeight
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _DetailAlbedoMap
       second:
         m_Texture: {fileID: 0}
@@ -88,10 +94,28 @@ Material:
         m_Scale: {x: 10, y: 10}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _VelocityX
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _VelocityY
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _WaterHeight
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _WaterNormalMap
+      second:
+        m_Texture: {fileID: 2800000, guid: 6d7a4c73c5e90b244a606f43bbed376a, type: 3}
+        m_Scale: {x: 5, y: 5}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - first:
@@ -155,11 +179,23 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _WaterDepthBias
+      second: 0.38
+    - first:
+        name: _WaterFoamStrength
+      second: 0.09
+    - first:
+        name: _WaterFresnelPower
+      second: 200
+    - first:
         name: _WaterGloss
-      second: 0.9
+      second: 0.8
     - first:
         name: _WaterMetallic
       second: 1
+    - first:
+        name: _WaterNormalStrength
+      second: 0.15
     - first:
         name: _ZWrite
       second: 1
@@ -175,4 +211,10 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _WaterColor
-      second: {r: 0.19777247, g: 0.20239241, b: 0.86764705, a: 1}
+      second: {r: 0, g: 0.4862745, b: 0.64705884, a: 1}
+    - first:
+        name: _WaterDeepColor
+      second: {r: 0, g: 0, b: 0.5137255, a: 1}
+    - first:
+        name: _WaterFoamColor
+      second: {r: 1, g: 1, b: 1, a: 1}
