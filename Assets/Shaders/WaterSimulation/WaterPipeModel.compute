@@ -81,6 +81,6 @@ void Main (uint3 id : SV_DispatchThreadID) {
 	WaterHeight[id.xy] = waterAndVelocity.r;
 	VelocityX[id.xy] = waterAndVelocity.g;
 	VelocityY[id.xy] = waterAndVelocity.b;
-
 	handleComputePaint(id);
+	//WaterHeight[id.xy] *= BoundaryTexture[id.xy];
 }

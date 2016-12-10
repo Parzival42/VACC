@@ -2,6 +2,9 @@
 	Properties {
 		_TerrainColor ("Terrain Color", Color) = (1, 1, 1, 1)
 		_TerrainTexture ("Terrain Texture", 2D) = "white" {}
+		[Normal][NoScaleOffset]
+		_TerrainNormalMap ("Terrain Normal", 2D) = "bump" {}
+		_TerrainNormalStrength ("Terrain Normal Strength", Float) = 1.0
 		_TerrainGloss ("Terrain Smoothness", Range(0, 1)) = 0.5
 		_TerrainMetallic ("Terrain Metallic", Range(0, 1)) = 0.0
 
@@ -60,6 +63,7 @@
 
 		// ======== Sampler =========
 		sampler2D _TerrainTexture;
+		sampler2D _TerrainNormalMap;
 		sampler2D _WaterHeight;
 		sampler2D _WaterNormalMap;
 		sampler2D _TerrainHeight;
@@ -79,6 +83,7 @@
 		float _WaterDepthBias;
 		half _WaterGloss;
 		half _WaterNormalStrength;
+		half _TerrainNormalStrength;
 		float _WaterFresnelPower;
 		half _WaterMetallic;
 		half _HeightStrength;
@@ -117,13 +122,16 @@
 				surfaceNormal = normalize(float3(surfaceNormal.xy, surfaceNormal.z * _SobelStrength));
 
 				float fresnel = calculateRim(IN.viewDir, surfaceNormal, _WaterFresnelPower);
-				float velocityMagnitude = clamp(length(velocity) * _WaterFoamStrength, 0, 2);
+				float velocityMagnitude = clamp(length(velocity) * _WaterFoamStrength, 0, 1);
 
-				finalColor = lerp(waterColor, terrainColor, fresnel) + smoothstep(half3(0, 0, 0), _WaterFoamColor, velocityMagnitude);
+				finalColor = lerp(waterColor, terrainColor, fresnel) + smoothstep(half3(0, 0, 0), _WaterFoamColor, velocityMagnitude) * _WaterFoamColor;
 				finalSmoothness = _WaterGloss;
 				finalMetallic = _WaterMetallic;
 			} else {
-				surfaceNormal = height2NormalSobel(img3x3(_CombinedHeight, IN.uv_WaterHeight, 0, _WaterHeight_TexelSize.xy));
+				float3 terrainNormal = UnpackNormal(tex2D(_TerrainNormalMap, IN.uv_TerrainTexture));
+				terrainNormal.xy *= _TerrainNormalStrength;
+
+				surfaceNormal = height2NormalSobel(img3x3(_CombinedHeight, IN.uv_WaterHeight, 0, _WaterHeight_TexelSize.xy)) + terrainNormal;
 				surfaceNormal = normalize(float3(surfaceNormal.xy, surfaceNormal.z * _SobelStrength));
 				finalColor = terrainColor;
 				finalSmoothness = _TerrainGloss;
