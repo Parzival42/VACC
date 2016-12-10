@@ -26,10 +26,13 @@ public class MouseDragHandler : SpringDragHandler
         Vector3 springDir = Vector3.Normalize(-(spring.connectedAnchor - dragObject.transform.position));
         float direction = AngleDir(dragObject.transform.forward, springDir, dragObject.transform.up);
 
+        // is the connected anchor in front of behind the dragObj?
+        float springFwdDot = Vector3.Dot(dragObject.transform.forward, springDir);
+
         // change anchor position based on angle and direction
-        if (direction < 0)
+        if (direction < 0 && springFwdDot > 0 || direction > 0 && springFwdDot < 0)
             spring.anchor = new Vector3(dragObject.transform.position.x-7f, dragObject.transform.position.y, dragObject.transform.position.z);
-        else if (direction > 0)
+        else if (direction > 0 && springFwdDot > 0 || direction < 0 && springFwdDot < 0)
             spring.anchor = new Vector3(dragObject.transform.position.x+7f, dragObject.transform.position.y, dragObject.transform.position.z);
         else
             spring.anchor = new Vector3(dragObject.transform.position.x, dragObject.transform.position.y, dragObject.transform.position.z);
