@@ -606,7 +606,7 @@ MonoBehaviour:
   brushFalloff: 0.8
   textureSize: 512
   fluxComputeShader: {fileID: 7200000, guid: b31e60329884e4a4caf3654798d874e7, type: 3}
-  dampingFactor: 0.995
+  dampingFactor: 0.9999
   heightToFluxFactor: 1
   segmentSize: 0.4
   minWaterHeight: 0
