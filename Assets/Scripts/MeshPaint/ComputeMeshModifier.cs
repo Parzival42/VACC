@@ -39,6 +39,11 @@ public abstract class ComputeMeshModifier : MonoBehaviour
     /// Do all compute shader calculations here.
     /// </summary>
     protected abstract void ComputeValues();
+
+    /// <summary>
+    /// Inverts for example the brush painting.
+    /// </summary>
+    public abstract void InvertMeshModification();
     #endregion
 
     protected virtual void Start ()

@@ -2,6 +2,8 @@
 	Properties {
 		_TerrainColor ("Terrain Color", Color) = (1, 1, 1, 1)
 		_TerrainTexture ("Terrain Texture", 2D) = "white" {}
+		[NoScaleOffset]
+		_TerrainSmoothness ("Terrain Smoothness", 2D) = "white" {}
 		[Normal][NoScaleOffset]
 		_TerrainNormalMap ("Terrain Normal", 2D) = "bump" {}
 		_TerrainNormalStrength ("Terrain Normal Strength", Float) = 1.0
@@ -11,6 +13,7 @@
 		_WaterColor ("Water Color", Color) = (1, 1, 1, 1)
 		_WaterDeepColor ("Water Deep Ground Color", Color) = (1, 1, 1, 1)
 		_WaterDepthBias ("Water Depth Bias", Float) = 1.0
+		_WaterFoamTexture ("Foam Texture", 2D) = "white" {}
 		_WaterFoamColor ("Foam Color", Color) = (1, 1, 1, 1)
 		_WaterFoamStrength ("Foam Strength", Float) = 1.0
 		[Normal]
@@ -62,14 +65,17 @@
 			float2 uv_TerrainTexture;
 			float2 uv_WaterHeight;
 			float2 uv_WaterNormalMap;
+			float2 uv_WaterFoamTexture;
 			float3 viewDir;
 		};
 
 		// ======== Sampler =========
 		sampler2D _TerrainTexture;
 		sampler2D _TerrainNormalMap;
+		sampler2D _TerrainSmoothness;
 		sampler2D _WaterHeight;
 		sampler2D _WaterNormalMap;
+		sampler2D _WaterFoamTexture;
 		sampler2D _TerrainHeight;
 		sampler2D _CombinedHeight;
 		sampler2D _FluxLeft;
@@ -130,6 +136,8 @@
 			if (waterHeight > 0.01) {
 				half4 flux = composeFlux(IN);
 				half fluxMax = max(flux.r, max(flux.g, max(flux.b, flux.a)));
+				half3 foamColor = tex2D(_WaterFoamTexture, IN.uv_WaterFoamTexture) * _WaterFoamColor * _WaterFoamStrength;
+
 				// Get water normals from texture
 				float3 waterNormal = UnpackNormal(tex2D(_WaterNormalMap, IN.uv_WaterNormalMap + uv));
 				waterNormal.xy *= _WaterNormalStrength;
@@ -139,7 +147,7 @@
 
 				float fresnel = calculateRim(IN.viewDir, surfaceNormal, _WaterFresnelPower);
 
-				finalColor = lerp(waterColor, terrainColor, fresnel) + _WaterFoamColor * fluxMax * _WaterFoamStrength;
+				finalColor = lerp(waterColor, terrainColor, fresnel) + foamColor * fluxMax;
 				finalSmoothness = _WaterGloss;
 				finalMetallic = _WaterMetallic;
 			} else {
@@ -149,7 +157,7 @@
 				surfaceNormal = height2NormalSobel(img3x3(_CombinedHeight, IN.uv_WaterHeight, 0, _WaterHeight_TexelSize.xy)) + terrainNormal;
 				surfaceNormal = normalize(float3(surfaceNormal.xy, surfaceNormal.z * _SobelStrength));
 				finalColor = terrainColor;
-				finalSmoothness = _TerrainGloss;
+				finalSmoothness = tex2D(_TerrainSmoothness, IN.uv_TerrainTexture) * _TerrainGloss;
 				finalMetallic = _TerrainMetallic;
 			}
 

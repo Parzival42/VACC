@@ -108,5 +108,10 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
         if (!mouseInput)
             this.uvHit.Set(uvHit.x, uvHit.y, 0);
     }
+
+    public override void InvertMeshModification()
+    {
+        brushStrength *= -1f;
+    }
     #endregion
 }

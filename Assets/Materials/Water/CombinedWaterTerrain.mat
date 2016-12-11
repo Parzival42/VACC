@@ -118,6 +118,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _TerrainSmoothness
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _TerrainTexture
       second:
         m_Texture: {fileID: 2800000, guid: 2c0066c0fe30bc246b5f34c6ca1c4fad, type: 3}
@@ -134,6 +140,12 @@ Material:
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _WaterFoamTexture
+      second:
+        m_Texture: {fileID: 2800000, guid: cd13d42670b70764999dab319caa6ca8, type: 3}
+        m_Scale: {x: 2, y: 2}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _WaterHeight

@@ -426,8 +426,8 @@ MonoBehaviour:
   computeShader: {fileID: 7200000, guid: 1543fe063b1ae4e4da2fc78e302290dd, type: 3}
   onlyCompute: 1
   mouseInput: 1
-  brushRadius: 0.35
-  brushStrength: 0.05
+  brushRadius: 0.25
+  brushStrength: 0.03
   brushFalloff: 0.7
   textureSize: 512
 --- !u!23 &1301014821
@@ -601,6 +601,9 @@ MonoBehaviour:
   mouseInput: 1
   initTexture: {fileID: 2800000, guid: 7086342f062fdf945b45a84209788720, type: 3}
   boundaryTexture: {fileID: 2800000, guid: e049f06031935fb4cacc5e34b8640f71, type: 3}
+  brushRadius: 0.25
+  brushStrength: 0.6
+  brushFalloff: 0.8
   textureSize: 512
   fluxComputeShader: {fileID: 7200000, guid: b31e60329884e4a4caf3654798d874e7, type: 3}
   dampingFactor: 0.995

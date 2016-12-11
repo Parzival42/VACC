@@ -97,5 +97,10 @@ public class ComputeMeshPaintWater : ComputeMeshModifier
     {
         uvHit.Set(float.MaxValue, float.MaxValue, float.MaxValue);
     }
+
+    public override void InvertMeshModification()
+    {
+        brushStrength *= -1f;
+    }
     #endregion
 }

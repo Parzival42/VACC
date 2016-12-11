@@ -19,16 +19,22 @@ float _SegmentSizeSquared;
 float _SegmentSize;
 float _MinWaterHeight;
 int _TextureSize;
+float _Falloff;
+float _Radius;
+float _BrushStrength;
 // ----------------------------------------------
 
 void handleComputePaint(uint3 id) {
 	float2 uv = id.xy / float(_TextureSize);
 	float dist = distance(uv, _UvHit.xy);
 
-	// Choose radius
-	if (dist <= 0.1) {
-		WaterHeight[id.xy].r += 0.2 * _DeltaTime * BoundaryTexture[id.xy];		// Brush strength
-		//WaterHeight[id.xy].r = clamp(WaterHeight[id.xy].r, 0, 1);
+	float att = clamp(pow(1.0 - min(0.5, dist / abs(_Radius)) * 2.0, abs(_Falloff)), 0.0, 1.0);
+	att *= att;
+
+	if(_BrushStrength > 0) {
+		WaterHeight[id.xy].r += att * abs(_BrushStrength) * _DeltaTime * BoundaryTexture[id.xy];
+	} else {
+		WaterHeight[id.xy].r -= att * abs(_BrushStrength) * _DeltaTime * BoundaryTexture[id.xy];
 	}
 }
 

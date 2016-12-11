@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ComputeHeightmapPainter : ComputeMeshModifier
 {
@@ -106,6 +107,11 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     {
         vertexBuffer.Dispose();
         uvBuffer.Dispose();
+    }
+
+    public override void InvertMeshModification()
+    {
+        brushStrength *= -1f;
     }
     #endregion
 }

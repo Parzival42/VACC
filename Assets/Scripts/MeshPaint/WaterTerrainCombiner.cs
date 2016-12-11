@@ -54,6 +54,15 @@ public class WaterTerrainCombiner : ComputeMeshModifier
         objectMaterial.SetTexture(ShaderConstants.PARAM_FLUX_BOTTOM, pipeSimulation.FluxBottom);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            pipeSimulation.InvertMeshModification();
+            terrainSimulation.InvertMeshModification();
+        }
+    }
+
     protected override void InitializeRenderTextures()
     {
         combinedWaterTerrain = GetComputeRenderTexture(pipeSimulation.TextureSize, 32);
@@ -81,5 +90,10 @@ public class WaterTerrainCombiner : ComputeMeshModifier
     {
         terrainSimulation.UVHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
         pipeSimulation.UVHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+    }
+
+    public override void InvertMeshModification()
+    {
+        // Nothing to do here.
     }
 }

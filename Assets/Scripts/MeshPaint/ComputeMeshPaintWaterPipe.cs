@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 {
@@ -8,6 +9,16 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
     [SerializeField]
     protected Texture2D boundaryTexture;
+
+    [Header("Brush settings")]
+    [SerializeField]
+    private float brushRadius = 0.25f;
+
+    [SerializeField]
+    private float brushStrength = 0.03f;
+
+    [SerializeField]
+    private float brushFalloff = 0.8f;
 
     [Header("Render Texture settings")]
     [SerializeField]
@@ -165,6 +176,9 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
         computeShader.SetFloat(ShaderConstants.PARAM_SEGMENT_SIZE, segmentSize);
         computeShader.SetFloat(ShaderConstants.PARAM_DELTA_TIME, Time.deltaTime);
 
+        computeShader.SetFloat(ShaderConstants.PARAM_BRUSH_FALLOFF, brushFalloff);
+        computeShader.SetFloat(ShaderConstants.PARAM_BRUSH_STRENGTH, brushStrength);
+        computeShader.SetFloat(ShaderConstants.PARAM_RADIUS, brushRadius);
         computeShader.SetFloat(ShaderConstants.PARAM_MIN_WATER_HEIGHT, minWaterHeight);
         computeShader.SetInt(ShaderConstants.PARAM_TEXTURE_SIZE, textureSize);
 
@@ -172,5 +186,10 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
         if(!onlyCompute)
             objectMaterial.SetTexture(ShaderConstants.PARAM_HEIGHTMAP, waterHeights);
+    }
+
+    public override void InvertMeshModification()
+    {
+        brushStrength *= -1f;
     }
 }
