@@ -38,18 +38,18 @@ public class WaterTerrainCombiner : ComputeMeshModifier
 
     protected override void ComputeValues()
     {
-        computeShader.SetTexture(kernelHandleNumber, "WaterHeight", pipeSimulation.WaterHeight);
-        computeShader.SetTexture(kernelHandleNumber, "TerrainHeight", terrainSimulation.HeightMapTexture);
-        computeShader.SetTexture(kernelHandleNumber, "CombinedTerrainWater", combinedWaterTerrain);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_WATER_HEIGHT, pipeSimulation.WaterHeight);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_TERRAIN_HEIGHT, terrainSimulation.HeightMapTexture);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_COMBINED_TERRAIN_WATER, combinedWaterTerrain);
 
         computeShader.Dispatch(kernelHandleNumber, pipeSimulation.TextureSize / KERNEL_SIZE, pipeSimulation.TextureSize / KERNEL_SIZE, 1);
 
         // TODO: Maybe blur water height a bit? (With compute shader)
-        objectMaterial.SetTexture("_WaterHeight", pipeSimulation.WaterHeight);
-        objectMaterial.SetTexture("_TerrainHeight", terrainSimulation.HeightMapTexture);
-        objectMaterial.SetTexture("_CombinedHeight", combinedWaterTerrain);
-        objectMaterial.SetTexture("_VelocityX", pipeSimulation.VelocityX);
-        objectMaterial.SetTexture("_VelocityY", pipeSimulation.VelocityY);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_WATER_HEIGHT, pipeSimulation.WaterHeight);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_TERRAIN_HEIGHT, terrainSimulation.HeightMapTexture);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_COMBINED_TERRAIN_WATER, combinedWaterTerrain);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_VELOCITY_X, pipeSimulation.VelocityX);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_VELOCITY_Y, pipeSimulation.VelocityY);
     }
 
     protected override void InitializeRenderTextures()

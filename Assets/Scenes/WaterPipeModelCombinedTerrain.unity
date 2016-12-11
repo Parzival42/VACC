@@ -426,7 +426,7 @@ MonoBehaviour:
   computeShader: {fileID: 7200000, guid: 1543fe063b1ae4e4da2fc78e302290dd, type: 3}
   onlyCompute: 1
   mouseInput: 1
-  brushRadius: 0.1
+  brushRadius: 0.2
   brushStrength: 0.02
   brushFalloff: 0.6
   renderTextureWidth: 512

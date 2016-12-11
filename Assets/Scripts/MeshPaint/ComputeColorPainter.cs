@@ -44,6 +44,11 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
         get { return brushStrength; }
         set { brushStrength = value; }
     }
+
+    public float BrushFalloff {
+        get { return brushFalloff; }
+        set { brushFalloff = value; }
+    }
     #endregion
 
     protected override void InitializeComponents()
@@ -64,18 +69,16 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
 
     protected override void ComputeValues()
     {
-        // TODO: Replace strings with constant strings.
-        computeShader.SetInt("_TextureSize", renderTextureWidth);
-        computeShader.SetVector("_UvHit", uvHit);
-        computeShader.SetFloat("_Radius", brushRadius);
-        computeShader.SetFloat("_BrushStrength", brushStrength);
-        computeShader.SetFloat("_Falloff", brushFalloff);
-        computeShader.SetTexture(kernelHandleNumber, "Result", renderTexture);
+        computeShader.SetInt(ShaderConstants.PARAM_TEXTURE_SIZE, renderTextureWidth);
+        computeShader.SetVector(ShaderConstants.PARAM_UV_HIT, uvHit);
+        computeShader.SetFloat(ShaderConstants.PARAM_RADIUS, brushRadius);
+        computeShader.SetFloat(ShaderConstants.PARAM_BRUSH_STRENGTH, brushStrength);
+        computeShader.SetFloat(ShaderConstants.PARAM_BRUSH_FALLOFF, brushFalloff);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.PARAM_RESULT, renderTexture);
 
         computeShader.Dispatch(kernelHandleNumber, renderTexture.width / KERNEL_SIZE, renderTexture.height / KERNEL_SIZE, 1);
 
-        objectMaterial.SetTexture("_Mask", renderTexture);
-        //objectMaterial.SetTexture("_MainTex", renderTexture);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_MASK, renderTexture);
     }
 
     #region Mouse methods

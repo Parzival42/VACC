@@ -82,8 +82,8 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
         base.InitializeKernelHandle();
         fluxKernelHandle = fluxComputeShader.FindKernel(KERNEL_NAME);
         // Only upload the boundary texture once
-        fluxComputeShader.SetTexture(fluxKernelHandle, "BoundaryTexture", boundaryTexture);
-        computeShader.SetTexture(kernelHandleNumber, "BoundaryTexture", boundaryTexture);
+        fluxComputeShader.SetTexture(fluxKernelHandle, ShaderConstants.INPUT_BOUNDARY_TEXTURE, boundaryTexture);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_BOUNDARY_TEXTURE, boundaryTexture);
     }
 
     protected override void InitializeRenderTextures()
@@ -126,51 +126,51 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
     private void ComputeFlux()
     {
-        fluxComputeShader.SetTexture(fluxKernelHandle, "WaterHeight", waterHeights);
+        fluxComputeShader.SetTexture(fluxKernelHandle, ShaderConstants.INPUT_WATER_HEIGHT, waterHeights);
         
         if (heightmapPainter == null)
-            fluxComputeShader.SetTexture(fluxKernelHandle, "TerrainHeight", terrainHeightmap);
+            fluxComputeShader.SetTexture(fluxKernelHandle, ShaderConstants.INPUT_TERRAIN_HEIGHT, terrainHeightmap);
         else
-            fluxComputeShader.SetTexture(fluxKernelHandle, "TerrainHeight", heightmapPainter.HeightMapTexture);
+            fluxComputeShader.SetTexture(fluxKernelHandle, ShaderConstants.INPUT_TERRAIN_HEIGHT, heightmapPainter.HeightMapTexture);
 
-        fluxComputeShader.SetTexture(fluxKernelHandle, "FluxLeft", fluxLeft);
-        fluxComputeShader.SetTexture(fluxKernelHandle, "FluxRight", fluxRight);
-        fluxComputeShader.SetTexture(fluxKernelHandle, "FluxBottom", fluxBottom);
-        fluxComputeShader.SetTexture(fluxKernelHandle, "FluxTop", fluxTop);
+        fluxComputeShader.SetTexture(fluxKernelHandle, ShaderConstants.INPUT_FLUX_LEFT, fluxLeft);
+        fluxComputeShader.SetTexture(fluxKernelHandle, ShaderConstants.INPUT_FLUX_RIGHT, fluxRight);
+        fluxComputeShader.SetTexture(fluxKernelHandle, ShaderConstants.INPUT_FLUX_BOTTOM, fluxBottom);
+        fluxComputeShader.SetTexture(fluxKernelHandle, ShaderConstants.INPUT_FLUX_TOP, fluxTop);
 
-        fluxComputeShader.SetFloat("_DeltaTime", Time.deltaTime);
-        fluxComputeShader.SetFloat("_DampingFactor", dampingFactor);
-        fluxComputeShader.SetFloat("_HeightToFluxFactor", heightToFluxFactor);
-        fluxComputeShader.SetFloat("_SegmentSizeSquared", squaredSegmentSize);
-        fluxComputeShader.SetFloat("_MinWaterHeight", minWaterHeight);
-        fluxComputeShader.SetInt("_TextureSize", textureSize);
+        fluxComputeShader.SetFloat(ShaderConstants.PARAM_DELTA_TIME, Time.deltaTime);
+        fluxComputeShader.SetFloat(ShaderConstants.PARAM_DAMPING_FACTOR, dampingFactor);
+        fluxComputeShader.SetFloat(ShaderConstants.PARAM_HEIGHT_TO_FLUX_FACTOR, heightToFluxFactor);
+        fluxComputeShader.SetFloat(ShaderConstants.PARAM_SEGMENT_SIZE_SQUARED, squaredSegmentSize);
+        fluxComputeShader.SetFloat(ShaderConstants.PARAM_MIN_WATER_HEIGHT, minWaterHeight);
+        fluxComputeShader.SetInt(ShaderConstants.PARAM_TEXTURE_SIZE, textureSize);
 
         fluxComputeShader.Dispatch(fluxKernelHandle, textureSize / KERNEL_SIZE, textureSize / KERNEL_SIZE, 1);
     }
 
     private void ComputeWater()
     {
-        computeShader.SetTexture(kernelHandleNumber, "WaterHeight", waterHeights);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_WATER_HEIGHT, waterHeights);
 
-        computeShader.SetTexture(kernelHandleNumber, "FluxLeft", fluxLeft);
-        computeShader.SetTexture(kernelHandleNumber, "FluxRight", fluxRight);
-        computeShader.SetTexture(kernelHandleNumber, "FluxBottom", fluxBottom);
-        computeShader.SetTexture(kernelHandleNumber, "FluxTop", fluxTop);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_FLUX_LEFT, fluxLeft);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_FLUX_RIGHT, fluxRight);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_FLUX_BOTTOM, fluxBottom);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_FLUX_TOP, fluxTop);
 
-        computeShader.SetTexture(kernelHandleNumber, "VelocityX", velocityX);
-        computeShader.SetTexture(kernelHandleNumber, "VelocityY", velocityY);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_VELOCITY_X, velocityX);
+        computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_VELOCITY_Y, velocityY);
         
-        computeShader.SetVector("_UvHit", uvHit);
-        computeShader.SetFloat("_SegmentSizeSquared", squaredSegmentSize);
-        computeShader.SetFloat("_SegmentSize", segmentSize);
-        computeShader.SetFloat("_DeltaTime", Time.deltaTime);
+        computeShader.SetVector(ShaderConstants.PARAM_UV_HIT, uvHit);
+        computeShader.SetFloat(ShaderConstants.PARAM_SEGMENT_SIZE_SQUARED, squaredSegmentSize);
+        computeShader.SetFloat(ShaderConstants.PARAM_SEGMENT_SIZE, segmentSize);
+        computeShader.SetFloat(ShaderConstants.PARAM_DELTA_TIME, Time.deltaTime);
 
-        computeShader.SetFloat("_MinWaterHeight", minWaterHeight);
-        computeShader.SetInt("_TextureSize", textureSize);
+        computeShader.SetFloat(ShaderConstants.PARAM_MIN_WATER_HEIGHT, minWaterHeight);
+        computeShader.SetInt(ShaderConstants.PARAM_TEXTURE_SIZE, textureSize);
 
         computeShader.Dispatch(kernelHandleNumber, textureSize / KERNEL_SIZE, textureSize / KERNEL_SIZE, 1);
 
         if(!onlyCompute)
-            objectMaterial.SetTexture("_Heightmap", waterHeights);
+            objectMaterial.SetTexture(ShaderConstants.PARAM_HEIGHTMAP, waterHeights);
     }
 }

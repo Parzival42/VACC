@@ -13,6 +13,9 @@ public class SuckingScript : MonoBehaviour
     [SerializeField]
     protected float brushStrength = -0.02f;
 
+    [SerializeField]
+    protected float brushFalloff = 0.6f;
+
     [Header("Physics")]
     [SerializeField]
     protected int collisionLayer = 8;
@@ -57,6 +60,7 @@ public class SuckingScript : MonoBehaviour
             PaintDataReceiver paintReceiver = hitInfo.collider.transform.GetComponent<PaintDataReceiver>();
             paintReceiver.Radius = suckingRadius;
             paintReceiver.BrushStrength = brushStrength;
+            paintReceiver.BrushFalloff = brushFalloff;
             paintReceiver.SetUVHitPosition(hitInfo.textureCoord);
         }
     }

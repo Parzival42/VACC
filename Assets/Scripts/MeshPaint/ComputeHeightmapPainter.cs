@@ -14,10 +14,7 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
 
     [Header("Render Texture settings")]
     [SerializeField]
-    private int renderTextureWidth = 512;
-
-    [SerializeField]
-    private int renderTextureHeight = 512;
+    private int textureSize = 512;
 
     #region Internal members
     private Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
@@ -52,10 +49,7 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
 
     protected override void InitializeRenderTextures()
     {
-        renderTexture = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
-        renderTexture.enableRandomWrite = true;
-        renderTexture.Create();
-
+        renderTexture = GetComputeRenderTexture(textureSize, 32);
         Graphics.Blit(originalTexture, renderTexture);
     }
 
@@ -64,7 +58,7 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
         // TODO: Replace strings with constant strings.
         computeShader.SetBuffer(kernelHandleNumber, "MeshVertices", vertexBuffer);
         computeShader.SetBuffer(kernelHandleNumber, "MeshUvs", uvBuffer);
-        computeShader.SetInt("_TextureSize", renderTextureWidth);
+        computeShader.SetInt("_TextureSize", textureSize);
         computeShader.SetVector("_UvHit", uvHit);
         computeShader.SetFloat("_Radius", brushRadius);
         computeShader.SetFloat("_Falloff", brushFalloff);
