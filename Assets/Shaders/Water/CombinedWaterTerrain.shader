@@ -100,7 +100,8 @@
 
 			float waterHeight = tex2D(_WaterHeight, IN.uv_WaterHeight).r;
 			float terrainHeight = tex2D(_TerrainHeight, IN.uv_WaterHeight).r;
-			float heightDifference = abs(waterHeight - terrainHeight);
+			float combinedWaterTerrain = tex2D(_CombinedHeight, IN.uv_WaterHeight).r;
+			float heightDifference = abs(combinedWaterTerrain - terrainHeight);
 
 			fixed4 terrainColor = tex2D (_TerrainTexture, IN.uv_TerrainTexture) * _TerrainColor;
 			fixed3 waterColor = lerp(_WaterColor, _WaterDeepColor, heightDifference / _WaterDepthBias);

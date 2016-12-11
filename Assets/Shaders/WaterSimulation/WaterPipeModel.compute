@@ -27,8 +27,8 @@ void handleComputePaint(uint3 id) {
 
 	// Choose radius
 	if (dist <= 0.1) {
-		WaterHeight[id.xy].r += 0.2 * _DeltaTime;		// Brush strength
-		WaterHeight[id.xy].r = clamp(WaterHeight[id.xy].r, 0, 1);
+		WaterHeight[id.xy].r += 0.2 * _DeltaTime * BoundaryTexture[id.xy];		// Brush strength
+		//WaterHeight[id.xy].r = clamp(WaterHeight[id.xy].r, 0, 1);
 	}
 }
 
