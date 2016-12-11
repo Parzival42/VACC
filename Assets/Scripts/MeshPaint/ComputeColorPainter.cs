@@ -10,6 +10,9 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
     [SerializeField]
     private float brushStrength = 0.02f;
 
+    [SerializeField]
+    private float brushFalloff = 0.8f;
+
     [Header("Render Texture settings")]
     [SerializeField]
     private int renderTextureWidth = 512;
@@ -66,6 +69,7 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
         computeShader.SetVector("_UvHit", uvHit);
         computeShader.SetFloat("_Radius", brushRadius);
         computeShader.SetFloat("_BrushStrength", brushStrength);
+        computeShader.SetFloat("_Falloff", brushFalloff);
         computeShader.SetTexture(kernelHandleNumber, "Result", renderTexture);
 
         computeShader.Dispatch(kernelHandleNumber, renderTexture.width / KERNEL_SIZE, renderTexture.height / KERNEL_SIZE, 1);

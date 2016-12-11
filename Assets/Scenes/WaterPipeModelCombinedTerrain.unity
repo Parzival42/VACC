@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52e837a34e492f04db5c119ad71cfbd9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  originalTexture: {fileID: 2800000, guid: cc3aaf878a6401f418c2aae5b8cd7c0e, type: 3}
+  originalTexture: {fileID: 2800000, guid: 7086342f062fdf945b45a84209788720, type: 3}
   computeShader: {fileID: 7200000, guid: 1543fe063b1ae4e4da2fc78e302290dd, type: 3}
   onlyCompute: 1
   mouseInput: 1
