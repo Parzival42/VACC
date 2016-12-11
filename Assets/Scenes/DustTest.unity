@@ -432,7 +432,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 1a0e754b682fd3b4b913ffe40af0f095, type: 2}
+  - {fileID: 2100000, guid: cfed8c11bea833c428e5935e07ba4b52, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -1096,7 +1096,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   suckingPoint: {fileID: 1641210763}
-  suckingRadius: 0.016
+  suckingRadius: 0.06
   brushStrength: -0.05
   collisionLayer: 8
   suckingDistance: 0.1
