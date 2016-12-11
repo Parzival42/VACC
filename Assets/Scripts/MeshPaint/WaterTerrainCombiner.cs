@@ -48,8 +48,10 @@ public class WaterTerrainCombiner : ComputeMeshModifier
         objectMaterial.SetTexture(ShaderConstants.PARAM_WATER_HEIGHT, pipeSimulation.WaterHeight);
         objectMaterial.SetTexture(ShaderConstants.PARAM_TERRAIN_HEIGHT, terrainSimulation.HeightMapTexture);
         objectMaterial.SetTexture(ShaderConstants.PARAM_COMBINED_TERRAIN_WATER, combinedWaterTerrain);
-        objectMaterial.SetTexture(ShaderConstants.PARAM_VELOCITY_X, pipeSimulation.VelocityX);
-        objectMaterial.SetTexture(ShaderConstants.PARAM_VELOCITY_Y, pipeSimulation.VelocityY);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_FLUX_LEFT, pipeSimulation.FluxLeft);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_FLUX_RIGHT, pipeSimulation.FluxRight);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_FLUX_TOP, pipeSimulation.FluxTop);
+        objectMaterial.SetTexture(ShaderConstants.PARAM_FLUX_BOTTOM, pipeSimulation.FluxBottom);
     }
 
     protected override void InitializeRenderTextures()

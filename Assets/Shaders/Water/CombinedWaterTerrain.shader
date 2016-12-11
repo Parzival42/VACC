@@ -28,9 +28,13 @@
 		[HideInInspector]
 		_CombinedHeight ("Combined Water Terrain height", 2D) = "black" {}
 		[HideInInspector]
-		_VelocityX ("X Velocity", 2D) = "black" {}
+		_FluxLeft ("Flux Left", 2D) = "black" {}
 		[HideInInspector]
-		_VelocityY ("Y Velocity", 2D) = "black" {}
+		_FluxRight ("Flux Right", 2D) = "black" {}
+		[HideInInspector]
+		_FluxTop ("Flux Top", 2D) = "black" {}
+		[HideInInspector]
+		_FluxBottom ("Flux Bottom", 2D) = "black" {}
 		_SobelStrength ("Normal Strength", Float) = 0.21
 		_HeightStrength ("Height Strength", Float) = 6.0
 
@@ -68,8 +72,10 @@
 		sampler2D _WaterNormalMap;
 		sampler2D _TerrainHeight;
 		sampler2D _CombinedHeight;
-		sampler2D _VelocityX;
-		sampler2D _VelocityY;
+		sampler2D _FluxLeft;
+		sampler2D _FluxRight;
+		sampler2D _FluxTop;
+		sampler2D _FluxBottom;
 
 		float4 _WaterHeight_TexelSize;
 		// ==========================
@@ -93,6 +99,16 @@
 		half _WaterFoamStrength;
 		// ==========================
 
+		// Returns flux composed in one vector.
+		// R: Left, G: Right, B: Top, A: Bottom
+		half4 composeFlux(Input IN) {
+			half fluxLeft = tex2D(_FluxLeft, IN.uv_WaterHeight).r;
+			half fluxRight = tex2D(_FluxRight, IN.uv_WaterHeight).r;
+			half fluxTop = tex2D(_FluxTop, IN.uv_WaterHeight).r;
+			half fluxBottom = tex2D(_FluxBottom, IN.uv_WaterHeight).r;
+			return half4(fluxLeft, fluxRight, fluxTop, fluxBottom);
+		}
+
 		void surf (Input IN, inout SurfaceOutputStandard o) {
 			half3 finalColor;
 			half finalSmoothness;
@@ -106,15 +122,14 @@
 			fixed4 terrainColor = tex2D (_TerrainTexture, IN.uv_TerrainTexture) * _TerrainColor;
 			fixed3 waterColor = lerp(_WaterColor, _WaterDeepColor, heightDifference / _WaterDepthBias);
 
-			float2 velocity = float2(tex2D(_VelocityX, IN.uv_WaterHeight).r, tex2D(_VelocityY, IN.uv_WaterHeight).r);
-
 			float offset = _Time[1] * 0.025;
 			float2 uv = float2(offset, offset);
 
 			// Calculate values for the visible surface
 			float3 surfaceNormal;
-			// TODO: Eliminate magic number
 			if (waterHeight > 0.01) {
+				half4 flux = composeFlux(IN);
+				half fluxMax = max(flux.r, max(flux.g, max(flux.b, flux.a)));
 				// Get water normals from texture
 				float3 waterNormal = UnpackNormal(tex2D(_WaterNormalMap, IN.uv_WaterNormalMap + uv));
 				waterNormal.xy *= _WaterNormalStrength;
@@ -123,9 +138,8 @@
 				surfaceNormal = normalize(float3(surfaceNormal.xy, surfaceNormal.z * _SobelStrength));
 
 				float fresnel = calculateRim(IN.viewDir, surfaceNormal, _WaterFresnelPower);
-				float velocityMagnitude = clamp(length(velocity) * _WaterFoamStrength, 0, 1);
 
-				finalColor = lerp(waterColor, terrainColor, fresnel) + smoothstep(half3(0, 0, 0), _WaterFoamColor, velocityMagnitude) * _WaterFoamColor;
+				finalColor = lerp(waterColor, terrainColor, fresnel) + _WaterFoamColor * fluxMax * _WaterFoamStrength;
 				finalSmoothness = _WaterGloss;
 				finalMetallic = _WaterMetallic;
 			} else {

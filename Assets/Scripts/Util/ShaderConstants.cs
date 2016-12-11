@@ -23,8 +23,10 @@ public class ShaderConstants
     public static readonly string PARAM_SEGMENT_SIZE = "_SegmentSize";
     public static readonly string PARAM_MIN_WATER_HEIGHT = "_MinWaterHeight";
     public static readonly string PARAM_HEIGHTMAP = "_Heightmap";
-
-
+    public static readonly string PARAM_FLUX_LEFT = "_FluxLeft";
+    public static readonly string PARAM_FLUX_RIGHT = "_FluxRight";
+    public static readonly string PARAM_FLUX_TOP = "_FluxTop";
+    public static readonly string PARAM_FLUX_BOTTOM = "_FluxBottom";
 
     public static readonly string INPUT_WATER_HEIGHT = "WaterHeight";
     public static readonly string INPUT_TERRAIN_HEIGHT = "TerrainHeight";
