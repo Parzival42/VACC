@@ -129,7 +129,7 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 6.5
+      second: 4.5
     - first:
         name: _GlossyReflections
       second: 1
@@ -150,10 +150,10 @@ Material:
       second: 1
     - first:
         name: _OtherGlossiness
-      second: 4.7
+      second: 0.5
     - first:
         name: _OtherMetallic
-      second: 0.345
+      second: 0.342
     - first:
         name: _OtherNormalStrength
       second: 0.55

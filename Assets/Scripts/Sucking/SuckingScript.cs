@@ -16,13 +16,23 @@ public class SuckingScript : MonoBehaviour
     [SerializeField]
     protected float brushFalloff = 0.6f;
 
+    [Header("Mesh Melting")]
+    [SerializeField]
+    protected string meltShaderID = "DustSucker/MeshMelt";
+    private Shader meltShader;
+
     [Header("Physics")]
     [SerializeField]
-    protected int collisionLayer = 8;
+    protected int collisionLayerTerrain = 8;
+
+    [SerializeField]
+    protected int collisionLayerMeshes = 11;
 
     [SerializeField]
     [Tooltip("The working distance of the dust sucking.")]
-    protected float suckingDistance = 0.5f;
+    protected float suckingDistanceTerrain = 0.5f;
+    [SerializeField]
+    protected float suckingDistanceMeshes = 0.5f;
 
     private DragScript drag;
 
@@ -30,6 +40,7 @@ public class SuckingScript : MonoBehaviour
     {
         CheckFields();
         drag = GetComponent<DragScript>();
+        meltShader = Shader.Find(meltShaderID);
     }
 
     private void CheckFields()
@@ -42,17 +53,18 @@ public class SuckingScript : MonoBehaviour
     {
         if (drag.IsDragged)
         {
-            CheckCollision();
+            CheckCollisionTerrain();
+            CheckCollisionMeshes();
         }
 	}
 
-    protected void CheckCollision()
+    protected void CheckCollisionTerrain()
     {
         RaycastHit hitInfo;
-        bool hit = Physics.Raycast(suckingPoint.position, -suckingPoint.up, out hitInfo, suckingDistance, 1 << collisionLayer);
+        bool hit = Physics.Raycast(suckingPoint.position, -suckingPoint.up, out hitInfo, suckingDistanceTerrain, 1 << collisionLayerMeshes);
 
         #if UNITY_EDITOR
-        Debug.DrawRay(suckingPoint.position, -suckingPoint.up * suckingDistance, Color.green);
+        Debug.DrawRay(suckingPoint.position, -suckingPoint.up * suckingDistanceTerrain, Color.green);
         #endif
 
         if (hit)
@@ -65,7 +77,37 @@ public class SuckingScript : MonoBehaviour
         }
     }
 
-    #if UNITY_EDITOR
+    protected void CheckCollisionMeshes()
+    {
+        RaycastHit hitInfo;
+        bool hit = Physics.Raycast(suckingPoint.position, -suckingPoint.forward, out hitInfo, suckingDistanceMeshes, 1 << collisionLayerMeshes);
+
+        #if UNITY_EDITOR
+        Debug.DrawRay(suckingPoint.position, -suckingPoint.forward * suckingDistanceMeshes, Color.yellow);
+#endif
+
+        if (hit)
+        {
+            ChangeToMeltMaterial(hitInfo.transform.gameObject);
+        }
+    }
+
+    private void ChangeToMeltMaterial(GameObject obj)
+    {
+        Material currMaterial = obj.GetComponent<Renderer>().material;
+        Color color = currMaterial.GetColor("_Color");
+        currMaterial.shader = meltShader;
+        currMaterial.SetColor("_Color", color);
+        currMaterial.SetFloat("_MeltY", suckingPoint.position.y);
+        currMaterial.SetVector("_MeltPosition", suckingPoint.position);
+
+        obj.GetComponent<Collider>().enabled = false;
+        obj.GetComponent<Rigidbody>().useGravity = false;
+
+        obj.AddComponent<Sucked>().finalPosition = obj.transform.position - obj.transform.up * 2.5f;
+    }
+
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

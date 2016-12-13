@@ -2,14 +2,17 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
+		_NormalTex ("Normal Map", 2D) = "white" {}
+		_NormalStrength("Normal Strength", Float) = 0.5
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 
 		_MeltY("Melt Height", Float) = 0.0
-		_MeltYDistance("Melt Height Distance", Float) = 1.0
-		_MeltCurve("Melt Curve", Range(1.0,10.0)) = 2.0
-		_MeltDirection("Melt Direction", Vector) = (1,0,0,0)
-		_MeltStrength("Melt Strength", Float) = 0.2
+		_MeltYDistance("Melt Height Distance", Float) = 0.3
+		_MeltThreshold("Melt Threshold", Float) = 0.4
+		_MeltCurve("Melt Curve", Range(1.0,10.0)) = 3.0
+		_MeltPosition("Melt Position", Vector) = (1,0,0,0)
+		_MeltStrength("Melt Strength", Float) = 1.0
 
 		_Tess("Tessellation Amount", Range( 1, 32 )) = 10
 	}
@@ -23,19 +26,22 @@
         #include "Tessellation.cginc"
 
 		sampler2D _MainTex;
+		sampler2D _NormalTex;
 
 		struct Input {
 			float2 uv_MainTex;
 		};
 
+		half _NormalStrength;
 		half _Glossiness;
 		half _Metallic;
 		fixed4 _Color;
 
 		half _MeltY;
 		half _MeltYDistance;
+		half _MeltThreshold;
 		half _MeltCurve;
-		half4 _MeltDirection;
+		half4 _MeltPosition;
 		half _MeltStrength;
 
 		float _Tess;
@@ -57,7 +63,7 @@
 			float melt = (( wpos.y - _MeltY ) / _MeltYDistance);
 
 			// threshold - verts near edges are tessellated
-			if( melt < -0.1 || melt > 1.1 )
+			if( melt < -_MeltThreshold || melt > _MeltThreshold )
 				f = 0.01;
 
 			return f  * tess;
@@ -87,7 +93,9 @@
 			melt = 1 - saturate( melt );
 			melt = pow( melt, _MeltCurve );
 
-			worldSpacePosition.xz += _MeltDirection.xz * melt * _MeltStrength;
+			float2 disp =  _MeltPosition.xz - worldSpacePosition.xz;
+
+			worldSpacePosition.xz += disp * melt * _MeltStrength;
 
 			return mul( unity_WorldToObject, worldSpacePosition );
 		}
@@ -111,6 +119,10 @@
 		}
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
+
+			float3 normal = UnpackNormal(tex2D(_NormalTex, IN.uv_MainTex)) * _NormalStrength;
+			o.Normal = normal;
+
 			// Albedo comes from a texture tinted by color
 			fixed4 c = tex2D (_MainTex, IN.uv_MainTex) * _Color;
 			o.Albedo = c.rgb;

@@ -48,13 +48,19 @@ Material:
     - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 93025475403070a4d82e45c3c7a7c538, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
       second:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _NormalTex
+      second:
+        m_Texture: {fileID: 2800000, guid: 6d7a4c73c5e90b244a606f43bbed376a, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -93,25 +99,31 @@ Material:
       second: 1
     - first:
         name: _MeltCurve
-      second: 5.92
+      second: 3.64
     - first:
         name: _MeltDistance
       second: 0.2
     - first:
         name: _MeltStrength
-      second: 0.2
+      second: 1
+    - first:
+        name: _MeltThreshold
+      second: 0.4
     - first:
         name: _MeltY
       second: -0.19
     - first:
         name: _MeltYDistance
-      second: 0.42
+      second: 0.3
     - first:
         name: _Metallic
       second: 0
     - first:
         name: _Mode
       second: 0
+    - first:
+        name: _NormalStrength
+      second: 0.5
     - first:
         name: _OcclusionStrength
       second: 1
@@ -129,7 +141,7 @@ Material:
       second: 1
     - first:
         name: _Tess
-      second: 3.5
+      second: 7.5
     - first:
         name: _UVSec
       second: 0
@@ -145,4 +157,10 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _MeltDirection
-      second: {r: -1, g: 0, b: -1, a: 0}
+      second: {r: -0.79, g: 0, b: 0.07, a: 0}
+    - first:
+        name: _MeltPos
+      second: {r: 0, g: -0.2, b: 0, a: 0}
+    - first:
+        name: _MeltPosition
+      second: {r: -0.68, g: 0, b: 0.57, a: 0}

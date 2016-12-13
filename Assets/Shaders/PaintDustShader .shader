@@ -93,8 +93,7 @@ Shader "DustSucker/PaintDustShader" {
 			float3 mainNormal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex));
 			mainNormal.xy *= _NormalStrength;
 
-			o.Albedo = lerp(mainTex, c, mask);
-			o.Albedo = lerp(mainTex, o.Albedo, c.a);
+			o.Albedo = lerp(mainTex, lerp(mainTex, c, mask), c.a);
 			o.Smoothness = lerp(mainGloss, _OtherGlossiness, mask);
 			o.Normal = mainNormal;
 
