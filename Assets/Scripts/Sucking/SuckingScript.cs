@@ -95,16 +95,21 @@ public class SuckingScript : MonoBehaviour
     private void ChangeToMeltMaterial(GameObject obj)
     {
         Material currMaterial = obj.GetComponent<Renderer>().material;
-        Color color = currMaterial.GetColor("_Color");
-        currMaterial.shader = meltShader;
-        currMaterial.SetColor("_Color", color);
-        currMaterial.SetFloat("_MeltY", suckingPoint.position.y);
-        currMaterial.SetVector("_MeltPosition", suckingPoint.position);
+        if (currMaterial)
+        {
+            Color color = currMaterial.GetColor("_Color");
+            currMaterial.shader = meltShader;
+            currMaterial.SetColor("_Color", color);
+            currMaterial.SetFloat("_MeltY", suckingPoint.position.y);
+            currMaterial.SetVector("_MeltPosition", suckingPoint.position);
 
-        obj.GetComponent<Collider>().enabled = false;
-        obj.GetComponent<Rigidbody>().useGravity = false;
+            obj.GetComponent<Collider>().enabled = false;
+            obj.GetComponent<Rigidbody>().useGravity = false;
 
-        obj.AddComponent<Sucked>().finalPosition = obj.transform.position - obj.transform.up * 2.5f;
+            Sucked suckedIn = obj.AddComponent<Sucked>();
+            suckedIn.finalPosition = obj.transform.position - obj.transform.up * 2.5f;
+            suckedIn.suckDirection = transform;
+        }
     }
 
 #if UNITY_EDITOR
