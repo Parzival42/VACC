@@ -2,7 +2,8 @@
 using System.Collections;
 using System;
 
-[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
+
+
 public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
 
     #region variables
@@ -47,6 +48,11 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
     private Vector3[] normals;
     private Vector2[] uvs;
     private int[] indices;
+    private BoneWeight[] boneWeights;
+    private Transform[] bones;
+    private Matrix4x4[] bindPoses;
+    private BoxCollider[] boxColliders;
+    private Rigidbody[] rigidBodies;
     #endregion
 
     #region methods
@@ -72,9 +78,7 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
     public Tube GenerateTube()
     {
         doneGenerating = false;
-
         Mesh mesh = new Mesh();
-
 
 
         //vertices
@@ -96,9 +100,24 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
         indices = CalculateIndices(vertex2DArray);
 
 
-        //
-        //Dings();
+        //vertex boneweights
+        boneWeights = CalculateBoneWeights(vertex2DArray);
 
+
+        //bones
+        bones = GenerateBones(vertex2DArray);
+
+
+        //bindposes
+        bindPoses = CalculateBindPoses(bones);
+
+
+        //colliders
+        boxColliders = SetBoxColliders(bones);
+
+
+        //rigidbodies
+        rigidBodies = SetRigidBodies(bones);
 
         mesh.vertices = vertices;
         mesh.normals = normals;
@@ -106,17 +125,103 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
         mesh.triangles = indices;
 
         mesh.RecalculateBounds();
-        mesh.Optimize();
+       
 
-        
+        mesh.boneWeights = boneWeights;
+        mesh.bindposes = bindPoses;
+        mesh.Optimize();
 
         doneGenerating = true;
         showDebug = true;
 
-        return new Tube(mesh, vertex2DArray, normal2DArray, uv2DArray);
+        return new Tube(mesh, vertex2DArray, normal2DArray, uv2DArray, bones, boxColliders);
     }
 
+    private Rigidbody[] SetRigidBodies(Transform[] bones)
+    {
+        Rigidbody[] rigidBodies = new Rigidbody[bones.Length];
 
+        for (int i = 0; i < bones.Length; i++)
+        {
+            rigidBodies[i] = bones[i].gameObject.AddComponent<Rigidbody>();
+            rigidBodies[i].useGravity = false;
+            rigidBodies[i].isKinematic = false;
+        }
+
+
+        return rigidBodies;
+    }
+
+    private BoxCollider[] SetBoxColliders(Transform[] bones)
+    {
+        BoxCollider[] boxColliders = new BoxCollider[bones.Length];
+        Vector3 colliderDimensions = new Vector3(2 * outerRadius, tubeLength / tubeSegments, 2 * outerRadius);
+
+        for(int i = 0; i < bones.Length; i++)
+        {
+            boxColliders[i] = bones[i].gameObject.AddComponent<BoxCollider>();
+            boxColliders[i].size = colliderDimensions;
+        }
+
+        return boxColliders;
+    }
+
+    private Matrix4x4[] CalculateBindPoses(Transform[] bones)
+    {
+        Matrix4x4[] bindPoses = new Matrix4x4[bones.Length];
+
+        for(int i = 0; i < bones.Length; i++)
+        {
+            bindPoses[i] = bones[i].worldToLocalMatrix * transform.localToWorldMatrix;
+        }
+
+        return bindPoses;
+    }
+
+    private Transform[] GenerateBones(Vector3[,] vertices)
+    {
+        Transform[] bones = new Transform[vertices.GetLength(1)];
+        Vector3 bonePosition = new Vector3();
+
+        for (int j = 0; j < vertices.GetLength(1); j++)
+        {
+            bonePosition.Set(0, 0, 0);
+            for (int i = 0; i < vertices.GetLength(0); i++)
+            {
+                bonePosition += vertices[i, j];
+            }
+
+            bonePosition /= vertices.GetLength(0);
+
+
+            bones[j] = new GameObject("Bone"+j).transform;
+            bones[j].parent = transform;
+
+            bones[j].localRotation = Quaternion.identity;
+            bones[j].localPosition = bonePosition;
+
+            bones[j].gameObject.layer = LayerMask.NameToLayer("MassSpring");
+        }
+
+
+        return bones;
+    }
+
+    private BoneWeight[] CalculateBoneWeights(Vector3[,] vertices)
+    {
+        BoneWeight[] weights = new BoneWeight[vertices.GetLength(0)*vertices.GetLength(1)];
+
+        for(int j = 0; j < vertices.GetLength(1); j++)
+        {
+            for(int i = 0; i < vertices.GetLength(0); i++)
+            {
+                weights[j * vertices.GetLength(0) + i].boneIndex0 = j;
+                weights[j * vertices.GetLength(0) + i].weight0 = 1;
+            }
+        }
+       
+        return weights;
+    }
 
     private Vector3[,] GenerateCircleVertices(int radialSegments, float outerRadius, int tubeSegments, float tubeLength)
     {
@@ -191,7 +296,6 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
         int[] indices = new int[(vertices.GetLength(0)) * (vertices.GetLength(1)-1) *2 *3];
 
         int index = 0;
-        bool once = true;
         int iLength = vertices.GetLength(0);
         int jLength = vertices.GetLength(1);
         for (int i = 0; i < iLength; i++)
@@ -243,29 +347,6 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
         return array1D;
     }
 
-
-
-
-
-    //void OnDrawGizmos()
-    //{
-    //    if (showDebug)
-    //    {
-    //        Vector3 size = new Vector3(0.05f, 0.05f, 0.05f);
-    //        for (int i = 0; i < vertex2DArray.GetLength(0); i++)
-    //        {
-    //            for (int j = 0; j < vertex2DArray.GetLength(1); j++)
-    //            {
-    //                Gizmos.DrawLine(vertex2DArray[i, j], vertex2DArray[i, j] + normal2DArray[i, j] * 0.2f);
-    //            }
-    //        }
-
-    //        for (int i = 0; i < vertices.Length; i++)
-    //        {
-    //            Gizmos.DrawCube(vertices[i], size);
-    //        }
-    //    }
-    //}
 
 
     #endregion

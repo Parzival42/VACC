@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-[RequireComponent(typeof(MeshFilter))]
 public abstract class BaseMSDSystem : MonoBehaviour {
 
     #region variables
     protected MeshFilter meshFilter;
+    protected SkinnedMeshRenderer skinnedMeshRenderer;
     protected Mesh mesh; 
 
     protected List<PointMass> pointList;
     protected List<Constraint> constraintList;
     
-    private bool isInitialized = false;    
+    private bool isInitialized = false;
+    private bool usesMeshFilter = true;
     private MonoBehaviour gravitationForce;
     #endregion
 
@@ -19,7 +20,8 @@ public abstract class BaseMSDSystem : MonoBehaviour {
     public abstract void SupplyMesh();
     public abstract void GeneratePointMasses();
     public abstract void GenerateConstraints();
-    public abstract void UpdateMesh();
+    public abstract void PreSimulationStep();
+    public abstract void PostSimulationStep();
 
     // Use this for initialization
     void Start()
@@ -27,6 +29,19 @@ public abstract class BaseMSDSystem : MonoBehaviour {
         pointList = new List<PointMass>();
         constraintList = new List<Constraint>();
         meshFilter = GetComponent<MeshFilter>();
+        if(meshFilter == null)
+        {
+            usesMeshFilter = false;
+            skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
+
+            if (skinnedMeshRenderer == null)
+            {
+                Debug.LogError("No Meshfilter/SkinnedMeshRenderer attached!");
+                return;
+            }
+        }
+
+
         gravitationForce = gameObject.AddComponent<Gravitation>();
          
         SupplyMesh();
@@ -40,6 +55,8 @@ public abstract class BaseMSDSystem : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
+        PreSimulationStep();
+
         //apply external forces
         for (int j = 0; j < pointList.Count; j++)
         {
@@ -62,9 +79,16 @@ public abstract class BaseMSDSystem : MonoBehaviour {
         }
 
         //update the underlying mesh
-        UpdateMesh();      
+        PostSimulationStep();      
         mesh.RecalculateBounds();
-        meshFilter.mesh = mesh;
+        if (usesMeshFilter)
+        {
+            meshFilter.mesh = mesh;
+        }else
+        {
+            skinnedMeshRenderer.sharedMesh = mesh;
+            
+        }
     }
 
     void OnDrawGizmos()

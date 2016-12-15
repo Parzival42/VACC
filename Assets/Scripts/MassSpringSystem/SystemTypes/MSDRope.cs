@@ -22,6 +22,8 @@ public class MSDRope : BaseMSDSystem {
         tubeGenerator = GetComponent<TubeGenerator>();
         tube = tubeGenerator.GenerateTube();
         mesh = tube.Mesh;
+        skinnedMeshRenderer.sharedMesh = mesh;
+        skinnedMeshRenderer.bones = tube.Bones;
 
         xAmount = tube.Vertex2DRepresentation.GetLength(0);
         yAmount = tube.Vertex2DRepresentation.GetLength(1);
@@ -53,13 +55,6 @@ public class MSDRope : BaseMSDSystem {
         for (int i = 0; i < xAmount; i++)
         {
             vertexDirections[i] = vertex2DRepresentation[i, 0] - center;
-
-            if (i == 1)
-            {
-                Debug.Log("vertex: " + vertex2DRepresentation[i, 0]);
-                Debug.Log("center: " + center);
-                Debug.Log("vector: " + (vertex2DRepresentation[i, 0] - center));
-            }
         }
 
 
@@ -94,7 +89,7 @@ public class MSDRope : BaseMSDSystem {
         }   
     }
 
-    public override void UpdateMesh()
+    public override void PostSimulationStep()
     {
         for(int i = 0; i < pointList.Count; i++)
         {           
@@ -102,7 +97,17 @@ public class MSDRope : BaseMSDSystem {
             {
                 newVertexPositions[i * xAmount + j] = gameObject.transform.InverseTransformPoint(pointList[i].Position)+vertexDirections[j]; 
             }
+            //tube.BoxColliders[i].center = tube.Bones[i].InverseTransformPoint(pointList[i].Position);
         }
         mesh.SetVertices(newVertexPositions);
+    }
+
+    public override void PreSimulationStep()
+    {
+        for (int i = 0; i < pointList.Count; i++)
+        {
+            //pointList[i].Position = tube.Bones[i].TransformPoint(tube.BoxColliders[i].center);
+            tube.Bones[i].localRotation = Quaternion.identity;
+        }
     }
 }

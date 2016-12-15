@@ -7,6 +7,12 @@ public class Tube {
     //mesh itself
     private Mesh mesh;
 
+    //bindposes
+    private Transform[] bones;
+
+    //colliders
+    private BoxCollider[] boxColliders;
+
     //vertex, normal and uv in 2d array for better understanding the relative positions
     private Vector3[,] vertex2DRepresentation;
     private Vector3[,] normal2DRepresentation;
@@ -33,15 +39,27 @@ public class Tube {
     {
         get { return uv2DRepresentation; }
     }
+
+    public Transform[] Bones
+    {
+        get { return bones; }
+    }
+
+    public BoxCollider[] BoxColliders
+    {
+        get { return boxColliders; }
+    }
     #endregion
 
     #region constructor
-    public Tube(Mesh mesh, Vector3[,] vertex2DRepresentation, Vector3[,] normal2DRepresentation, Vector2[,] uv2DRepresentation)
+    public Tube(Mesh mesh, Vector3[,] vertex2DRepresentation, Vector3[,] normal2DRepresentation, Vector2[,] uv2DRepresentation, Transform[] bones, BoxCollider[] boxColliders)
     {
         this.mesh = mesh;
         this.vertex2DRepresentation = vertex2DRepresentation;
         this.normal2DRepresentation = normal2DRepresentation;
         this.uv2DRepresentation = uv2DRepresentation;
+        this.bones = bones;
+        this.boxColliders = boxColliders;
     }
     #endregion
 

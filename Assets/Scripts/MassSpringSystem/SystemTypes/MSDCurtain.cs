@@ -55,13 +55,18 @@ public class MSDCurtain : BaseMSDSystem
         }
     }
 
-    public override void UpdateMesh()
+    public override void PostSimulationStep()
     {
         for (int i = 0; i < pointList.Count; i++)
         {
             newVertexPositions[i] = gameObject.transform.InverseTransformPoint(pointList[i].Position);
         }
         mesh.SetVertices(newVertexPositions);
+    }
+
+    public override void PreSimulationStep()
+    {
+       //nothing to do here
     }
     #endregion
 

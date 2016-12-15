@@ -16,6 +16,7 @@ public abstract class PointMass{
     public Vector3 Position
     {
         get { return currentPosition; }
+        set { currentPosition = value; }
     }
 
     public Vector3 PreviousPosition
