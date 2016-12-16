@@ -61,7 +61,7 @@ public class SuckingScript : MonoBehaviour
     protected void CheckCollisionTerrain()
     {
         RaycastHit hitInfo;
-        bool hit = Physics.Raycast(suckingPoint.position, -suckingPoint.up, out hitInfo, suckingDistanceTerrain, 1 << collisionLayerMeshes);
+        bool hit = Physics.Raycast(suckingPoint.position, -suckingPoint.up, out hitInfo, suckingDistanceTerrain, 1 << collisionLayerTerrain);
 
         #if UNITY_EDITOR
         Debug.DrawRay(suckingPoint.position, -suckingPoint.up * suckingDistanceTerrain, Color.green);

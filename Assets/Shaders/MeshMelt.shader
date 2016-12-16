@@ -53,7 +53,7 @@
             float2 texcoord : TEXCOORD0;
         };
 
-        float MeltCalcDistanceTessFactor (float4 vertex, float minDist, float maxDist, float tess)
+        float meltCalcDistanceTessFactor (float4 vertex, float minDist, float maxDist, float tess)
 		{
 			float3 wpos = mul(unity_ObjectToWorld,vertex).xyz;
 			float dist = distance (wpos, _WorldSpaceCameraPos);
@@ -76,9 +76,9 @@
             float maxDist = 25.0;
 
 			float3 f;
-			f.x = MeltCalcDistanceTessFactor (v0.vertex, minDist, maxDist, _Tess);
-			f.y = MeltCalcDistanceTessFactor (v1.vertex, minDist, maxDist, _Tess);
-			f.z = MeltCalcDistanceTessFactor (v2.vertex, minDist, maxDist, _Tess);
+			f.x = meltCalcDistanceTessFactor (v0.vertex, minDist, maxDist, _Tess);
+			f.y = meltCalcDistanceTessFactor (v1.vertex, minDist, maxDist, _Tess);
+			f.z = meltCalcDistanceTessFactor (v2.vertex, minDist, maxDist, _Tess);
 
 			return UnityCalcTriEdgeTessFactors (f);
         }
@@ -106,7 +106,7 @@
 
 			float4 bitangent = float4( cross( v.normal, v.tangent ), 0 );
 
-			// recalculate tangents and normal
+			// recalculate normal
 			float4 v1 = vertDisp( v.vertex + v.tangent * 0.01);
 			float4 v2 = vertDisp( v.vertex + bitangent * 0.01);
 
