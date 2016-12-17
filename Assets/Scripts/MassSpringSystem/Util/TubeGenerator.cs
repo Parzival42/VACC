@@ -129,7 +129,7 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
 
         mesh.boneWeights = boneWeights;
         mesh.bindposes = bindPoses;
-        mesh.Optimize();
+        ;
 
         doneGenerating = true;
         showDebug = true;
