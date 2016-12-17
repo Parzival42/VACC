@@ -114,13 +114,13 @@ Material:
     - first:
         name: _TerrainNormalMap
       second:
-        m_Texture: {fileID: 2800000, guid: 3538dc0e64aeaa94b91fcd19e4b01da3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 5488c7a0634c66d4eb9d6ce547407ef5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _TerrainSmoothness
       second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: ccf830fdbcb74534fbf6304f48a18e82, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -213,13 +213,13 @@ Material:
       second: 1
     - first:
         name: _TerrainGloss
-      second: 0.33
+      second: 0.53
     - first:
         name: _TerrainMetallic
-      second: 0.66
+      second: 0
     - first:
         name: _TerrainNormalStrength
-      second: 0.46
+      second: 0.76
     - first:
         name: _TessellationFactor
       second: 4
@@ -237,7 +237,7 @@ Material:
       second: 200
     - first:
         name: _WaterGloss
-      second: 0.8
+      second: 0.939
     - first:
         name: _WaterMetallic
       second: 1
