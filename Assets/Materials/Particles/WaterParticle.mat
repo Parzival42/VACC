@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: PaintDustMaterial
-  m_Shader: {fileID: 4800000, guid: 30751c7f3d8912342a1e2d77b2ef39bb, type: 3}
+  m_Name: WaterParticle
+  m_Shader: {fileID: 202, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -15,12 +15,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 2
     m_TexEnvs:
-    - first:
-        name: _AO
-      second:
-        m_Texture: {fileID: 2800000, guid: ed206351a50b6f042b0b95a4bc3e4f7a, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - first:
         name: _BumpMap
       second:
@@ -52,21 +46,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _GlossMap
-      second:
-        m_Texture: {fileID: 2800000, guid: f409056380468e049860d54588b929d2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _MainTex
       second:
-        m_Texture: {fileID: 2800000, guid: 409043403cd481b4fb4f025b93b60700, type: 3}
-        m_Scale: {x: 8, y: 8}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _Mask
-      second:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: d58a01b8fa26d3a4394c3791bb6892d9, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
@@ -76,34 +58,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
-        name: _NormalMap
-      second:
-        m_Texture: {fileID: 2800000, guid: d7162032b5d67ab4abef8386fda83ef1, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
         name: _OcclusionMap
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OtherGlossMap
-      second:
-        m_Texture: {fileID: 2800000, guid: 0fe51ba6988c20443bc4af93a5d7b916, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OtherNormalMap
-      second:
-        m_Texture: {fileID: 2800000, guid: 3538dc0e64aeaa94b91fcd19e4b01da3, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - first:
-        name: _OtherTex
-      second:
-        m_Texture: {fileID: 2800000, guid: 2c0066c0fe30bc246b5f34c6ca1c4fad, type: 3}
-        m_Scale: {x: 6, y: 6}
         m_Offset: {x: 0, y: 0}
     - first:
         name: _ParallaxMap
@@ -122,12 +80,6 @@ Material:
         name: _DetailNormalMapScale
       second: 1
     - first:
-        name: _DispBias
-      second: 0
-    - first:
-        name: _DispScale
-      second: 0
-    - first:
         name: _DstBlend
       second: 0
     - first:
@@ -135,13 +87,13 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 3.4
+      second: 0.5
     - first:
         name: _GlossyReflections
       second: 1
     - first:
-        name: _MaskStrength
-      second: 0
+        name: _InvFade
+      second: 0.69
     - first:
         name: _Metallic
       second: 0
@@ -149,26 +101,11 @@ Material:
         name: _Mode
       second: 0
     - first:
-        name: _NormalStrength
-      second: 0.77
-    - first:
         name: _OcclusionStrength
       second: 1
     - first:
-        name: _OtherGlossiness
-      second: 0.5
-    - first:
-        name: _OtherMetallic
-      second: 0.342
-    - first:
-        name: _OtherNormalStrength
-      second: 0.55
-    - first:
         name: _Parallax
       second: 0.02
-    - first:
-        name: _Scale
-      second: 0.15
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -179,9 +116,6 @@ Material:
         name: _SrcBlend
       second: 1
     - first:
-        name: _TimeFactor
-      second: 0.03
-    - first:
         name: _UVSec
       second: 0
     - first:
@@ -190,10 +124,7 @@ Material:
     m_Colors:
     - first:
         name: _Color
-      second: {r: 1, g: 0.9643002, b: 0.7647059, a: 1}
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
-    - first:
-        name: _Tint
-      second: {r: 0.6764706, g: 0.6963668, b: 0.6963668, a: 1}

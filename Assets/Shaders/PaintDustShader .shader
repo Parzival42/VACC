@@ -6,6 +6,8 @@ Shader "DustSucker/PaintDustShader" {
 		_GlossMap ("First Gloss Map (R)", 2D) = "white" {}
 		[NoScaleOffset]
 		_NormalMap ("Normal map", 2D) = "bump" {}
+		[NoScaleOffset]
+		_AO ("AO", 2D) = "white" {}
 		_NormalStrength ("Normal Strength", Range(0, 2)) = 1.0
 		_Glossiness ("Smoothness", Range(0, 30)) = 0.5
 		_Metallic ("Metallic", Range(0, 1)) = 0.0
@@ -46,6 +48,7 @@ Shader "DustSucker/PaintDustShader" {
 		sampler2D _GlossMap;
 		sampler2D _Mask;
 		sampler2D _NormalMap;
+		sampler2D _AO;
 
 		half _NormalStrength;
 		half _MaskStrength;
@@ -78,7 +81,7 @@ Shader "DustSucker/PaintDustShader" {
 		}
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-			
+
 			// Noise
 			half n = heightMap(IN.texCoord3D);
 			fixed4 c = half4( n, n, n, n ) * _Tint;
@@ -93,7 +96,10 @@ Shader "DustSucker/PaintDustShader" {
 			float3 mainNormal = UnpackNormal(tex2D(_NormalMap, IN.uv_MainTex));
 			mainNormal.xy *= _NormalStrength;
 
+			half mainOcclusion = tex2D(_AO, IN.uv_MainTex).r;
+
 			o.Albedo = lerp(mainTex, lerp(mainTex, c, mask), c.a);
+			o.Occlusion = lerp(mainOcclusion, 0, mask);
 			o.Smoothness = lerp(mainGloss, _OtherGlossiness, mask);
 			o.Normal = mainNormal;
 
