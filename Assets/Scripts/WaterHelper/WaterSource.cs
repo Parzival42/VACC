@@ -14,13 +14,15 @@ public class WaterSource : MonoBehaviour, Toggle
 
     [SerializeField]
     private float waterBrushRadius = 0.2f;
+
+    [SerializeField]
+    private bool waterSourceEnabled = true;
     #endregion
 
     #region Internal members
     private ComputeMeshPaintWaterPipe waterPipeSimulation;
     private Vector2 uvHit = new Vector2(float.MaxValue, float.MaxValue);
     private int collisionLayer;
-    private bool waterSourceEnabled = true;
 
     // Holds the information about the water source values:
     // X: uvHit.x, Y: uvHit.y, Z: brushStrength, W: brushRadius
@@ -80,7 +82,11 @@ public class WaterSource : MonoBehaviour, Toggle
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
+        if (waterSourceEnabled)
+            Gizmos.color = Color.blue;
+        else
+            Gizmos.color = Color.red;
+
         Gizmos.DrawCube(transform.position, Vector3.one * 0.2f);
     }
 
