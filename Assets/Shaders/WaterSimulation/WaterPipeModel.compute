@@ -22,19 +22,23 @@ int _TextureSize;
 float _Falloff;
 float _Radius;
 float _BrushStrength;
+
+// Water sources
+// X: uvHit.x, Y: uvHit.y, Z: brushStrength, W: brushRadius
+StructuredBuffer<float4> WaterSources;
 // ----------------------------------------------
 
-void handleComputePaint(uint3 id) {
+void handleComputePaint(uint3 id, float2 uvHit, float radius, float brushStrength) {
 	float2 uv = id.xy / float(_TextureSize);
-	float dist = distance(uv, _UvHit.xy);
+	float dist = distance(uv, uvHit.xy);
 
-	float att = clamp(pow(1.0 - min(0.5, dist / abs(_Radius)) * 2.0, abs(_Falloff)), 0.0, 1.0);
+	float att = clamp(pow(1.0 - min(0.5, dist / abs(radius)) * 2.0, abs(_Falloff)), 0.0, 1.0);
 	att *= att;
 
-	if(_BrushStrength > 0) {
-		WaterHeight[id.xy].r += att * abs(_BrushStrength) * _DeltaTime * BoundaryTexture[id.xy];
+	if(brushStrength > 0) {
+		WaterHeight[id.xy].r += att * abs(brushStrength) * _DeltaTime * BoundaryTexture[id.xy];
 	} else {
-		WaterHeight[id.xy].r -= att * abs(_BrushStrength) * _DeltaTime * BoundaryTexture[id.xy];
+		WaterHeight[id.xy].r -= att * abs(brushStrength) * _DeltaTime * BoundaryTexture[id.xy];
 	}
 }
 
@@ -87,6 +91,17 @@ void Main (uint3 id : SV_DispatchThreadID) {
 	WaterHeight[id.xy] = waterAndVelocity.r;
 	VelocityX[id.xy] = waterAndVelocity.g;
 	VelocityY[id.xy] = waterAndVelocity.b;
-	handleComputePaint(id);
-	//WaterHeight[id.xy] *= BoundaryTexture[id.xy];
+
+	// Painting with the mouse -> Not really relevant for game
+	handleComputePaint(id, _UvHit, _Radius, _BrushStrength);
+
+	uint elementCount;
+	uint stride;
+	WaterSources.GetDimensions(elementCount, stride);
+
+	for(int i = 0; i < elementCount; i++) {
+		handleComputePaint(id, float2(WaterSources[i].x, WaterSources[i].y), WaterSources[i].w, WaterSources[i].z);
+	}
+
+	//WaterHeight[id.xy] = WaterSources[0].z;
 }

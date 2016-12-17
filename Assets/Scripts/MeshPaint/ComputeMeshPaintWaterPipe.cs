@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
@@ -79,6 +80,10 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
     public RenderTexture VelocityX { get { return velocityX; } }
     public RenderTexture VelocityY { get { return velocityY; } }
+
+    private readonly Dictionary<GameObject, WaterSource> waterSources = new Dictionary<GameObject, WaterSource>();
+    private readonly ArrayList waterInfos = new ArrayList();
+    ComputeBuffer waterSourceBuffer;
     #endregion
 
     protected override void Start()
@@ -170,7 +175,11 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
 
         computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_VELOCITY_X, velocityX);
         computeShader.SetTexture(kernelHandleNumber, ShaderConstants.INPUT_VELOCITY_Y, velocityY);
-        
+
+        UpdateWaterSourceInformation();
+        if(waterInfos.Count > 0)
+            computeShader.SetBuffer(kernelHandleNumber, ShaderConstants.INPUT_WATER_SOURCES, waterSourceBuffer);
+
         computeShader.SetVector(ShaderConstants.PARAM_UV_HIT, uvHit);
         computeShader.SetFloat(ShaderConstants.PARAM_SEGMENT_SIZE_SQUARED, squaredSegmentSize);
         computeShader.SetFloat(ShaderConstants.PARAM_SEGMENT_SIZE, segmentSize);
@@ -191,5 +200,47 @@ public class ComputeMeshPaintWaterPipe : ComputeMeshModifier
     public override void InvertMeshModification()
     {
         brushStrength *= -1f;
+    }
+
+    private void UpdateWaterSourceInformation()
+    {
+        int beforeSize = waterInfos.Count;
+        waterInfos.Clear();
+        foreach(var waterSource in waterSources)
+        {
+            // Add Vector4 water source info
+            waterInfos.Add(waterSource.Value.WaterSourceInfo);
+        }
+
+        if (waterInfos.Count > 0)
+        {
+            if (beforeSize != waterInfos.Count)
+            {
+                if(waterSourceBuffer != null)
+                    waterSourceBuffer.Dispose();
+
+                waterSourceBuffer = new ComputeBuffer(waterInfos.Count, 4 * 4);     // 4 floats * 4 Bytes
+            }
+
+            waterSourceBuffer.SetData(waterInfos.ToArray(typeof(Vector4)));
+        }
+    }
+
+    public void AddWaterSource(WaterSource waterSource)
+    {
+        if (!waterSources.ContainsKey(waterSource.gameObject))
+        {
+            waterSources.Add(waterSource.gameObject, waterSource);
+        }
+    }
+
+    public void RemoveWaterSource(WaterSource waterSource)
+    {
+        waterSources.Remove(waterSource.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        waterSourceBuffer.Dispose();
     }
 }
