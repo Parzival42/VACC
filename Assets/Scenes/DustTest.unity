@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5945419, g: 0.64770657, b: 0.54038703, a: 1}
+  m_IndirectSpecularColor: {r: 0.5882001, g: 0.64019424, b: 0.5340906, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -828,20 +828,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 415700410}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e89654dcf6db746d2a57aeaaa14f5e83, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a970acddb8696a4792ca6e022840a0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings:
-    intensity: 0.27
-    radius: 0.29
-    sampleCount: 3
-    sampleCountValue: 24
-    downsampling: 1
-    ambientOnly: 0
-    occlusionSource: 1
-    debug: 0
-  _aoShader: {fileID: 4800000, guid: 65e203e5acda447acbf9dc1ef78c4a39, type: 3}
-  _quadMesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+  NoiseTexture: {fileID: 2800000, guid: 45ca7cd7d934d6245bb4539f780e4892, type: 3}
+  UseHighPrecisionDepthMap: 0
+  Samples: 2
+  Downsampling: 1
+  Radius: 0.101
+  Intensity: 2
+  Distance: 1
+  Bias: 0.085
+  LumContribution: 0.5
+  OcclusionColor: {r: 0, g: 0, b: 0, a: 1}
+  CutoffDistance: 150
+  CutoffFalloff: 50
+  Blur: 1
+  BlurDownsampling: 1
+  BlurPasses: 1
+  BlurBilateralThreshold: 10
+  DebugAO: 0
 --- !u!114 &415700417
 MonoBehaviour:
   m_ObjectHideFlags: 0
