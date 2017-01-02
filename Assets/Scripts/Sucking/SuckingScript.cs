@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class SuckingScript : MonoBehaviour
 {
@@ -35,12 +36,19 @@ public class SuckingScript : MonoBehaviour
     protected float suckingDistanceMeshes = 0.5f;
 
     private DragScript drag;
+    private bool dustSuckerActive = false;
 
 	private void Start ()
     {
         CheckFields();
         drag = GetComponent<DragScript>();
         meltShader = Shader.Find(meltShaderID);
+        DustSuckerSwitch.DustSuckerStatus += ChangeDustSuckerStatus;
+    }
+
+    private void ChangeDustSuckerStatus(bool status)
+    {
+        dustSuckerActive = status;
     }
 
     private void CheckFields()
@@ -51,7 +59,7 @@ public class SuckingScript : MonoBehaviour
 	
 	private void Update ()
     {
-        if (drag.IsDragged)
+        if (drag.IsDragged && dustSuckerActive)
         {
             CheckCollisionTerrain();
             CheckCollisionMeshes();
