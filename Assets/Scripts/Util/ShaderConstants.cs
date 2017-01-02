@@ -27,6 +27,7 @@ public class ShaderConstants
     public static readonly string PARAM_FLUX_RIGHT = "_FluxRight";
     public static readonly string PARAM_FLUX_TOP = "_FluxTop";
     public static readonly string PARAM_FLUX_BOTTOM = "_FluxBottom";
+    public static readonly string PARAM_MASK_OFFSET = "_MaskOffset";
 
     public static readonly string INPUT_WATER_HEIGHT = "WaterHeight";
     public static readonly string INPUT_TERRAIN_HEIGHT = "TerrainHeight";

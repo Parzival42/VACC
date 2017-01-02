@@ -1,5 +1,5 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+
 
 public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
 {
@@ -21,6 +21,7 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
     private int renderTextureHeight = 512;
 
     #region Internal members
+    private Vector2 maskOffset;
     private Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 
     private RenderTexture renderTexture;
@@ -62,6 +63,7 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
     {
         renderTexture = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
         renderTexture.enableRandomWrite = true;
+        renderTexture.wrapMode = TextureWrapMode.Repeat;
         renderTexture.Create();
 
         Graphics.Blit(originalTexture, renderTexture);
