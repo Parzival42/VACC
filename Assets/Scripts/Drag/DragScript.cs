@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(SpringJoint))]
@@ -18,6 +19,7 @@ public class DragScript : MonoBehaviour
     private SpringJoint spring;
     private InputDragHandler inputHandler;
     private VacuumSound sound;
+    private bool dustSuckerActive = false;
 
     public float GroundOffset { get { return groundOffset; } }
 
@@ -27,6 +29,19 @@ public class DragScript : MonoBehaviour
         inputHandler = new MouseDragHandler(this, GetTriggerCollider(), spring);
         mat = GetComponent<Renderer>().material;
         sound = GetComponent<VacuumSound>();
+        DustSuckerSwitch.DustSuckerStatus += UpdateDustSuckerStatus;
+    }
+
+    private void UpdateDustSuckerStatus(bool status)
+    {
+        dustSuckerActive = status;
+        if (dustSuckerActive)
+        {
+            sound.StartEngine();
+        }else
+        {
+            sound.StopEngine();
+        }
     }
 
     private void Update()
@@ -41,14 +56,12 @@ public class DragScript : MonoBehaviour
 
     private void OnMouseDown()
     {
-        sound.StartEngine();
         inputHandler.OnSelected();
         isDragged = true;
     }
 
     private void OnMouseUp()
     {
-        sound.StopEngine();
         inputHandler.OnDeselected();
         isDragged = false;
     }
