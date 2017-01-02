@@ -159,7 +159,7 @@ Material:
       second: 1
     - first:
         name: _MaskStrength
-      second: 1
+      second: 0
     - first:
         name: _Metallic
       second: 0

@@ -81,6 +81,7 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
         computeShader.Dispatch(kernelHandleNumber, renderTexture.width / KERNEL_SIZE, renderTexture.height / KERNEL_SIZE, 1);
 
         objectMaterial.SetTexture(ShaderConstants.PARAM_MASK, renderTexture);
+        objectMaterial.SetFloat(ShaderConstants.PARAM_MASK_STRENGTH, 1f);
     }
 
     #region Mouse methods
