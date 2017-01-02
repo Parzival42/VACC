@@ -16,6 +16,12 @@ public class InputButton : MonoBehaviour {
     [SerializeField]
     private float tweenTime = 0.3f;
 
+    [SerializeField]
+    private Color offColor = Color.red;
+
+    [SerializeField]
+    private Color onColor = Color.green;
+
     private bool activationPossible = true;
     private WaitForSeconds coolDown;
 
@@ -25,6 +31,7 @@ public class InputButton : MonoBehaviour {
     private Material material;
 
     private bool isPulsing = false;
+    private bool shutOff = false;
     #endregion
 
     #region property
@@ -41,14 +48,24 @@ public class InputButton : MonoBehaviour {
         currentCamera = Camera.main;
         coolDown = new WaitForSeconds(cooldownTime);
         material = GetComponent<Renderer>().material;
-        
+        material.color = offColor;
     }
 
     void OnMouseDown()
     {
         if (activationPossible)
         {
+            if (shutOff)
+            {
+                material.color = offColor;
+            }
+            else
+            {
+                material.color = onColor;
+            }
+            shutOff = !shutOff;
             toggle.ToggleSwitch();
+           
             StartCoroutine(Cooldown());
         }
     }
@@ -76,7 +93,7 @@ public class InputButton : MonoBehaviour {
 
     private void PulseIn()
     {
-        LeanTween.value(0.0f, 1.0f, tweenTime).setOnUpdate((float count) => {
+        LeanTween.value(gameObject, 0.0f, 1.0f, tweenTime).setOnUpdate((float count) => {
              material.SetFloat("_EffectAmount", count);
         })
         .setEase(LeanTweenType.linear)
@@ -88,7 +105,7 @@ public class InputButton : MonoBehaviour {
 
     private void PulseOut()
     {
-        LeanTween.value(1.0f, 0.0f, tweenTime).setOnUpdate((float count) => {
+        LeanTween.value(gameObject, 1.0f, 0.0f, tweenTime).setOnUpdate((float count) => {
             material.SetFloat("_EffectAmount", count);
         })
        .setEase(LeanTweenType.linear)
