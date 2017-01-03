@@ -1369,7 +1369,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4937927748450568, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.53
+      value: 3.02
       objectReference: {fileID: 0}
     - target: {fileID: 4937927748450568, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1394,106 +1394,6 @@ Prefab:
     - target: {fileID: 4937927748450568, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 114491023365992062, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: m_SMAA.settings.debugPass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114491023365992062, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: m_SMAA.settings.edgeDetectionMethod
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114491023365992062, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: m_SMAA.predication.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114491023365992062, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: m_SMAA.temporal.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114491023365992062, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: m_SMAA.temporal.fuzzSize
-      value: 1.51
-      objectReference: {fileID: 0}
-    - target: {fileID: 114772421104261710, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: DebugAO
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114772421104261710, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: Downsampling
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114772421104261710, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: Intensity
-      value: 1.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114772421104261710, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: Radius
-      value: 0.027
-      objectReference: {fileID: 0}
-    - target: {fileID: 114772421104261710, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: Distance
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114772421104261710, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: Blur
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114772421104261710, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: BlurPasses
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114269263196649430, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114269263196649430, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: settings.threshold
-      value: 1.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 114269263196649430, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: settings.softKnee
-      value: 0.306
-      objectReference: {fileID: 0}
-    - target: {fileID: 114269263196649430, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: settings.radius
-      value: 3.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 114269263196649430, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: settings.intensity
-      value: 0.84
-      objectReference: {fileID: 0}
-    - target: {fileID: 114269263196649430, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: settings.highQuality
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114057965669117614, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: vignette.enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114057965669117614, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: chromaticAberration.enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}

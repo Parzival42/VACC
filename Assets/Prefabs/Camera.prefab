@@ -42,7 +42,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1175849398826658}
   m_LocalRotation: {x: 0.11279477, y: 0.8160407, z: -0.17022707, w: 0.5407197}
-  m_LocalPosition: {x: -6.69, y: 3.53, z: 3.63}
+  m_LocalPosition: {x: -6.69, y: 3.02, z: 3.63}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -135,16 +135,16 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1175849398826658}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32187365ced0c42219cde2b57c99b323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   settings:
-    threshold: 0.65
-    softKnee: 0.53
-    radius: 2.35
-    intensity: 0.74
+    threshold: 1.09
+    softKnee: 0.306
+    radius: 3.07
+    intensity: 0.84
     highQuality: 0
     antiFlicker: 1
   m_Shader: {fileID: 4800000, guid: e45d4f28262b04d10a075856ab5fdb5e, type: 3}
@@ -180,7 +180,7 @@ MonoBehaviour:
       strength: 0.4
     temporal:
       enabled: 0
-      fuzzSize: 2
+      fuzzSize: 1.51
   m_FXAA:
     preset:
       qualitySettings:
@@ -208,8 +208,8 @@ MonoBehaviour:
   UseHighPrecisionDepthMap: 0
   Samples: 2
   Downsampling: 1
-  Radius: 0.101
-  Intensity: 2
+  Radius: 0.027
+  Intensity: 1.6
   Distance: 1
   Bias: 0.085
   LumContribution: 0.5
