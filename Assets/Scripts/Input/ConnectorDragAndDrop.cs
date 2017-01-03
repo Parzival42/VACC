@@ -58,7 +58,7 @@ public class ConnectorDragAndDrop : MonoBehaviour {
         if (isDragable)
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 rayPoint = ray.GetPoint(3.0f);
+            Vector3 rayPoint = ray.GetPoint(pickUpDistance);
             transform.position = rayPoint;
         }
     }
