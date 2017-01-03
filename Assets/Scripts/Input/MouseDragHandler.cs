@@ -31,11 +31,11 @@ public class MouseDragHandler : SpringDragHandler
 
         // change anchor position based on angle and direction
         if (direction < 0 && springFwdDot > 0 || direction > 0 && springFwdDot < 0)
-            spring.anchor = new Vector3(dragObject.transform.position.x-7f, dragObject.transform.position.y, dragObject.transform.position.z);
+            spring.anchor = new Vector3(-0.2f, 0, 0);
         else if (direction > 0 && springFwdDot > 0 || direction < 0 && springFwdDot < 0)
-            spring.anchor = new Vector3(dragObject.transform.position.x+7f, dragObject.transform.position.y, dragObject.transform.position.z);
+            spring.anchor = new Vector3(0.2f, 0, 0);
         else
-        spring.anchor = dragObject.transform.position;
+            spring.anchor = Vector3.zero;
 
         if (rigidbody.IsSleeping())
             rigidbody.WakeUp();
@@ -46,7 +46,7 @@ public class MouseDragHandler : SpringDragHandler
 
     public override void OnSelected ()
     {
-        spring.anchor = dragObject.transform.InverseTransformPoint(CalculateCollisionForObject());
+        spring.anchor = CalculateCollisionForObject();
         ActivateSpring();
     }
 
