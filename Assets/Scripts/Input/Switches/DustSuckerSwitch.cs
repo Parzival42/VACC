@@ -22,7 +22,6 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
         suckerActive = !suckerActive;
         if (DustSuckerStatus != null)
         {
-            Debug.Log("switched off");
             DustSuckerStatus(suckerActive);
         }
     }
