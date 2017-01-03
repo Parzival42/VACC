@@ -20,6 +20,10 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
     [SerializeField]
     private int renderTextureHeight = 512;
 
+    [Header("Offset Material")]
+    [SerializeField]
+    private Material offsetMaterial;
+
     #region Internal members
     private Vector2 maskOffset;
     private Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
@@ -63,10 +67,12 @@ public class ComputeColorPainter : ComputeMeshModifier, PaintDataReceiver
     {
         renderTexture = new RenderTexture(renderTextureWidth, renderTextureHeight, 32, RenderTextureFormat.RFloat);
         renderTexture.enableRandomWrite = true;
-        renderTexture.wrapMode = TextureWrapMode.Repeat;
         renderTexture.Create();
 
-        Graphics.Blit(originalTexture, renderTexture);
+        originalTexture.wrapMode = TextureWrapMode.Repeat;
+        float randomOffset = Random.Range(-10f, 10f);
+        offsetMaterial.SetVector(ShaderConstants.PARAM_MASK_OFFSET, new Vector2(randomOffset, randomOffset));
+        Graphics.Blit(originalTexture, renderTexture, offsetMaterial);
     }
 
     protected override void ComputeValues()
