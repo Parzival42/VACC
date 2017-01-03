@@ -127,4 +127,4 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _MaskOffset
-      second: {r: -6.854212, g: -6.854212, b: 0, a: 0}
+      second: {r: -1.3164463, g: -1.3164463, b: 0, a: 0}

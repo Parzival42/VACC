@@ -35,7 +35,7 @@ public class MouseDragHandler : SpringDragHandler
         else if (direction > 0 && springFwdDot > 0 || direction < 0 && springFwdDot < 0)
             spring.anchor = new Vector3(dragObject.transform.position.x+7f, dragObject.transform.position.y, dragObject.transform.position.z);
         else
-            spring.anchor = new Vector3(dragObject.transform.position.x, dragObject.transform.position.y, dragObject.transform.position.z);
+        spring.anchor = dragObject.transform.position;
 
         if (rigidbody.IsSleeping())
             rigidbody.WakeUp();
