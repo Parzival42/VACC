@@ -44,6 +44,13 @@ public class SuckingScript : MonoBehaviour
         drag = GetComponent<DragScript>();
         meltShader = Shader.Find(meltShaderID);
         DustSuckerSwitch.DustSuckerStatus += ChangeDustSuckerStatus;
+        ConnectorDragAndDrop.DustSuckerConnectionLost += ChangeDustSuckerStatus;
+    }
+
+
+    private void ChangeDustSuckerStatus()
+    {
+        ChangeDustSuckerStatus(false);
     }
 
     private void ChangeDustSuckerStatus(bool status)

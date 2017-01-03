@@ -30,7 +30,14 @@ public class DragScript : MonoBehaviour
         mat = GetComponent<Renderer>().material;
         sound = GetComponent<VacuumSound>();
         DustSuckerSwitch.DustSuckerStatus += UpdateDustSuckerStatus;
+        ConnectorDragAndDrop.DustSuckerConnectionLost += UpdateDustSuckerStatus;
     }
+
+    private void UpdateDustSuckerStatus()
+    {
+        UpdateDustSuckerStatus(false);
+    }
+    
 
     private void UpdateDustSuckerStatus(bool status)
     {

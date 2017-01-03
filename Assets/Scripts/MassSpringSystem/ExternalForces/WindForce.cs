@@ -10,6 +10,10 @@ public class WindForce : MonoBehaviour, Force {
     [Range(0.0f, 2.0f)]
     private float modifier = 1.0f;
 
+    [SerializeField]
+    private Vector3 windDirection = new Vector3(1,0,0);
+
+
     public Vector3 getForce()
     {
         UpdateForce();
@@ -27,7 +31,7 @@ public class WindForce : MonoBehaviour, Force {
                 newForceTimer = Random.Range(100, 300);
             }
            
-            windForce.z += Random.Range(0,-10);
+            windForce += windDirection.normalized *Random.Range(0,-10);
 
         }
         else
