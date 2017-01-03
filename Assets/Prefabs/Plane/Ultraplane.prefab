@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23367581858187328}
   - component: {fileID: 114107764307413214}
   - component: {fileID: 114237950764138560}
-  - component: {fileID: 64164538824583284}
+  - component: {fileID: 64534888942999670}
   m_Layer: 8
   m_Name: Ultraplane
   m_TagString: Untagged
@@ -37,9 +37,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1651152141607362}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -7.32, y: -0.19, z: -7.24}
-  m_LocalScale: {x: 0.4880333, y: 0.4880332, z: 0.4880332}
+  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: -6.51, y: 0.0009999871, z: -3.445}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,7 +82,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1651152141607362}
   m_Mesh: {fileID: 0}
---- !u!64 &64164538824583284
+--- !u!64 &64534888942999670
 MeshCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,8 +109,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xSize: 40
   ySize: 40
-  vertexOffset: 0.5
-  meshMaterial: {fileID: 2100000, guid: 9a479f635b1d20a4e809e471a00313fb, type: 2}
+  vertexOffset: 0.25
+  meshMaterial: {fileID: 2100000, guid: cfed8c11bea833c428e5935e07ba4b52, type: 2}
   debugDrawVertex: 0
 --- !u!114 &114237950764138560
 MonoBehaviour:
@@ -132,3 +132,4 @@ MonoBehaviour:
   brushFalloff: 0.6
   renderTextureWidth: 1024
   renderTextureHeight: 1024
+  offsetMaterial: {fileID: 2100000, guid: 4df8aee1ac42e704386a788052fcd3d7, type: 2}
