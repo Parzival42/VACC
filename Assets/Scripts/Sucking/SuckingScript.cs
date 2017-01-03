@@ -122,7 +122,7 @@ public class SuckingScript : MonoBehaviour
             obj.GetComponent<Rigidbody>().useGravity = false;
 
             Sucked suckedIn = obj.AddComponent<Sucked>();
-            suckedIn.finalPosition = obj.transform.position - obj.transform.up * 2.5f;
+            suckedIn.finalPosition = obj.transform.position - Vector3.up * 2.5f;
             suckedIn.suckDirection = transform;
         }
     }
