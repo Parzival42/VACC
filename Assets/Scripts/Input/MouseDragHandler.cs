@@ -23,16 +23,17 @@ public class MouseDragHandler : SpringDragHandler
         spring.connectedAnchor = CalculateCollisionWorldPoint();
 
         // is the connected anchor left or right of the dragObj?
-        Vector3 springDir = Vector3.Normalize(-(spring.connectedAnchor - dragObject.transform.position));
+        Vector3 springDir = Vector3.Normalize(dragObject.transform.TransformPoint(spring.anchor) - spring.connectedAnchor);
         float direction = AngleDir(dragObject.transform.forward, springDir, dragObject.transform.up);
 
         // is the connected anchor in front of behind the dragObj?
-        float springFwdDot = Vector3.Dot(dragObject.transform.forward, springDir);
+        //float springFwdDot = Vector3.Dot(dragObject.transform.forward, springDir);
+        //Debug.Log(springFwdDot);
 
         // change anchor position based on angle and direction
-        if (direction < 0 && springFwdDot > 0 || direction > 0 && springFwdDot < 0)
+        if (direction < -0.7)
             spring.anchor = new Vector3(-0.2f, 0, 0);
-        else if (direction > 0 && springFwdDot > 0 || direction < 0 && springFwdDot < 0)
+        else if (direction > 0.7)
             spring.anchor = new Vector3(0.2f, 0, 0);
         else
             spring.anchor = Vector3.zero;
@@ -78,18 +79,12 @@ public class MouseDragHandler : SpringDragHandler
         cam.CollisionFor(cam.ScreenPointToRayFor(Input.mousePosition), 9, out hit);
         return hit;
     }
-
-    //returns -1 when to the left, 1 to the right, and 0 for forward/backward
+    
     public float AngleDir(Vector3 fwd, Vector3 targetDir, Vector3 up)
     {
-        Vector3 perp = Vector3.Cross(fwd, targetDir);
+        Vector3 perp = Vector3.Cross(fwd, targetDir).normalized;
         float dir = Vector3.Dot(perp, up);
 
-        if (dir > 0.0f)
-            return 1.0f;
-        else if (dir < 0.0f)
-            return -1.0f;
-
-        return 0.0f;
+        return dir;
     }
 }
