@@ -14,7 +14,7 @@
 		_MeltPosition("Melt Position", Vector) = (1,0,0,0)
 		_MeltStrength("Melt Strength", Float) = 1.0
 
-		_Tess("Tessellation Amount", Range( 1, 32 )) = 10
+		_Tess("Tessellation Amount", Range( 1, 64 )) = 10
 	}
 	SubShader {
 		Tags { "RenderType"="Opaque" }

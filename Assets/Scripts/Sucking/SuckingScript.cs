@@ -113,10 +113,14 @@ public class SuckingScript : MonoBehaviour
         if (currMaterial)
         {
             Color color = currMaterial.GetColor("_Color");
+            Texture albedo = currMaterial.GetTexture("_MainTex");
+            Texture normals = currMaterial.GetTexture("_BumpMap");
             currMaterial.shader = meltShader;
             currMaterial.SetColor("_Color", color);
             currMaterial.SetFloat("_MeltY", suckingPoint.position.y);
             currMaterial.SetVector("_MeltPosition", suckingPoint.position);
+            currMaterial.SetTexture("_NormalTex", normals);
+            currMaterial.SetTexture("_MainTex", albedo);
 
             obj.GetComponent<Collider>().enabled = false;
             obj.GetComponent<Rigidbody>().useGravity = false;
