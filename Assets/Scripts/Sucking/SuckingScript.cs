@@ -35,6 +35,11 @@ public class SuckingScript : MonoBehaviour
     [SerializeField]
     protected float suckingDistanceMeshes = 0.5f;
 
+    [Header("Nitrous Oxide")]
+    [Tooltip("Determines which objects can be sucked in")]
+    [SerializeField]
+    private NOS currentStage = NOS.Stage1;
+
     private DragScript drag;
     private bool dustSuckerActive = false;
 
@@ -45,8 +50,13 @@ public class SuckingScript : MonoBehaviour
         meltShader = Shader.Find(meltShaderID);
         DustSuckerSwitch.DustSuckerStatus += ChangeDustSuckerStatus;
         ConnectorDragAndDrop.DustSuckerConnectionLost += ChangeDustSuckerStatus;
+        NitrousOxideSystems.NitrousStageChanged += ChangeNitrousStage;
     }
 
+    private void ChangeNitrousStage(int change)
+    {
+        currentStage += change;
+    }
 
     private void ChangeDustSuckerStatus()
     {
@@ -103,7 +113,17 @@ public class SuckingScript : MonoBehaviour
 
         if (hit)
         {
-            ChangeToMeltMaterial(hitInfo.transform.gameObject);
+            NOS stage = NOS.Stage1;
+            for(int i = 0; i <= (int)currentStage; i++)
+            {
+                Debug.Log("stage");
+                if (hitInfo.transform.gameObject.tag == stage.ToString())
+                {
+                    ChangeToMeltMaterial(hitInfo.transform.gameObject);
+                    hitInfo.transform.gameObject.SendMessage("IsGettingSuckedIn", currentStage, SendMessageOptions.DontRequireReceiver);
+                }
+                stage++;
+            }
         }
     }
 
