@@ -100,12 +100,15 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
         objectMaterial.SetTexture("_Heightmap", renderTexture);
         objectMaterial.SetTexture("_MainTex", renderTexture);
 
-        Vector3[] vertices = new Vector3[tempMesh.vertices.Length];
-        vertexBuffer.GetData(vertices);
-        tempMesh.vertices = vertices;
-        meshCollider.sharedMesh = tempMesh;
+        if (!onlyCompute)
+        {
+            Vector3[] vertices = new Vector3[tempMesh.vertices.Length];
+            vertexBuffer.GetData(vertices);
+            tempMesh.vertices = vertices;
+            meshCollider.sharedMesh = tempMesh;
 
-        Graphics.Blit(renderTexture, colliderRenderTexture);
+            Graphics.Blit(renderTexture, colliderRenderTexture);
+        }
     }
 
     #region Mouse methods
