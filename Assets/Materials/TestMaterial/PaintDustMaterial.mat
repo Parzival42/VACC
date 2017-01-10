@@ -168,7 +168,7 @@ Material:
       second: 0
     - first:
         name: _NormalStrength
-      second: 0.77
+      second: 2
     - first:
         name: _OcclusionStrength
       second: 1
