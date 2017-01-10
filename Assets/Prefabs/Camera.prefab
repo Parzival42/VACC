@@ -162,17 +162,17 @@ MonoBehaviour:
   m_SMAA:
     settings:
       debugPass: 0
-      quality: 2
+      quality: 4
       edgeDetectionMethod: 2
     quality:
       diagonalDetection: 1
       cornerDetection: 1
-      threshold: 0.1
+      threshold: 0.06
       depthThreshold: 0.01
-      maxSearchSteps: 16
+      maxSearchSteps: 8
       maxDiagonalSearchSteps: 8
-      cornerRounding: 25
-      localContrastAdaptationFactor: 2
+      cornerRounding: 20
+      localContrastAdaptationFactor: 5
     predication:
       enabled: 0
       threshold: 0.01
