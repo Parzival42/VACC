@@ -48,7 +48,7 @@ Material:
     - first:
         name: _Heightmap
       second:
-        m_Texture: {fileID: 2800000, guid: 3ee33f141d458f245b5b37b03a727b36, type: 3}
+        m_Texture: {fileID: 2800000, guid: df2ee63ac31607a44b22ebfca94d22b4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
