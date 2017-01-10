@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2f5170406eae8a7409e68c241292a1fe
-timeCreated: 1483360730
+timeCreated: 1484058586
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -27,6 +27,10 @@ ModelImporter:
     7400018: handle|Cylinder.001Action
     7400020: handle|CylinderAction.001
     7400022: handle|polySurface13 polySurface14Action
+    7400024: nozzle|nozzleAction
+    7400026: nozzle|nozzleAction.001
+    7400028: handle|nozzleAction
+    7400030: handle|nozzleAction.001
     9500000: //RootNode
   materials:
     importMaterials: 1

@@ -77,9 +77,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1898109120708616}
-  m_LocalRotation: {x: 0.06442809, y: 0.009760769, z: 0.0011849597, w: 0.99787396}
-  m_LocalPosition: {x: 0.00039413883, y: -0.03471621, z: 0.06055752}
-  m_LocalScale: {x: 0.9999815, y: 1.0125628, z: 0.99287975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0000003882736, y: 0.06347246, z: -0.02718751}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4423650903449828}
   m_RootOrder: 1
@@ -90,9 +90,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1157206182017418}
-  m_LocalRotation: {x: 0.68015367, y: 0.008250323, z: -0.009371206, w: 0.73296326}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.002555895, y: 0.051761553, z: -0.008605787}
-  m_LocalScale: {x: 0.033583485, y: 0.032372147, z: 0.034376107}
+  m_LocalScale: {x: 0.03358348, y: 0.032372147, z: 0.034376107}
   m_Children: []
   m_Father: {fileID: 4423650903449828}
   m_RootOrder: 0
@@ -103,7 +103,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1414155033033524}
-  m_LocalRotation: {x: -0.68015236, y: -0.008250372, z: 0.009371161, w: 0.7329645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.6, y: 0, z: 1.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -111,7 +111,7 @@ Transform:
   - {fileID: 4097680650947316}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -85.48801, y: -18.407001, z: 18.497002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &23065593125492310
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -208,7 +208,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 48
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!54 &54561191371242574
 Rigidbody:
@@ -235,7 +235,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0, z: -0.09}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0013603393, y: -0.02322826, z: -0.02804278}
+  m_ConnectedAnchor: {x: -0.00000047683716, y: 0.06347246, z: -0.1171875}
   m_UseSpring: 1
   m_Spring:
     spring: 5
@@ -281,8 +281,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.43134898, y: 0.13367547, z: 0.08261053}
-  m_Center: {x: 0.000000119176995, y: -0.0014861355, z: 0.042172957}
+  m_Size: {x: 0.43135053, y: 0.082611084, z: 0.13367912}
+  m_Center: {x: 0, y: 0.0421729, z: -0.0014847443}
 --- !u!95 &95221771446531992
 Animator:
   serializedVersion: 3
@@ -332,6 +332,7 @@ MonoBehaviour:
   collisionLayerMeshes: 11
   suckingDistanceTerrain: 0.5
   suckingDistanceMeshes: 0.5
+  currentStage: 0
 --- !u!114 &114686140811947430
 MonoBehaviour:
   m_ObjectHideFlags: 1
