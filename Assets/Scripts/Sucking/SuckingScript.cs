@@ -40,6 +40,16 @@ public class SuckingScript : MonoBehaviour
     [SerializeField]
     private NOS currentStage = NOS.Stage1;
 
+    [Header("Collision settings")]
+    [SerializeField]
+    private int collisionRays = 5;
+
+    [SerializeField]
+    protected float checkAngle = 30.0f;
+
+    [SerializeField]
+    private float collisionMaxLength = 0.6f;
+
     private DragScript drag;
     private bool dustSuckerActive = false;
 
@@ -105,18 +115,14 @@ public class SuckingScript : MonoBehaviour
     protected void CheckCollisionMeshes()
     {
         RaycastHit hitInfo;
-        bool hit = Physics.Raycast(suckingPoint.position, suckingPoint.forward, out hitInfo, suckingDistanceMeshes, 1 << collisionLayerMeshes);
-
-        #if UNITY_EDITOR
-        Debug.DrawRay(suckingPoint.position, suckingPoint.forward * suckingDistanceMeshes, Color.yellow);
-#endif
+        //bool hit = Physics.Raycast(suckingPoint.position, suckingPoint.forward, out hitInfo, suckingDistanceMeshes, 1 << collisionLayerMeshes);
+        bool hit = CheckForCollision(out hitInfo, collisionLayerMeshes);
 
         if (hit)
         {
             NOS stage = NOS.Stage1;
             for(int i = 0; i <= (int)currentStage; i++)
             {
-                Debug.Log("stage");
                 if (hitInfo.transform.gameObject.tag == stage.ToString())
                 {
                     ChangeToMeltMaterial(hitInfo.transform.gameObject);
@@ -125,6 +131,38 @@ public class SuckingScript : MonoBehaviour
                 stage++;
             }
         }
+    }
+
+    private bool CheckForCollision(out RaycastHit hit, int collisionLayer)
+    {
+        hit = new RaycastHit();
+
+        // The angle between 2 raycasts.
+        float angleBetween = checkAngle / collisionRays;
+
+        // The current angle.
+        float currentAngle = -(checkAngle * 0.5f);
+
+        // Specifies if there was no hit at all.
+        bool neverHit = true;
+
+        for (int i = 0; i < collisionRays; i++)
+        {
+            Quaternion rotation = Quaternion.Euler(new Vector3(0f, currentAngle, 0f));
+            Vector3 direction = rotation * transform.forward;
+
+            bool objHit = Physics.Raycast(suckingPoint.position, direction, out hit, collisionMaxLength, 1 << collisionLayer);
+
+            #if UNITY_EDITOR
+            Debug.DrawLine(suckingPoint.position, suckingPoint.position + direction * collisionMaxLength, Color.yellow);
+            #endif
+
+            if (objHit)
+                return true;
+
+            currentAngle += angleBetween;
+        }
+        return !neverHit;
     }
 
     private void ChangeToMeltMaterial(GameObject obj)
