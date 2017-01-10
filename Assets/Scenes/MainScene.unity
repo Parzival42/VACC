@@ -944,6 +944,69 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!1 &327383988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 327383989}
+  - component: {fileID: 327383990}
+  m_Layer: 0
+  m_Name: bottomlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &327383989
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 327383988}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.049, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1980484620}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!108 &327383990
+Light:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 327383988}
+  m_Enabled: 1
+  serializedVersion: 7
+  m_Type: 2
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 3
+  m_Range: 0.4
+  m_SpotAngle: 30
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 0
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_Lightmapping: 4
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 0
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
 --- !u!1 &344842376 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: f7b66b889cd2866439443710824bd876, type: 3}
@@ -2653,15 +2716,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4609813186690296, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -2.8339682
+      value: -2.723
       objectReference: {fileID: 0}
     - target: {fileID: 4609813186690296, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.081
       objectReference: {fileID: 0}
     - target: {fileID: 4609813186690296, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 3.693
+      value: 3.687
       objectReference: {fileID: 0}
     - target: {fileID: 4609813186690296, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
       propertyPath: m_LocalRotation.x
@@ -4375,6 +4438,57 @@ Prefab:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 7a048b93a32355243b38c0a0ac2a6bcc, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1980484618 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1336438872014820, guid: dbde72ae8ee119643ac551cf8ada47c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1074174121}
+--- !u!4 &1980484620 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4609813186690296, guid: dbde72ae8ee119643ac551cf8ada47c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1074174121}
+--- !u!64 &1980484621
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1980484618}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 3e6db67094882e247aa457300e411e81, type: 3}
+--- !u!54 &1980484622
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1980484618}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &1980484623
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1980484618}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.45, z: 0.59}
+  m_Center: {x: 0, y: 0.27, z: -0.04}
 --- !u!1001 &2034194613
 Prefab:
   m_ObjectHideFlags: 0
