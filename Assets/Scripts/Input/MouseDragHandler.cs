@@ -23,17 +23,17 @@ public class MouseDragHandler : SpringDragHandler
         spring.connectedAnchor = CalculateCollisionWorldPoint();
 
         // is the connected anchor left or right of the dragObj?
-        Vector3 springDir = Vector3.Normalize(dragObject.transform.TransformPoint(spring.anchor) - spring.connectedAnchor);
+        Vector3 springDir = Vector3.Normalize(dragObject.transform.position - spring.connectedAnchor);
+        springDir.y = 0;
         float direction = AngleDir(dragObject.transform.forward, springDir, dragObject.transform.up);
 
         // is the connected anchor in front of behind the dragObj?
-        //float springFwdDot = Vector3.Dot(dragObject.transform.forward, springDir);
-        //Debug.Log(springFwdDot);
+        float springFwdDot = Vector3.Dot(dragObject.transform.forward, springDir);
 
         // change anchor position based on angle and direction
-        if (direction < -0.7)
+        if (direction == -1 && springFwdDot < 0 || direction == 1 && springFwdDot > 0)
             spring.anchor = new Vector3(-0.2f, 0, 0);
-        else if (direction > 0.7)
+        else if (direction == 1 && springFwdDot < 0 || direction == -1 && springFwdDot > 0)
             spring.anchor = new Vector3(0.2f, 0, 0);
         else
             spring.anchor = Vector3.zero;
