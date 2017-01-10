@@ -2,8 +2,7 @@
 
 // Use 'R Float' as rendertexture!!! (Or R32)
 RWTexture2D<float> Result;
-RWStructuredBuffer<float3> MeshVertices;
-StructuredBuffer<float2> MeshUvs;
+//RWStructuredBuffer<float3> MeshVertices;
 
 int _TextureSize;
 float4 _UvHit;		// Only use xy components
@@ -27,19 +26,12 @@ void Main (uint3 id : SV_DispatchThreadID)
 	}
 	Result[id.xy].r = clamp(Result[id.xy].r, 0, 1);
 
-	if (dist <= _Radius) {
-		//Result[id.xy].r += _BrushStrength;
-		//Result[id.xy].r = clamp(Result[id.xy].r, 0, 1);
+	/*uint flatIndex = _TextureSize * id.y + id.x;
+	uint flatArrayHeightmapsize = _TextureSize * _TextureSize;
+	uint smallArraySize = 33 * 33;
 
-		uint flatIndex = _TextureSize * id.y + id.x;
-		uint flatArrayHeightmapsize = _TextureSize * _TextureSize;
-		uint smallArraySize = 41 * 41;
+	double flatPercentage = double(flatIndex) / double(flatArrayHeightmapsize);
 
-		float flatPercentage = float(flatIndex) / float(flatArrayHeightmapsize);
-
-		//if(fmod(flatIndex, ratio) < 0.07) {
-			uint smallIndex = smallArraySize * flatPercentage;
-			MeshVertices[smallIndex].z = -Result[id.xy].r * 6.0;
-		//}
-	}
+	uint smallIndex = smallArraySize * flatPercentage;
+	MeshVertices[smallIndex].z = -Result[id.xy].r * 6.0;*/
 }

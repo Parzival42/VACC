@@ -17,10 +17,18 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     [SerializeField]
     private int textureSize = 512;
 
+    [Header("Collider compute Shader")]
+    [SerializeField]
+    private ComputeShader colliderCompute;
+
     #region Internal members
+    private int colliderComputerKernelHandle;
+
+    private Mesh tempMesh;
     private Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 
     private RenderTexture renderTexture;
+    private RenderTexture colliderRenderTexture;
 
     private MeshFilter mesh;
     private MeshCollider meshCollider;
@@ -36,6 +44,16 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     public Vector3 UVHit { get { return uvHit; } set { uvHit = value; } }
     #endregion
 
+    private void Awake()
+    {
+        tempMesh = new Mesh();
+    }
+
+    protected override void InitializeKernelHandle()
+    {
+        base.InitializeKernelHandle();
+        colliderComputerKernelHandle = colliderCompute.FindKernel(KERNEL_NAME);
+    }
 
     protected override void InitializeComponents()
     {
@@ -45,20 +63,26 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
 
         vertexBuffer = new ComputeBuffer(mesh.mesh.vertices.Length, 3 * 4);      // 3 Floats * 4 Bytes
         vertexBuffer.SetData(mesh.mesh.vertices);
+
+        tempMesh.vertices = mesh.mesh.vertices;
+        tempMesh.triangles = mesh.mesh.triangles;
+        tempMesh.uv = mesh.mesh.uv;
+
         uvBuffer = new ComputeBuffer(mesh.mesh.uv.Length, 2 * 4);                // 2 Floats * 4 Bytes
     }
 
     protected override void InitializeRenderTextures()
     {
         renderTexture = GetComputeRenderTexture(textureSize, 32);
+        colliderRenderTexture = GetComputeRenderTexture(32 + 1, 32);
+
         Graphics.Blit(originalTexture, renderTexture);
+        Graphics.Blit(originalTexture, colliderRenderTexture);
     }
 
     protected override void ComputeValues()
     {
         // TODO: Replace strings with constant strings.
-        computeShader.SetBuffer(kernelHandleNumber, "MeshVertices", vertexBuffer);
-        computeShader.SetBuffer(kernelHandleNumber, "MeshUvs", uvBuffer);
         computeShader.SetInt("_TextureSize", textureSize);
         computeShader.SetVector("_UvHit", uvHit);
         computeShader.SetFloat("_Radius", brushRadius);
@@ -66,17 +90,22 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
         computeShader.SetFloat("_BrushStrength", brushStrength);
         computeShader.SetTexture(kernelHandleNumber, "Result", renderTexture);
 
+        colliderCompute.SetBuffer(colliderComputerKernelHandle, "MeshVertices", vertexBuffer);
+        colliderCompute.SetInt("_TextureSize", colliderRenderTexture.width);
+        colliderCompute.SetTexture(colliderComputerKernelHandle, "ColliderResult", colliderRenderTexture);
+
         computeShader.Dispatch(kernelHandleNumber, renderTexture.width / KERNEL_SIZE, renderTexture.height / KERNEL_SIZE, 1);
+        colliderCompute.Dispatch(colliderComputerKernelHandle, colliderRenderTexture.width / KERNEL_SIZE, colliderRenderTexture.height / KERNEL_SIZE, 1);
 
         objectMaterial.SetTexture("_Heightmap", renderTexture);
         objectMaterial.SetTexture("_MainTex", renderTexture);
 
-        Vector3[] vertices = new Vector3[mesh.mesh.vertices.Length];
-        //vertexBuffer.GetData(vertices);
-        //mesh.mesh.vertices = vertices;
-        //mesh.mesh.RecalculateBounds();
-        //mesh.mesh.RecalculateNormals();
-        //meshCollider.sharedMesh = mesh.mesh;
+        Vector3[] vertices = new Vector3[tempMesh.vertices.Length];
+        vertexBuffer.GetData(vertices);
+        tempMesh.vertices = vertices;
+        meshCollider.sharedMesh = tempMesh;
+
+        Graphics.Blit(renderTexture, colliderRenderTexture);
     }
 
     #region Mouse methods
