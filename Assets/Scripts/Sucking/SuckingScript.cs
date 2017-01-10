@@ -105,10 +105,10 @@ public class SuckingScript : MonoBehaviour
     protected void CheckCollisionMeshes()
     {
         RaycastHit hitInfo;
-        bool hit = Physics.Raycast(suckingPoint.position, -suckingPoint.forward, out hitInfo, suckingDistanceMeshes, 1 << collisionLayerMeshes);
+        bool hit = Physics.Raycast(suckingPoint.position, suckingPoint.forward, out hitInfo, suckingDistanceMeshes, 1 << collisionLayerMeshes);
 
         #if UNITY_EDITOR
-        Debug.DrawRay(suckingPoint.position, -suckingPoint.forward * suckingDistanceMeshes, Color.yellow);
+        Debug.DrawRay(suckingPoint.position, suckingPoint.forward * suckingDistanceMeshes, Color.yellow);
 #endif
 
         if (hit)
