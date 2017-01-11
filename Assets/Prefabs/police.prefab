@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4129537192941652}
   - component: {fileID: 114387170651784530}
   m_Layer: 0
-  m_Name: police
+  m_Name: policeLights
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
