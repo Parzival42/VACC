@@ -5945,6 +5945,50 @@ Transform:
   m_PrefabParentObject: {fileID: 4663522572390872, guid: 7bd51f986359ed9449b0a347dc3b83fc,
     type: 2}
   m_PrefabInternal: {fileID: 1189871746}
+--- !u!1 &1237221698 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1175849398826658, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+    type: 2}
+  m_PrefabInternal: {fileID: 999437665}
+--- !u!114 &1237221710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1237221698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a338d679868f45439ea43c7ae035e36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings:
+    visualizeFocus: 0
+    tweakMode: 0
+    filteringQuality: 1
+    apertureShape: 0
+    apertureOrientation: 0
+  focus:
+    transform: {fileID: 2109636359}
+    focusPlane: 7.6038723
+    range: 5.5999527
+    nearPlane: 4.803896
+    nearFalloff: 1.43
+    farPlane: 10.403849
+    farFalloff: 10.18
+    nearBlurRadius: 8.5
+    farBlurRadius: 15.8
+  bokehTexture:
+    texture: {fileID: 0}
+    scale: 1.44
+    intensity: 31.8
+    threshold: 2.44
+    spawnHeuristic: 0.136
+  m_FilmicDepthOfFieldShader: {fileID: 4800000, guid: bff0e5458fb914f5c9985ba4f09171d2,
+    type: 3}
+  m_MedianFilterShader: {fileID: 4800000, guid: a058b22d4123add4b807e832604e5e7b,
+    type: 3}
+  m_TextureBokehShader: {fileID: 4800000, guid: c961b8ed1f00f924d804ada5143bd0e8,
+    type: 3}
 --- !u!1001 &1239646254
 Prefab:
   m_ObjectHideFlags: 0
@@ -9110,6 +9154,11 @@ Prefab:
     - {fileID: 9500000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &2109636359 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4423650903449828, guid: ee4b98c3525404b439517122f0b2e920,
+    type: 2}
+  m_PrefabInternal: {fileID: 2034194613}
 --- !u!1001 &2110270111
 Prefab:
   m_ObjectHideFlags: 0
