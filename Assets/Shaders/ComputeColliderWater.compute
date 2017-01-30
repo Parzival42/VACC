@@ -1,0 +1,23 @@
+#pragma kernel Main
+
+RWTexture2D<float> ColliderResult;
+RWTexture2D<float> WaterHeight;
+RWStructuredBuffer<float3> MeshVertices;
+
+int _TextureSize;
+float _TerrainHeight;
+float _WaterDecreaseFactor;
+
+/**
+ * WTF, why is this compute shader not executed? :D
+ * The same code is in "ComputeCollider" and it works :D
+ */
+[numthreads(32, 32, 1)]
+void Main (uint3 id : SV_DispatchThreadID) {
+	uint flatIndex = _TextureSize * id.y + id.x;
+	MeshVertices[flatIndex].z = -ColliderResult[id.xy].r * _TerrainHeight;
+
+	if(WaterHeight[id.xy] > 0.01) {
+		MeshVertices[flatIndex].z *= _WaterDecreaseFactor;
+	}
+}

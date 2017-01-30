@@ -11,6 +11,9 @@ public class WaterTerrainCombiner : ComputeMeshModifier
     private float colliderMeshHeightMultiplier = 6f;
 
     [SerializeField]
+    private float waterColliderDecreaseFactor = 0.6f;
+
+    [SerializeField]
     private ComputeShader colliderComputeShader;
     #endregion
 
@@ -23,6 +26,7 @@ public class WaterTerrainCombiner : ComputeMeshModifier
     // Is used to compute the mesh collider vertices. Only use the RT with the same size of the mesh plane!
     // Example: Mesh Plane --> 32 x 32 -> RT must also have the same size!
     private RenderTexture colliderRenderTexture;
+    private RenderTexture colliderWaterRenderTexture;
     #endregion
 
     #region Properties
@@ -71,7 +75,9 @@ public class WaterTerrainCombiner : ComputeMeshModifier
 
         colliderComputeShader.SetBuffer(colliderComputeKernelHandle, ShaderConstants.INPUT_MESH_VERTICES, colliderVertexBuffer);
         colliderComputeShader.SetFloat(ShaderConstants.PARAM_TERRAIN_HEIGHT, colliderMeshHeightMultiplier);
+        colliderComputeShader.SetFloat(ShaderConstants.PARAM_WATER_DECREASE_FACTOR, waterColliderDecreaseFactor);
         colliderComputeShader.SetTexture(colliderComputeKernelHandle, ShaderConstants.INPUT_COLLIDER_RESULT, colliderRenderTexture);
+        colliderComputeShader.SetTexture(colliderComputeKernelHandle, ShaderConstants.INPUT_WATER_HEIGHT, colliderWaterRenderTexture);
 
         computeShader.Dispatch(kernelHandleNumber, pipeSimulation.TextureSize / KERNEL_SIZE, pipeSimulation.TextureSize / KERNEL_SIZE, 1);
         colliderComputeShader.Dispatch(colliderComputeKernelHandle, colliderRenderTexture.width / KERNEL_SIZE, colliderRenderTexture.height / KERNEL_SIZE, 1);
@@ -89,6 +95,7 @@ public class WaterTerrainCombiner : ComputeMeshModifier
         {
             AssignMeshColliderData();
             Graphics.Blit(combinedWaterTerrain, colliderRenderTexture);
+            Graphics.Blit(pipeSimulation.WaterHeight, colliderWaterRenderTexture);
         }
     }
 
@@ -128,10 +135,12 @@ public class WaterTerrainCombiner : ComputeMeshModifier
         combinedWaterTerrain = GetComputeRenderTexture(pipeSimulation.TextureSize, 32);
         // + 1 because of the use of Plane Generator script (Generates 32 x 32 cells -> 1 Vertex more)
         colliderRenderTexture = GetComputeRenderTexture(colliderTextureSize + 1, 32);
+        colliderWaterRenderTexture = GetComputeRenderTexture(colliderTextureSize + 1, 32);
 
         // Blit original texture into RT's
         Graphics.Blit(originalTexture, combinedWaterTerrain);
         Graphics.Blit(originalTexture, colliderRenderTexture);
+        Graphics.Blit(pipeSimulation.WaterHeight, colliderWaterRenderTexture);
     }
 
     private void OnMouseDrag()
