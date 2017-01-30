@@ -5,15 +5,13 @@ RWStructuredBuffer<float3> MeshVertices;
 
 int _TextureSize;
 
+/**
+ * Saves the RT values into the MeshVertices array.
+ * Be careful, this only works right if the RT has the same size like the mash plane!
+ */
 [numthreads(32, 32, 1)]
 void Main (uint3 id : SV_DispatchThreadID)
 {
 	uint flatIndex = _TextureSize * id.y + id.x;
-	/*uint flatArrayHeightmapsize = _TextureSize * _TextureSize;
-	uint smallArraySize = 33 * 33;*/
-
-	/*double flatPercentage = double(flatIndex) / double(flatArrayHeightmapsize);
-
-	uint smallIndex = smallArraySize * flatPercentage;*/
 	MeshVertices[flatIndex].z = -ColliderResult[id.xy].r * 6.0;
 }

@@ -28,6 +28,8 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     private Vector3 uvHit = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
 
     private RenderTexture renderTexture;
+    // Is used to compute the mesh collider vertices. Only use the RT with the same size of the mesh plane!
+    // Example: Mesh Plane --> 32 x 32 -> RT must also have the same size!
     private RenderTexture colliderRenderTexture;
 
     private MeshFilter mesh;
@@ -94,7 +96,9 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
         colliderCompute.SetInt("_TextureSize", colliderRenderTexture.width);
         colliderCompute.SetTexture(colliderComputerKernelHandle, "ColliderResult", colliderRenderTexture);
 
+        // Compute Heightmap
         computeShader.Dispatch(kernelHandleNumber, renderTexture.width / KERNEL_SIZE, renderTexture.height / KERNEL_SIZE, 1);
+        // Compute Mesh collider mesh
         colliderCompute.Dispatch(colliderComputerKernelHandle, colliderRenderTexture.width / KERNEL_SIZE, colliderRenderTexture.height / KERNEL_SIZE, 1);
 
         objectMaterial.SetTexture("_Heightmap", renderTexture);
@@ -102,13 +106,18 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
 
         if (!onlyCompute)
         {
-            Vector3[] vertices = new Vector3[tempMesh.vertices.Length];
-            vertexBuffer.GetData(vertices);
-            tempMesh.vertices = vertices;
-            meshCollider.sharedMesh = tempMesh;
-
+            AssignMeshColliderData();
+            // Blit current heightmap state into the smaller collider RT to have the calculation state for the next step
             Graphics.Blit(renderTexture, colliderRenderTexture);
         }
+    }
+
+    protected void AssignMeshColliderData()
+    {
+        Vector3[] vertices = new Vector3[tempMesh.vertices.Length];
+        vertexBuffer.GetData(vertices);
+        tempMesh.vertices = vertices;
+        meshCollider.sharedMesh = tempMesh;
     }
 
     #region Mouse methods
