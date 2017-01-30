@@ -206,6 +206,12 @@ Material:
         name: _SobelStrength
       second: 0.51
     - first:
+        name: _SobelStrengthTerrain
+      second: 0.01
+    - first:
+        name: _SobelStrengthWater
+      second: 0.05
+    - first:
         name: _SpecularHighlights
       second: 1
     - first:
@@ -219,10 +225,10 @@ Material:
       second: 0
     - first:
         name: _TerrainNormalStrength
-      second: 0.76
+      second: 0.02
     - first:
         name: _TessellationFactor
-      second: 4
+      second: 10
     - first:
         name: _UVSec
       second: 0
@@ -231,19 +237,19 @@ Material:
       second: 0.71
     - first:
         name: _WaterFoamStrength
-      second: 1.06
+      second: 0.35
     - first:
         name: _WaterFresnelPower
       second: 200
     - first:
         name: _WaterGloss
-      second: 0.939
+      second: 0.813
     - first:
         name: _WaterMetallic
-      second: 1
+      second: 0.306
     - first:
         name: _WaterNormalStrength
-      second: 0.15
+      second: 0.05
     - first:
         name: _ZWrite
       second: 1
@@ -259,10 +265,10 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _WaterColor
-      second: {r: 0.4343642, g: 0.6476587, b: 0.75735295, a: 1}
+      second: {r: 0.13725491, g: 0.4117647, b: 0.5529412, a: 1}
     - first:
         name: _WaterDeepColor
-      second: {r: 0.22745098, g: 0.4392157, b: 0.48235294, a: 1}
+      second: {r: 0.09019608, g: 0.27450982, b: 0.36862746, a: 1}
     - first:
         name: _WaterFoamColor
       second: {r: 1, g: 1, b: 1, a: 1}

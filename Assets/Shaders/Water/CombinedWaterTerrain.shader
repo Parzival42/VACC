@@ -18,7 +18,7 @@
 		_WaterFoamStrength ("Foam Strength", Float) = 1.0
 		[Normal]
 		_WaterNormalMap ("Water Normal", 2D) = "bump" {}
-		_WaterNormalStrength ("Normal Strength", Float) = 1.0
+		_WaterNormalStrength ("Water Normal Strength", Float) = 1.0
 		_WaterGloss ("Water Gloss", Range(0, 1)) = 0.7
 		_WaterMetallic ("Water Metallic", Range(0, 1)) = 0.0
 		_WaterFresnelPower ("Water Fresnel Power", Float) = 1.0
@@ -38,7 +38,8 @@
 		_FluxTop ("Flux Top", 2D) = "black" {}
 		[HideInInspector]
 		_FluxBottom ("Flux Bottom", 2D) = "black" {}
-		_SobelStrength ("Normal Strength", Float) = 0.21
+		_SobelStrengthTerrain ("Sobel Terrain Strength", Float) = 0.21
+		_SobelStrengthWater ("Sobel Water Strength", Float) = 0.21
 		_HeightStrength ("Height Strength", Float) = 6.0
 
 		_TessellationFactor ("Tessellation", Range(1, 32)) = 3.0
@@ -100,7 +101,8 @@
 		half _WaterMetallic;
 		half _HeightStrength;
 		float _TessellationFactor;
-		float _SobelStrength;
+		float _SobelStrengthTerrain;
+		float _SobelStrengthWater;
 		half4 _WaterFoamColor;
 		half _WaterFoamStrength;
 		// ==========================
@@ -143,7 +145,7 @@
 				waterNormal.xy *= _WaterNormalStrength;
 
 				surfaceNormal = height2NormalSobel(img3x3(_CombinedHeight, IN.uv_WaterHeight, 0, _WaterHeight_TexelSize.xy)) + waterNormal;
-				surfaceNormal = normalize(float3(surfaceNormal.xy, surfaceNormal.z * _SobelStrength));
+				surfaceNormal = normalize(float3(surfaceNormal.xy, surfaceNormal.z * _SobelStrengthWater));
 
 				float fresnel = calculateRim(IN.viewDir, surfaceNormal, _WaterFresnelPower);
 
@@ -155,7 +157,7 @@
 				terrainNormal.xy *= _TerrainNormalStrength;
 
 				surfaceNormal = height2NormalSobel(img3x3(_CombinedHeight, IN.uv_WaterHeight, 0, _WaterHeight_TexelSize.xy)) + terrainNormal;
-				surfaceNormal = normalize(float3(surfaceNormal.xy, surfaceNormal.z * _SobelStrength));
+				surfaceNormal = normalize(float3(surfaceNormal.xy, surfaceNormal.z * _SobelStrengthTerrain));
 				finalColor = terrainColor;
 				finalSmoothness = tex2D(_TerrainSmoothness, IN.uv_TerrainTexture) * _TerrainGloss;
 				finalMetallic = _TerrainMetallic;
