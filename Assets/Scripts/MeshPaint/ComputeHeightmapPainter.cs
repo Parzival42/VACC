@@ -36,7 +36,6 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     private MeshCollider meshCollider;
 
     private ComputeBuffer vertexBuffer;
-    private ComputeBuffer uvBuffer;
 
     protected override int KERNEL_SIZE { get { return 32; } }
 
@@ -55,6 +54,7 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     {
         base.InitializeKernelHandle();
         colliderComputerKernelHandle = colliderCompute.FindKernel(KERNEL_NAME);
+        colliderCompute.SetFloat(ShaderConstants.PARAM_TERRAIN_HEIGHT, 6f);
     }
 
     protected override void InitializeComponents()
@@ -69,8 +69,6 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
         tempMesh.vertices = mesh.mesh.vertices;
         tempMesh.triangles = mesh.mesh.triangles;
         tempMesh.uv = mesh.mesh.uv;
-
-        uvBuffer = new ComputeBuffer(mesh.mesh.uv.Length, 2 * 4);                // 2 Floats * 4 Bytes
     }
 
     protected override void InitializeRenderTextures()
@@ -147,7 +145,6 @@ public class ComputeHeightmapPainter : ComputeMeshModifier
     private void OnDestroy()
     {
         vertexBuffer.Dispose();
-        uvBuffer.Dispose();
     }
 
     public override void InvertMeshModification()

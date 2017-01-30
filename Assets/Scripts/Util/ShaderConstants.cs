@@ -41,5 +41,6 @@ public class ShaderConstants
     public static readonly string INPUT_VELOCITY_Y = "Velocityy";
     public static readonly string INPUT_BOUNDARY_TEXTURE = "BoundaryTexture";
     public static readonly string INPUT_WATER_SOURCES = "WaterSources";
-
+    public static readonly string INPUT_MESH_VERTICES = "MeshVertices";
+    public static readonly string INPUT_COLLIDER_RESULT = "ColliderResult";
 }

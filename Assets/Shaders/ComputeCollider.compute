@@ -4,6 +4,7 @@ RWTexture2D<float> ColliderResult;
 RWStructuredBuffer<float3> MeshVertices;
 
 int _TextureSize;
+float _TerrainHeight;
 
 /**
  * Saves the RT values into the MeshVertices array.
@@ -13,5 +14,5 @@ int _TextureSize;
 void Main (uint3 id : SV_DispatchThreadID)
 {
 	uint flatIndex = _TextureSize * id.y + id.x;
-	MeshVertices[flatIndex].z = -ColliderResult[id.xy].r * 6.0;
+	MeshVertices[flatIndex].z = -ColliderResult[id.xy].r * _TerrainHeight;
 }
