@@ -14,9 +14,12 @@ ModelImporter:
     400004: Camera
     400006: Lamp
     2300000: bush
+    2300002: //RootNode
     3300000: bush
+    3300002: //RootNode
     4300000: bush
     7400000: Default Take
+    7400002: Take 001
     9500000: //RootNode
   materials:
     importMaterials: 1
