@@ -130,23 +130,23 @@ public class TubeTestSystem : MonoBehaviour {
     }
 
 
-    private void GenerateMassPoints()
-    {
-        for(int i = 0; i < xAmount; i++)
-        {
-            for(int j = 0; j < yAmount; j++)
-            {
-                if(j==0 || j == yAmount - 1)
-                {
-                    middleMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(vertex2DRepresentation[i,j])));
+    //private void GenerateMassPoints()
+    //{
+    //    for(int i = 0; i < xAmount; i++)
+    //    {
+    //        for(int j = 0; j < yAmount; j++)
+    //        {
+    //            if(j==0 || j == yAmount - 1)
+    //            {
+    //                middleMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(vertex2DRepresentation[i,j])));
                  
-                }else
-                {
-                    middleMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(vertex2DRepresentation[i, j])));
-                }
-            }
-        }
-    }
+    //            }else
+    //            {
+    //                middleMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(vertex2DRepresentation[i, j])));
+    //            }
+    //        }
+    //    }
+    //}
 
     private void ConnectMassPoints()
     {

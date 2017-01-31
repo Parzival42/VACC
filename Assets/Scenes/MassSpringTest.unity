@@ -545,26 +545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fefb6177fe62214d9fc2ebc719323d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 163385011}
-  material: {fileID: 2100000, guid: e1ca42f8bf86f3a4fbf8b2c18b4442ef, type: 2}
-  ropeWidth: 1.6
-  resolution: 0.4
-  ropeDrag: 0.1
-  ropeMass: 1.96
-  radialSegments: 18
-  startRestrained: 0
-  endRestrained: 0
-  useMeshCollision: 0
-  segmentPos: []
-  joints: []
-  tubeRenderer: {fileID: 0}
-  line: {fileID: 0}
-  segments: 4
-  rope: 0
-  swingAxis: {x: 0, y: 0, z: 0}
-  lowTwistLimit: 0
-  highTwistLimit: 0
-  swing1Limit: 0
 --- !u!54 &511408136
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1053,7 +1033,7 @@ Transform:
   m_GameObject: {fileID: 1145655037}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -10.3, z: 0}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
@@ -1213,6 +1193,9 @@ GameObject:
   - component: {fileID: 1702291656}
   - component: {fileID: 1702291655}
   - component: {fileID: 1702291657}
+  - component: {fileID: 1702291658}
+  - component: {fileID: 1702291659}
+  - component: {fileID: 1702291661}
   m_Layer: 0
   m_Name: SimpleRopeTest
   m_TagString: Untagged
@@ -1263,6 +1246,78 @@ MonoBehaviour:
   shrinkEaseType: 15
   originalScale: {x: 1, y: 1, z: 1}
   expandedScale: {x: 2, y: 2, z: 1}
+--- !u!114 &1702291658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1702291654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2086f24d368b4774ab8e3ca01d0adcdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outerRadius: 0.5
+  innerCapRadius: 0.5
+  radialSegments: 12
+  tubeLength: 2.5
+  tubeSegments: 14
+  generateNow: 0
+--- !u!137 &1702291659
+SkinnedMeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1702291654}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: b7b159eb0b353e74fb49a9647e11b2ea, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  serializedVersion: 2
+  m_Quality: 0
+  m_UpdateWhenOffscreen: 0
+  m_SkinnedMotionVectors: 1
+  m_Mesh: {fileID: 0}
+  m_Bones: []
+  m_BlendShapeWeights: []
+  m_RootBone: {fileID: 0}
+  m_AABB:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  m_DirtyAABB: 1
+--- !u!114 &1702291661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1702291654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59e922345127e8418933b6160c1ce2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: 5
 --- !u!1 &1729543537
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[RequireComponent(typeof(TubeMeshUpdater), typeof(TubeGenerator))]
 public class ConnectedRope : MonoBehaviour {
 
     #region variables
@@ -18,7 +19,6 @@ public class ConnectedRope : MonoBehaviour {
 
     [SerializeField]
     private float forceValue = 10.0f;
-    //private List<PointMass> pointList;
 
     private List<PointMass> middleMassPointLine;
     private List<PointMass> upperMassPointLine;
@@ -30,7 +30,10 @@ public class ConnectedRope : MonoBehaviour {
     //test stuff
     private List<Transform> collisonObjects;
 
+    private TubeGenerator tubeGenerator;
+    private Tube tube;
 
+    private TubeMeshUpdater tubeMeshUpdater;
 
     private bool isInitialized = false;
     private bool usesMeshFilter = true;
@@ -40,16 +43,18 @@ public class ConnectedRope : MonoBehaviour {
     #region methods
     // Use this for initialization
     void Start () {
-       // pointList = new List<PointMass>();
-
         middleMassPointLine = new List<PointMass>();
         upperMassPointLine = new List<PointMass>();
         lowerMassPointLine = new List<PointMass>();
         leftMassPointLine = new List<PointMass>();
         rightMassPointLine = new List<PointMass>();
         constraintList = new List<Constraint>();
-
         collisonObjects = new List<Transform>();
+
+        tubeGenerator = GetComponent<TubeGenerator>();
+        tubeMeshUpdater = GetComponent<TubeMeshUpdater>();
+        tubeMeshUpdater.Tube = tubeGenerator.GenerateTube();
+        
         gravitationForce = gameObject.AddComponent<Gravitation>();
         Setup();
         isInitialized = true;
@@ -116,6 +121,15 @@ public class ConnectedRope : MonoBehaviour {
             //middleMassPointLine[i].ConnectTo(lowerMassPointLine[i-2]);
             //middleMassPointLine[i].ConnectTo(leftMassPointLine[i-2]);
             //middleMassPointLine[i].ConnectTo(rightMassPointLine[i-2]);
+            if (i > 2)
+            {
+                //constraintList.Add(new RegularConstraint(middleMassPointLine[i], upperMassPointLine[i - 3]));
+                //constraintList.Add(new RegularConstraint(middleMassPointLine[i], lowerMassPointLine[i - 3]));
+                //constraintList.Add(new RegularConstraint(middleMassPointLine[i], leftMassPointLine[i - 3]));
+                //constraintList.Add(new RegularConstraint(middleMassPointLine[i], rightMassPointLine[i - 3]));
+            }
+           
+
 
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], upperMassPointLine[i - 2]));
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], lowerMassPointLine[i - 2]));
@@ -253,6 +267,9 @@ public class ConnectedRope : MonoBehaviour {
             collisonObjects[i].position = middleMassPointLine[i].Position;
         }
 
+
+        //update mesh
+        tubeMeshUpdater.UpdateMesh(middleMassPointLine);
 
         //force to fjuture sucker
 

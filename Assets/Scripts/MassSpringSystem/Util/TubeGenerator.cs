@@ -21,7 +21,6 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
     [Range(3, 64)]
     private int radialSegments = 12;
 
-
     [Header("tube body config")]
     [SerializeField]
     [Range(0.01f, 250.0f)]
@@ -30,7 +29,6 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
     [SerializeField]
     [Range(1, 256)]
     private int tubeSegments = 1;
-
 
     [Header("temp bool for generating")]
     [SerializeField]
@@ -63,11 +61,9 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
 	
 	// Update is called once per frame
 	void Update () {
-
         if (generateNow)
         {
             generateNow = !generateNow;
-
             if (doneGenerating)
             {
                 GenerateTube();
@@ -80,41 +76,32 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
         doneGenerating = false;
         Mesh mesh = new Mesh();
 
-
         //vertices
         vertex2DArray = GenerateCircleVertices(radialSegments, outerRadius, tubeSegments, tubeLength);
         vertices = Copy2DArrayTo1D(vertex2DArray);
-
 
         //normals
         normal2DArray = CalculateNormals(vertex2DArray);
         normals = Copy2DArrayTo1D(normal2DArray);
 
-
         //uvs
         uv2DArray = CalculateUVs(vertex2DArray);
         uvs = Copy2DArrayTo1D(uv2DArray);
 
-
         //indices
         indices = CalculateIndices(vertex2DArray);
-
 
         //vertex boneweights
         boneWeights = CalculateBoneWeights(vertex2DArray);
 
-
         //bones
         bones = GenerateBones(vertex2DArray);
-
 
         //bindposes
         bindPoses = CalculateBindPoses(bones);
 
-
         //colliders
         boxColliders = SetBoxColliders(bones);
-
 
         //rigidbodies
         rigidBodies = SetRigidBodies(bones);
@@ -125,11 +112,8 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
         mesh.triangles = indices;
 
         mesh.RecalculateBounds();
-       
-
         mesh.boneWeights = boneWeights;
         mesh.bindposes = bindPoses;
-        ;
 
         doneGenerating = true;
         showDebug = true;
