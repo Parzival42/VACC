@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 19822192}
   - component: {fileID: 19910812}
   m_Layer: 0
-  m_Name: Dust Particles
+  m_Name: DustAirParticles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24,7 +24,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 183190}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.18, y: 1.85, z: 2.56}
+  m_LocalPosition: {x: -1.1012177, y: 1.48, z: 2.8041186}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -85,7 +85,7 @@ ParticleSystem:
   moveWithTransform: 1
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -145323018
+  randomSeed: -964964792
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -129,7 +129,7 @@ ParticleSystem:
         m_RotationOrder: 4
       minMaxState: 0
     startSpeed:
-      scalar: 0.03
+      scalar: 0.015
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -261,7 +261,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       minMaxState: 0
     startSize:
-      scalar: 0.02
+      scalar: 0.025
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -564,7 +564,7 @@ ParticleSystem:
     enabled: 1
     serializedVersion: 3
     rateOverTime:
-      scalar: 800
+      scalar: 200
       maxCurve:
         serializedVersion: 2
         m_Curve:

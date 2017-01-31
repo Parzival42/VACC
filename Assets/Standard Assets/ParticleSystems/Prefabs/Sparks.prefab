@@ -35,7 +35,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1633877331625634}
   m_LocalRotation: {x: -0, y: 0.7071069, z: -0, w: 0.70710677}
-  m_LocalPosition: {x: -2.678, y: 0.445, z: 2.63}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -363,16 +363,10 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - serializedVersion: 2
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
-      minMaxState: 2
+        m_RotationOrder: 0
+      minMaxState: 3
     startRotationY:
       scalar: 3.1415927
       maxCurve:
@@ -396,16 +390,10 @@ ParticleSystem:
           inSlope: 0
           outSlope: 0
           tangentMode: 0
-        - serializedVersion: 2
-          time: 1
-          value: 0
-          inSlope: 0
-          outSlope: 0
-          tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
-      minMaxState: 2
+        m_RotationOrder: 0
+      minMaxState: 3
     startRotation:
       scalar: 3.1415927
       maxCurve:
@@ -419,7 +407,7 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
+        m_RotationOrder: 0
       minCurve:
         serializedVersion: 2
         m_Curve:
@@ -431,8 +419,8 @@ ParticleSystem:
           tangentMode: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
-        m_RotationOrder: 4
-      minMaxState: 2
+        m_RotationOrder: 0
+      minMaxState: 3
     randomizeRotationDirection: 0
     maxNumParticles: 10000
     size3D: 0
@@ -2234,12 +2222,12 @@ ParticleSystem:
       type: 0
       properties: 0
   LightsModule:
-    enabled: 0
-    ratio: 0
-    light: {fileID: 0}
+    enabled: 1
+    ratio: 1
+    light: {fileID: 108029603892699726, guid: f2b6f712b116f1a448707f596d15b334, type: 2}
     randomDistribution: 1
     color: 1
-    range: 1
+    range: 0
     intensity: 1
     rangeCurve:
       scalar: 1
