@@ -1,150 +1,79 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System;
+using UnityEngine;
 
-[RequireComponent(typeof(MeshFilter), typeof(TubeGenerator))]
-public class TubeSystem1 : MonoBehaviour {
+
+public class ConnectedRope : MonoBehaviour {
 
     #region variables
+    [SerializeField]
+    private Transform startConnection;
 
     [SerializeField]
-    [Range(0.0f, 10.0f)]
-    private float slider = 5.0f;
+    private Transform endConnection;
 
+    [SerializeField]
+    private int connections = 25;
 
-    //tube mesh
-    private TubeGenerator tubeGenerator;
-    private Tube tube;
-
-    private MeshFilter meshFilter;
-    private Mesh mesh;
+    [SerializeField]
+    private float forceValue = 10.0f;
+    //private List<PointMass> pointList;
 
     private List<PointMass> middleMassPointLine;
     private List<PointMass> upperMassPointLine;
     private List<PointMass> lowerMassPointLine;
     private List<PointMass> leftMassPointLine;
     private List<PointMass> rightMassPointLine;
-
     private List<Constraint> constraintList;
- 
-    private int xAmount;
-    private int yAmount;
-    private Vector3[,] vertex2DRepresentation;
 
-    private Vector3[] vertices;
+    //test stuff
+    private List<Transform> collisonObjects;
+
+
 
     private bool isInitialized = false;
-
-    private float distanceToCenter = 0.0f;
+    private bool usesMeshFilter = true;
+    private MonoBehaviour gravitationForce;
     #endregion
 
     #region methods
+    // Use this for initialization
     void Start () {
+       // pointList = new List<PointMass>();
 
         middleMassPointLine = new List<PointMass>();
         upperMassPointLine = new List<PointMass>();
         lowerMassPointLine = new List<PointMass>();
         leftMassPointLine = new List<PointMass>();
         rightMassPointLine = new List<PointMass>();
-
         constraintList = new List<Constraint>();
 
-
-        meshFilter = GetComponent<MeshFilter>();
-        mesh = meshFilter.mesh;
-
-
-        tubeGenerator = GetComponent<TubeGenerator>();
-        tube = tubeGenerator.GenerateTube();
-        
-
-        vertex2DRepresentation = tube.Vertex2DRepresentation;
-        xAmount = tube.Vertex2DRepresentation.GetLength(0);
-        yAmount = tube.Vertex2DRepresentation.GetLength(1);
-
-
-        mesh = tube.Mesh;
-        vertices = mesh.vertices;
-
-        //GenerateMassPoints();
-        GenerateMassPointLine();
-
-        ConnectMassPoints();
-
-
-        meshFilter.mesh = mesh;
+        collisonObjects = new List<Transform>();
+        gravitationForce = gameObject.AddComponent<Gravitation>();
+        Setup();
         isInitialized = true;
-	}
-
-  
-
-    void FixedUpdate () {
-
-        //update springs
-        for (int j = 0; j < 15; j++)
-        {
-            for (int i = 0; i < constraintList.Count; i++)
-            {
-                constraintList[i].Solve();
-            }
-        }
-
-        //gravitation
-        for (int i = 0; i < middleMassPointLine.Count; i++)
-        {
-            middleMassPointLine[i].ApplyForce(new Vector3(0, -slider * 50, 0 ));
-            upperMassPointLine[i].ApplyForce(new Vector3(0, -slider * 50, 0));
-            lowerMassPointLine[i].ApplyForce(new Vector3(0, -slider * 50, 0));
-            leftMassPointLine[i].ApplyForce(new Vector3(0, -slider * 50, 0));
-            rightMassPointLine[i].ApplyForce(new Vector3(0, -slider * 50, 0));
-        }
-
-
-        //update points
-        for (int i = 0; i < middleMassPointLine.Count; i++)
-        {
-            middleMassPointLine[i].Simulate(Time.deltaTime);
-            upperMassPointLine[i].Simulate(Time.deltaTime);
-            lowerMassPointLine[i].Simulate(Time.deltaTime);
-            leftMassPointLine[i].Simulate(Time.deltaTime);
-            rightMassPointLine[i].Simulate(Time.deltaTime);
-        }
-
-
-        UpdateVertices();
-
-
-        mesh.vertices = vertices;
     }
 
-
-    private void UpdateVertices()
-    {
-        for (int i = 0; i < middleMassPointLine.Count; i++)
-        {
-            for (int j = 0; j < xAmount; j++)
-            {
-                vertices[i * xAmount + j].x = ( middleMassPointLine[i].Position).y;
-            }
-        }
+    private void Setup()
+    {       
+        GenerateMassPointLines();
+        ConnectMassPoints();
+        GenerateCollisionObjects();
     }
 
-
-    private void GenerateMassPoints()
+    private void GenerateCollisionObjects()
     {
-        for(int i = 0; i < xAmount; i++)
+        for(int i = 0; i < connections; i++)
         {
-            for(int j = 0; j < yAmount; j++)
-            {
-                if(j==0 || j == yAmount - 1)
-                {
-                    middleMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(vertex2DRepresentation[i,j])));
-                 
-                }else
-                {
-                    middleMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(vertex2DRepresentation[i, j])));
-                }
-            }
+            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            go.transform.position = middleMassPointLine[i].Position;
+            go.transform.localScale = new Vector3(2, 2, 2);
+            go.GetComponent<Renderer>().enabled = false;
+            go.layer = LayerMask.NameToLayer("MassSpring");
+            Rigidbody rigid = go.AddComponent<Rigidbody>();
+            rigid.useGravity = false;
+            collisonObjects.Add(go.transform);
         }
     }
 
@@ -247,48 +176,92 @@ public class TubeSystem1 : MonoBehaviour {
     }
 
 
-    private void GenerateMassPointLine()
+    private void GenerateMassPointLines()
     {
-        Vector3 center = new Vector3();
-        for (int i = 0; i < yAmount; i++)
+        Vector3 center = new Vector3(0,0,0);
+        for (int i = 0; i < connections; i++)
         {
-            center.Set(0, 0, 0);
-            for (int j = 0; j < xAmount; j++)
+            if (i == 0 || i == connections + 1)
             {
-                center += vertex2DRepresentation[j, i];
-            }
-            center /= (float)xAmount;
-
-            Vector3 direction = center - vertex2DRepresentation[0, i];
-
-            if (i == 0 || i == yAmount + 1)
-            {
-
-                middleMassPointLine.Add(new FixedPointMass(gameObject.transform.TransformPoint(center)));
-                upperMassPointLine.Add(new FixedPointMass(gameObject.transform.TransformPoint(center + direction)));
-                lowerMassPointLine.Add(new FixedPointMass(gameObject.transform.TransformPoint(center - direction)));
-                leftMassPointLine.Add(new FixedPointMass(gameObject.transform.TransformPoint(center - Vector3.Cross(direction, Vector3.up))));
-                rightMassPointLine.Add(new FixedPointMass(gameObject.transform.TransformPoint(center + Vector3.Cross(direction, Vector3.up))));
+                middleMassPointLine.Add(new FixedPointMass(Vector3.zero));
+                upperMassPointLine.Add(new FixedPointMass(Vector3.up));
+                lowerMassPointLine.Add(new FixedPointMass(Vector3.down));
+                leftMassPointLine.Add(new FixedPointMass(Vector3.left));
+                rightMassPointLine.Add(new FixedPointMass(Vector3.right));
             }
             else
             {
-                middleMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(center)));
-                upperMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(center + direction)));
-                lowerMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(center - direction)));
-                leftMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(center - Vector3.Cross(direction, Vector3.up))));
-                rightMassPointLine.Add(new RegularPointMass(gameObject.transform.TransformPoint(center + Vector3.Cross(direction, Vector3.up))));
+                middleMassPointLine.Add(new RegularPointMass(Vector3.forward * (i+1)));
+                upperMassPointLine.Add(new RegularPointMass(Vector3.up + Vector3.forward * (i+1)));
+
+                lowerMassPointLine.Add(new RegularPointMass(Vector3.down + Vector3.forward * (i+1)));
+                leftMassPointLine.Add(new RegularPointMass(Vector3.left + Vector3.forward * (i+1)));
+                rightMassPointLine.Add(new RegularPointMass(Vector3.right + Vector3.forward * (i+1)));
             }
         }
 
-        distanceToCenter = Vector3.Magnitude(vertex2DRepresentation[xAmount - 1, yAmount - 1] - center);
     }
 
-    
+    void FixedUpdate()
+    {
+        middleMassPointLine[0].Position = startConnection.position;
+        upperMassPointLine[0].Position = startConnection.position +Vector3.up;
+        lowerMassPointLine[0].Position = startConnection.position + Vector3.down;
+        leftMassPointLine[0].Position = startConnection.position + Vector3.left;
+        rightMassPointLine[0].Position = startConnection.position + Vector3.right;
 
-    #endregion
+
+        middleMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position;
+
+        for (int i = 0; i < collisonObjects.Count; i++)
+        {
+            middleMassPointLine[i].Position = collisonObjects[i].position;
+        }
+
+        //apply external forces
+        for (int j = 0; j < middleMassPointLine.Count; j++)
+        {
+            middleMassPointLine[j].ApplyForce(((Force)gravitationForce).getForce());
+            upperMassPointLine[j].ApplyForce(((Force)gravitationForce).getForce());
+            lowerMassPointLine[j].ApplyForce(((Force)gravitationForce).getForce());
+            leftMassPointLine[j].ApplyForce(((Force)gravitationForce).getForce());
+            rightMassPointLine[j].ApplyForce(((Force)gravitationForce).getForce());
+        }
+
+        //update constraints
+        for (int j = 0; j < 5; j++)
+        {
+            for (int i = 0; i < constraintList.Count; i++)
+            {
+                constraintList[i].Solve();
+            }
+        }
+
+        //update pointmasses
+        for (int i = 0; i < middleMassPointLine.Count; i++)
+        {
+            middleMassPointLine[i].Simulate(Time.deltaTime);
+            upperMassPointLine[i].Simulate(Time.deltaTime);
+            lowerMassPointLine[i].Simulate(Time.deltaTime);
+            leftMassPointLine[i].Simulate(Time.deltaTime);
+            rightMassPointLine[i].Simulate(Time.deltaTime);
+        }
+
+        //update the colliders position 
+        for (int i = 0; i < collisonObjects.Count; i++)
+        {
+            collisonObjects[i].position = middleMassPointLine[i].Position;
+        }
 
 
-    #region debug
+        //force to fjuture sucker
+
+        Vector3 distance = middleMassPointLine[middleMassPointLine.Count - 1].Position - endConnection.position;
+        Rigidbody rigid = endConnection.GetComponent<Rigidbody>();
+        rigid.AddForce(distance);
+    }
+
+
     void OnDrawGizmos()
     {
         if (isInitialized)
@@ -303,7 +276,7 @@ public class TubeSystem1 : MonoBehaviour {
                 rightMassPointLine[i].DrawPoint();
             }
 
-            for(int i = 0; i < constraintList.Count; i++)
+            for (int i = 0; i < constraintList.Count; i++)
             {
                 constraintList[i].DrawConnection();
             }

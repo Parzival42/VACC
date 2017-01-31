@@ -8,7 +8,6 @@ public class TubeDeformation : MonoBehaviour {
     private MeshFilter meshFilter;
     private Mesh mesh;
 
-
     private Vector3[,] sortedVertices;
 
 
@@ -19,8 +18,6 @@ public class TubeDeformation : MonoBehaviour {
 
 
         AnalyzeMesh();
-
-	
 	}
 
     private void AnalyzeMesh()

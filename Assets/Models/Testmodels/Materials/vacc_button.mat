@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: vacc_button
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 57511819a41b75148bc51bea33bd7560, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -40,6 +40,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _Emission
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _EmissionMap
       second:
         m_Texture: {fileID: 0}
@@ -53,6 +59,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MetallicTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _Occlusion
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -83,6 +101,15 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _EffectAmount
+      second: 0
+    - first:
+        name: _EmissionMult
+      second: 1
+    - first:
+        name: _FillEmissionMult
+      second: 1
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
@@ -101,8 +128,14 @@ Material:
         name: _OcclusionStrength
       second: 1
     - first:
+        name: _Outline
+      second: 0.034
+    - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _Smoothness
+      second: 1
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -125,3 +158,12 @@ Material:
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _FillColor
+      second: {r: 0, g: 0, b: 0, a: 0}
+    - first:
+        name: _FillEmission
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
+        name: _OutlineColor
+      second: {r: 1, g: 0.8482759, b: 0, a: 1}
