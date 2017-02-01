@@ -327,6 +327,10 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: -123.726006
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
   m_IsPrefabParent: 0
@@ -7850,7 +7854,7 @@ MeshCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Convex: 1
-  m_InflateMesh: 0
+  m_InflateMesh: 1
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
 --- !u!54 &1549261464
@@ -7985,7 +7989,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.38000023, y: 0.2600001, z: 0.010003685}
+  m_Size: {x: 0.38000023, y: 0.2600001, z: 0.1}
   m_Center: {x: 0.000000007450581, y: 0, z: 0}
 --- !u!54 &1569919098
 Rigidbody:
