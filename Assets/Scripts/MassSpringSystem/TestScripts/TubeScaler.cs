@@ -17,6 +17,9 @@ public class TubeScaler : MonoBehaviour {
     [SerializeField]
     Vector3 expandedScale = new Vector3(2, 2, 1);
 
+    [SerializeField]
+    bool doItNow = false;
+
     private Transform[] tubeSegments;
     private bool isInitialized;
 
@@ -37,14 +40,14 @@ public class TubeScaler : MonoBehaviour {
     //test stuff only
     void Start()
     {
-        tubeSegments = new Transform[10];
-        for(int i = 0; i < 10; i++)
-        {
-            GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            go.transform.position = new Vector3(0,0,i*1);
-            tubeSegments[i] = go.transform;
-        }
-        isInitialized = true;
+        //tubeSegments = new Transform[10];
+        //for(int i = 0; i < 10; i++)
+        //{
+        //    GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        //    go.transform.position = new Vector3(0,0,i*1);
+        //    tubeSegments[i] = go.transform;
+        //}
+        //isInitialized = true;
     }
 
 
@@ -53,8 +56,11 @@ public class TubeScaler : MonoBehaviour {
 	void Update () {
         if (isInitialized)
         {
-            isInitialized = false;
-            StartCoroutine(TweenScheduler());
+            if (doItNow)
+            {
+                doItNow = false;
+                StartCoroutine(TweenScheduler());
+            }
         }
 	}
 
@@ -80,6 +86,7 @@ public class TubeScaler : MonoBehaviour {
             InititializeTween(i);
             yield return new WaitForSeconds(0.05f);
         }
+
     }
 
 
