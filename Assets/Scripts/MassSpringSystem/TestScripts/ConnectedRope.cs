@@ -34,6 +34,7 @@ public class ConnectedRope : MonoBehaviour {
     private Tube tube;
 
     private TubeMeshUpdater tubeMeshUpdater;
+    private TubeScaler tubeScaler;
 
     private bool isInitialized = false;
     private bool usesMeshFilter = true;
@@ -52,8 +53,11 @@ public class ConnectedRope : MonoBehaviour {
         collisonObjects = new List<Transform>();
 
         tubeGenerator = GetComponent<TubeGenerator>();
+        Tube tube = tubeGenerator.GenerateTube();
+        tubeScaler = GetComponent<TubeScaler>();
+        tubeScaler.TubeSegments = tube.Bones;
         tubeMeshUpdater = GetComponent<TubeMeshUpdater>();
-        tubeMeshUpdater.Tube = tubeGenerator.GenerateTube();
+        tubeMeshUpdater.Tube = tube;
         
         gravitationForce = gameObject.AddComponent<Gravitation>();
         Setup();

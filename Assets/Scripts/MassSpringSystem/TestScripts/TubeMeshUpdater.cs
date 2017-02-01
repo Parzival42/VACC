@@ -50,7 +50,7 @@ public class TubeMeshUpdater : MonoBehaviour {
         {
             for(int i = 0; i < bones.Length; i++)
             {
-                bones[i].position = pointmassPositions[i].Position;
+               bones[bones.Length-i-1].position = pointmassPositions[i].Position;
             }
         }
 	}

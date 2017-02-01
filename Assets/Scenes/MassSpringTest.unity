@@ -1237,7 +1237,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1702291654}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 01fc2438d645970419831a77ea211f93, type: 3}
   m_Name: 
@@ -1245,7 +1245,8 @@ MonoBehaviour:
   expandEaseType: 14
   shrinkEaseType: 15
   originalScale: {x: 1, y: 1, z: 1}
-  expandedScale: {x: 2, y: 2, z: 1}
+  expandedScale: {x: 2, y: 1, z: 2}
+  doItNow: 0
 --- !u!114 &1702291658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1257,11 +1258,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2086f24d368b4774ab8e3ca01d0adcdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outerRadius: 0.5
+  outerRadius: 0.99
   innerCapRadius: 0.5
   radialSegments: 12
   tubeLength: 2.5
-  tubeSegments: 14
+  tubeSegments: 29
   generateNow: 0
 --- !u!137 &1702291659
 SkinnedMeshRenderer:
