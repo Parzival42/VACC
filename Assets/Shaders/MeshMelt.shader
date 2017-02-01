@@ -2,7 +2,7 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
-		_NormalTex ("Normal Map", 2D) = "white" {}
+		_NormalTex ("Normal Map", 2D) = "bump" {}
 		_NormalStrength("Normal Strength", Float) = 0.5
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_Metallic ("Metallic", Range(0,1)) = 0.0
@@ -19,7 +19,7 @@
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		LOD 200
-		
+
 		CGPROGRAM
 		#pragma surface surf Standard fullforwardshadows vertex:disp addshadow tessellate:tessDistance nolightmap
 		#pragma target 4.6
@@ -113,13 +113,11 @@
 			float4 newTangent = v1 - vert;
 			float4 newBitangent = v2 - vert;
 
-			v.normal = cross( newTangent, newBitangent );
-
+			v.normal = cross( normalize(newTangent), normalize(newBitangent));
 			v.vertex = vert;
 		}
 
 		void surf (Input IN, inout SurfaceOutputStandard o) {
-
 			float3 normal = UnpackNormal(tex2D(_NormalTex, IN.uv_MainTex)) * _NormalStrength;
 			o.Normal = normal;
 
