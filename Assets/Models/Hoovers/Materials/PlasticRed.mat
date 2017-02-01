@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: PlasticRed
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: 632b5567dc847dc4b9ca76a2b10f10fd, type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 1
   m_CustomRenderQueue: -1
@@ -46,6 +46,12 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - first:
+        name: _GlossinessTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
         name: _MainTex
       second:
         m_Texture: {fileID: 0}
@@ -53,6 +59,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     - first:
         name: _MetallicGlossMap
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _MetallicTex
+      second:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - first:
+        name: _NormalTex
       second:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -83,6 +101,9 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _EmissionStrength
+      second: 0
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
@@ -91,6 +112,15 @@ Material:
     - first:
         name: _GlossyReflections
       second: 1
+    - first:
+        name: _IsHighlighted
+      second: 0
+    - first:
+        name: _LineSpace
+      second: 4
+    - first:
+        name: _LineStrength
+      second: 200
     - first:
         name: _Metallic
       second: 0
@@ -123,5 +153,11 @@ Material:
         name: _Color
       second: {r: 0.8308824, g: 0.326527, b: 0.2932526, a: 1}
     - first:
+        name: _Emission
+      second: {r: 1, g: 0, b: 0, a: 1}
+    - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _Highlight
+      second: {r: 0, g: 0.17241383, b: 1, a: 1}

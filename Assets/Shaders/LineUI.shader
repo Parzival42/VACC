@@ -2,12 +2,13 @@
 	Properties {
 		_Color ("Color", Color) = (1,1,1,1)
 		_Emission ("Emission Color", Color) = (1,1,1,1)
+		_EmissionStrength ("Emission Strength", Float) = 0
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 		_Glossiness ("Smoothness", Range(0,1)) = 0.5
 		_GlossinessTex ("Smoothness Tex", 2D) = "white" {}
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 		_MetallicTex ("Metallic Tex", 2D) = "white" {}
-		_NormalTex ("Normal Tex", 2D) = "white" {}
+		_NormalTex ("Normal Tex", 2D) = "bump" {}
 
 		_Highlight ("Highlight Color", Color) = (1,1,1,1)
 		[Toggle] _IsHighlighted("Is Highlighted", Float) = 0
@@ -17,7 +18,7 @@
 	SubShader {
 		Tags { "RenderType"="Opaque" }
 		LOD 200
-		
+
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
 		#pragma surface surf Standard fullforwardshadows
@@ -41,6 +42,7 @@
 		fixed4 _Color;
 		fixed4 _Emission;
 		fixed4 _Highlight;
+		half _EmissionStrength;
 		half _IsHighlighted;
 		half _LineStrength;
 		half _LineSpace;
@@ -53,7 +55,7 @@
 			o.Metallic = tex2D (_MetallicTex, IN.uv_MainTex) * _Metallic;
 			o.Smoothness = tex2D (_GlossinessTex, IN.uv_MainTex) * _Glossiness;
 			o.Alpha = c.a;
-			o.Emission = _Emission.rgb;
+			o.Emission = _Emission.rgb * _EmissionStrength;
 
 			o.Normal = UnpackNormal(tex2D(_NormalTex, IN.uv_MainTex));
 
