@@ -101,6 +101,9 @@ Material:
         name: _DstBlend
       second: 0
     - first:
+        name: _EmissionStrength
+      second: 0
+    - first:
         name: _GlossMapScale
       second: 1
     - first:
@@ -112,6 +115,9 @@ Material:
     - first:
         name: _IsHighlighted
       second: 0
+    - first:
+        name: _LineColorMultiplier
+      second: 3
     - first:
         name: _LineSpace
       second: 4
@@ -157,7 +163,7 @@ Material:
       second: {r: 0, g: 0, b: 0, a: 1}
     - first:
         name: _Highlight
-      second: {r: 0, g: 0.08965492, b: 1, a: 1}
+      second: {r: 1, g: 1, b: 0, a: 1}
     - first:
         name: _HighlightColor
       second: {r: 0, g: 0.37931037, b: 1, a: 1}

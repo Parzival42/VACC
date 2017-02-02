@@ -11,6 +11,7 @@
 		_NormalTex ("Normal Tex", 2D) = "bump" {}
 
 		_Highlight ("Highlight Color", Color) = (1,1,1,1)
+		_LineColorMultiplier ("Highlight Color Multiplier", Float) = 1.0
 		[Toggle] _IsHighlighted("Is Highlighted", Float) = 0
 		_LineStrength ("Line Strength", Float) = 200
 		_LineSpace ("Line Space", Float) = 4
@@ -42,6 +43,7 @@
 		fixed4 _Color;
 		fixed4 _Emission;
 		fixed4 _Highlight;
+		half _LineColorMultiplier;
 		half _EmissionStrength;
 		half _IsHighlighted;
 		half _LineStrength;
@@ -64,7 +66,7 @@
 
 			if(_IsHighlighted){
 				if(fmod(floor(_LineStrength * (uv.x + uv.y + _Time.x)), _LineSpace) == 0)
-					o.Albedo *= _Highlight.rgb;
+					o.Albedo = _Highlight.rgb * _LineColorMultiplier;
 			}
 		}
 		ENDCG
