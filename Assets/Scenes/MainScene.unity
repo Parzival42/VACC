@@ -188,6 +188,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &10883158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 10883154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &11931125 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 50caf4aa445f8144dbcd6b44dff38299, type: 3}
@@ -219,6 +232,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.44663733, y: 0.61985785, z: 0.84574187}
   m_Center: {x: 0.009739146, y: -0.15500155, z: -0.111350976}
+--- !u!114 &11931128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 11931125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!4 &11931130 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 50caf4aa445f8144dbcd6b44dff38299, type: 3}
@@ -272,6 +298,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &14644022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 14644017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: bouncy
 --- !u!1001 &22029066
 Prefab:
   m_ObjectHideFlags: 0
@@ -545,6 +584,19 @@ Rigidbody:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 50caf4aa445f8144dbcd6b44dff38299, type: 3}
   m_PrefabInternal: {fileID: 1239646254}
+--- !u!114 &43105270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 43105266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1 &74775912
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,6 +610,7 @@ GameObject:
   - component: {fileID: 74775918}
   - component: {fileID: 74775917}
   - component: {fileID: 74775916}
+  - component: {fileID: 74775919}
   m_Layer: 11
   m_Name: PictureCharger
   m_TagString: Stage2
@@ -656,6 +709,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 25.4, y: 25.4, z: 1.1882573}
   m_Center: {x: 0, y: 0, z: 0.59412867}
+--- !u!114 &74775919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 74775912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1001 &82946008
 Prefab:
   m_ObjectHideFlags: 0
@@ -990,6 +1056,7 @@ GameObject:
   - component: {fileID: 124542688}
   - component: {fileID: 124542691}
   - component: {fileID: 124542692}
+  - component: {fileID: 124542693}
   m_Layer: 11
   m_Name: PictureFatman
   m_TagString: Stage2
@@ -1077,6 +1144,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 25.400007, y: 25.40001, z: 1.1882619}
   m_Center: {x: 0.000000054018397, y: 0.000000048692637, z: 0.5941287}
+--- !u!114 &124542693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124542687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1001 &133338267
 Prefab:
   m_ObjectHideFlags: 0
@@ -1320,6 +1400,24 @@ Prefab:
     - {fileID: 9500000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &205812746 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1358207908120840, guid: 18810720a7c4f044daa3bd3400775038,
+    type: 2}
+  m_PrefabInternal: {fileID: 186836946}
+--- !u!114 &205812748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 205812746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1001 &217468010
 Prefab:
   m_ObjectHideFlags: 0
@@ -1537,6 +1635,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &231007592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 231007588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &251810933
 Prefab:
   m_ObjectHideFlags: 0
@@ -1869,6 +1980,24 @@ ReflectionProbe:
   m_UseOcclusionCulling: 1
   m_Importance: 1
   m_CustomBakedTexture: {fileID: 0}
+--- !u!1 &316415410 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1241202548860750, guid: 18810720a7c4f044daa3bd3400775038,
+    type: 2}
+  m_PrefabInternal: {fileID: 186836946}
+--- !u!114 &316415412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 316415410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1 &327383988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,6 +2096,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &339041180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 339041176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &344842376 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: f7b66b889cd2866439443710824bd876, type: 3}
@@ -2000,6 +2142,19 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: f7b66b889cd2866439443710824bd876, type: 3}
+--- !u!114 &344842379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 344842376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1001 &357310204
 Prefab:
   m_ObjectHideFlags: 0
@@ -2384,6 +2539,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &375296243
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 375296240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!4 &381340132 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4388088506645690, guid: 1216fc126083ca647ae3b712ec79136b,
@@ -2640,6 +2808,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &405074085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 405074081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &415463041
 Prefab:
   m_ObjectHideFlags: 0
@@ -2766,6 +2947,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &418378706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 418378702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &431118622
 Prefab:
   m_ObjectHideFlags: 0
@@ -2855,6 +3049,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &438087610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 438087606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &458579748
 Prefab:
   m_ObjectHideFlags: 0
@@ -3023,6 +3230,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &472374089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 472374085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &489410344
 Prefab:
   m_ObjectHideFlags: 0
@@ -3101,6 +3321,23 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &494177716 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 293956ce70015d24eb47e9e0b6af9dd3, type: 3}
+  m_PrefabInternal: {fileID: 374792779}
+--- !u!114 &494177717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 494177716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: bouncy
 --- !u!1 &500051748 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1719819848193518, guid: 32fe56971d71942418cf7ffd2f1bc230,
@@ -3118,6 +3355,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 45.6, y: 17.6, z: 27.8}
   m_Center: {x: 31.6, y: 0.42906517, z: 107.13}
+--- !u!114 &500051750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 500051748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: bouncy
 --- !u!54 &500051754
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3176,6 +3426,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.1908092, y: 1.2720002, z: 0.10000002}
   m_Center: {x: 0.009294212, y: 0.56400007, z: -0.00000009685756}
+--- !u!114 &504280627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 504280624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: bouncy
 --- !u!1001 &511016685
 Prefab:
   m_ObjectHideFlags: 0
@@ -3444,6 +3707,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.55, y: 0.25, z: 0.35000002}
   m_Center: {x: 0, y: 0.12500003, z: -0.000000022351742}
+--- !u!114 &539613600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 539613597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: cushion
 --- !u!1001 &541897631
 Prefab:
   m_ObjectHideFlags: 0
@@ -3545,6 +3821,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &541897636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541897633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!65 &541897638
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3588,6 +3877,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &642348343
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 642348341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: cushion
 --- !u!64 &642348345
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -3637,6 +3939,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &650407524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 650407520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &650713937
 GameObject:
   m_ObjectHideFlags: 0
@@ -3758,6 +4073,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &674819597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 674819593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &677345305
 GameObject:
   m_ObjectHideFlags: 0
@@ -3895,6 +4223,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e82bdc35eaac39845a45745d5c3a8d52, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &698382939 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1414155033033524, guid: ee4b98c3525404b439517122f0b2e920,
+    type: 2}
+  m_PrefabInternal: {fileID: 2034194613}
+--- !u!114 &698382940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 698382939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: fjuture
 --- !u!1001 &707854172
 Prefab:
   m_ObjectHideFlags: 0
@@ -4021,6 +4367,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &741571093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 741571089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &749719711
 Prefab:
   m_ObjectHideFlags: 0
@@ -4126,6 +4485,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &750171306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 750171302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &776679519 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1155546456456308, guid: 7b214cba954ce2f4eb7b73c6587b8d96,
@@ -4239,6 +4611,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &809213737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 809213733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &811368699
 Prefab:
   m_ObjectHideFlags: 0
@@ -4660,6 +5045,24 @@ Prefab:
     - {fileID: 9500000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &856550034 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1914270808490636, guid: 18810720a7c4f044daa3bd3400775038,
+    type: 2}
+  m_PrefabInternal: {fileID: 186836946}
+--- !u!114 &856550036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 856550034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1 &863740045 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
@@ -4695,6 +5098,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &863740049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 863740045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &873614730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5039,6 +5455,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.091261886, y: 0.13443232, z: 0.09126189}
   m_Center: {x: 0.024490392, y: 0.032840848, z: -0.00000001490116}
+--- !u!114 &875358630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 875358627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!4 &875358632 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 7fe71614957fb0045bd47e8d5749d46d, type: 3}
@@ -5496,6 +5925,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &982574403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 982574399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &992202718
 GameObject:
   m_ObjectHideFlags: 0
@@ -5908,6 +6350,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.29821008, y: 0.2994877, z: 0.34916425}
   m_Center: {x: -0.0012803003, y: 0.000000007450585, z: 0.17458212}
+--- !u!114 &1033647122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1033647119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &1048826585 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 0c9f7a1d2d36ce54fae976ab21e18046, type: 3}
@@ -5924,6 +6379,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.31999996, y: 0.43813655, z: 0.1262772}
   m_Center: {x: 5.929057e-11, y: 0.20983706, z: -0.0013264348}
+--- !u!114 &1048826587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1048826585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!54 &1048826589
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5978,6 +6446,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1060653347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1060653343}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &1066961767 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 7ac11dd8112e80f49a31adb5442e34d6, type: 3}
@@ -6283,6 +6764,24 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7b214cba954ce2f4eb7b73c6587b8d96, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1106614331 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1771747214863002, guid: 18810720a7c4f044daa3bd3400775038,
+    type: 2}
+  m_PrefabInternal: {fileID: 186836946}
+--- !u!114 &1106614333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1106614331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1 &1114620949 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 50caf4aa445f8144dbcd6b44dff38299, type: 3}
@@ -6320,6 +6819,19 @@ MeshCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 50caf4aa445f8144dbcd6b44dff38299, type: 3}
   m_PrefabInternal: {fileID: 92861031}
+--- !u!114 &1114620953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1114620949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1 &1120182019
 GameObject:
   m_ObjectHideFlags: 0
@@ -6382,6 +6894,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.241, y: 0.76733685, z: 0.16235259}
   m_Center: {x: 0, y: 0.33333153, z: -0.020763587}
+--- !u!114 &1120451426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1120451423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1001 &1130963977
 Prefab:
   m_ObjectHideFlags: 0
@@ -6931,6 +7456,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1276379872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1276379868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &1284157120
 Prefab:
   m_ObjectHideFlags: 0
@@ -7028,6 +7566,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.55, y: 0.26087928, z: 0.35000002}
   m_Center: {x: 0, y: 0.13043967, z: -0.000000022351742}
+--- !u!114 &1284157125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1284157122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: cushion
 --- !u!43 &1288255791
 Mesh:
   m_ObjectHideFlags: 0
@@ -7270,6 +7821,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.049800012, y: 0.0218, z: 0.062200006}
   m_Center: {x: 0, y: 0.0109, z: 0}
+--- !u!114 &1320693578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1320693575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &1341057366
 GameObject:
   m_ObjectHideFlags: 0
@@ -7517,6 +8081,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.21452421, y: 0.05413558, z: 0.3094008}
   m_Center: {x: 0.00704455, y: 0, z: 0.1546497}
+--- !u!114 &1442495322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1442495318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &1457767441
 GameObject:
   m_ObjectHideFlags: 0
@@ -7717,6 +8294,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1219, y: 0.0097, z: 0.1166}
   m_Center: {x: -0.055049997, y: 0.00425, z: -0.0399}
+--- !u!114 &1471021531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1471021528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &1522016253 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
@@ -7752,6 +8342,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.21452421, y: 0.05413558, z: 0.3094008}
   m_Center: {x: 0.00704455, y: 0, z: 0.1546497}
+--- !u!114 &1522016257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1522016253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &1528517690
 Prefab:
   m_ObjectHideFlags: 0
@@ -7923,6 +8526,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5236302, y: 0.13499169, z: 0.5236302}
   m_Center: {x: -0.000000014901159, y: 0.000000067055225, z: -0.00000022351742}
+--- !u!114 &1530248549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1530248546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!4 &1530248551 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 9b6255b9f6713ee44917a1f0b577667b, type: 3}
@@ -7995,6 +8611,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1552227069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1552227065}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &1563080855
 GameObject:
   m_ObjectHideFlags: 0
@@ -8189,6 +8818,24 @@ Prefab:
     - {fileID: 9500000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1637679609 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1696332814461816, guid: 18810720a7c4f044daa3bd3400775038,
+    type: 2}
+  m_PrefabInternal: {fileID: 186836946}
+--- !u!114 &1637679611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1637679609}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1 &1638537583 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
@@ -8224,6 +8871,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1638537587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1638537583}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &1652698039 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
@@ -8259,6 +8919,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1652698043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1652698039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &1658138626
 GameObject:
   m_ObjectHideFlags: 0
@@ -8271,6 +8944,7 @@ GameObject:
   - component: {fileID: 1658138629}
   - component: {fileID: 1658138627}
   - component: {fileID: 1658138628}
+  - component: {fileID: 1658138632}
   m_Layer: 11
   m_Name: PictureBirdman
   m_TagString: Stage2
@@ -8358,6 +9032,19 @@ Transform:
   m_Father: {fileID: 272173709}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: -14.181001, y: 0, z: 0}
+--- !u!114 &1658138632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1658138626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1 &1676223201 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: f9cba721c4cfb3a439f21dcc85347301, type: 3}
@@ -8393,6 +9080,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1676223205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1676223201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: cushion
 --- !u!1 &1677288423
 GameObject:
   m_ObjectHideFlags: 0
@@ -8648,6 +9348,19 @@ Light:
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5760dccb838eb174fb93c3672be8129c, type: 3}
   m_PrefabInternal: {fileID: 1477567}
+--- !u!114 &1735086736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1735086735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!4 &1735086738 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5760dccb838eb174fb93c3672be8129c, type: 3}
@@ -8714,6 +9427,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1739648749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1739648745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &1755793827 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
@@ -8749,6 +9475,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1755793831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1755793827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &1766440627
 Prefab:
   m_ObjectHideFlags: 0
@@ -8811,6 +9550,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1052915240596390, guid: 86ef15c46650bfc4aaaf5a13c231cdc6,
     type: 2}
   m_PrefabInternal: {fileID: 1089584461}
+--- !u!114 &1775813399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1775813398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!64 &1775813402
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -9740,6 +10492,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.21452421, y: 0.05413558, z: 0.3094008}
   m_Center: {x: 0.00704455, y: 0, z: 0.1546497}
+--- !u!114 &2002041554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2002041550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1 &2012486422
 GameObject:
   m_ObjectHideFlags: 0
@@ -9904,6 +10669,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.28865635, y: 0.445621, z: 0.28865632}
   m_Center: {x: -0.000000022351742, y: 0.16816717, z: 0.00000023841858}
+--- !u!114 &2052034154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2052034151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!4 &2052034156 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 681d704e9333a2d44806ab11d51dbd07, type: 3}
@@ -9986,6 +10764,7 @@ GameObject:
   - component: {fileID: 2072045341}
   - component: {fileID: 2072045345}
   - component: {fileID: 2072045344}
+  - component: {fileID: 2072045346}
   m_Layer: 11
   m_Name: PictureTimeshifter
   m_TagString: Stage2
@@ -10072,6 +10851,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2072045346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2072045340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: wood
 --- !u!1001 &2072602123
 Prefab:
   m_ObjectHideFlags: 0

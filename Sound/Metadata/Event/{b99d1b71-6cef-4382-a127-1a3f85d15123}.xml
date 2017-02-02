@@ -151,7 +151,7 @@
     </object>
     <object class="GameParameter" id="{f2a62ee7-82e1-40bd-b4f1-fe00d43c47fd}">
         <property name="name">
-            <value>floor</value>
+            <value>bouncy</value>
         </property>
         <relationship name="automationCurves">
             <destination>{4b0b0a7b-fe9e-4a3b-9e7b-8e44a0bfe770}</destination>
@@ -302,7 +302,7 @@
             <value>-2</value>
         </property>
         <property name="name">
-            <value>FloorBounce</value>
+            <value>Bouncy</value>
         </property>
         <relationship name="effectChain">
             <destination>{bc84a668-bc77-4b8c-8b04-47fe5565d18e}</destination>

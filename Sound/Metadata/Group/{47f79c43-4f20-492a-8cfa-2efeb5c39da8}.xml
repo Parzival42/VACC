@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="MixerGroup" id="{47f79c43-4f20-492a-8cfa-2efeb5c39da8}">
+        <property name="name">
+            <value>Fjuture</value>
+        </property>
+        <relationship name="effectChain">
+            <destination>{780bcd51-c6a5-43da-94b7-f0f1564a73e3}</destination>
+        </relationship>
+        <relationship name="panner">
+            <destination>{7d2c20ce-701a-4a18-aacf-7c9351a2b8ad}</destination>
+        </relationship>
+        <relationship name="output">
+            <destination>{a79f44b1-ca1f-48aa-9648-7d9c54c5aca8}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusEffectChain" id="{780bcd51-c6a5-43da-94b7-f0f1564a73e3}">
+        <relationship name="effects">
+            <destination>{78011a6c-5c47-4489-b17c-139ce6ed5eaa}</destination>
+        </relationship>
+    </object>
+    <object class="MixerBusPanner" id="{7d2c20ce-701a-4a18-aacf-7c9351a2b8ad}"/>
+    <object class="MixerBusFader" id="{78011a6c-5c47-4489-b17c-139ce6ed5eaa}"/>
+</objects>
