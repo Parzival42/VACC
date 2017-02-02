@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{f91e85c3-c6b6-43b7-ba04-09db3ba97b7e}">
         <property name="assetPath">
-            <value>dyson/dyson_shutdown.wav</value>
+            <value>Dyson/dyson_shutdown.wav</value>
         </property>
         <property name="frequencyInKHz">
             <value>44.0999985</value>

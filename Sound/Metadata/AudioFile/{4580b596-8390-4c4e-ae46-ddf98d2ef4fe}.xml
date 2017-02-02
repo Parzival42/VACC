@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.08.00">
-    <object class="AudioFile" id="{684ba633-6dba-4c87-a065-2e56e76efcde}">
+    <object class="AudioFile" id="{4580b596-8390-4c4e-ae46-ddf98d2ef4fe}">
         <property name="assetPath">
-            <value>Dyson/dyson_startup.wav</value>
+            <value>Screams/scream_horror1.mp3</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
         </property>
         <property name="frequencyInKHz">
             <value>44.0999985</value>
         </property>
         <property name="channelCount">
-            <value>1</value>
+            <value>2</value>
         </property>
         <property name="length">
-            <value>0.66015873015873017</value>
+            <value>11.180408163265307</value>
         </property>
         <relationship name="masterAssetFolder">
             <destination>{1e942883-bb2c-49f5-8a59-465246405fd7}</destination>

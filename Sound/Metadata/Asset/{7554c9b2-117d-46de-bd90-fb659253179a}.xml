@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.01.08.00">
-    <object class="EncodableAsset" id="{c312506b-ca7c-4034-9790-936a4e88dbd9}">
+    <object class="EncodableAsset" id="{7554c9b2-117d-46de-bd90-fb659253179a}">
         <property name="assetPath">
-            <value>Dyson/</value>
+            <value>Interaction/</value>
         </property>
         <relationship name="masterAssetFolder">
             <destination>{1e942883-bb2c-49f5-8a59-465246405fd7}</destination>
