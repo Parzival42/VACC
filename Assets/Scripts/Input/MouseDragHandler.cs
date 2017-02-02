@@ -28,7 +28,9 @@ public class MouseDragHandler : SpringDragHandler
         Vector3 springDir = Vector3.Normalize(dragObject.transform.position - spring.connectedAnchor);
         springDir.y = 0;
         float direction = AngleDir(dragObject.transform.forward, springDir, dragObject.transform.up);
-        
+
+        RotateTowardsTarget();
+
         // Is the connected anchor in front of behind the dragObj?
         float springFwdDot = Vector3.Dot(dragObject.transform.forward, springDir);
 
@@ -69,14 +71,14 @@ public class MouseDragHandler : SpringDragHandler
             // Anchor on the left side -> Mouse is on the right in the front OR
             // Anchor on the left side -> Mouse is on the left in the back
             spring.anchor = new Vector3(-ANCHOR_OFFSET, 0, 0);
-            RotateBasedOnMousePosition(!IsFront(frontBackDirection));
+            //RotateBasedOnMousePosition(!IsFront(frontBackDirection));
         }
         else if (!IsLeft(leftRightDirection) && IsFront(frontBackDirection) || !IsLeft(leftRightDirection) && !IsFront(frontBackDirection))
         {
             // Anchor on the right side -> Mouse is on the left in the front OR
             // Anchor on the left side -> Mouse is on the left in the back
             spring.anchor = new Vector3(ANCHOR_OFFSET, 0, 0);
-            RotateBasedOnMousePosition(IsFront(frontBackDirection));
+            //RotateBasedOnMousePosition(IsFront(frontBackDirection));
         }
         else
             spring.anchor = Vector3.zero;
@@ -86,6 +88,20 @@ public class MouseDragHandler : SpringDragHandler
     {
         float inverter = invert ? -1f : 1f;
         rigidbody.MoveRotation(rigidbody.rotation * Quaternion.Euler(0, inverter * dragObject.rotationHelper * Time.deltaTime, 0));
+    }
+
+    private void RotateTowardsTarget()
+    {
+        Vector3 localTargetPosition = dragObject.transform.InverseTransformPoint(new Vector3(spring.connectedAnchor.x, 0f, spring.connectedAnchor.z));
+        //Debug.Log("Local Target: " + localTargetPosition);
+
+        // TODO: Fix this shit!
+        float angle = Mathf.Atan2(localTargetPosition.x, localTargetPosition.z) * Mathf.Rad2Deg;
+        //Debug.Log("<b>" + angle + "</b>");
+
+        Vector3 eulerVelocity = new Vector3(0f, angle, 0f);
+        Quaternion deltaRotation = Quaternion.Euler(eulerVelocity * Time.deltaTime * dragObject.rotationHelper);
+        rigidbody.MoveRotation(rigidbody.rotation * deltaRotation);
     }
 
     public override void OnSelected ()

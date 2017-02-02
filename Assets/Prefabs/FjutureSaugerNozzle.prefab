@@ -315,7 +315,7 @@ MonoBehaviour:
   groundOffset: 1
   minDamping: 5
   distanceForMinDamping: 2
-  rotationHelper: 80
+  rotationHelper: 10
 --- !u!114 &114037592195597574
 MonoBehaviour:
   m_ObjectHideFlags: 1
