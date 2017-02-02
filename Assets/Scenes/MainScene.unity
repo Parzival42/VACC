@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1695381627}
-  m_IndirectSpecularColor: {r: 0.29492217, g: 0.33602232, b: 0.35931486, a: 1}
+  m_IndirectSpecularColor: {r: 0.29492193, g: 0.33602235, b: 0.35931417, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -7648,6 +7648,36 @@ Prefab:
       propertyPath: focus.transform
       value: 
       objectReference: {fileID: 2109636359}
+    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+        type: 2}
+      propertyPath: focus.focusPlane
+      value: 6.526231
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+        type: 2}
+      propertyPath: focus.range
+      value: 5.5999513
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+        type: 2}
+      propertyPath: focus.nearPlane
+      value: 3.726255
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+        type: 2}
+      propertyPath: focus.farPlane
+      value: 9.326206
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+        type: 2}
+      propertyPath: focus.farBlurRadius
+      value: 12.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+        type: 2}
+      propertyPath: focus.nearBlurRadius
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
   m_IsPrefabParent: 0
