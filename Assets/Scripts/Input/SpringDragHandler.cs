@@ -9,7 +9,7 @@ public abstract class SpringDragHandler : InputDragHandler
     protected readonly SpringJoint spring;
     protected readonly Rigidbody rigidbody;
 
-    private float originalSpringStrength;
+    protected float originalSpringStrength;
 
     public SpringDragHandler(DragScript dragableObject, Collider triggerCollider, SpringJoint springJoint)
     {

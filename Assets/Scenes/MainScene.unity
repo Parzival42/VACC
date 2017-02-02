@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1695381627}
-  m_IndirectSpecularColor: {r: 0.29492217, g: 0.33602232, b: 0.35931486, a: 1}
+  m_IndirectSpecularColor: {r: 0.29492193, g: 0.33602235, b: 0.35931417, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -5830,22 +5830,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &1015151809 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1414155033033524, guid: ee4b98c3525404b439517122f0b2e920,
-    type: 2}
-  m_PrefabInternal: {fileID: 2034194613}
---- !u!114 &1015151819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1015151809}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 230312e127fb3ad40b7d8f47a5668fa7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1020081479 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4215942081076610, guid: 32fe56971d71942418cf7ffd2f1bc230,
@@ -9751,63 +9735,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 54172225959496184, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 114683677826369628, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: collisionRays
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 114683677826369628, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: checkAngle
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 114683677826369628, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: collisionMaxLength
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 23719254801903472, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: m_LightProbeUsage
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 23719254801903472, guid: ee4b98c3525404b439517122f0b2e920,
         type: 2}
       propertyPath: m_LightProbeVolumeOverride
       value: 
       objectReference: {fileID: 818516881}
-    - target: {fileID: 1414155033033524, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
-      propertyPath: m_TagString
-      value: Nozzle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1414155033033524, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1898109120708616, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 65420338529104224, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: m_Size.y
-      value: 1.36
-      objectReference: {fileID: 0}
-    - target: {fileID: 65420338529104224, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: m_Size.z
-      value: 0.13
-      objectReference: {fileID: 0}
-    - target: {fileID: 65420338529104224, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: m_Center.y
-      value: 0.67
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
   m_IsPrefabParent: 0

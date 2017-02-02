@@ -44,9 +44,10 @@ GameObject:
   - component: {fileID: 114037147759984642}
   - component: {fileID: 114683677826369628}
   - component: {fileID: 114686140811947430}
-  m_Layer: 0
+  - component: {fileID: 114037592195597574}
+  m_Layer: 9
   m_Name: FjutureSaugerNozzle
-  m_TagString: Untagged
+  m_TagString: Nozzle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +65,7 @@ GameObject:
   - component: {fileID: 64271367176750666}
   - component: {fileID: 54561191371242574}
   - component: {fileID: 59470827891404448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +105,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1414155033033524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.6, y: 0, z: 1.33}
+  m_LocalPosition: {x: -3.693, y: 0, z: 3.615}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4253879587554232}
@@ -153,7 +154,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
-  m_LightProbeUsage: 1
+  m_LightProbeUsage: 2
   m_ReflectionProbeUsage: 1
   m_Materials:
   - {fileID: 2100000, guid: 40eb09d34733431409d770d7a7c1346a, type: 2}
@@ -246,11 +247,11 @@ HingeJoint:
     targetVelocity: 0
     force: 0
     freeSpin: 0
-  m_UseLimits: 0
+  m_UseLimits: 1
   m_Limits:
-    min: 0
-    max: 0
-    bounciness: 0
+    min: -19.08
+    max: -1
+    bounciness: 0.3
     bounceMinVelocity: 0.2
     contactDistance: 0
   m_BreakForce: Infinity
@@ -281,8 +282,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.43135053, y: 0.082611084, z: 0.13367912}
-  m_Center: {x: 0, y: 0.0421729, z: -0.0014847443}
+  m_Size: {x: 0.43135053, y: 1.36, z: 0.13}
+  m_Center: {x: 0, y: 0.67, z: -0.0014847443}
 --- !u!95 &95221771446531992
 Animator:
   serializedVersion: 3
@@ -312,6 +313,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundOffset: 1
+  minDamping: 5
+  distanceForMinDamping: 2
+  rotationHelper: 80
+--- !u!114 &114037592195597574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414155033033524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 230312e127fb3ad40b7d8f47a5668fa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114683677826369628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -333,6 +348,9 @@ MonoBehaviour:
   suckingDistanceTerrain: 0.5
   suckingDistanceMeshes: 0.5
   currentStage: 0
+  collisionRays: 20
+  checkAngle: 180
+  collisionMaxLength: 0.4
 --- !u!114 &114686140811947430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -360,7 +378,7 @@ SpringJoint:
   m_ConnectedAnchor: {x: -2.62, y: 3.319, z: -0.203}
   serializedVersion: 2
   m_Spring: 10
-  m_Damper: 5
+  m_Damper: 20
   m_MinDistance: 0
   m_MaxDistance: 0.001
   m_Tolerance: 0.025

@@ -6,43 +6,86 @@
 public class MouseDragHandler : SpringDragHandler
 {
     #region Members
+    private readonly static float ANCHOR_OFFSET = 0.2f;
     private Vector3 worldScreenPoint = Vector3.zero;
     private Vector3 offset = Vector3.zero;
 
     private Vector3 lastHit = Vector3.zero;
-
-    private float originalSpringStrength;
+    private float originalSpringDamping;
     #endregion
 
     public MouseDragHandler(DragScript dragableObject, Collider triggerCollider, SpringJoint springJoint) 
         : base(dragableObject, triggerCollider, springJoint)
-    { }
+    {
+        this.originalSpringDamping = spring.damper;
+    }
 
     public override void OnDrag ()
     {
         spring.connectedAnchor = CalculateCollisionWorldPoint();
 
-        // is the connected anchor left or right of the dragObj?
+        // Is the connected anchor left or right of the dragObj?
         Vector3 springDir = Vector3.Normalize(dragObject.transform.position - spring.connectedAnchor);
         springDir.y = 0;
         float direction = AngleDir(dragObject.transform.forward, springDir, dragObject.transform.up);
-
-        // is the connected anchor in front of behind the dragObj?
+        
+        // Is the connected anchor in front of behind the dragObj?
         float springFwdDot = Vector3.Dot(dragObject.transform.forward, springDir);
 
-        // change anchor position based on angle and direction
-        if (direction == -1 && springFwdDot < 0 || direction == 1 && springFwdDot > 0)
-            spring.anchor = new Vector3(-0.2f, 0, 0);
-        else if (direction == 1 && springFwdDot < 0 || direction == -1 && springFwdDot > 0)
-            spring.anchor = new Vector3(0.2f, 0, 0);
-        else
-            spring.anchor = Vector3.zero;
+        // Calculate Base Anchor position
+        PlaceAnchor(direction, springFwdDot);
+
+        Vector3 anchorWorldPosition = dragObject.transform.TransformPoint(spring.anchor);
+
+        // For the connector anchor (mouse) use the y position of the base anchor to use the distance on the x/z plane
+        CalculateAndSetSpringStrength(Vector3.Distance(
+            new Vector3(spring.connectedAnchor.x, anchorWorldPosition.y, spring.connectedAnchor.z),
+            anchorWorldPosition));
 
         if (rigidbody.IsSleeping())
             rigidbody.WakeUp();
 
+#if UNITY_EDITOR
+        // Direction
+        Debug.DrawLine(dragObject.transform.position, dragObject.transform.position + (dragObject.transform.forward * springFwdDot).normalized * -0.5f, Color.yellow);
+        // Mouse Position
         Debug.DrawLine(spring.connectedAnchor, new Vector3(spring.connectedAnchor.x, 0, spring.connectedAnchor.z), Color.red);
-        Debug.DrawLine(spring.connectedAnchor, dragObject.transform.TransformPoint(spring.anchor), Color.blue);
+        // Connection between mouse and base anchor
+        Debug.DrawLine(spring.connectedAnchor, anchorWorldPosition, Color.blue);
+#endif
+    }
+
+    /// <summary>
+    /// Calculates the base anchor of the spring based on the side of the mouse (relative
+    /// to the transform position and if the mouse is in front or in the back of the transform.
+    /// </summary>
+    /// <param name="leftRightDirection">Specifies if the mouse is on the left or the right (relative to transform)</param>
+    /// <param name="frontBackDirection">Specifies if the mouse is in the front or in the back of the transform</param>
+    private void PlaceAnchor(float leftRightDirection, float frontBackDirection)
+    {
+        // Change anchor position based on angle and direction
+        if (IsLeft(leftRightDirection) && IsFront(frontBackDirection) || IsLeft(leftRightDirection) && !IsFront(frontBackDirection))
+        {
+            // Anchor on the left side -> Mouse is on the right in the front OR
+            // Anchor on the left side -> Mouse is on the left in the back
+            spring.anchor = new Vector3(-ANCHOR_OFFSET, 0, 0);
+            RotateBasedOnMousePosition(!IsFront(frontBackDirection));
+        }
+        else if (!IsLeft(leftRightDirection) && IsFront(frontBackDirection) || !IsLeft(leftRightDirection) && !IsFront(frontBackDirection))
+        {
+            // Anchor on the right side -> Mouse is on the left in the front OR
+            // Anchor on the left side -> Mouse is on the left in the back
+            spring.anchor = new Vector3(ANCHOR_OFFSET, 0, 0);
+            RotateBasedOnMousePosition(IsFront(frontBackDirection));
+        }
+        else
+            spring.anchor = Vector3.zero;
+    }
+
+    private void RotateBasedOnMousePosition(bool invert)
+    {
+        float inverter = invert ? -1f : 1f;
+        rigidbody.MoveRotation(rigidbody.rotation * Quaternion.Euler(0, inverter * dragObject.rotationHelper * Time.deltaTime, 0));
     }
 
     public override void OnSelected ()
@@ -54,6 +97,34 @@ public class MouseDragHandler : SpringDragHandler
     public override void OnDeselected()
     {
         DeactivateSpring();
+    }
+
+    /// <summary>
+    /// Direction == -1 -> Left
+    /// Direction == 1 -> Right
+    /// </summary>
+    private bool IsLeft(float direction)
+    {
+        return direction <= 0;
+    }
+
+    /// <summary>
+    /// Direction < 0 -> Front
+    /// Directoin > 0 -> Back
+    /// </summary>
+    private bool IsFront(float direction)
+    {
+        return direction < 0;
+    }
+
+    /// <summary>
+    /// Calculates and sets the damping value of the spring based on the distance between the 
+    /// base anchor point and the other anchor point which is placed by the mouse.
+    /// </summary>
+    private void CalculateAndSetSpringStrength(float anchorToMouseDistance)
+    {
+        float normalizedDistance = Mathf.InverseLerp(0f, dragObject.distanceForMinDamping, anchorToMouseDistance);
+        spring.damper = Mathf.Lerp(originalSpringDamping, dragObject.minDamping, normalizedDistance);
     }
 
     private Vector3 CalculateCollisionWorldPoint()
