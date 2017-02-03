@@ -18,7 +18,7 @@ public class MouseDragHandler : SpringDragHandler
     public MouseDragHandler(DragScript dragableObject, Collider triggerCollider, SpringJoint springJoint) 
         : base(dragableObject, triggerCollider, springJoint)
     {
-        this.originalSpringDamping = spring.damper;
+        originalSpringDamping = spring.damper;
     }
 
     public override void OnDrag ()
@@ -73,25 +73,20 @@ public class MouseDragHandler : SpringDragHandler
             // Anchor on the left side -> Mouse is on the right in the front OR
             // Anchor on the left side -> Mouse is on the left in the back
             spring.anchor = new Vector3(-ANCHOR_OFFSET, 0, 0);
-            //RotateBasedOnMousePosition(!IsFront(frontBackDirection));
         }
         else if (!IsLeft(leftRightDirection) && IsFront(frontBackDirection) || !IsLeft(leftRightDirection) && !IsFront(frontBackDirection))
         {
             // Anchor on the right side -> Mouse is on the left in the front OR
             // Anchor on the left side -> Mouse is on the left in the back
             spring.anchor = new Vector3(ANCHOR_OFFSET, 0, 0);
-            //RotateBasedOnMousePosition(IsFront(frontBackDirection));
         }
         else
             spring.anchor = Vector3.zero;
     }
 
-    private void RotateBasedOnMousePosition(bool invert)
-    {
-        float inverter = invert ? -1f : 1f;
-        rigidbody.MoveRotation(rigidbody.rotation * Quaternion.Euler(0, inverter * dragObject.rotationHelper * Time.deltaTime, 0));
-    }
-
+    /// <summary>
+    /// Rotates the drag object to the direction of the connected spring anchor (mouse position).
+    /// </summary>
     private void RotateTowardsTarget()
     {
         Vector3 localTargetPosition = dragObject.transform.InverseTransformPoint(new Vector3(spring.connectedAnchor.x, 0f, spring.connectedAnchor.z));

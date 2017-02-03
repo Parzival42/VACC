@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   groundOffset: 1
-  minDamping: 5
+  minDamping: 10
   distanceForMinDamping: 0.4
   rotationHelper: 5
 --- !u!114 &114037592195597574
