@@ -209,6 +209,7 @@ public class SuckingScript : MonoBehaviour
             warmBeer.drag = 0f;
             warmBeer.angularDrag = 0f;
             warmBeer.useGravity = false;
+            warmBeer.isKinematic = false;
             warmBeer.constraints = RigidbodyConstraints.None;
 
             Sucked suckedIn = obj.AddComponent<Sucked>();
