@@ -24,3 +24,6 @@ fmod.log
 fmod_editor.log
 Assets/FMODStudioCache.asset
 Assets/FMODStudioCache.asset.meta
+
+#Compute Shader stuff
+Assets/Materials/Util/TextureOffset.mat
