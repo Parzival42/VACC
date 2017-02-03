@@ -134,12 +134,22 @@ public class SuckingScript : MonoBehaviour
                 {
                     DeformType deformType = (DeformType)i+1;
                     OnTubeDeform(deformType);
+                    PlaySound();
                     ChangeToMeltMaterial(hitInfo.transform.gameObject);
                     hitInfo.transform.gameObject.SendMessage("IsGettingSuckedIn", currentStage, SendMessageOptions.DontRequireReceiver);
                 }
                 stage++;
             }
         }
+    }
+
+    private void PlaySound()
+    {
+        FMOD.Studio.EventInstance e = FMODUnity.RuntimeManager.CreateInstance("event:/Slurp");
+        e.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(e, gameObject.transform, GetComponent<Rigidbody>());
+        e.start();
+        e.release();
     }
 
     private bool CheckForCollision(out RaycastHit hit, int collisionLayer)

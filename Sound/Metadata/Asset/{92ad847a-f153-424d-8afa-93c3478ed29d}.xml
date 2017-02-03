@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="EncodableAsset" id="{92ad847a-f153-424d-8afa-93c3478ed29d}">
+        <property name="assetPath">
+            <value>Slurp/</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{1e942883-bb2c-49f5-8a59-465246405fd7}</destination>
+        </relationship>
+    </object>
+</objects>

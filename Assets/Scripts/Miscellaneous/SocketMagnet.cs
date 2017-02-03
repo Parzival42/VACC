@@ -106,7 +106,7 @@ public class SocketMagnet : MonoBehaviour {
     }
 
 
-    void PlaySound()
+    private void PlaySound()
     {
         FMOD.Studio.EventInstance e = FMODUnity.RuntimeManager.CreateInstance("event:/Jack");
         e.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
