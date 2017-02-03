@@ -11459,7 +11459,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68d634c041ba47443a87c96348b70133, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.088
+      value: 0.028
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68d634c041ba47443a87c96348b70133, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11501,6 +11501,14 @@ Prefab:
       propertyPath: m_Name
       value: NOSLatschn
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 68d634c041ba47443a87c96348b70133, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 68d634c041ba47443a87c96348b70133, type: 3}
+      propertyPath: m_LightProbeVolumeOverride
+      value: 
+      objectReference: {fileID: 818516881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 68d634c041ba47443a87c96348b70133, type: 3}
   m_IsPrefabParent: 0
