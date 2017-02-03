@@ -735,7 +735,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.691
+      value: 0.607
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -743,19 +743,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00000008146034
-      objectReference: {fileID: 0}
-    - target: {fileID: 400000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
-      propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
       propertyPath: m_RootOrder
@@ -780,6 +780,14 @@ Prefab:
     - target: {fileID: 100000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
       propertyPath: m_TagString
       value: Stage3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 189aa5eb90327004da16b1d83be74248, type: 2}
+    - target: {fileID: 400000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 180
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e594b0678968cd745bceb36dd7bdf47d, type: 3}
@@ -7713,8 +7721,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.241, y: 0.76733685, z: 0.16235259}
-  m_Center: {x: 0, y: 0.33333153, z: -0.020763587}
+  m_Size: {x: 48.858276, y: 30.21013, z: 6.3919535}
+  m_Center: {x: -0.000011444092, y: 15.105056, z: 0.0000010728836}
 --- !u!114 &1120451426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7728,6 +7736,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coll: event:/Collision
   collisionSound: wood
+--- !u!114 &1120451427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1120451423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 404230129163b6a44b3833c49ffb145c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movTexture: {fileID: 0}
 --- !u!1001 &1130963977
 Prefab:
   m_ObjectHideFlags: 0
