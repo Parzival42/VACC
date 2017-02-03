@@ -13,8 +13,26 @@ public class CollisionSound : MonoBehaviour
 
     void OnCollisionEnter()
     {
+        if (collEvent != null)
+        {
+            FMOD.Studio.PLAYBACK_STATE state;
+            collEvent.getPlaybackState(out state);
+
+            if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+            {
+                PlayOnce();
+            }
+        } else
+        {
+            PlayOnce();
+        }
+    }
+
+    void PlayOnce()
+    {
         collEvent = FMODUnity.RuntimeManager.CreateInstance(coll);
         collEvent.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(collEvent, gameObject.transform, GetComponent<Rigidbody>());
         collEvent.getParameter(collisionSound, out collParam);
         collParam.setValue(1f);
         collEvent.start();

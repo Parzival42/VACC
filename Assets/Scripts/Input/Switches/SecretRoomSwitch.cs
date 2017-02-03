@@ -14,6 +14,11 @@ public class SecretRoomSwitch : MonoBehaviour, Toggle {
 
     public void ToggleSwitch()
     {
+        FMOD.Studio.EventInstance e = FMODUnity.RuntimeManager.CreateInstance("event:/Switch");
+        e.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(e, gameObject.transform, GetComponent<Rigidbody>());
+        e.start();
+        e.release();
         OnSecretRoomOpenend();
     }
 
