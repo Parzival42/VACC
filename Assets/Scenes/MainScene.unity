@@ -539,6 +539,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coll: event:/Collision
   collisionSound: wood
+--- !u!1 &67066255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 67066256}
+  m_Layer: 0
+  m_Name: StoryScripts
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &67066256
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 67066255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.452426, y: -1.4324317, z: 6.4180384}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1148338601}
+  m_Father: {fileID: 0}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &74775912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4695,24 +4724,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e82bdc35eaac39845a45745d5c3a8d52, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &698382939 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1414155033033524, guid: ee4b98c3525404b439517122f0b2e920,
-    type: 2}
-  m_PrefabInternal: {fileID: 2034194613}
---- !u!114 &698382940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 698382939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coll: event:/Collision
-  collisionSound: fjuture
 --- !u!1001 &707854172
 Prefab:
   m_ObjectHideFlags: 0
@@ -5543,7 +5554,7 @@ GameObject:
   - component: {fileID: 856550038}
   - component: {fileID: 856550037}
   - component: {fileID: 856550036}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: wall_west
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7795,6 +7806,47 @@ Prefab:
     - {fileID: 9500000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &1148338600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1148338601}
+  - component: {fileID: 1148338602}
+  m_Layer: 0
+  m_Name: StartSoundLerp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1148338601
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148338600}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 67066256}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1148338602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1148338600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5186ba6888d5b184b898320dcc873db5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeInTime: 1
 --- !u!1 &1181801597
 GameObject:
   m_ObjectHideFlags: 0
@@ -9222,59 +9274,24 @@ Prefab:
       propertyPath: focus.transform
       value: 
       objectReference: {fileID: 2109636359}
-    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+    - target: {fileID: 114625227548523022, guid: 571b25f6a1b2ef548a80d212993ae6c2,
         type: 2}
-      propertyPath: focus.focusPlane
-      value: 6.526231
-      objectReference: {fileID: 0}
-    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+      propertyPath: firstLerpPoint
+      value: 
+      objectReference: {fileID: 2012486423}
+    - target: {fileID: 114625227548523022, guid: 571b25f6a1b2ef548a80d212993ae6c2,
         type: 2}
-      propertyPath: focus.range
-      value: 5.5999513
-      objectReference: {fileID: 0}
-    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+      propertyPath: secondLerpPoint
+      value: 
+      objectReference: {fileID: 1182771963}
+    - target: {fileID: 114625227548523022, guid: 571b25f6a1b2ef548a80d212993ae6c2,
         type: 2}
-      propertyPath: focus.nearPlane
-      value: 3.726255
-      objectReference: {fileID: 0}
-    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: focus.farPlane
-      value: 9.326206
-      objectReference: {fileID: 0}
-    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: focus.farBlurRadius
-      value: 12.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: focus.nearBlurRadius
-      value: 7
-      objectReference: {fileID: 0}
+      propertyPath: colliderTrigger
+      value: 
+      objectReference: {fileID: 1252719483}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1469644904 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1175849398826658, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1469644903}
---- !u!114 &1469644905
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1469644904}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa2b8cbe26b05034e99623bfade63189, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstLerpPoint: {fileID: 2012486423}
-  secondLerpPoint: {fileID: 1182771963}
-  tweenTime: 3
-  colliderTrigger: {fileID: 1252719483}
 --- !u!1 &1471021528 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1990238774649606, guid: 7bd51f986359ed9449b0a347dc3b83fc,
@@ -9927,7 +9944,7 @@ GameObject:
   - component: {fileID: 1637679613}
   - component: {fileID: 1637679612}
   - component: {fileID: 1637679611}
-  m_Layer: 15
+  m_Layer: 8
   m_Name: wall_north
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11841,10 +11858,6 @@ Prefab:
       propertyPath: m_LightProbeVolumeOverride
       value: 
       objectReference: {fileID: 818516881}
-    - target: {fileID: 4253879587554232, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0.0303
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
   m_IsPrefabParent: 0
