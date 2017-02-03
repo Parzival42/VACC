@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="AudioFile" id="{7db1915c-baa4-4d97-a581-9402b39ca731}">
+        <property name="assetPath">
+            <value>Interaction/metal (3).wav</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>1</value>
+        </property>
+        <property name="length">
+            <value>0.78956916099773244</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{1e942883-bb2c-49f5-8a59-465246405fd7}</destination>
+        </relationship>
+    </object>
+</objects>

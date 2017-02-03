@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &11931125 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 50caf4aa445f8144dbcd6b44dff38299, type: 3}
@@ -310,13 +310,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: bouncy
+  collisionSound: metal
 --- !u!1001 &22029066
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 681960837}
     m_Modifications:
     - target: {fileID: 400000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
       propertyPath: m_LocalPosition.x
@@ -348,11 +348,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.015900336
+      value: 0.01590034
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
       propertyPath: m_LocalScale.y
@@ -360,7 +360,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.017352657
+      value: 0.017352661
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -369,6 +369,10 @@ Prefab:
     - target: {fileID: 100000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
+      propertyPath: m_TagString
+      value: Stage1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
@@ -721,7 +725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!1001 &82946008
 Prefab:
   m_ObjectHideFlags: 0
@@ -1006,7 +1010,7 @@ Transform:
   - {fileID: 1041326225}
   - {fileID: 1368156117}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &120356507
 Prefab:
@@ -1211,7 +1215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!1001 &133338267
 Prefab:
   m_ObjectHideFlags: 0
@@ -1444,7 +1448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!65 &205812749
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1727,7 +1731,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1001 &251810933
 Prefab:
   m_ObjectHideFlags: 0
@@ -1856,7 +1860,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_Name
@@ -1997,7 +2001,7 @@ Transform:
   - {fileID: 1676223202}
   - {fileID: 1755793828}
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &299949918
 GameObject:
@@ -2243,7 +2247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!65 &316415413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2491,7 +2495,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9b6255b9f6713ee44917a1f0b577667b, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9b6255b9f6713ee44917a1f0b577667b, type: 3}
       propertyPath: m_Layer
@@ -2565,7 +2569,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_Layer
@@ -3067,7 +3071,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 499162, guid: e9a6501da28be2b4986e8ba47c2e017c, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e9a6501da28be2b4986e8ba47c2e017c, type: 2}
@@ -3119,7 +3123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1001 &415463041
 Prefab:
   m_ObjectHideFlags: 0
@@ -3258,7 +3262,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1001 &431118622
 Prefab:
   m_ObjectHideFlags: 0
@@ -3360,7 +3364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!43 &451145529
 Mesh:
   m_ObjectHideFlags: 0
@@ -3526,7 +3530,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 7ac11dd8112e80f49a31adb5442e34d6, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 7ac11dd8112e80f49a31adb5442e34d6, type: 3}
       propertyPath: m_Name
@@ -3593,7 +3597,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4546094009041260, guid: 7a048b93a32355243b38c0a0ac2a6bcc, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 64534888942999670, guid: 7a048b93a32355243b38c0a0ac2a6bcc,
         type: 2}
@@ -3669,7 +3673,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1001 &489410344
 Prefab:
   m_ObjectHideFlags: 0
@@ -3764,7 +3768,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: bouncy
+  collisionSound: metal
+--- !u!64 &494177718
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 494177716}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: 293956ce70015d24eb47e9e0b6af9dd3, type: 3}
 --- !u!1 &500051748 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1719819848193518, guid: 32fe56971d71942418cf7ffd2f1bc230,
@@ -3865,7 +3883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: bouncy
+  collisionSound: metal
 --- !u!1001 &511016685
 Prefab:
   m_ObjectHideFlags: 0
@@ -3903,7 +3921,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_Name
@@ -4016,7 +4034,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 3fc0aa1fc9b4cb445be604c4e3582dcb, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 3fc0aa1fc9b4cb445be604c4e3582dcb, type: 3}
       propertyPath: m_LightProbeUsage
@@ -4450,7 +4468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &650713937
 GameObject:
   m_ObjectHideFlags: 0
@@ -4617,7 +4635,7 @@ Transform:
   - {fileID: 2082462946}
   - {fileID: 650713938}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &681960836
 GameObject:
@@ -4644,6 +4662,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1549261468}
   - {fileID: 14644018}
   - {fileID: 466338668}
   - {fileID: 397553896}
@@ -4662,7 +4681,7 @@ Transform:
   - {fileID: 1426608359}
   - {fileID: 140322580}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &684845662
 Prefab:
@@ -4701,7 +4720,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: e82bdc35eaac39845a45745d5c3a8d52, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: e82bdc35eaac39845a45745d5c3a8d52, type: 3}
       propertyPath: m_LocalScale.x
@@ -4878,7 +4897,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1001 &749719711
 Prefab:
   m_ObjectHideFlags: 0
@@ -4916,7 +4935,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7fe71614957fb0045bd47e8d5749d46d, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 7fe71614957fb0045bd47e8d5749d46d, type: 3}
       propertyPath: m_Layer
@@ -4996,7 +5015,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &776679519 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1155546456456308, guid: 7b214cba954ce2f4eb7b73c6587b8d96,
@@ -5013,6 +5032,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230312e127fb3ad40b7d8f47a5668fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &776679529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 776679519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
 --- !u!1001 &804342877
 Prefab:
   m_ObjectHideFlags: 0
@@ -5590,7 +5622,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!65 &856550037
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5691,7 +5723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &873614730
 GameObject:
   m_ObjectHideFlags: 0
@@ -5937,7 +5969,7 @@ Transform:
   - {fileID: 541897632}
   - {fileID: 1735086738}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &875358626
 Prefab:
@@ -5976,7 +6008,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7fe71614957fb0045bd47e8d5749d46d, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 7fe71614957fb0045bd47e8d5749d46d, type: 3}
       propertyPath: m_Layer
@@ -6090,7 +6122,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a970fbc01f31e754dac4e6ab85a471d8, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: a970fbc01f31e754dac4e6ab85a471d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6139,7 +6171,7 @@ Transform:
   - {fileID: 818516882}
   - {fileID: 1728388934}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &914584352
 Prefab:
@@ -6393,7 +6425,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_Name
@@ -6489,7 +6521,7 @@ Transform:
   - {fileID: 1565073042}
   - {fileID: 652926795}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &976226806
 Prefab:
@@ -6528,7 +6560,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: beff61e8f3cd6d9458331b91473d62b3, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: beff61e8f3cd6d9458331b91473d62b3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6592,7 +6624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &992202718
 GameObject:
   m_ObjectHideFlags: 0
@@ -6711,7 +6743,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64302551e0d69ac4a8e9af2bd71187bd, type: 3}
       propertyPath: m_RootOrder
-      value: 13
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 64302551e0d69ac4a8e9af2bd71187bd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -6889,7 +6921,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_Name
@@ -7017,7 +7049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: metal
 --- !u!1 &1041326224
 GameObject:
   m_ObjectHideFlags: 0
@@ -7138,7 +7170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: metal
 --- !u!54 &1048826589
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7205,7 +7237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &1066961767 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 7ac11dd8112e80f49a31adb5442e34d6, type: 3}
@@ -7259,7 +7291,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4609813186690296, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4046605124383194, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
       propertyPath: m_LocalRotation.x
@@ -7323,7 +7355,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 293956ce70015d24eb47e9e0b6af9dd3, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 293956ce70015d24eb47e9e0b6af9dd3, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7478,7 +7510,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4851373978131544, guid: 7b214cba954ce2f4eb7b73c6587b8d96, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4851373978131544, guid: 7b214cba954ce2f4eb7b73c6587b8d96, type: 2}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -7557,7 +7589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!23 &1106614334
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7690,7 +7722,7 @@ Transform:
   - {fileID: 1182771963}
   - {fileID: 1252719480}
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120451423 stripped
 GameObject:
@@ -7735,7 +7767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!114 &1120451427
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8345,7 +8377,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1001 &1284157120
 Prefab:
   m_ObjectHideFlags: 0
@@ -8812,7 +8844,7 @@ Transform:
   - {fileID: 822296103}
   - {fileID: 914584353}
   m_Father: {fileID: 0}
-  m_RootOrder: 21
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1342224576
 GameObject:
@@ -8923,7 +8955,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9b6255b9f6713ee44917a1f0b577667b, type: 3}
       propertyPath: m_RootOrder
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9b6255b9f6713ee44917a1f0b577667b, type: 3}
       propertyPath: m_Layer
@@ -9206,7 +9238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &1457767441
 GameObject:
   m_ObjectHideFlags: 0
@@ -9467,7 +9499,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1001 &1528517690
 Prefab:
   m_ObjectHideFlags: 0
@@ -9579,7 +9611,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9b6255b9f6713ee44917a1f0b577667b, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 9b6255b9f6713ee44917a1f0b577667b, type: 3}
       propertyPath: m_Layer
@@ -9755,6 +9787,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1549261465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1549261462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: plastic
+--- !u!4 &1549261468 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
+  m_PrefabInternal: {fileID: 22029066}
 --- !u!1 &1552227065 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
@@ -9802,7 +9851,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &1563080855
 GameObject:
   m_ObjectHideFlags: 0
@@ -10043,7 +10092,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!65 &1637679612
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10144,7 +10193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &1648556750
 GameObject:
   m_ObjectHideFlags: 0
@@ -10278,7 +10327,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &1658138626
 GameObject:
   m_ObjectHideFlags: 0
@@ -10391,7 +10440,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!1 &1676223201 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: f9cba721c4cfb3a439f21dcc85347301, type: 3}
@@ -10707,7 +10756,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: metal
 --- !u!4 &1735086738 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 5760dccb838eb174fb93c3672be8129c, type: 3}
@@ -10786,7 +10835,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &1755793827 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
@@ -10834,7 +10883,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1001 &1766440627
 Prefab:
   m_ObjectHideFlags: 0
@@ -10872,7 +10921,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4292200041575554, guid: 2846f9ca61dea9e4c8a90118bd3502fc, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 114834795778080982, guid: 2846f9ca61dea9e4c8a90118bd3502fc,
         type: 2}
@@ -11487,7 +11536,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
       propertyPath: m_Name
@@ -11549,7 +11598,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 68d634c041ba47443a87c96348b70133, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 68d634c041ba47443a87c96348b70133, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -11607,7 +11656,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4546094009041260, guid: 7a048b93a32355243b38c0a0ac2a6bcc, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114107764307413214, guid: 7a048b93a32355243b38c0a0ac2a6bcc,
         type: 2}
@@ -11851,7 +11900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: plastic
+  collisionSound: solid
 --- !u!1 &2012486422
 GameObject:
   m_ObjectHideFlags: 0
@@ -11917,7 +11966,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4423650903449828, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 23719254801903472, guid: ee4b98c3525404b439517122f0b2e920,
         type: 2}
@@ -11964,7 +12013,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 681d704e9333a2d44806ab11d51dbd07, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 681d704e9333a2d44806ab11d51dbd07, type: 3}
       propertyPath: m_Layer
@@ -12097,7 +12146,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2068270274
 GameObject:
@@ -12282,7 +12331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coll: event:/Collision
-  collisionSound: wood
+  collisionSound: solid
 --- !u!1001 &2072602123
 Prefab:
   m_ObjectHideFlags: 0
@@ -12320,7 +12369,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_Name
@@ -12936,7 +12985,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_RootOrder
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: b6d786a906c449547957d714affdcca0, type: 3}
       propertyPath: m_Layer

@@ -8,7 +8,7 @@ public class CollisionSound : MonoBehaviour
     public string coll = "event:/Collision";
     FMOD.Studio.EventInstance collEvent;
 
-    public string collisionSound = "wood";
+    public string collisionSound = "fjuture";
     FMOD.Studio.ParameterInstance collParam;
 
     void OnCollisionEnter()

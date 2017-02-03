@@ -39,6 +39,7 @@ public class SocketMagnet : MonoBehaviour {
 
     private void ConnectionLost()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Jack");
         isConnected = false;
     }
 
@@ -64,6 +65,7 @@ public class SocketMagnet : MonoBehaviour {
 
     private void ConnectConnector(ConnectorDragAndDrop connector)
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Jack");
         Transform connectorTransform = connector.transform;
         Vector3 stuff = transform.eulerAngles - connectorTransform.eulerAngles;
         Vector3 rot = connectorTransform.transform.eulerAngles;
