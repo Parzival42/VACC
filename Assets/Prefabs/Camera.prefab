@@ -26,12 +26,12 @@ GameObject:
   - component: {fileID: 114874697031480536}
   - component: {fileID: 114772421104261710}
   - component: {fileID: 114502255528479306}
-  - component: {fileID: 114491023365992062}
   - component: {fileID: 114269263196649430}
   - component: {fileID: 114057965669117614}
   - component: {fileID: 114138806313892398}
   - component: {fileID: 114665016224494586}
   - component: {fileID: 114625227548523022}
+  - component: {fileID: 114424024190356942}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -305,7 +305,7 @@ MonoBehaviour:
     highQuality: 0
     antiFlicker: 1
   m_Shader: {fileID: 4800000, guid: e45d4f28262b04d10a075856ab5fdb5e, type: 3}
---- !u!114 &114491023365992062
+--- !u!114 &114424024190356942
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -313,43 +313,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1175849398826658}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdc35e0180670ab4e8d2f9439137791f, type: 3}
+  m_Script: {fileID: 11500000, guid: 301eca71255100647bb9bad1d5641921, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SMAA:
-    settings:
-      debugPass: 0
-      quality: 4
-      edgeDetectionMethod: 2
-    quality:
-      diagonalDetection: 1
-      cornerDetection: 1
-      threshold: 0.06
-      depthThreshold: 0.01
-      maxSearchSteps: 8
-      maxDiagonalSearchSteps: 8
-      cornerRounding: 20
-      localContrastAdaptationFactor: 5
-    predication:
-      enabled: 0
-      threshold: 0.01
-      scale: 2
-      strength: 0.4
-    temporal:
-      enabled: 0
-      fuzzSize: 1.51
-  m_FXAA:
-    preset:
-      qualitySettings:
-        subpixelAliasingRemovalAmount: 1
-        edgeDetectionThreshold: 0.063
-        minimumRequiredLuminance: 0.0312
-      consoleSettings:
-        subpixelSpreadAmount: 0.5
-        edgeSharpnessAmount: 2
-        edgeDetectionThreshold: 0.125
-        minimumRequiredLuminance: 0.04
-  m_Method: 0
+  shader: {fileID: 4800000, guid: 3d417cf48fde7da46b5a79811115e87f, type: 3}
 --- !u!114 &114502255528479306
 MonoBehaviour:
   m_ObjectHideFlags: 1
