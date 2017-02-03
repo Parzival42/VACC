@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DeformType
+{
+    Dust,
+    Layer1,
+    Layer2,
+    Layer3
+}
+
+
+
 public class TubeScaler : MonoBehaviour {
 
     #region variables
@@ -15,11 +25,13 @@ public class TubeScaler : MonoBehaviour {
     Vector3 originalScale = new Vector3(1, 1, 1);
 
     [SerializeField]
-    Vector3 expandedScale = new Vector3(2, 2, 1);
+    Vector3 expandedScale = new Vector3(1.7f, 1.7f, 1.7f);
 
     [SerializeField]
     bool doItNow = false;
 
+    
+    private bool deformAllowed = true;
     private Transform[] tubeSegments;
     private bool isInitialized;
 
@@ -40,14 +52,7 @@ public class TubeScaler : MonoBehaviour {
     //test stuff only
     void Start()
     {
-        //tubeSegments = new Transform[10];
-        //for(int i = 0; i < 10; i++)
-        //{
-        //    GameObject go = GameObject.CreatePrimitive(PrimitiveType.Cube);
-        //    go.transform.position = new Vector3(0,0,i*1);
-        //    tubeSegments[i] = go.transform;
-        //}
-        //isInitialized = true;
+        SuckingScript.TubeDeform += DeformTube;
     }
 
 
@@ -66,11 +71,11 @@ public class TubeScaler : MonoBehaviour {
 
     private void InititializeTween(int index)
     {
-        LeanTween.value(gameObject, originalScale, expandedScale, 0.2f).setOnUpdate((Vector3 currentScale) =>
+        LeanTween.value(gameObject, originalScale, expandedScale, 0.15f).setOnUpdate((Vector3 currentScale) =>
         {
             tubeSegments[index].localScale = currentScale;
         }).setEase(expandEaseType).setOnComplete(() => {
-            LeanTween.value(gameObject, expandedScale, originalScale, 0.4f).setOnUpdate((Vector3 currentScale) =>
+            LeanTween.value(gameObject, expandedScale, originalScale, 0.3f).setOnUpdate((Vector3 currentScale) =>
             {
                 tubeSegments[index].localScale = currentScale;
             }).setEase(shrinkEaseType);
@@ -79,9 +84,23 @@ public class TubeScaler : MonoBehaviour {
 
 
 
+    private void DeformTube(DeformType deformType)
+    {
+        if (deformAllowed)
+        {
+            deformAllowed = false;
+            StartCoroutine(Cooldown(0.4f));
+            if(DeformType.Dust == deformType)
+            {
+                StartCoroutine(deformType.ToString(), 0.25f);
+            }
+        }
+    }
+
+
     private IEnumerator TweenScheduler()
     {
-        for(int i = 0; i < tubeSegments.Length; i++)
+        for(int i = 1; i < tubeSegments.Length-1; i++)
         {
             InititializeTween(i);
             yield return new WaitForSeconds(0.05f);
@@ -89,6 +108,29 @@ public class TubeScaler : MonoBehaviour {
 
     }
 
+
+    private IEnumerator Cooldown(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        deformAllowed = true;
+    }
+
+
+
+    #region deformation variants
+
+    private IEnumerator Dust(float duration)
+    {
+        for (int i = 1; i < tubeSegments.Length - 1; i++)
+        {
+            InititializeTween(i);
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+
+
+    #endregion
 
     #endregion
 }

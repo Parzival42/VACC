@@ -7,7 +7,7 @@ public abstract class Constraint {
     protected PointMass pointA;
     protected PointMass pointB;
     protected float restingDistance;
-    protected float springFactor;
+    protected float springFactor = 1.5f;
     #endregion
 
     #region methods
@@ -23,6 +23,11 @@ public abstract class Constraint {
     public void DrawConnection()
     {
         Gizmos.DrawLine(pointA.Position, pointB.Position);
+    }
+
+    public void SetSpringFactor(float springFactor)
+    {
+        this.springFactor = springFactor;
     }
     #endregion
 }

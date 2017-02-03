@@ -1,8 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
+public delegate void TubeDeformHandler(DeformType deformType);
+
 public class SuckingScript : MonoBehaviour
 {
+
+    public static event TubeDeformHandler TubeDeform;
+
     [Header("Input")]
     [Tooltip("At this point the dust sucking happens")]
     [SerializeField]
@@ -109,6 +114,8 @@ public class SuckingScript : MonoBehaviour
             paintReceiver.BrushStrength = brushStrength;
             paintReceiver.BrushFalloff = brushFalloff;
             paintReceiver.SetUVHitPosition(hitInfo.textureCoord);
+
+            OnTubeDeform(DeformType.Dust);
         }
     }
 
@@ -125,6 +132,8 @@ public class SuckingScript : MonoBehaviour
             {
                 if (hitInfo.transform.gameObject.tag == stage.ToString())
                 {
+                    DeformType deformType = (DeformType)i+1;
+                    OnTubeDeform(deformType);
                     ChangeToMeltMaterial(hitInfo.transform.gameObject);
                     hitInfo.transform.gameObject.SendMessage("IsGettingSuckedIn", currentStage, SendMessageOptions.DontRequireReceiver);
                 }
@@ -188,6 +197,17 @@ public class SuckingScript : MonoBehaviour
             suckedIn.suckDirection = transform;
         }
     }
+
+
+    private void OnTubeDeform(DeformType deformType)
+    {
+        if (TubeDeform != null)
+        {
+            TubeDeform(deformType);
+        }
+    }
+
+
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()

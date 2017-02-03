@@ -18,7 +18,20 @@ public class ConnectedRope : MonoBehaviour {
     private int connections = 25;
 
     [SerializeField]
-    private float forceValue = 10.0f;
+    [Range(0.05f, 2.0f)]
+    private float widthScale = 1.0f;
+
+    [SerializeField]
+    [Range(0.05f, 2.0f)]
+    private float lengthScale = 1.0f;
+
+    [SerializeField]
+    [Range(1.15f, 35.0f)]
+    private float springStrength = 1.5f;
+
+
+    [SerializeField]
+    private bool endConstraintUsed = false;
 
     private List<PointMass> middleMassPointLine;
     private List<PointMass> upperMassPointLine;
@@ -44,6 +57,8 @@ public class ConnectedRope : MonoBehaviour {
     #region methods
     // Use this for initialization
     void Start () {
+        
+
         middleMassPointLine = new List<PointMass>();
         upperMassPointLine = new List<PointMass>();
         lowerMassPointLine = new List<PointMass>();
@@ -53,11 +68,13 @@ public class ConnectedRope : MonoBehaviour {
         collisonObjects = new List<Transform>();
 
         tubeGenerator = GetComponent<TubeGenerator>();
-        Tube tube = tubeGenerator.GenerateTube();
+        Tube tube = tubeGenerator.GenerateTube(widthScale);
         tubeScaler = GetComponent<TubeScaler>();
         tubeScaler.TubeSegments = tube.Bones;
         tubeMeshUpdater = GetComponent<TubeMeshUpdater>();
-        tubeMeshUpdater.Tube = tube;
+        tubeMeshUpdater.Initialize(tube, startConnection);
+
+        transform.rotation = startConnection.rotation;
         
         gravitationForce = gameObject.AddComponent<Gravitation>();
         Setup();
@@ -77,7 +94,7 @@ public class ConnectedRope : MonoBehaviour {
         {
             GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             go.transform.position = middleMassPointLine[i].Position;
-            go.transform.localScale = new Vector3(2, 2, 2);
+            go.transform.localScale = new Vector3(widthScale*3, widthScale*3, widthScale*3);
             go.GetComponent<Renderer>().enabled = false;
             go.layer = LayerMask.NameToLayer("MassSpring");
             Rigidbody rigid = go.AddComponent<Rigidbody>();
@@ -120,101 +137,52 @@ public class ConnectedRope : MonoBehaviour {
 
         for (int i = 2; i < middleMassPointLine.Count; i++)
         {
-            //connect outer lines to the inner one
-            //middleMassPointLine[i].ConnectTo(upperMassPointLine[i-2]);
-            //middleMassPointLine[i].ConnectTo(lowerMassPointLine[i-2]);
-            //middleMassPointLine[i].ConnectTo(leftMassPointLine[i-2]);
-            //middleMassPointLine[i].ConnectTo(rightMassPointLine[i-2]);
-            if (i > 2)
-            {
-                //constraintList.Add(new RegularConstraint(middleMassPointLine[i], upperMassPointLine[i - 3]));
-                //constraintList.Add(new RegularConstraint(middleMassPointLine[i], lowerMassPointLine[i - 3]));
-                //constraintList.Add(new RegularConstraint(middleMassPointLine[i], leftMassPointLine[i - 3]));
-                //constraintList.Add(new RegularConstraint(middleMassPointLine[i], rightMassPointLine[i - 3]));
-            }
-           
-
-
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], upperMassPointLine[i - 2]));
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], lowerMassPointLine[i - 2]));
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], leftMassPointLine[i - 2]));
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], rightMassPointLine[i - 2]));
 
-
-
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], upperMassPointLine[i - 1]));
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], lowerMassPointLine[i - 1]));
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], leftMassPointLine[i - 1]));
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], rightMassPointLine[i - 1]));
-
-            //upperMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-            //lowerMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-            //leftMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-            //rightMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-
-
-            //middleMassPointLine[i].ConnectTo(upperMassPointLine[i - 2]);
-            //middleMassPointLine[i].ConnectTo(lowerMassPointLine[i - 2]);
-            //middleMassPointLine[i].ConnectTo(leftMassPointLine[i - 2]);
-            //middleMassPointLine[i].ConnectTo(rightMassPointLine[i - 2]);
-
-            //middleMassPointLine[i].ConnectTo(upperMassPointLine[i - 1]);
-            //middleMassPointLine[i].ConnectTo(lowerMassPointLine[i - 1]);
-            //middleMassPointLine[i].ConnectTo(leftMassPointLine[i - 1]);
-            //middleMassPointLine[i].ConnectTo(rightMassPointLine[i - 1]);
-
-
-            //upperMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-            //lowerMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-            //leftMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-            //rightMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-
-            //middleMassPointLine[i].ConnectTo(upperMassPointLine[i - 2]);
-            //middleMassPointLine[i].ConnectTo(lowerMassPointLine[i - 2]);
-            //middleMassPointLine[i].ConnectTo(leftMassPointLine[i - 2]);
-            //middleMassPointLine[i].ConnectTo(rightMassPointLine[i - 2]);
-
-            //middleMassPointLine[i].ConnectTo(upperMassPointLine[i - 1]);
-            //middleMassPointLine[i].ConnectTo(lowerMassPointLine[i - 1]);
-            //middleMassPointLine[i].ConnectTo(leftMassPointLine[i - 1]);
-            //middleMassPointLine[i].ConnectTo(rightMassPointLine[i - 1]);
-
-
-            //upperMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-            //lowerMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-            //leftMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-            //rightMassPointLine[i - 2].ConnectTo(middleMassPointLine[i]);
-
-            ////connect neighbour lines
-            //upperMassPointLine[i].ConnectTo(leftMassPointLine[i]);
-            //upperMassPointLine[i].ConnectTo(rightMassPointLine[i]);
-            //lowerMassPointLine[i].ConnectTo(leftMassPointLine[i]);
-            //lowerMassPointLine[i].ConnectTo(rightMassPointLine[i]);
         }
     }
 
 
     private void GenerateMassPointLines()
     {
-        Vector3 center = new Vector3(0,0,0);
         for (int i = 0; i < connections; i++)
         {
-            if (i == 0 || i == connections + 1)
+            if (i == 0 || (i == connections - 1 && endConstraintUsed))
             {
-                middleMassPointLine.Add(new FixedPointMass(Vector3.zero));
-                upperMassPointLine.Add(new FixedPointMass(Vector3.up));
-                lowerMassPointLine.Add(new FixedPointMass(Vector3.down));
-                leftMassPointLine.Add(new FixedPointMass(Vector3.left));
-                rightMassPointLine.Add(new FixedPointMass(Vector3.right));
+                //middleMassPointLine.Add(new FixedPointMass(startConnection.position + startConnection.up * i * lengthScale));
+                //upperMassPointLine.Add(new FixedPointMass(startConnection.position + startConnection.forward * widthScale + startConnection.up * i * lengthScale));
+                //lowerMassPointLine.Add(new FixedPointMass(startConnection.position - startConnection.forward * widthScale + startConnection.up * i * lengthScale));
+                //leftMassPointLine.Add(new FixedPointMass(startConnection.position - startConnection.right * widthScale + startConnection.up * i * lengthScale));
+                //rightMassPointLine.Add(new FixedPointMass(startConnection.position + startConnection.right * widthScale + startConnection.up * i * lengthScale));
+
+                middleMassPointLine.Add(new FixedPointMass(startConnection.position + startConnection.forward * i * lengthScale));
+                upperMassPointLine.Add(new FixedPointMass(startConnection.position + startConnection.up * widthScale + startConnection.forward * i * lengthScale));
+                lowerMassPointLine.Add(new FixedPointMass(startConnection.position - startConnection.up * widthScale + startConnection.forward * i * lengthScale));
+                leftMassPointLine.Add(new FixedPointMass(startConnection.position - startConnection.right * widthScale + startConnection.forward * i * lengthScale));
+                rightMassPointLine.Add(new FixedPointMass(startConnection.position + startConnection.right * widthScale + startConnection.forward * i * lengthScale));
             }
             else
             {
-                middleMassPointLine.Add(new RegularPointMass(Vector3.forward * (i+1)));
-                upperMassPointLine.Add(new RegularPointMass(Vector3.up + Vector3.forward * (i+1)));
+                //middleMassPointLine.Add(new RegularPointMass(startConnection.position + startConnection.up * i * lengthScale));
+                //upperMassPointLine.Add(new RegularPointMass(startConnection.position + startConnection.forward * widthScale + startConnection.up * i * lengthScale));
 
-                lowerMassPointLine.Add(new RegularPointMass(Vector3.down + Vector3.forward * (i+1)));
-                leftMassPointLine.Add(new RegularPointMass(Vector3.left + Vector3.forward * (i+1)));
-                rightMassPointLine.Add(new RegularPointMass(Vector3.right + Vector3.forward * (i+1)));
+                //lowerMassPointLine.Add(new RegularPointMass(startConnection.position - startConnection.forward * widthScale + startConnection.up * i * lengthScale));
+                //leftMassPointLine.Add(new RegularPointMass(startConnection.position - startConnection.right * widthScale + startConnection.up * i * lengthScale));
+                //rightMassPointLine.Add(new RegularPointMass(startConnection.position + startConnection.right * widthScale + startConnection.up * i * lengthScale));
+
+                middleMassPointLine.Add(new RegularPointMass(startConnection.position + startConnection.forward * i * lengthScale));
+                upperMassPointLine.Add(new RegularPointMass(startConnection.position + startConnection.up * widthScale + startConnection.forward * i * lengthScale));
+
+                lowerMassPointLine.Add(new RegularPointMass(startConnection.position - startConnection.up * widthScale + startConnection.forward * i * lengthScale));
+                leftMassPointLine.Add(new RegularPointMass(startConnection.position - startConnection.right * widthScale + startConnection.forward * i * lengthScale));
+                rightMassPointLine.Add(new RegularPointMass(startConnection.position + startConnection.right * widthScale + startConnection.forward * i * lengthScale));
             }
         }
 
@@ -223,15 +191,37 @@ public class ConnectedRope : MonoBehaviour {
     void FixedUpdate()
     {
         middleMassPointLine[0].Position = startConnection.position;
-        upperMassPointLine[0].Position = startConnection.position +Vector3.up;
-        lowerMassPointLine[0].Position = startConnection.position + Vector3.down;
-        leftMassPointLine[0].Position = startConnection.position + Vector3.left;
-        rightMassPointLine[0].Position = startConnection.position + Vector3.right;
+
+        //upperMassPointLine[0].Position = startConnection.position + startConnection.forward * widthScale;
+        //lowerMassPointLine[0].Position = startConnection.position - startConnection.forward * widthScale;
+        //leftMassPointLine[0].Position = startConnection.position - startConnection.right * widthScale;
+        //rightMassPointLine[0].Position = startConnection.position + startConnection.right * widthScale;
+
+        upperMassPointLine[0].Position = startConnection.position + startConnection.up * widthScale;
+        lowerMassPointLine[0].Position = startConnection.position - startConnection.up * widthScale;
+        leftMassPointLine[0].Position = startConnection.position - startConnection.right * widthScale;
+        rightMassPointLine[0].Position = startConnection.position + startConnection.right * widthScale;
 
 
-        middleMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position;
+        //middleMassPointLine[middleMassPointLine.Count-1].Position = endConnection.position;
 
-        for (int i = 0; i < collisonObjects.Count; i++)
+        //upperMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position + startConnection.forward * widthScale;
+        //lowerMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position - startConnection.forward * widthScale;
+        //leftMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position - startConnection.right * widthScale;
+        //rightMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position + startConnection.right * widthScale;
+
+        if (endConstraintUsed)
+        {
+            upperMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position + startConnection.up * widthScale;
+            lowerMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position - startConnection.up * widthScale;
+            leftMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position - startConnection.right * widthScale;
+            rightMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position + startConnection.right * widthScale;
+            middleMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position;
+        }
+
+
+
+        for (int i = 1; i < collisonObjects.Count; i++)
         {
             middleMassPointLine[i].Position = collisonObjects[i].position;
         }
@@ -246,8 +236,11 @@ public class ConnectedRope : MonoBehaviour {
             rightMassPointLine[j].ApplyForce(((Force)gravitationForce).getForce());
         }
 
+       
+
+       
         //update constraints
-        for (int j = 0; j < 5; j++)
+        for (int j = 0; j < 25; j++)
         {
             for (int i = 0; i < constraintList.Count; i++)
             {
@@ -256,7 +249,18 @@ public class ConnectedRope : MonoBehaviour {
         }
 
         //update pointmasses
-        for (int i = 0; i < middleMassPointLine.Count; i++)
+        //for (int i = 0; i < middleMassPointLine.Count; i++)
+        //{
+        //    middleMassPointLine[i].Simulate(Time.deltaTime);
+        //    upperMassPointLine[i].Simulate(Time.deltaTime);
+        //    lowerMassPointLine[i].Simulate(Time.deltaTime);
+        //    leftMassPointLine[i].Simulate(Time.deltaTime);
+        //    rightMassPointLine[i].Simulate(Time.deltaTime);
+        //}
+
+        //middleMassPointLine[middleMassPointLine.Count - 1].Position = endConnection.position;
+
+        for (int i = middleMassPointLine.Count-1; i >= 0; i--)
         {
             middleMassPointLine[i].Simulate(Time.deltaTime);
             upperMassPointLine[i].Simulate(Time.deltaTime);
@@ -275,11 +279,24 @@ public class ConnectedRope : MonoBehaviour {
         //update mesh
         tubeMeshUpdater.UpdateMesh(middleMassPointLine);
 
-        //force to fjuture sucker
 
-        Vector3 distance = middleMassPointLine[middleMassPointLine.Count - 1].Position - endConnection.position;
-        Rigidbody rigid = endConnection.GetComponent<Rigidbody>();
-        rigid.AddForce(distance);
+        //force to fjuture sucker
+        //endConnection.position = new Vector3( middleMassPointLine[middleMassPointLine.Count - 1].Position.x , endConnection.position.y, middleMassPointLine[middleMassPointLine.Count - 1].Position.z) ;
+        //endConnection.LookAt(startConnection);
+        //Vector3 distance = middleMassPointLine[middleMassPointLine.Count - 1].Position - endConnection.position;
+        //Rigidbody rigid = endConnection.GetComponent<Rigidbody>();
+        //rigid.AddForce(distance);
+
+
+        ChangeConstraintSpringFactor(springStrength);
+    }
+
+    void ChangeConstraintSpringFactor(float springFactor)
+    {
+        for(int i = 0; i < constraintList.Count; i++)
+        {
+            constraintList[i].SetSpringFactor(springFactor);
+        }
     }
 
 

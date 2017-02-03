@@ -18,7 +18,7 @@ public class RegularConstraint : Constraint
         direction = pointB.Position - pointA.Position;
         distance = Vector3.Magnitude(direction);
         
-        factor = (distance - restingDistance) / (distance*1.5f);
+        factor = (distance - restingDistance) / (distance*springFactor);
         offset = direction * factor;
 
         pointA.CorrectPosition(offset);

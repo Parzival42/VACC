@@ -66,18 +66,18 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
             generateNow = !generateNow;
             if (doneGenerating)
             {
-                GenerateTube();
+                GenerateTube(outerRadius);
             }
         }
 	}
 
-    public Tube GenerateTube()
+    public Tube GenerateTube(float widthScale)
     {
         doneGenerating = false;
         Mesh mesh = new Mesh();
 
         //vertices
-        vertex2DArray = GenerateCircleVertices(radialSegments, outerRadius, tubeSegments, tubeLength);
+        vertex2DArray = GenerateCircleVertices(radialSegments, widthScale, tubeSegments, tubeLength);
         vertices = Copy2DArrayTo1D(vertex2DArray);
 
         //normals
@@ -101,10 +101,10 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
         bindPoses = CalculateBindPoses(bones);
 
         //colliders
-        boxColliders = SetBoxColliders(bones);
+        //boxColliders = SetBoxColliders(bones);
 
         //rigidbodies
-        rigidBodies = SetRigidBodies(bones);
+        //rigidBodies = SetRigidBodies(bones);
 
         mesh.vertices = vertices;
         mesh.normals = normals;
@@ -207,29 +207,52 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
         return weights;
     }
 
+    //private Vector3[,] GenerateCircleVertices(int radialSegments, float outerRadius, int tubeSegments, float tubeLength)
+    //{
+    //    Vector3 currentVertex = new Vector3();
+    //    Vector3[,] vertices = new Vector3[radialSegments+1, 1+tubeSegments];
+    //    float PI2 = 2 * Mathf.PI;
+    //    float fracturedLength = tubeLength / (float)tubeSegments;
+
+    //    for(int i = 0; i <= radialSegments; i++)
+    //    {
+    //        float r1 = (float)(i%radialSegments) / radialSegments * PI2;
+    //        float cos = Mathf.Cos(r1);
+    //        float sin = Mathf.Sin(r1);
+
+    //        currentVertex = new Vector3(cos * outerRadius, 0, sin * outerRadius);
+    //        for (int j = 0; j < vertices.GetLength(1); j++)
+    //        {
+    //            currentVertex.y = j * fracturedLength;
+    //            vertices[i, j] = currentVertex;
+    //        }
+    //    }
+    //    return vertices;
+    //}
+
+
     private Vector3[,] GenerateCircleVertices(int radialSegments, float outerRadius, int tubeSegments, float tubeLength)
     {
         Vector3 currentVertex = new Vector3();
-        Vector3[,] vertices = new Vector3[radialSegments+1, 1+tubeSegments];
+        Vector3[,] vertices = new Vector3[radialSegments + 1, 1 + tubeSegments];
         float PI2 = 2 * Mathf.PI;
         float fracturedLength = tubeLength / (float)tubeSegments;
 
-        for(int i = 0; i <= radialSegments; i++)
+        for (int i = 0; i <= radialSegments; i++)
         {
-            float r1 = (float)(i%radialSegments) / radialSegments * PI2;
+            float r1 = (float)(i % radialSegments) / radialSegments * PI2;
             float cos = Mathf.Cos(r1);
             float sin = Mathf.Sin(r1);
 
-            currentVertex = new Vector3(cos * outerRadius, 0, sin * outerRadius);
+            currentVertex = new Vector3(cos * outerRadius, sin * outerRadius, 0);
             for (int j = 0; j < vertices.GetLength(1); j++)
             {
-                currentVertex.y = j * fracturedLength;
+                currentVertex.z = j * fracturedLength;
                 vertices[i, j] = currentVertex;
             }
         }
         return vertices;
     }
-
 
     private Vector3[,] CalculateNormals(Vector3[,] vertices)
     {
@@ -329,6 +352,11 @@ public class TubeGenerator : MonoBehaviour, TubeGeneratorInterface {
             }
         }
         return array1D;
+    }
+
+    public Tube GenerateTube()
+    {
+        return GenerateTube(outerRadius);
     }
 
 
