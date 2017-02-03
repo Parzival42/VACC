@@ -45,14 +45,14 @@ public class NozzleFollow : MonoBehaviour {
         }else if(distance < minDistance)
         {
             Rigidbody rigid = GetComponent<Rigidbody>();
-            rigid.velocity = rigid.velocity * 0.9f;
+            rigid.velocity = rigid.velocity * brakeForce;
 
         }
-        else if(distance > maxDistance)
+        else if(distance > maxDistance-0.5f)
         {
             //transform.LookAt(lookAtVector);
             Rigidbody rigid = GetComponent<Rigidbody>();
-            rigid.AddForce(direction.normalized * forceMultiplier);
+            rigid.AddForce(direction * forceMultiplier / maxDistance);
 
           
         }

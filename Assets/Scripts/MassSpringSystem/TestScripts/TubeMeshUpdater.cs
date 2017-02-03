@@ -55,10 +55,11 @@ public class TubeMeshUpdater : MonoBehaviour {
             for(int i = 0; i < bones.Length; i++)
             {
                 bones[i].position = pointmassPositions[i].Position;
-                //bones[i].rotation = startConnection.rotation;
-                // bones[i].rotation = AdjustRotation(i, pointmassPositions);
+                bones[i].rotation = startConnection.rotation;
+                //bones[i].rotation = AdjustRotation(i, pointmassPositions);
                 //
                 AdjustRotation(i, pointmassPositions, bones);
+                bones[i].Rotate(startConnection.up, 180);
             }
         }
 	}
@@ -69,10 +70,11 @@ public class TubeMeshUpdater : MonoBehaviour {
         {
             Vector3 prev = pointMassPositions[index - 1].Position;
             Vector3 next = pointMassPositions[index + 1].Position;
-            Vector3 direction =  prev - next;
+            Vector3 direction = next - prev;
             direction.Normalize();
 
             bones[index].rotation = Quaternion.LookRotation(direction);
+            //bones[index].Rotate(Vector3.up, 180);
         }
     }
 

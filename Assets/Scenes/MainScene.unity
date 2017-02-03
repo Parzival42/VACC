@@ -7162,6 +7162,31 @@ Prefab:
       propertyPath: m_LightProbeVolumeOverride
       value: 
       objectReference: {fileID: 818516881}
+    - target: {fileID: 54965163810330574, guid: dbde72ae8ee119643ac551cf8ada47c4,
+        type: 2}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296061286657020, guid: dbde72ae8ee119643ac551cf8ada47c4,
+        type: 2}
+      propertyPath: forceMultiplier
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 54965163810330574, guid: dbde72ae8ee119643ac551cf8ada47c4,
+        type: 2}
+      propertyPath: m_Drag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 54965163810330574, guid: dbde72ae8ee119643ac551cf8ada47c4,
+        type: 2}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296061286657020, guid: dbde72ae8ee119643ac551cf8ada47c4,
+        type: 2}
+      propertyPath: maxDistance
+      value: 2.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
   m_IsPrefabParent: 0

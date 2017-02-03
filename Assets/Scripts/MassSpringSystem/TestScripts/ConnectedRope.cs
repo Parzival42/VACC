@@ -87,14 +87,14 @@ public class ConnectedRope : MonoBehaviour {
         ConnectMassPoints();
         GenerateCollisionObjects();
     }
-
     private void GenerateCollisionObjects()
     {
-        for(int i = 0; i < connections; i++)
+        collisonObjects = new List<Transform>();
+        for (int i = 0; i < connections; i++)
         {
             GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             go.transform.position = middleMassPointLine[i].Position;
-            go.transform.localScale = new Vector3(widthScale*3, widthScale*3, widthScale*3);
+            go.transform.localScale = new Vector3(widthScale * 3, widthScale * 3, widthScale * 3);
             go.GetComponent<Renderer>().enabled = false;
             go.layer = LayerMask.NameToLayer("MassSpring");
             Rigidbody rigid = go.AddComponent<Rigidbody>();
@@ -102,6 +102,7 @@ public class ConnectedRope : MonoBehaviour {
             collisonObjects.Add(go.transform);
         }
     }
+
 
     private void ConnectMassPoints()
     {

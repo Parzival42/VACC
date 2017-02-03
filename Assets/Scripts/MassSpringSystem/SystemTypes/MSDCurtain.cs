@@ -6,15 +6,11 @@ public class MSDCurtain : BaseMSDSystem
 {
     #region variables
     private List<Vector3> newVertexPositions;
-    private ClothRip clothRipScript;
     #endregion
 
     #region methods
     public override void SupplyMesh()
     {
-        clothRipScript = gameObject.AddComponent<ClothRip>();
-        clothRipScript.MSDCurtain = this;
-
         mesh = meshFilter.mesh;
         int[] indices = mesh.GetIndices(0);
         List<int> newIndices = new List<int>();

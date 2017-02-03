@@ -42,13 +42,7 @@ public abstract class BaseMSDSystem : MonoBehaviour {
         }
 
 
-        gravitationForce = gameObject.AddComponent<Gravitation>();
-         
-        SupplyMesh();
-        GeneratePointMasses();
-        GenerateConstraints();
-
-        isInitialized = true;
+       
     }
 
 
