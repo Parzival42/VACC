@@ -12,6 +12,7 @@ public class MouseDragHandler : SpringDragHandler
 
     private Vector3 lastHit = Vector3.zero;
     private float originalSpringDamping;
+    private bool isDragged = false;
     #endregion
 
     public MouseDragHandler(DragScript dragableObject, Collider triggerCollider, SpringJoint springJoint) 
@@ -22,6 +23,7 @@ public class MouseDragHandler : SpringDragHandler
 
     public override void OnDrag ()
     {
+        isDragged = true;
         spring.connectedAnchor = CalculateCollisionWorldPoint();
 
         // Is the connected anchor left or right of the dragObj?
@@ -93,11 +95,8 @@ public class MouseDragHandler : SpringDragHandler
     private void RotateTowardsTarget()
     {
         Vector3 localTargetPosition = dragObject.transform.InverseTransformPoint(new Vector3(spring.connectedAnchor.x, 0f, spring.connectedAnchor.z));
-        //Debug.Log("Local Target: " + localTargetPosition);
 
-        // TODO: Fix this shit!
         float angle = Mathf.Atan2(localTargetPosition.x, localTargetPosition.z) * Mathf.Rad2Deg;
-        //Debug.Log("<b>" + angle + "</b>");
 
         Vector3 eulerVelocity = new Vector3(0f, angle, 0f);
         Quaternion deltaRotation = Quaternion.Euler(eulerVelocity * Time.deltaTime * dragObject.rotationHelper);
@@ -112,6 +111,7 @@ public class MouseDragHandler : SpringDragHandler
 
     public override void OnDeselected()
     {
+        isDragged = false;
         DeactivateSpring();
     }
 
@@ -148,7 +148,8 @@ public class MouseDragHandler : SpringDragHandler
         Vector3 hit;
 
         // Case 1: Object was hit -> Don't add additional height to collision point.
-        if (cam.CollisionFor(cam.ScreenPointToRayFor(Input.mousePosition), 9, out hit))
+        // Skip this if object is currently dragged
+        if (!isDragged && cam.CollisionFor(cam.ScreenPointToRayFor(Input.mousePosition), 9, out hit))
             return hit;
 
         // Case 2: Ground was hit -> Add additional height to contact point.

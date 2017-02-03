@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 114683677826369628}
   - component: {fileID: 114686140811947430}
   - component: {fileID: 114037592195597574}
+  - component: {fileID: 114388060355829904}
   m_Layer: 9
   m_Name: FjutureSaugerNozzle
   m_TagString: Nozzle
@@ -65,7 +66,7 @@ GameObject:
   - component: {fileID: 64271367176750666}
   - component: {fileID: 54561191371242574}
   - component: {fileID: 59470827891404448}
-  m_Layer: 9
+  m_Layer: 0
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -314,8 +315,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundOffset: 1
   minDamping: 5
-  distanceForMinDamping: 2
-  rotationHelper: 10
+  distanceForMinDamping: 0.4
+  rotationHelper: 5
 --- !u!114 &114037592195597574
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -327,6 +328,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230312e127fb3ad40b7d8f47a5668fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114388060355829904
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1414155033033524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: fjuture
 --- !u!114 &114683677826369628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -365,7 +379,6 @@ MonoBehaviour:
   isRunning: 0
   startup: event:/DysonStartup
   shutdown: event:/DysonShutdown
-  idle: event:/DysonIdle
 --- !u!145 &145432472693008242
 SpringJoint:
   m_ObjectHideFlags: 1
