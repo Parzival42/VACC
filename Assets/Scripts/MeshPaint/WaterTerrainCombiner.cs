@@ -11,7 +11,7 @@ public class WaterTerrainCombiner : ComputeMeshModifier
     private float colliderMeshHeightMultiplier = 6f;
 
     [SerializeField]
-    private float waterColliderDecreaseFactor = 0.6f;
+    private float waterColliderDecreaseOffset = 0.6f;
 
     [SerializeField]
     private ComputeShader colliderComputeShader;
@@ -75,7 +75,7 @@ public class WaterTerrainCombiner : ComputeMeshModifier
 
         colliderComputeShader.SetBuffer(colliderComputeKernelHandle, ShaderConstants.INPUT_MESH_VERTICES, colliderVertexBuffer);
         colliderComputeShader.SetFloat(ShaderConstants.PARAM_TERRAIN_HEIGHT, colliderMeshHeightMultiplier);
-        colliderComputeShader.SetFloat(ShaderConstants.PARAM_WATER_DECREASE_FACTOR, waterColliderDecreaseFactor);
+        colliderComputeShader.SetFloat(ShaderConstants.PARAM_WATER_DECREASE_OFFSET, waterColliderDecreaseOffset);
         colliderComputeShader.SetTexture(colliderComputeKernelHandle, ShaderConstants.INPUT_COLLIDER_RESULT, colliderRenderTexture);
         colliderComputeShader.SetTexture(colliderComputeKernelHandle, ShaderConstants.INPUT_WATER_HEIGHT, colliderWaterRenderTexture);
 

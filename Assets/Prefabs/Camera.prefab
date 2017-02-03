@@ -31,7 +31,7 @@ GameObject:
   - component: {fileID: 114057965669117614}
   - component: {fileID: 114138806313892398}
   - component: {fileID: 114665016224494586}
-  - component: {fileID: 114684726892306214}
+  - component: {fileID: 114625227548523022}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -363,6 +363,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentShader: {fileID: 4800000, guid: d098960bb219d9f4d8f7a2a4a72a96a1, type: 3}
   intensity: 0
+--- !u!114 &114625227548523022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175849398826658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2b8cbe26b05034e99623bfade63189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstLerpPoint: {fileID: 0}
+  secondLerpPoint: {fileID: 0}
+  tweenTime: 3
+  colliderTrigger: {fileID: 0}
 --- !u!114 &114665016224494586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -383,12 +398,12 @@ MonoBehaviour:
   focus:
     transform: {fileID: 0}
     focusPlane: 6.526231
-    range: 5.5999355
-    nearPlane: 3.726263
+    range: 5.599951
+    nearPlane: 3.7262554
     nearFalloff: 16.09
-    farPlane: 9.326199
+    farPlane: 9.326206
     farFalloff: 10.18
-    nearBlurRadius: 1.5
+    nearBlurRadius: 7
     farBlurRadius: 12.8
   bokehTexture:
     texture: {fileID: 0}
@@ -402,21 +417,6 @@ MonoBehaviour:
     type: 3}
   m_TextureBokehShader: {fileID: 4800000, guid: c961b8ed1f00f924d804ada5143bd0e8,
     type: 3}
---- !u!114 &114684726892306214
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1175849398826658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa2b8cbe26b05034e99623bfade63189, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  firstLerpPoint: {fileID: 0}
-  secondLerpPoint: {fileID: 0}
-  tweenTime: 3
-  colliderTrigger: {fileID: 0}
 --- !u!114 &114772421104261710
 MonoBehaviour:
   m_ObjectHideFlags: 1

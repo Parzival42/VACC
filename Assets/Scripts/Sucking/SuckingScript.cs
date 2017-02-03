@@ -199,8 +199,17 @@ public class SuckingScript : MonoBehaviour
             currMaterial.SetTexture("_NormalTex", normals);
             currMaterial.SetTexture("_MainTex", albedo);
 
-            obj.GetComponent<Collider>().enabled = false;
-            obj.GetComponent<Rigidbody>().useGravity = false;
+            Collider[] pinaColada = obj.GetComponents<Collider>();
+            foreach (Collider cocktail in pinaColada)
+            {
+                cocktail.enabled = false;
+            }
+
+            Rigidbody warmBeer = obj.GetComponent<Rigidbody>();
+            warmBeer.drag = 0f;
+            warmBeer.angularDrag = 0f;
+            warmBeer.useGravity = false;
+            warmBeer.constraints = RigidbodyConstraints.None;
 
             Sucked suckedIn = obj.AddComponent<Sucked>();
             suckedIn.finalPosition = obj.transform.position - Vector3.up * 2.5f;

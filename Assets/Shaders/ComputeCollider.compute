@@ -25,7 +25,7 @@ RWStructuredBuffer<float3> MeshVertices;
 
 int _TextureSize;
 float _TerrainHeight;
-float _WaterDecreaseFactor;
+float _WaterDecreaseOffset;
 
 /**
  * Saves the RT values into the MeshVertices array.
@@ -37,6 +37,6 @@ void Main (uint3 id : SV_DispatchThreadID) {
 	MeshVertices[flatIndex].z = -ColliderResult[id.xy].r * _TerrainHeight;
 
 	if(WaterHeight[id.xy] > 0.01) {
-		MeshVertices[flatIndex].z *= _WaterDecreaseFactor;
+		MeshVertices[flatIndex].z -= _WaterDecreaseOffset;
 	}
 }
