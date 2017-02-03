@@ -25,11 +25,13 @@ GameObject:
   - component: {fileID: 81040323958552674}
   - component: {fileID: 114874697031480536}
   - component: {fileID: 114772421104261710}
+  - component: {fileID: 114502255528479306}
   - component: {fileID: 114491023365992062}
   - component: {fileID: 114269263196649430}
   - component: {fileID: 114057965669117614}
   - component: {fileID: 114138806313892398}
   - component: {fileID: 114665016224494586}
+  - component: {fileID: 114684726892306214}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -111,12 +113,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distortion:
     enabled: 0
-    amount: 16
-    centerX: 0
-    centerY: 0
+    amount: 100
+    centerX: -0.084
+    centerY: -0.177
     amountX: 1
     amountY: 1
-    scale: 1
+    scale: 0.21
   vignette:
     enabled: 1
     color: {r: 0, g: 0, b: 0, a: 1}
@@ -155,7 +157,7 @@ MonoBehaviour:
     showDebug: 0
   m_Tonemapping:
     enabled: 0
-    tonemapper: 6
+    tonemapper: 5
     exposure: 1
     curve:
       serializedVersion: 2
@@ -175,7 +177,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    neutralBlackIn: 0.02
+    neutralBlackIn: 0.028
     neutralWhiteIn: 10
     neutralBlackOut: 0
     neutralWhiteOut: 10
@@ -348,6 +350,19 @@ MonoBehaviour:
         edgeDetectionThreshold: 0.125
         minimumRequiredLuminance: 0.04
   m_Method: 0
+--- !u!114 &114502255528479306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175849398826658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b59d5281870d2442af49197dd5de017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentShader: {fileID: 4800000, guid: d098960bb219d9f4d8f7a2a4a72a96a1, type: 3}
+  intensity: 0
 --- !u!114 &114665016224494586
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,14 +382,14 @@ MonoBehaviour:
     apertureOrientation: 0
   focus:
     transform: {fileID: 0}
-    focusPlane: 7.6038723
-    range: 5.5999527
-    nearPlane: 4.803896
-    nearFalloff: 1.43
-    farPlane: 10.403849
+    focusPlane: 6.526231
+    range: 5.5999355
+    nearPlane: 3.726263
+    nearFalloff: 16.09
+    farPlane: 9.326199
     farFalloff: 10.18
-    nearBlurRadius: 8.5
-    farBlurRadius: 15.8
+    nearBlurRadius: 1.5
+    farBlurRadius: 12.8
   bokehTexture:
     texture: {fileID: 0}
     scale: 1.44
@@ -387,6 +402,21 @@ MonoBehaviour:
     type: 3}
   m_TextureBokehShader: {fileID: 4800000, guid: c961b8ed1f00f924d804ada5143bd0e8,
     type: 3}
+--- !u!114 &114684726892306214
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175849398826658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa2b8cbe26b05034e99623bfade63189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstLerpPoint: {fileID: 0}
+  secondLerpPoint: {fileID: 0}
+  tweenTime: 3
+  colliderTrigger: {fileID: 0}
 --- !u!114 &114772421104261710
 MonoBehaviour:
   m_ObjectHideFlags: 1
