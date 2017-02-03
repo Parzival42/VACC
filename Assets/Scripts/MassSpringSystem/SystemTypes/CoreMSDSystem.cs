@@ -65,7 +65,7 @@ public abstract class CoreMSDSystem : MonoBehaviour {
         PreSimulationStep();
 
         //update constraints
-        for (int j = 0; j < 5; j++)
+        for (int j = 0; j < 8; j++)
         {
             for (int i = 0; i < constraintList.Count; i++)
             {
