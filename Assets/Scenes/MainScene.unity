@@ -14879,6 +14879,11 @@ Prefab:
       value: 
       objectReference: {fileID: 1492859082213036, guid: c18c0f2cddb96604fb421bb42fdae352,
         type: 2}
+    - target: {fileID: 114686140811947430, guid: ee4b98c3525404b439517122f0b2e920,
+        type: 2}
+      propertyPath: energyBoost
+      value: event:/Nitro
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114977480710407440, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
     - {fileID: 114388060355829904, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
