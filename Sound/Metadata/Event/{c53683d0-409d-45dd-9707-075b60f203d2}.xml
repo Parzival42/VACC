@@ -5,7 +5,7 @@
             <value>Ambient</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="mixer">
             <destination>{07b0b3d4-072c-410b-90c5-1a68354429e9}</destination>
@@ -123,6 +123,9 @@
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{878d60c2-4231-4afa-ac42-0c711c5230ad}">
+        <property name="volume">
+            <value>1.5</value>
+        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>
@@ -162,7 +165,6 @@
         <relationship name="effects">
             <destination>{547b27c1-b820-4dc8-a90a-53042586ff17}</destination>
             <destination>{f0e225ac-6640-4415-a86c-503ae7facb40}</destination>
-            <destination>{e0d55eb6-871f-4d0f-a9d8-1c785b468982}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{02546fef-1082-4835-b17b-42bc7eef6dbf}">
@@ -219,11 +221,6 @@
     <object class="LowpassEffect" id="{f0e225ac-6640-4415-a86c-503ae7facb40}">
         <property name="cutoff">
             <value>680</value>
-        </property>
-    </object>
-    <object class="SpatialiserEffect" id="{e0d55eb6-871f-4d0f-a9d8-1c785b468982}">
-        <property name="extentMode">
-            <value>2</value>
         </property>
     </object>
     <object class="MixerBusFader" id="{b1e3ddd6-7b11-4121-a3ed-1d4525e70f53}"/>

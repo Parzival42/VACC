@@ -32,6 +32,7 @@ GameObject:
   - component: {fileID: 114665016224494586}
   - component: {fileID: 114625227548523022}
   - component: {fileID: 114424024190356942}
+  - component: {fileID: 114527072716587296}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -45,13 +46,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1175849398826658}
-  m_LocalRotation: {x: 0.10047733, y: 0.84185684, z: -0.13719873, w: 0.5122089}
-  m_LocalPosition: {x: -9.26, y: 3.47, z: 5.26}
+  m_LocalRotation: {x: 0.08451101, y: 0.83795977, z: -0.13571984, w: 0.5217869}
+  m_LocalPosition: {x: -9.81, y: 3.47, z: 5.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 19.508001, y: 117.66401, z: 1.7400001}
+  m_LocalEulerAnglesHint: {x: 18.4, y: 116.18, z: 0}
 --- !u!20 &20921894569800790
 Camera:
   m_ObjectHideFlags: 1
@@ -330,6 +331,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentShader: {fileID: 4800000, guid: d098960bb219d9f4d8f7a2a4a72a96a1, type: 3}
   intensity: 0
+  hueoffset: 0
+--- !u!114 &114527072716587296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1175849398826658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5013cdd47db5a049961c4824429a06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentShader: {fileID: 4800000, guid: 015c50d562274604999b0a40c8357016, type: 3}
+  offsetX: 0
+  offsetY: 0
+  zoom: 1
 --- !u!114 &114625227548523022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -364,11 +381,11 @@ MonoBehaviour:
     apertureOrientation: 0
   focus:
     transform: {fileID: 0}
-    focusPlane: 6.526231
-    range: 5.599951
-    nearPlane: 3.7262554
+    focusPlane: 9.23064
+    range: 5.5999527
+    nearPlane: 6.430664
     nearFalloff: 16.09
-    farPlane: 9.326206
+    farPlane: 12.030617
     farFalloff: 10.18
     nearBlurRadius: 7
     farBlurRadius: 12.8

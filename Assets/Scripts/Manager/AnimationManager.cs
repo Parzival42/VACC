@@ -63,6 +63,25 @@ public class AnimationManager : MonoBehaviour
         DoChromaticShiftEffect(lensAberration, animationTime, 20.5f, LeanTweenType.easeInOutBounce);
     }
 
+    public void CameraShake(float time, float strength)
+    {
+        CameraShake shake = mainCamera.GetComponent<CameraShake>();
+        if (shake == null)
+            Debug.LogError("No Camera Shake script found.");
+
+        LeanTween.value(0, strength, time).setEase(LeanTweenType.easeShake)
+            .setOnUpdate((float value) => {
+                shake.offsetX = value;
+            })
+            .setOnComplete(() => { shake.offsetX = 0f; });
+
+        LeanTween.value(0, strength * 0.9f, time).setEase(LeanTweenType.easeShake)
+            .setOnUpdate((float value) => {
+                shake.offsetY = value;
+            })
+            .setOnComplete(() => { shake.offsetY = 0f; });
+    }
+
     private void DoChromaticShiftEffect(UnityStandardAssets.CinematicEffects.LensAberrations lensAberration, float animationTime, float shift, LeanTweenType easeType)
     {
         lensAberration.chromaticAberration.enabled = true;

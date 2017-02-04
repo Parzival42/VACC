@@ -1,6 +1,6 @@
 ﻿Shader "DustSucker/RaymarchFog" {
 	Properties {
-		_FogBaseColor ("Fog Base Color", Color) = (0,1,1,1)
+		_Color ("Fog Base Color", Color) = (0,1,1,1)
 		_FogDenseColor ("Fog Dense Color", Color) = (1,1,1,1)
 		_InnerRatio ("Inner Ratio", Range (-0.9999, 0.9999)) = 0.5
 		_Density ("Density", Range (0.0, 10.0)) = 10.0
@@ -79,7 +79,7 @@
 					return 1 - clarity;
 				}
 				 
-				fixed4 _FogBaseColor;
+				fixed4 _Color;
 				fixed4 _FogDenseColor;
 				float _InnerRatio;
 				float _Density;
@@ -126,8 +126,8 @@
 					float denseColorRatio = pow (fog, _ColorFalloff);
 					
 					// Set color based on denseness and alpha based on raw calculated fog density.
-					color.rgb = lerp (_FogBaseColor.rgb, _FogDenseColor.rgb, denseColorRatio);
-					color.a = fog * lerp (_FogBaseColor.a, _FogDenseColor.a, denseColorRatio);
+					color.rgb = lerp (_Color.rgb, _FogDenseColor.rgb, denseColorRatio);
+					color.a = fog * lerp (_Color.a, _FogDenseColor.a, denseColorRatio);
 					return color;
 				}
 				ENDCG
