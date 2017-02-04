@@ -82,6 +82,9 @@ public class SuckingScript : MonoBehaviour
     {
         currentStage += change;
 
+        if (currentStage == NOS.Stage2)
+            DoNosStage2Change();
+
         // NOS-Bottle was sucked in
         if (currentStage == NOS.Stage3)
             DoNosStage3Change();
@@ -90,10 +93,23 @@ public class SuckingScript : MonoBehaviour
     }
 
     /// <summary>
+    /// NOS Stage2 effects: Chromatic aberration
+    /// </summary>
+    private void DoNosStage2Change()
+    {
+        Debug.Log("<b>Nos Stage 2</b> was reached.");
+        // Light chromatic aberration
+        AnimationManager.Instance.LightChromaticDispersion(1f);
+
+        vacuumSound.PlayEnergyBoost();
+    }
+
+    /// <summary>
     /// NOS Stage 3 effects: Particles, Camera effects, Sound
     /// </summary>
     private void DoNosStage3Change()
     {
+        Debug.Log("<b>Nos Stage 3</b> was reached.");
         // Chromatic aberration
         AnimationManager.Instance.FancyChromaticDispersion(0.7f);
 
@@ -105,7 +121,8 @@ public class SuckingScript : MonoBehaviour
         particles.GetComponent<ParticleSystem>().Play();
         Destroy(particles, 4f);
 
-        // TODO: Play fancy sound effect
+        // Play fancy sound effect
+        vacuumSound.PlayEnergyBoost();
     }
 
     private void ChangeDustSuckerStatus()

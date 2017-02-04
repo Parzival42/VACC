@@ -9,10 +9,12 @@ public class MainKillSwitch : MonoBehaviour {
 
     public static event MainPowerHandler MainPowerChanged;
     private bool powerOn = false;
+    private FMOD_StudioEventEmitter emitter;
 
 	// Use this for initialization
 	void Start () {
         //OnMainPowerChanged(false);
+        emitter = GetComponent<FMOD_StudioEventEmitter>();
 	}
 
     void OnMouseDown()
