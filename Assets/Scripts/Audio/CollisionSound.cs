@@ -11,20 +11,24 @@ public class CollisionSound : MonoBehaviour
     public string collisionSound = "fjuture";
     FMOD.Studio.ParameterInstance collParam;
 
-    void OnCollisionEnter()
+    void OnCollisionEnter(Collision collision)
     {
-        if (collEvent != null)
+        if (!collision.gameObject.CompareTag("Silent"))
         {
-            FMOD.Studio.PLAYBACK_STATE state;
-            collEvent.getPlaybackState(out state);
+            if (collEvent != null)
+            {
+                FMOD.Studio.PLAYBACK_STATE state;
+                collEvent.getPlaybackState(out state);
 
-            if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                if (state != FMOD.Studio.PLAYBACK_STATE.PLAYING)
+                {
+                    PlayOnce();
+                }
+            }
+            else
             {
                 PlayOnce();
             }
-        } else
-        {
-            PlayOnce();
         }
     }
 

@@ -8,6 +8,7 @@ TagManager:
   - Stage2
   - Stage3
   - Nozzle
+  - Silent
   layers:
   - Default
   - TransparentFX
