@@ -23,6 +23,9 @@ public class AnimationControllerHelper : EditorWindow
         {
             if (GUILayout.Button("Animate Car Light"))
                 animManager.PlayCarLight();
+
+            if (GUILayout.Button("Light Chromatic Aberration"))
+                animManager.LightChromaticDispersion(1f);
         }
         else
             GUILayout.Label("No Animation Manager :(", titleStyle);

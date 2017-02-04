@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4218466050130198}
   - component: {fileID: 108996952461476448}
   - component: {fileID: 95368972199856690}
+  - component: {fileID: 114486106611029254}
   m_Layer: 0
   m_Name: CarLight
   m_TagString: Untagged
@@ -92,3 +93,14 @@ Light:
   m_BounceIntensity: 0.3
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114486106611029254
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1311791836015578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e32d73b858ee9ec48a92c9496d6c960e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
