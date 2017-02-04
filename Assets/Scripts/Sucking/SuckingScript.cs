@@ -8,6 +8,8 @@ public class SuckingScript : MonoBehaviour
 
     public static event TubeDeformHandler TubeDeform;
 
+    public GameObject bloodParticles;
+
     [Header("Input")]
     [Tooltip("At this point the dust sucking happens")]
     [SerializeField]
@@ -167,7 +169,7 @@ public class SuckingScript : MonoBehaviour
                 {
                     DeformType deformType = (DeformType)i+1;
                     OnTubeDeform(deformType);
-                    PlaySound(currentStage);
+                    PlaySoundAndParticles(currentStage, hitInfo.transform.position);
                     ChangeToMeltMaterial(hitInfo.transform.gameObject);
                     hitInfo.transform.gameObject.SendMessage("IsGettingSuckedIn", currentStage, SendMessageOptions.DontRequireReceiver);
                 }
@@ -176,12 +178,15 @@ public class SuckingScript : MonoBehaviour
         }
     }
 
-    private void PlaySound(NOS stage)
+    private void PlaySoundAndParticles(NOS stage, Vector3 position)
     {
         FMOD.Studio.EventInstance e;
         if (stage == NOS.Stage3)
         {
             e = FMODUnity.RuntimeManager.CreateInstance("event:/Scream");
+            GameObject go = Instantiate(bloodParticles) as GameObject;
+            go.transform.position = position;
+            Destroy(go, 5f);
         }
         else
         {

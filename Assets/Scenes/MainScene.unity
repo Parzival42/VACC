@@ -315,6 +315,34 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 73ebf90bcc8b6b646b9bd4087a896d36, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &34099793
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 34099794}
+  m_Layer: 0
+  m_Name: Plane Transform 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &34099794
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 34099793}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 32
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &36387295
 Prefab:
   m_ObjectHideFlags: 0
@@ -14683,6 +14711,12 @@ Prefab:
       propertyPath: powerValue
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114683677826369628, guid: ee4b98c3525404b439517122f0b2e920,
+        type: 2}
+      propertyPath: bloodParticles
+      value: 
+      objectReference: {fileID: 1492859082213036, guid: c18c0f2cddb96604fb421bb42fdae352,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 114977480710407440, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
     - {fileID: 114388060355829904, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
