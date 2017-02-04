@@ -4408,6 +4408,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 25.8, y: 23.7, z: 123.020454}
   m_Center: {x: 1, y: 0.42906517, z: 61.60045}
+--- !u!114 &500051757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 500051748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9b65581bad36409df8cda973ec090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalMaterial: {fileID: 2100000, guid: 949d904cffdf62d43adbfff90f50c40b, type: 2}
+  powerOffMaterial: {fileID: 2100000, guid: 01f43577b0be21a4a93acb4d2f11563f, type: 2}
 --- !u!1 &504280624 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: e62f114186f014b47a1b4648ed23e0be, type: 3}
@@ -7945,6 +7958,7 @@ GameObject:
   - component: {fileID: 992202722}
   - component: {fileID: 992202721}
   - component: {fileID: 992202720}
+  - component: {fileID: 992202723}
   m_Layer: 0
   m_Name: bulb
   m_TagString: Untagged
@@ -8015,6 +8029,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 992202718}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &992202723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 992202718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae9b65581bad36409df8cda973ec090, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  originalMaterial: {fileID: 2100000, guid: f9885c5e78d0f0a4188aa68e9438a0b7, type: 2}
+  powerOffMaterial: {fileID: 2100000, guid: 01f43577b0be21a4a93acb4d2f11563f, type: 2}
 --- !u!1001 &993228629
 Prefab:
   m_ObjectHideFlags: 0
