@@ -65,12 +65,18 @@ public class GravityManager : MonoBehaviour {
             test = false;
             if (activateable)
             {
-                StartCoroutine(GravityFalls());
+                StartCoroutine(GravityFalls(duration));
             }
         }
     }
 
-    private IEnumerator GravityFalls()
+
+    public void StabGravityInTheBack(float duration)
+    {
+        StartCoroutine(GravityFalls(duration));
+    }
+
+    private IEnumerator GravityFalls(float duration)
     {
         activateable = false;
         ReverseGravity();
@@ -79,13 +85,14 @@ public class GravityManager : MonoBehaviour {
         activateable = true;
     }
 
-    public void ReverseGravity()
+    private void ReverseGravity()
     {
         for(int i = 0; i < affectedRigidbodies.Count; i++)
         {
             if(affectedRigidbodies[i] != null)
             {
                 affectedRigidbodies[i].useGravity = false;
+               // affectedRigidbodies[i].isKinematic = false;
                 if(affectedRigidbodies[i].mass > maxMass)
                 {
                     affectedRigidbodies[i].mass = maxMass;
