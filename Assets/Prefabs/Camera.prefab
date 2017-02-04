@@ -26,12 +26,12 @@ GameObject:
   - component: {fileID: 114874697031480536}
   - component: {fileID: 114772421104261710}
   - component: {fileID: 114502255528479306}
+  - component: {fileID: 114424024190356942}
   - component: {fileID: 114269263196649430}
   - component: {fileID: 114057965669117614}
   - component: {fileID: 114138806313892398}
   - component: {fileID: 114665016224494586}
   - component: {fileID: 114625227548523022}
-  - component: {fileID: 114424024190356942}
   - component: {fileID: 114527072716587296}
   m_Layer: 0
   m_Name: Camera
