@@ -37,7 +37,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1695381627}
-  m_IndirectSpecularColor: {r: 0.29492217, g: 0.33602232, b: 0.35931486, a: 1}
+  m_IndirectSpecularColor: {r: 0.29492193, g: 0.33602235, b: 0.35931417, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -341,7 +341,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &36387295
 Prefab:
@@ -598,7 +598,7 @@ Transform:
   - {fileID: 710641970}
   - {fileID: 162981927}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &74775912
 GameObject:
@@ -4189,7 +4189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &458579748
 Prefab:
@@ -4473,7 +4473,7 @@ Transform:
   m_Children:
   - {fileID: 549659399}
   m_Father: {fileID: 0}
-  m_RootOrder: 31
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &484660397 stripped
 GameObject:
@@ -5671,7 +5671,7 @@ Transform:
   - {fileID: 2082462946}
   - {fileID: 650713938}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &681960836
 GameObject:
@@ -8029,7 +8029,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4762001699027868, guid: e5b3d25ddef82754eab347ce43aa95e1, type: 2}
       propertyPath: m_RootOrder
-      value: 28
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 114843193508871982, guid: e5b3d25ddef82754eab347ce43aa95e1,
         type: 2}
@@ -9391,7 +9391,7 @@ Transform:
   - {fileID: 1182771963}
   - {fileID: 1252719480}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1120451423 stripped
 GameObject:
@@ -11604,23 +11604,6 @@ Prefab:
       propertyPath: colliderTrigger
       value: 
       objectReference: {fileID: 1252719483}
-    - target: {fileID: 114502255528479306, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937927748450568, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 116.18
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937927748450568, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4937927748450568, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 18.4
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
   m_IsPrefabParent: 0
@@ -15282,72 +15265,6 @@ MonoBehaviour:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 681d704e9333a2d44806ab11d51dbd07, type: 3}
   m_PrefabInternal: {fileID: 2052034150}
---- !u!1 &2054180524
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1373229378389718, guid: fe57f9add1c735340915bf32a5845ec1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2054180526}
-  - component: {fileID: 2054180525}
-  m_Layer: 0
-  m_Name: police_blue
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!108 &2054180525
-Light:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 108146123723170746, guid: fe57f9add1c735340915bf32a5845ec1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2054180524}
-  m_Enabled: 1
-  serializedVersion: 7
-  m_Type: 2
-  m_Color: {r: 0, g: 0.42068958, b: 1, a: 1}
-  m_Intensity: 3
-  m_Range: 8.19
-  m_SpotAngle: 30
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.11
-    m_NormalBias: 0.48
-    m_NearPlane: 0.1
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_Lightmapping: 4
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0.5
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &2054180526
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4622890229564932, guid: fe57f9add1c735340915bf32a5845ec1,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2054180524}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.185, y: 1.08, z: 3.71}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 25
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2065187864 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 183190, guid: e9a6501da28be2b4986e8ba47c2e017c, type: 2}

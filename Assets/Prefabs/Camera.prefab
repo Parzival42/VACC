@@ -414,19 +414,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NoiseTexture: {fileID: 2800000, guid: 45ca7cd7d934d6245bb4539f780e4892, type: 3}
   UseHighPrecisionDepthMap: 0
-  Samples: 2
+  Samples: 3
   Downsampling: 1
-  Radius: 0.015
-  Intensity: 16
-  Distance: 0
-  Bias: 0.312
-  LumContribution: 0.646
-  OcclusionColor: {r: 0.16176468, g: 0.06359026, b: 0, a: 1}
-  CutoffDistance: 16.73
-  CutoffFalloff: 13.9
-  Blur: 1
-  BlurDownsampling: 1
-  BlurPasses: 2
+  Radius: 0.239
+  Intensity: 1.7
+  Distance: 1
+  Bias: 0
+  LumContribution: 0.396
+  OcclusionColor: {r: 0, g: 0, b: 0, a: 1}
+  CutoffDistance: 150
+  CutoffFalloff: 50
+  Blur: 2
+  BlurDownsampling: 0
+  BlurPasses: 1
   BlurBilateralThreshold: 10
   DebugAO: 0
 --- !u!114 &114874697031480536
