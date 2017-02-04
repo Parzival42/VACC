@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
-
+using System;
 
 public class VacuumSound : MonoBehaviour
 {
@@ -12,6 +11,14 @@ public class VacuumSound : MonoBehaviour
     public string startup = "event:/DysonConvolution";  
     FMOD.Studio.EventInstance startupEv;
 
+    [FMODUnity.EventRef]
+    public string shutdown = "event:/DysonShutdown";
+    FMOD.Studio.EventInstance shutdownEv;
+
+    [FMODUnity.EventRef]
+    public string energyBoost = "event:/Nitro";
+    FMOD.Studio.EventInstance energyBoostEv;
+
     [Range(0.0f, 1.0f)]
     public float powerValue = 0f;
     private float powerValueDamped = 0f;
@@ -20,24 +27,25 @@ public class VacuumSound : MonoBehaviour
 
     FMOD.Studio.ParameterInstance power;
     FMOD.Studio.ParameterInstance dustOcclusion;
-    [FMODUnity.EventRef]
-    public string shutdown = "event:/DysonShutdown";       
-    FMOD.Studio.EventInstance shutdownEv;
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
+   
     private Rigidbody rigidbody;
 
     void Start()
     {
+        rigidbody = GetComponent<Rigidbody>();
         startupEv = FMODUnity.RuntimeManager.CreateInstance(startup);
         shutdownEv = FMODUnity.RuntimeManager.CreateInstance(shutdown);
+        energyBoostEv = FMODUnity.RuntimeManager.CreateInstance(energyBoost);
         startupEv.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         shutdownEv.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(startupEv, gameObject.transform, GetComponent<Rigidbody>());
-        FMODUnity.RuntimeManager.AttachInstanceToGameObject(shutdownEv, gameObject.transform, GetComponent<Rigidbody>());
+        energyBoostEv.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(startupEv, gameObject.transform, rigidbody);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(shutdownEv, gameObject.transform, rigidbody);
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(energyBoostEv, gameObject.transform, rigidbody);
 
         startupEv.getParameter("Power", out power);
         startupEv.getParameter("DustOcclusion", out dustOcclusion);
-        rigidbody = GetComponent<Rigidbody>();
     }
 
     public void StartEngine()
@@ -97,5 +105,11 @@ public class VacuumSound : MonoBehaviour
         }
 
         SetDustOcclusion(Mathf.Clamp(rigidbody.velocity.magnitude,0f,1f));
+    }
+
+    public void PlayEnergyBoost()
+    {
+        if (energyBoostEv != null) energyBoostEv.start();
+        Debug.Log("boost");
     }
 }

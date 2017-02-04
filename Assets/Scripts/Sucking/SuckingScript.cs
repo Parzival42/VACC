@@ -98,6 +98,8 @@ public class SuckingScript : MonoBehaviour
         Debug.Log("<b>Nos Stage 2</b> was reached.");
         // Light chromatic aberration
         AnimationManager.Instance.LightChromaticDispersion(1f);
+
+        vacuumSound.PlayEnergyBoost();
     }
 
     /// <summary>
@@ -117,7 +119,8 @@ public class SuckingScript : MonoBehaviour
         particles.GetComponent<ParticleSystem>().Play();
         Destroy(particles, 4f);
 
-        // TODO: Play fancy sound effect
+        // Play fancy sound effect
+        vacuumSound.PlayEnergyBoost();
     }
 
     private void ChangeDustSuckerStatus()
