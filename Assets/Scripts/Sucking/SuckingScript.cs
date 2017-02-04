@@ -121,6 +121,9 @@ public class SuckingScript : MonoBehaviour
         particles.GetComponent<ParticleSystem>().Play();
         Destroy(particles, 4f);
 
+        // Camera Shake
+        AnimationManager.Instance.CameraShake(0.15f, 0.03f);
+
         // Play fancy sound effect
         vacuumSound.PlayEnergyBoost();
     }
