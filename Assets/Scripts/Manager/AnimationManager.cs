@@ -50,9 +50,23 @@ public class AnimationManager : MonoBehaviour
             Debug.LogError("No Lens Aberration effect found on camera");
 
         CancelTween(lensAberrationTween);
+        DoChromaticShiftEffect(lensAberration, animationTime, 4.5f, LeanTweenType.easeOutCirc);
+    }
 
+    public void FancyChromaticDispersion(float animationTime)
+    {
+        UnityStandardAssets.CinematicEffects.LensAberrations lensAberration = mainCamera.GetComponent<UnityStandardAssets.CinematicEffects.LensAberrations>();
+        if (lensAberration == null)
+            Debug.LogError("No Lens Aberration effect found on camera");
+
+        CancelTween(lensAberrationTween);
+        DoChromaticShiftEffect(lensAberration, animationTime, 20.5f, LeanTweenType.easeInOutBounce);
+    }
+
+    private void DoChromaticShiftEffect(UnityStandardAssets.CinematicEffects.LensAberrations lensAberration, float animationTime, float shift, LeanTweenType easeType)
+    {
         lensAberration.chromaticAberration.enabled = true;
-        lensAberrationTween = LeanTween.value(0f, 4.5f, animationTime * 0.5f).setEase(LeanTweenType.easeOutCirc)
+        lensAberrationTween = LeanTween.value(0f, shift, animationTime * 0.5f).setEase(easeType)
             .setOnUpdate((float value) => {
                 lensAberration.chromaticAberration.amount = value;
             }).setLoopPingPong(1)
