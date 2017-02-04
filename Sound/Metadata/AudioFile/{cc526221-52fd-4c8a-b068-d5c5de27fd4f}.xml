@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{cc526221-52fd-4c8a-b068-d5c5de27fd4f}">
         <property name="assetPath">
-            <value>348013__mixxythepixxy__living-room-room-tone.wav</value>
+            <value>Ambience/348013__mixxythepixxy__living-room-room-tone.wav</value>
         </property>
         <property name="isStreaming">
             <value>true</value>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{8e3b9efc-8f58-4552-ad5f-cab1c47dfcd0}">
         <property name="assetPath">
-            <value>dyson_motor.wav</value>
+            <value>Dyson/dyson_motor.wav</value>
         </property>
         <property name="isStreaming">
             <value>true</value>

@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{41e70228-a685-4c43-9f1b-e86211f78571}">
         <property name="assetPath">
-            <value>dyson_idle_grain5.wav</value>
+            <value>Dyson/dyson_idle_grain5.wav</value>
         </property>
         <property name="frequencyInKHz">
             <value>44.0999985</value>

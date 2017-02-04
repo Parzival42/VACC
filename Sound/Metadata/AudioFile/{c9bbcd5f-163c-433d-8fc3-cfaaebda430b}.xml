@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{c9bbcd5f-163c-433d-8fc3-cfaaebda430b}">
         <property name="assetPath">
-            <value>05 high.wav</value>
+            <value>Dyson/05 high.wav</value>
         </property>
         <property name="frequencyInKHz">
             <value>44.0999985</value>

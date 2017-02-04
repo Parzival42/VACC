@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{3affb0a8-00e5-4ca3-a41c-f78895c6e806}">
         <property name="assetPath">
-            <value>GershwinWhiteman-RhapsodyInBluePart1.mp3</value>
+            <value>Ambience/GershwinWhiteman-RhapsodyInBluePart1.mp3</value>
         </property>
         <property name="isStreaming">
             <value>true</value>

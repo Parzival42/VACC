@@ -185,10 +185,10 @@
     <object class="MixerBusPanner" id="{f99225dc-502a-404b-bc71-87756b0a4eed}"/>
     <object class="AutomationPoint" id="{4f521014-7744-4f2e-bc2b-1dca0c89483d}">
         <property name="position">
-            <value>191.20433017591341</value>
+            <value>187.92022830105418</value>
         </property>
         <property name="value">
-            <value>-12.6426105</value>
+            <value>-0.0608711243</value>
         </property>
     </object>
     <object class="AutomationPoint" id="{42f1b5a0-3697-408c-9211-70bb3d7e73bb}">
@@ -204,7 +204,7 @@
             <value>0.73071718538565633</value>
         </property>
         <property name="value">
-            <value>-12.0434799</value>
+            <value>0</value>
         </property>
     </object>
     <object class="AutomationPoint" id="{395ae274-ce8e-48fd-99cb-105937997b24}">

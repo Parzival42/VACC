@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{ace1c011-d490-4ceb-9bb1-ce9afb0bbe4b}">
         <property name="assetPath">
-            <value>living_room_IR.wav</value>
+            <value>IRs/living_room_IR.wav</value>
         </property>
         <property name="frequencyInKHz">
             <value>44.0999985</value>
