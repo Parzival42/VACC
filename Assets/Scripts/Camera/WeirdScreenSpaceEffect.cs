@@ -9,6 +9,9 @@ public class WeirdScreenSpaceEffect : MonoBehaviour
     [Range(0.0f, 1.0f)]
     public float intensity = 0f;
 
+    [Range(0.0f, 1.0f)]
+    public float hueoffset = 0f;
+
     private Material currentMaterial;
     public Material material
     {
@@ -36,6 +39,7 @@ public class WeirdScreenSpaceEffect : MonoBehaviour
         if (currentShader != null)
         {
             material.SetFloat("_Intensity", intensity);
+            material.SetFloat("_Hueoffset", hueoffset);
             Graphics.Blit(source, destination, material);
         }
         else

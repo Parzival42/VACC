@@ -256,6 +256,7 @@ public class SuckingScript : MonoBehaviour
             Sucked suckedIn = obj.AddComponent<Sucked>();
             suckedIn.finalPosition = obj.transform.position - Vector3.up * 2.5f;
             suckedIn.suckDirection = transform;
+            suckedIn.speedCoefficient = 0.5f;
         }
     }
 
