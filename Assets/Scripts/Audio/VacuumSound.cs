@@ -69,16 +69,12 @@ public class VacuumSound : MonoBehaviour
 
     public void SetPower(float v)
     {
-        
-        if (power != null)
-        {
-            power.setValue(v);
-        }
+        powerValue = v;
     }
 
     public void SetDustOcclusion(float v)
     {
-        
+        dustOcclusionValue = v;
         if (dustOcclusion != null)
         {
             dustOcclusion.setValue(v);
@@ -89,8 +85,12 @@ public class VacuumSound : MonoBehaviour
     {
         if(powerValue != powerValueDamped)
         {
-            powerValueDamped += ( powerValue - powerValueDamped ) * 0.02f; // damping
-            SetPower(powerValueDamped);
+            powerValueDamped += ( powerValue - powerValueDamped ) * 0.1f; // damping
+
+            if (power != null)
+            {
+                power.setValue(powerValueDamped);
+            }
         }
 
         SetDustOcclusion(dustOcclusionValue);
