@@ -5,7 +5,7 @@
             <value>Story_Begin</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>0</value>
         </property>
         <relationship name="mixer">
             <destination>{942e806c-9d7c-478c-99a3-5952d6bc2486}</destination>
@@ -106,16 +106,13 @@
             <value>6.6099319727891155</value>
         </property>
         <property name="volume">
-            <value>-13.5</value>
+            <value>-5.5</value>
         </property>
         <relationship name="audioFile">
             <destination>{54568ffd-27dd-4fd7-a934-773bd5c4132b}</destination>
         </relationship>
     </object>
     <object class="EventMixerGroup" id="{9e6d412c-b512-4bbb-a211-24fe73b0a92d}">
-        <property name="volume">
-            <value>8</value>
-        </property>
         <property name="name">
             <value>Audio 1</value>
         </property>
@@ -160,7 +157,6 @@
     <object class="MixerBusEffectChain" id="{e309c397-25a3-42f0-9b36-250d1cc4d817}">
         <relationship name="effects">
             <destination>{4dfe5c68-277b-4e78-965c-704d0defb0e5}</destination>
-            <destination>{496194fc-53a0-41fe-bf76-3a6a60d39408}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{038a8e45-3bcb-454b-b834-7a5aa91fa722}"/>
@@ -169,6 +165,7 @@
         <relationship name="effects">
             <destination>{665d4e66-4205-491a-8ef3-ddd823ece3be}</destination>
             <destination>{b7647960-284c-4982-961a-2eb43cccfd53}</destination>
+            <destination>{9d7a8dd5-e173-4b6e-9570-bd03f93d2e5e}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{6283a4a2-9833-42d5-86f4-7766904b222c}"/>
@@ -179,9 +176,12 @@
             <destination>{cf4c87c9-b52d-44a2-ad2a-2e859660ab56}</destination>
         </relationship>
     </object>
-    <object class="MixerBusPanner" id="{fa407fe5-9a18-4325-972a-96fd30ea0bbb}"/>
+    <object class="MixerBusPanner" id="{fa407fe5-9a18-4325-972a-96fd30ea0bbb}">
+        <property name="stereoPan">
+            <value>16</value>
+        </property>
+    </object>
     <object class="MixerBusFader" id="{4dfe5c68-277b-4e78-965c-704d0defb0e5}"/>
-    <object class="SpatialiserEffect" id="{496194fc-53a0-41fe-bf76-3a6a60d39408}"/>
     <object class="ConvolutionReverbEffect" id="{665d4e66-4205-491a-8ef3-ddd823ece3be}">
         <property name="impulseFilePath">
             <value>C:/Users/tom p/Documents/VACCS/VACC/Sound/Assets/IRs/living_room_1.wav</value>
@@ -200,6 +200,11 @@
         </relationship>
     </object>
     <object class="MixerBusFader" id="{b7647960-284c-4982-961a-2eb43cccfd53}"/>
+    <object class="ChannelMixEffect" id="{9d7a8dd5-e173-4b6e-9570-bd03f93d2e5e}">
+        <property name="outputGrouping">
+            <value>1</value>
+        </property>
+    </object>
     <object class="ConvolutionReverbEffect" id="{02327c25-372d-4dbf-b607-937021a8c73e}">
         <property name="impulseFilePath">
             <value>C:/Users/tom p/Documents/VACCS/VACC/Sound/Assets/IRs/living_room_1.wav</value>

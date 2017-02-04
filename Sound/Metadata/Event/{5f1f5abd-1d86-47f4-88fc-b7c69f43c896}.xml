@@ -5,7 +5,7 @@
             <value>Story_End</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="mixer">
             <destination>{e816a0d2-b5bf-41ba-99e1-5829870bd50b}</destination>
@@ -27,6 +27,9 @@
         </relationship>
         <relationship name="timeline">
             <destination>{c6e9cf2d-776e-48e3-9ee1-34f32cbb23c8}</destination>
+        </relationship>
+        <relationship name="banks">
+            <destination>{825f84ce-1f33-43a4-a4b3-01bbadce005e}</destination>
         </relationship>
         <relationship name="folder">
             <destination>{54e4435b-0a27-4646-b62d-2172f6182199}</destination>
@@ -113,7 +116,6 @@
     <object class="MixerBusEffectChain" id="{75aaf3c4-4b6b-4cf4-bf7b-e48b198fa5e9}">
         <relationship name="effects">
             <destination>{3b8d73f3-81e8-4df8-800b-41f01a758aaf}</destination>
-            <destination>{fb900207-9216-4ca1-9cf9-1b18bd453d99}</destination>
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{4f3e6eff-96dc-42be-8aee-8c571f2e7fba}"/>
@@ -125,6 +127,5 @@
     </object>
     <object class="MixerBusPanner" id="{bebfacec-d385-4a04-abd9-18c61a7c4f48}"/>
     <object class="MixerBusFader" id="{3b8d73f3-81e8-4df8-800b-41f01a758aaf}"/>
-    <object class="SpatialiserEffect" id="{fb900207-9216-4ca1-9cf9-1b18bd453d99}"/>
     <object class="MixerBusFader" id="{0243fcc0-663c-4f51-8f86-bb1175920786}"/>
 </objects>

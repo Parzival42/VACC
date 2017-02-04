@@ -2663,6 +2663,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
+      propertyPath: m_LightProbeVolumeOverride
+      value: 
+      objectReference: {fileID: 818516881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
   m_IsPrefabParent: 0
@@ -4280,6 +4288,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 671edc1318d319c4cb8fa0ece1af5dd0, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 671edc1318d319c4cb8fa0ece1af5dd0, type: 3}
+      propertyPath: m_LightProbeVolumeOverride
+      value: 
+      objectReference: {fileID: 818516881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 671edc1318d319c4cb8fa0ece1af5dd0, type: 3}
   m_IsPrefabParent: 0
@@ -6921,6 +6937,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 23687119844386336, guid: 8db9960c3b69d6746b9bbfe39959b658,
+        type: 2}
+      propertyPath: m_LightProbeUsage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23687119844386336, guid: 8db9960c3b69d6746b9bbfe39959b658,
+        type: 2}
+      propertyPath: m_LightProbeVolumeOverride
+      value: 
+      objectReference: {fileID: 818516881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8db9960c3b69d6746b9bbfe39959b658, type: 2}
   m_IsPrefabParent: 0
@@ -9927,6 +9953,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 23968795805437682, guid: 1f93849254ae1e844a2fa4e321e8dbe8,
+        type: 2}
+      propertyPath: m_LightProbeUsage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 23968795805437682, guid: 1f93849254ae1e844a2fa4e321e8dbe8,
+        type: 2}
+      propertyPath: m_LightProbeVolumeOverride
+      value: 
+      objectReference: {fileID: 818516881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1f93849254ae1e844a2fa4e321e8dbe8, type: 2}
   m_IsPrefabParent: 0
@@ -11136,6 +11172,14 @@ Prefab:
       propertyPath: m_TagString
       value: Stage2
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 554d9f460d365f849b3eaaf979ec9a65, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 554d9f460d365f849b3eaaf979ec9a65, type: 3}
+      propertyPath: m_LightProbeVolumeOverride
+      value: 
+      objectReference: {fileID: 818516881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 554d9f460d365f849b3eaaf979ec9a65, type: 3}
   m_IsPrefabParent: 0
@@ -12692,6 +12736,14 @@ Prefab:
       propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: e3821622c4cb03647950e93581a03dae, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: e3821622c4cb03647950e93581a03dae, type: 3}
+      propertyPath: m_LightProbeVolumeOverride
+      value: 
+      objectReference: {fileID: 818516881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e3821622c4cb03647950e93581a03dae, type: 3}
   m_IsPrefabParent: 0
@@ -14751,6 +14803,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
+      propertyPath: m_LightProbeVolumeOverride
+      value: 
+      objectReference: {fileID: 818516881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
   m_IsPrefabParent: 0
@@ -14907,6 +14967,14 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
+      propertyPath: m_LightProbeUsage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
+      propertyPath: m_LightProbeVolumeOverride
+      value: 
+      objectReference: {fileID: 818516881}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 684165e274f0e084fadf3398d3210330, type: 3}
   m_IsPrefabParent: 0
