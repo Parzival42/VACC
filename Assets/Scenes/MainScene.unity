@@ -8898,7 +8898,7 @@ Prefab:
     - target: {fileID: 114395300256798678, guid: 7b214cba954ce2f4eb7b73c6587b8d96,
         type: 2}
       propertyPath: pickUpDistance
-      value: 6.5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 65033137309350202, guid: 7b214cba954ce2f4eb7b73c6587b8d96,
         type: 2}
@@ -14633,13 +14633,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2012486422}
-  m_LocalRotation: {x: 0.10047733, y: 0.84185684, z: -0.13719873, w: 0.5122089}
-  m_LocalPosition: {x: -9.26, y: 3.47, z: 5.26}
+  m_LocalRotation: {x: 0.08451101, y: 0.83795977, z: -0.13571984, w: 0.5217869}
+  m_LocalPosition: {x: -9.81, y: 3.47, z: 5.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1120182020}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 19.508001, y: 117.66401, z: 1.7400001}
+  m_LocalEulerAnglesHint: {x: 18.4, y: 116.18, z: 0}
 --- !u!1001 &2018574669
 Prefab:
   m_ObjectHideFlags: 0
