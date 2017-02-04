@@ -22,7 +22,7 @@ public class DampedConstraint : Constraint {
         direction = pointB.Position - pointA.Position;
         distance = Vector3.Magnitude(direction);
 
-        if(distance > restingDistance * (1 + tolerance))
+        if(distance > restingDistance * (1 - tolerance))
         {
             factor = (distance - restingDistance) / (distance * springFactor);
             offset = direction * factor;

@@ -21,7 +21,7 @@ public class RegularPointMass : PointMass {
     {
         swapVector = currentPosition;
 
-        currentPosition = currentPosition + (currentPosition - previousPosition) * 0.99f + acceleration * 0.5f * deltaTime * deltaTime;
+        currentPosition = currentPosition + (currentPosition - previousPosition) * 0.96f + acceleration * 0.5f * deltaTime * deltaTime;
 
         previousPosition = swapVector;
 
