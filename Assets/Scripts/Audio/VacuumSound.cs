@@ -9,8 +9,16 @@ public class VacuumSound : MonoBehaviour
     public bool isRunning = false;
     
     [FMODUnity.EventRef]
-    public string startup = "event:/DysonStartup";  
+    public string startup = "event:/DysonConvolution";  
     FMOD.Studio.EventInstance startupEv;
+
+    [Range(0.0f, 1.0f)]
+    public float powerValue = 0f;
+    [Range(0.0f, 1f)]
+    public float dustOcclusionValue = 0f;
+    
+    FMOD.Studio.ParameterInstance power;
+    FMOD.Studio.ParameterInstance dustOcclusion;
     [FMODUnity.EventRef]
     public string shutdown = "event:/DysonShutdown";       
     FMOD.Studio.EventInstance shutdownEv;
@@ -53,5 +61,23 @@ public class VacuumSound : MonoBehaviour
         }
 
         isRunning = false;
+    }
+
+    public void SetPower(float v)
+    {
+        startupEv.getParameter("Power", out power);
+        power.setValue(v);
+    }
+
+    public void SetDustOcclusion(float v)
+    {
+        startupEv.getParameter("DustOcclusion", out dustOcclusion);
+        dustOcclusion.setValue(v);
+    }
+
+    public void Update()
+    {
+        SetPower(powerValue);
+        SetDustOcclusion(dustOcclusionValue);
     }
 }
