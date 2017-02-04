@@ -29,6 +29,9 @@ public class AnimationControllerHelper : EditorWindow
 
             if (GUILayout.Button("Fancy Chromatic Aberration"))
                 animManager.FancyChromaticDispersion(1f);
+
+            if (GUILayout.Button("Camera Shake"))
+                animManager.CameraShake(0.15f, 0.03f);
         }
         else
             GUILayout.Label("No Animation Manager :(", titleStyle);

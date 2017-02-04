@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SecretDoor : MonoBehaviour {
 
+    #region variables
     [SerializeField]
     private Vector3 offsetVector;
 
@@ -12,10 +13,15 @@ public class SecretDoor : MonoBehaviour {
 
     private Vector3 originalPosition;
 
-	// Use this for initialization
-	void Start () {
-        SecretRoomSwitch.SecretRoomOpenend += OnSecretDoorStatusChange;
+    private ThrowManager throwManager;
+    #endregion
 
+    #region methods
+
+    // Use this for initialization
+    void Start () {
+        SecretRoomSwitch.SecretRoomOpenend += OnSecretDoorStatusChange;
+        throwManager = GetComponent<ThrowManager>();
         originalPosition = transform.position;
 	}
 	
@@ -23,6 +29,7 @@ public class SecretDoor : MonoBehaviour {
     {
         if (opened)
         {
+
             OpenDoor();    
         }else
         {
@@ -33,10 +40,11 @@ public class SecretDoor : MonoBehaviour {
 
     private void OpenDoor()
     {
+        throwManager.EjectBooks();
         LeanTween.value(gameObject, transform.position, transform.position + offsetVector, tweenTime).setOnUpdate((Vector3 position) => {
             transform.position = position;
         })
-        .setEase(LeanTweenType.easeInOutSine);
+        .setEase(LeanTweenType.easeInOutSine).setOnComplete(()=> { throwManager.EjectNOS(); });
     }
 
 
@@ -47,4 +55,5 @@ public class SecretDoor : MonoBehaviour {
         })
        .setEase(LeanTweenType.easeInOutSine);
     }
+    #endregion
 }
