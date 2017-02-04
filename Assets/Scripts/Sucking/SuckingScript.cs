@@ -75,6 +75,9 @@ public class SuckingScript : MonoBehaviour
     private void ChangeNitrousStage(int change)
     {
         currentStage += change;
+
+        Debug.Log((int)currentStage);
+        vacuumSound.SetPower((float)currentStage / 3f);
     }
 
     private void ChangeDustSuckerStatus()
