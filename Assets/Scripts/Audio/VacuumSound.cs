@@ -24,6 +24,8 @@ public class VacuumSound : MonoBehaviour
     public string shutdown = "event:/DysonShutdown";       
     FMOD.Studio.EventInstance shutdownEv;
 
+    private Rigidbody rigidbody;
+
     void Start()
     {
         startupEv = FMODUnity.RuntimeManager.CreateInstance(startup);
@@ -35,6 +37,7 @@ public class VacuumSound : MonoBehaviour
 
         startupEv.getParameter("Power", out power);
         startupEv.getParameter("DustOcclusion", out dustOcclusion);
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     public void StartEngine()
@@ -93,6 +96,6 @@ public class VacuumSound : MonoBehaviour
             }
         }
 
-        SetDustOcclusion(dustOcclusionValue);
+        SetDustOcclusion(Mathf.Clamp(rigidbody.velocity.magnitude,0f,1f));
     }
 }
