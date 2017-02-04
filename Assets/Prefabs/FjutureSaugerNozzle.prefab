@@ -45,8 +45,6 @@ GameObject:
   - component: {fileID: 114683677826369628}
   - component: {fileID: 114686140811947430}
   - component: {fileID: 114037592195597574}
-  - component: {fileID: 114388060355829904}
-  - component: {fileID: 114977480710407440}
   m_Layer: 9
   m_Name: FjutureSaugerNozzle
   m_TagString: Nozzle
@@ -358,19 +356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230312e127fb3ad40b7d8f47a5668fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114388060355829904
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1414155033033524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coll: event:/Collision
-  collisionSound: fjuture
 --- !u!114 &114683677826369628
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,6 +380,8 @@ MonoBehaviour:
   collisionRays: 20
   checkAngle: 180
   collisionMaxLength: 0.4
+  nosParticle: {fileID: 1633877331625634, guid: de499eefd42970e489bf77115ae6b1e9,
+    type: 2}
 --- !u!114 &114686140811947430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -407,21 +394,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isRunning: 0
-  startup: event:/DysonStartup
+  startup: event:/DysonConvolution
+  powerValue: 0
+  dustOcclusionValue: 0
   shutdown: event:/DysonShutdown
---- !u!114 &114977480710407440
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1414155033033524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coll: event:/Collision
-  collisionSound: fjuture
 --- !u!145 &145432472693008242
 SpringJoint:
   m_ObjectHideFlags: 1
