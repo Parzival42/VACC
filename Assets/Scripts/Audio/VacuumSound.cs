@@ -14,9 +14,10 @@ public class VacuumSound : MonoBehaviour
 
     [Range(0.0f, 1.0f)]
     public float powerValue = 0f;
+    private float powerValueDamped = 0f;
     [Range(0.0f, 1f)]
     public float dustOcclusionValue = 0f;
-    
+
     FMOD.Studio.ParameterInstance power;
     FMOD.Studio.ParameterInstance dustOcclusion;
     [FMODUnity.EventRef]
@@ -31,6 +32,9 @@ public class VacuumSound : MonoBehaviour
         shutdownEv.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(startupEv, gameObject.transform, GetComponent<Rigidbody>());
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(shutdownEv, gameObject.transform, GetComponent<Rigidbody>());
+
+        startupEv.getParameter("Power", out power);
+        startupEv.getParameter("DustOcclusion", out dustOcclusion);
     }
 
     public void StartEngine()
@@ -65,19 +69,30 @@ public class VacuumSound : MonoBehaviour
 
     public void SetPower(float v)
     {
-        startupEv.getParameter("Power", out power);
-        power.setValue(v);
+        
+        if (power != null)
+        {
+            power.setValue(v);
+        }
     }
 
     public void SetDustOcclusion(float v)
     {
-        startupEv.getParameter("DustOcclusion", out dustOcclusion);
-        dustOcclusion.setValue(v);
+        
+        if (dustOcclusion != null)
+        {
+            dustOcclusion.setValue(v);
+        }
     }
 
     public void Update()
     {
-        SetPower(powerValue);
+        if(powerValue != powerValueDamped)
+        {
+            powerValueDamped += ( powerValue - powerValueDamped ) * 0.02f; // damping
+            SetPower(powerValueDamped);
+        }
+
         SetDustOcclusion(dustOcclusionValue);
     }
 }

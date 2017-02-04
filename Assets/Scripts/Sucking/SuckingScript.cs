@@ -58,10 +58,14 @@ public class SuckingScript : MonoBehaviour
     private DragScript drag;
     private bool dustSuckerActive = false;
 
+    // Vacuum Sound
+    private VacuumSound vacuumSound;
+
 	private void Start ()
     {
         CheckFields();
         drag = GetComponent<DragScript>();
+        vacuumSound = GetComponent<VacuumSound>();
         meltShader = Shader.Find(meltShaderID);
         DustSuckerSwitch.DustSuckerStatus += ChangeDustSuckerStatus;
         ConnectorDragAndDrop.DustSuckerConnectionLost += ChangeDustSuckerStatus;
