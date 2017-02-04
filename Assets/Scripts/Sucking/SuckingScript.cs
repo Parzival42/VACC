@@ -55,6 +55,10 @@ public class SuckingScript : MonoBehaviour
     [SerializeField]
     private float collisionMaxLength = 0.6f;
 
+    [Header("Particles & Effects")]
+    [SerializeField]
+    private GameObject nosParticle;
+
     private DragScript drag;
     private bool dustSuckerActive = false;
 
@@ -76,8 +80,30 @@ public class SuckingScript : MonoBehaviour
     {
         currentStage += change;
 
-        Debug.Log((int)currentStage);
+        // NOS-Bottle was sucked in
+        if (currentStage == NOS.Stage3)
+            DoNosStage3Change();
+
         vacuumSound.SetPower((float)currentStage / 3f);
+    }
+
+    /// <summary>
+    /// NOS Stage 3 effects: Particles, Camera effects, Sound
+    /// </summary>
+    private void DoNosStage3Change()
+    {
+        // Chromatic aberration
+        AnimationManager.Instance.FancyChromaticDispersion(0.7f);
+
+        // Spawn particles
+        GameObject particles = Instantiate(nosParticle);
+        particles.transform.position = suckingPoint.position;
+        particles.transform.SetParent(suckingPoint, true);
+        particles.transform.position += Vector3.up * 0.3f;
+        particles.GetComponent<ParticleSystem>().Play();
+        Destroy(particles, 4f);
+
+        // TODO: Play fancy sound effect
     }
 
     private void ChangeDustSuckerStatus()

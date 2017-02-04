@@ -51,7 +51,7 @@ Material:
       second: 0
     - first:
         name: _LineColorMultiplier
-      second: 1
+      second: 3
     - first:
         name: _LineSpace
       second: 4
@@ -70,4 +70,4 @@ Material:
       second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _Highlight
-      second: {r: 1, g: 1, b: 1, a: 1}
+      second: {r: 1, g: 1, b: 0, a: 1}
