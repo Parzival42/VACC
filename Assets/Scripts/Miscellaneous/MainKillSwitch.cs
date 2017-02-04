@@ -13,7 +13,7 @@ public class MainKillSwitch : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        //OnMainPowerChanged(false);
+        OnMainPowerChanged(false);
         emitter = GetComponent<FMOD_StudioEventEmitter>();
 	}
 
