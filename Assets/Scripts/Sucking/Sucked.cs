@@ -28,7 +28,7 @@ public class Sucked : MonoBehaviour {
         float distance = Vector3.Distance(finalPosition, transform.position);
         if (distance <= 0)
             Destroy(gameObject);
-        float speed = Mathf.Clamp(distance * speedCoefficient, 0f, maxSpeed);
+        float speed = Mathf.Clamp(distance, 0f, maxSpeed) * speedCoefficient;
         body.velocity = direction * speed;
     }
 }
