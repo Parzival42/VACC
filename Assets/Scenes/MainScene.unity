@@ -5810,19 +5810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 230312e127fb3ad40b7d8f47a5668fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &776679529
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 776679519}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  coll: event:/Collision
-  collisionSound: plastic
 --- !u!1001 &804342877
 Prefab:
   m_ObjectHideFlags: 0
@@ -11783,6 +11770,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &1611761883 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1336438872014820, guid: dbde72ae8ee119643ac551cf8ada47c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1074174121}
+--- !u!114 &1611761891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1611761883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: fjuture
 --- !u!1 &1637679609
 GameObject:
   m_ObjectHideFlags: 0
