@@ -8,8 +8,6 @@ public class SuckingScript : MonoBehaviour
 
     public static event TubeDeformHandler TubeDeform;
 
-    public GameObject bloodParticles;
-
     [Header("Input")]
     [Tooltip("At this point the dust sucking happens")]
     [SerializeField]
@@ -63,6 +61,12 @@ public class SuckingScript : MonoBehaviour
 
     [SerializeField]
     private GameObject bodySparks;
+
+    [SerializeField]
+    private GameObject bloodParticles;
+
+    [SerializeField]
+    private GameObject dustParticles;
 
     private DragScript drag;
     private bool dustSuckerActive = false;
@@ -298,6 +302,16 @@ public class SuckingScript : MonoBehaviour
         if (TubeDeform != null)
         {
             TubeDeform(deformType);
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Stage1") || collision.gameObject.CompareTag("Stage2") || collision.gameObject.CompareTag("Stage3"))
+        {
+            GameObject go = Instantiate(dustParticles) as GameObject;
+            go.transform.position = transform.position;
+            Destroy(go, 2f);
         }
     }
 
