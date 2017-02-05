@@ -44,6 +44,7 @@ public class CableMSDSystem : CoreMSDSystem {
     private LineRenderer lineRenderer;
     private List<Transform> collisonObjects;
     private MonoBehaviour gravitationForce;
+    private MonoBehaviour windForce;
 
    
     public override void GenerateConstraints()
@@ -144,18 +145,16 @@ public class CableMSDSystem : CoreMSDSystem {
         for (int i = 0; i < connections - 2; i++)
         {
             GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            go.transform.parent = transform;
             go.transform.position = pointList[i].Position;
             go.transform.localScale = new Vector3(widthScale * 3, widthScale * 3, widthScale * 3);
-            go.GetComponent<Renderer>().enabled = false;
+            //go.GetComponent<Renderer>().enabled = false;
+            Destroy(go.GetComponent<Renderer>());
             go.layer = LayerMask.NameToLayer("MassSpring");
             go.tag = "Silent";
             Rigidbody rigid = go.AddComponent<Rigidbody>();
             rigid.useGravity = false;
-            rigid.drag = 100;
-            rigid.angularDrag = 100;
-            //rigid.freezeRotation = true;
             rigid.constraints = RigidbodyConstraints.FreezeRotation;
-            //rigid.isKinematic = true;
             collisonObjects.Add(go.transform);
         }
     }
