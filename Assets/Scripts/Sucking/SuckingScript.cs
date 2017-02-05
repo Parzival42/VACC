@@ -145,7 +145,7 @@ public class SuckingScript : MonoBehaviour
 
     private IEnumerator GravityInverse()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.0f);
         FindObjectOfType<GravityManager>().StabGravityInTheBack(5.0f);
     }
   
