@@ -13,15 +13,17 @@ public class Sucked : MonoBehaviour {
     Rigidbody body;
     Material material;
 
-    // Use this for initialization
-    void Start () {
+    private void Start ()
+    {
         body = GetComponent<Rigidbody>();
         direction = (finalPosition - transform.position).normalized;
         material = GetComponent<Renderer>().material;
+
+        SendMessageUpwards("BuddhaAction", SendMessageOptions.DontRequireReceiver);
     }
 	
-	// Update is called once per frame
-	void Update () {
+	private void Update ()
+    {
 
         material.SetVector("_MeltPosition", suckDirection.position);
 
