@@ -9144,6 +9144,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1074174122 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1285855300218402, guid: dbde72ae8ee119643ac551cf8ada47c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1074174121}
 --- !u!1001 &1089584461
 Prefab:
   m_ObjectHideFlags: 0
@@ -15195,40 +15200,17 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 114683677826369628, guid: ee4b98c3525404b439517122f0b2e920,
+        type: 2}
+      propertyPath: bodySparks
+      value: 
+      objectReference: {fileID: 1074174122}
     - target: {fileID: 23719254801903472, guid: ee4b98c3525404b439517122f0b2e920,
         type: 2}
       propertyPath: m_LightProbeVolumeOverride
       value: 
       objectReference: {fileID: 818516881}
-    - target: {fileID: 114683677826369628, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: currentStage
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114686140811947430, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: startup
-      value: event:/DysonConvolution
-      objectReference: {fileID: 0}
-    - target: {fileID: 114686140811947430, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: powerValue
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114683677826369628, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: bloodParticles
-      value: 
-      objectReference: {fileID: 1492859082213036, guid: c18c0f2cddb96604fb421bb42fdae352,
-        type: 2}
-    - target: {fileID: 114686140811947430, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: energyBoost
-      value: event:/Nitro
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 114977480710407440, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
-    - {fileID: 114388060355829904, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &2044589900
