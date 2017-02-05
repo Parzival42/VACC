@@ -402,6 +402,7 @@ MonoBehaviour:
   startup: event:/DysonConvolution
   shutdown: event:/DysonShutdown
   energyBoost: event:/Nitro
+  gravity: event:/Gravity
   powerValue: 0
   dustOcclusionValue: 0
 --- !u!145 &145432472693008242

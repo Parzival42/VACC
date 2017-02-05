@@ -137,6 +137,8 @@ public class SuckingScript : MonoBehaviour
 
         // Play fancy sound effect
         vacuumSound.PlayEnergyBoost();
+        vacuumSound.PlayGravityLoss();
+        // play sound effect
 
         StartCoroutine(GravityInverse());
     }

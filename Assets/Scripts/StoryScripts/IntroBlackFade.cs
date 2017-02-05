@@ -53,7 +53,6 @@ public class IntroBlackFade : MonoBehaviour {
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), blackTexture);
         }else
         {
-            Debug.Log("stuff");
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), whiteTexture);
         }
     }
