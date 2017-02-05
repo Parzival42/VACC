@@ -190,8 +190,6 @@ public class SuckingScript : MonoBehaviour
             paintReceiver.BrushStrength = brushStrength;
             paintReceiver.BrushFalloff = brushFalloff;
             paintReceiver.SetUVHitPosition(hitInfo.textureCoord);
-
-            //OnTubeDeform(DeformType.Dust);
         }
     }
 
@@ -209,7 +207,6 @@ public class SuckingScript : MonoBehaviour
                 if (hitInfo.transform.gameObject.tag == stage.ToString())
                 {
                     DeformType deformType = (DeformType)i+1;
-                    Debug.Log("deformType :" + deformType);
                     OnTubeDeform(deformType);
                     PlaySoundAndParticles(currentStage, hitInfo.transform.gameObject);
                     ChangeToMeltMaterial(hitInfo.transform.gameObject);
