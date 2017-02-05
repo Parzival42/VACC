@@ -13,6 +13,7 @@ public class MyLittleCameraScript : MonoBehaviour {
     public void FadeOut()
     {
         AnimationManager.Instance.FadeSceneToWhite();
+        StartCoroutine(ReloadLevel());
     }
 
     public void StartSound()
@@ -29,5 +30,11 @@ public class MyLittleCameraScript : MonoBehaviour {
         ambientSound.GetComponent<FMODUnity.StudioEventEmitter>().Stop();
         vaccuumSound.StopEngine();
         Debug.Log("MUTE");
+    }
+
+    IEnumerator ReloadLevel()
+    {
+        yield return new WaitForSeconds(5);
+        Application.Quit();
     }
 }
