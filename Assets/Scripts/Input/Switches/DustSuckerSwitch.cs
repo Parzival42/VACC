@@ -6,6 +6,13 @@ public delegate void DustSuckerStatusHandler(bool status);
 
 public class DustSuckerSwitch : MonoBehaviour, Toggle {
 
+    public Renderer changeEmissionRend;
+    private Material changeEmissionMat;
+
+    public Texture emissionOff;
+    public Texture emissionStandby;
+    public Texture emissionOn;
+
     #region variables
     public static event DustSuckerStatusHandler DustSuckerStatus;
 
@@ -20,6 +27,8 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
         SocketMagnet.DustSuckerConnection += DustSuckerConnectionUpdate;
         ConnectorDragAndDrop.DustSuckerConnectionLost += DustSuckerConnectionUpdate;
         MainKillSwitch.MainPowerChanged += GlobalPowerChanged;
+
+        changeEmissionMat = changeEmissionRend.materials[0];
     }
 
     private void GlobalPowerChanged(bool status)
@@ -29,6 +38,11 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
         {
             ToggleSwitch();
         }
+
+        if(!globalPower)
+            changeEmissionMat.SetTexture("_EmissionMap", emissionOff);
+        else
+            changeEmissionMat.SetTexture("_EmissionMap", emissionStandby);
     }
 
     private void DustSuckerConnectionUpdate()
@@ -63,6 +77,11 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
         {
             DustSuckerStatus(suckerActive);
         }
+
+        if (suckerActive)
+            changeEmissionMat.SetTexture("_EmissionMap", emissionOn);
+        else
+            changeEmissionMat.SetTexture("_EmissionMap", emissionStandby);
     }
     #endregion
 }
