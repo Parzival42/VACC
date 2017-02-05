@@ -228,7 +228,7 @@ Material:
       second: 0.02
     - first:
         name: _TessellationFactor
-      second: 10
+      second: 4
     - first:
         name: _UVSec
       second: 0
