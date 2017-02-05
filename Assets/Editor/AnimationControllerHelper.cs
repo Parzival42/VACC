@@ -32,6 +32,12 @@ public class AnimationControllerHelper : EditorWindow
 
             if (GUILayout.Button("Camera Shake"))
                 animManager.CameraShake(0.15f, 0.03f);
+
+            if (GUILayout.Button("Fade Black To Scene"))
+                animManager.FadeBlackToScene();
+
+            if (GUILayout.Button("Fade Scene To White"))
+                animManager.FadeSceneToWhite();
         }
         else
             GUILayout.Label("No Animation Manager :(", titleStyle);

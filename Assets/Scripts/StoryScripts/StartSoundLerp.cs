@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 using FMODUnity;
 
 /// <summary>
@@ -21,5 +22,12 @@ public class StartSoundLerp : MonoBehaviour
                 masterBus.setFaderLevel(value);
             }
         );
+        StartCoroutine(FadeImageAfterAudio());
 	}
+
+    public IEnumerator FadeImageAfterAudio()
+    {
+        yield return new WaitForSeconds(5.7f);
+        AnimationManager.Instance.FadeBlackToScene();
+    }
 }

@@ -14,6 +14,7 @@ public class AnimationManager : MonoBehaviour
 
     #region Internal variables
     private Camera mainCamera;
+    private IntroBlackFade screenFader;
     LTDescr lensAberrationTween;
     #endregion
 
@@ -32,8 +33,13 @@ public class AnimationManager : MonoBehaviour
     private void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        screenFader = FindObjectOfType<IntroBlackFade>();
+
         if (mainCamera == null)
             Debug.LogError("No Main camera found!");
+
+        if (screenFader == null)
+            Debug.LogError("No IntroBlackFade script found.");
     }
 
     public void PlayCarLight()
@@ -80,6 +86,16 @@ public class AnimationManager : MonoBehaviour
                 shake.offsetY = value;
             })
             .setOnComplete(() => { shake.offsetY = 0f; });
+    }
+
+    public void FadeBlackToScene()
+    {
+        screenFader.FadeIn();
+    }
+
+    public void FadeSceneToWhite()
+    {
+        screenFader.FadeOut();
     }
 
     private void DoChromaticShiftEffect(UnityStandardAssets.CinematicEffects.LensAberrations lensAberration, float animationTime, float shift, LeanTweenType easeType)
