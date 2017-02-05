@@ -6990,40 +6990,6 @@ Prefab:
     - {fileID: 9500000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 5f1304806b0456b4eb036cfb85dc37da, type: 3}
   m_IsPrefabParent: 0
---- !u!1 &853855759 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1175849398826658, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-    type: 2}
-  m_PrefabInternal: {fileID: 1469644903}
---- !u!114 &853855760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 853855759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10408b0892c60504197691c5030967f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  finalSound: {fileID: 920595807}
---- !u!95 &853855775
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 853855759}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d75149c7a16a85d499de591b6ec2e09e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &856550034
 GameObject:
   m_ObjectHideFlags: 0
@@ -11772,11 +11738,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
-        type: 2}
-      propertyPath: focus.transform
-      value: 
-      objectReference: {fileID: 2109636359}
     - target: {fileID: 114625227548523022, guid: 571b25f6a1b2ef548a80d212993ae6c2,
         type: 2}
       propertyPath: firstLerpPoint
@@ -11792,9 +11753,19 @@ Prefab:
       propertyPath: colliderTrigger
       value: 
       objectReference: {fileID: 1252719483}
-    - target: {fileID: 114772421104261710, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+    - target: {fileID: 114665016224494586, guid: 571b25f6a1b2ef548a80d212993ae6c2,
         type: 2}
-      propertyPath: m_Enabled
+      propertyPath: focus.transform
+      value: 
+      objectReference: {fileID: 2109636359}
+    - target: {fileID: 114565613632341568, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+        type: 2}
+      propertyPath: finalSound
+      value: 
+      objectReference: {fileID: 920595807}
+    - target: {fileID: 114057965669117614, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+        type: 2}
+      propertyPath: distortion.scale
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -15267,6 +15238,11 @@ Prefab:
       propertyPath: m_LightProbeVolumeOverride
       value: 
       objectReference: {fileID: 818516881}
+    - target: {fileID: 114683677826369628, guid: ee4b98c3525404b439517122f0b2e920,
+        type: 2}
+      propertyPath: currentStage
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
   m_IsPrefabParent: 0
