@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections;
 using UnityEngine;
 
 public delegate void TubeDeformHandler(DeformType deformType);
@@ -67,6 +67,9 @@ public class SuckingScript : MonoBehaviour
 
     [SerializeField]
     private GameObject dustParticles;
+
+    [SerializeField]
+    private GravityManager gravityManager;
 
     private DragScript drag;
     private bool dustSuckerActive = false;
@@ -137,7 +140,20 @@ public class SuckingScript : MonoBehaviour
 
         // Play fancy sound effect
         vacuumSound.PlayEnergyBoost();
+
+        StartCoroutine(GravityInverse());
     }
+
+    private IEnumerator GravityInverse()
+    {
+        yield return new WaitForSeconds(2.0f);
+        if (gravityManager != null)
+        {
+            gravityManager.StabGravityInTheBack(5.0f);
+        }
+    }
+  
+
 
     private void ChangeDustSuckerStatus()
     {

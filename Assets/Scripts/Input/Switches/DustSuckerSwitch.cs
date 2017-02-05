@@ -41,8 +41,11 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
 
         if(!globalPower)
             changeEmissionMat.SetTexture("_EmissionMap", emissionOff);
-        else
+
+        if (hasPower && globalPower)
+        {
             changeEmissionMat.SetTexture("_EmissionMap", emissionStandby);
+        }
     }
 
     private void DustSuckerConnectionUpdate()
@@ -54,6 +57,14 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
     private void DustSuckerConnectionUpdate(bool connected)
     {
         hasPower = connected;
+        if (!hasPower)
+        {
+            changeEmissionMat.SetTexture("_EmissionMap", emissionOff);
+        }else
+        {
+            if(globalPower)
+            changeEmissionMat.SetTexture("_EmissionMap", emissionStandby);
+        }
     }
 
     public void ToggleSwitch()
@@ -79,9 +90,12 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
         }
 
         if (suckerActive)
+        {
             changeEmissionMat.SetTexture("_EmissionMap", emissionOn);
-        else
+        }else if(hasPower)
+        {
             changeEmissionMat.SetTexture("_EmissionMap", emissionStandby);
+        }
     }
     #endregion
 }
