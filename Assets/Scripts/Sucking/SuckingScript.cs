@@ -61,6 +61,9 @@ public class SuckingScript : MonoBehaviour
     [SerializeField]
     private GameObject nosParticle;
 
+    [SerializeField]
+    private GameObject bodySparks;
+
     private DragScript drag;
     private bool dustSuckerActive = false;
 
@@ -120,6 +123,10 @@ public class SuckingScript : MonoBehaviour
         particles.transform.position += Vector3.up * 0.3f;
         particles.GetComponent<ParticleSystem>().Play();
         Destroy(particles, 4f);
+
+        // Activate Body particles
+        bodySparks.SetActive(true);
+        bodySparks.GetComponent<ParticleSystem>().Play();
 
         // Camera Shake
         AnimationManager.Instance.CameraShake(0.15f, 0.03f);
