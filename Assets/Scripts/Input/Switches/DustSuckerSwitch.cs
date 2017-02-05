@@ -11,6 +11,7 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
 
     private bool hasPower = false;
     private bool suckerActive = false;
+    private bool globalPower = false;
     #endregion
 
     #region methods
@@ -18,6 +19,16 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
     {
         SocketMagnet.DustSuckerConnection += DustSuckerConnectionUpdate;
         ConnectorDragAndDrop.DustSuckerConnectionLost += DustSuckerConnectionUpdate;
+        MainKillSwitch.MainPowerChanged += GlobalPowerChanged;
+    }
+
+    private void GlobalPowerChanged(bool status)
+    {
+        globalPower = status;
+        if (!globalPower && suckerActive)
+        {
+            ToggleSwitch();
+        }
     }
 
     private void DustSuckerConnectionUpdate()
