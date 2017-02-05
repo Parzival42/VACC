@@ -24,6 +24,9 @@ public class LittleBuddhaScript : MonoBehaviour
     private IEnumerator DoNiceBuddhaThings()
     {
         yield return new WaitForSeconds(1.5f);
-        gravity.StabGravityInTheBack(5f);
+        gravity.StabGravityInTheBack(500000f);
+
+        yield return new WaitForSeconds(2f);
+        AnimationManager.Instance.DoEndstageCameraEffect();
     }
 }

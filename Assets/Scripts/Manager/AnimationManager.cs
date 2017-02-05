@@ -98,6 +98,12 @@ public class AnimationManager : MonoBehaviour
         screenFader.FadeOut();
     }
 
+    public void DoEndstageCameraEffect()
+    {
+        Animator camAnim = mainCamera.GetComponent<Animator>();
+        camAnim.Play("FinalCameraAnimation");
+    }
+
     private void DoChromaticShiftEffect(UnityStandardAssets.CinematicEffects.LensAberrations lensAberration, float animationTime, float shift, LeanTweenType easeType)
     {
         lensAberration.chromaticAberration.enabled = true;

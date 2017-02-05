@@ -38,6 +38,9 @@ public class AnimationControllerHelper : EditorWindow
 
             if (GUILayout.Button("Fade Scene To White"))
                 animManager.FadeSceneToWhite();
+
+            if (GUILayout.Button("Camera End Stage Animation"))
+                animManager.DoEndstageCameraEffect();
         }
         else
             GUILayout.Label("No Animation Manager :(", titleStyle);
