@@ -28,6 +28,12 @@ public class TubeScaler : MonoBehaviour {
     Vector3 expandedScale = new Vector3(1.7f, 1.7f, 1.7f);
 
     [SerializeField]
+    Vector3 biggerExpandedScale = new Vector3(2.5f, 2.5f, 2.5f);
+
+    [SerializeField]
+    Vector3 biggestExpandedScale = new Vector3(3.2f, 3.2f, 3.2f);
+
+    [SerializeField]
     bool doItNow = false;
 
     
@@ -82,6 +88,32 @@ public class TubeScaler : MonoBehaviour {
         });
     }
 
+    private void InititializeBiggerTween(int index)
+    {
+        LeanTween.value(gameObject, originalScale, biggerExpandedScale, 0.35f).setOnUpdate((Vector3 currentScale) =>
+        {
+            tubeSegments[index].localScale = currentScale;
+        }).setEase(expandEaseType).setOnComplete(() => {
+            LeanTween.value(gameObject, biggerExpandedScale, originalScale, 0.5f).setOnUpdate((Vector3 currentScale) =>
+            {
+                tubeSegments[index].localScale = currentScale;
+            }).setEase(shrinkEaseType);
+        });
+    }
+
+
+    private void InititializeBiggestTween(int index)
+    {
+        LeanTween.value(gameObject, originalScale, biggestExpandedScale, 0.35f).setOnUpdate((Vector3 currentScale) =>
+        {
+            tubeSegments[index].localScale = currentScale;
+        }).setEase(expandEaseType).setOnComplete(() => {
+            LeanTween.value(gameObject, biggestExpandedScale, originalScale, 0.5f).setOnUpdate((Vector3 currentScale) =>
+            {
+                tubeSegments[index].localScale = currentScale;
+            }).setEase(shrinkEaseType);
+        });
+    }
 
 
     private void DeformTube(DeformType deformType)
@@ -92,7 +124,18 @@ public class TubeScaler : MonoBehaviour {
             StartCoroutine(Cooldown(0.4f));
             if(DeformType.Dust == deformType)
             {
-                StartCoroutine(deformType.ToString(), 0.25f);
+                StartCoroutine(DeformType.Dust.ToString(), 0.25f);
+            }
+
+            if(DeformType.Layer1 == deformType || DeformType.Layer2 == deformType)
+            {
+                Debug.Log("layer1");
+                StartCoroutine(DeformType.Layer1.ToString(), 0.25f);
+            }
+
+            if (DeformType.Layer3 == deformType)
+            {
+                StartCoroutine(DeformType.Layer3.ToString(), 0.25f);
             }
         }
     }
@@ -124,6 +167,24 @@ public class TubeScaler : MonoBehaviour {
         for (int i = 1; i < tubeSegments.Length - 1; i++)
         {
             InititializeTween(i);
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private IEnumerator Layer1(float duration)
+    {
+        for (int i = 1; i < tubeSegments.Length - 1; i++)
+        {
+            InititializeBiggerTween(i);
+            yield return new WaitForSeconds(0.05f);
+        }
+    }
+
+    private IEnumerator Layer3(float duration)
+    {
+        for (int i = 1; i < tubeSegments.Length - 1; i++)
+        {
+            InititializeBiggestTween(i);
             yield return new WaitForSeconds(0.05f);
         }
     }
