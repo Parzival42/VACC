@@ -11585,6 +11585,12 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
+--- !u!114 &1370970768 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114686140811947430, guid: ee4b98c3525404b439517122f0b2e920,
+    type: 2}
+  m_PrefabInternal: {fileID: 2034194613}
+  m_Script: {fileID: 11500000, guid: 8750b3958c96f944ca6b72731ec84c28, type: 3}
 --- !u!1 &1381117549 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: f9cba721c4cfb3a439f21dcc85347301, type: 3}
@@ -12046,11 +12052,16 @@ Prefab:
       propertyPath: finalSound
       value: 
       objectReference: {fileID: 920595807}
-    - target: {fileID: 114057965669117614, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+    - target: {fileID: 114565613632341568, guid: 571b25f6a1b2ef548a80d212993ae6c2,
         type: 2}
-      propertyPath: distortion.scale
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: ambientSound
+      value: 
+      objectReference: {fileID: 1532856098}
+    - target: {fileID: 114565613632341568, guid: 571b25f6a1b2ef548a80d212993ae6c2,
+        type: 2}
+      propertyPath: vaccuumSound
+      value: 
+      objectReference: {fileID: 1370970768}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 571b25f6a1b2ef548a80d212993ae6c2, type: 2}
   m_IsPrefabParent: 0
@@ -15660,11 +15671,6 @@ Prefab:
       propertyPath: m_LightProbeVolumeOverride
       value: 
       objectReference: {fileID: 818516881}
-    - target: {fileID: 114683677826369628, guid: ee4b98c3525404b439517122f0b2e920,
-        type: 2}
-      propertyPath: currentStage
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ee4b98c3525404b439517122f0b2e920, type: 2}
   m_IsPrefabParent: 0

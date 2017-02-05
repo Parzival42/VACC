@@ -7,8 +7,10 @@ using UnityEngine;
 public class MyLittleCameraScript : MonoBehaviour {
 
     public GameObject finalSound;
+    public GameObject ambientSound;
+    public VacuumSound vaccuumSound;
 
-	public void FadeOut()
+    public void FadeOut()
     {
         AnimationManager.Instance.FadeSceneToWhite();
     }
@@ -24,6 +26,8 @@ public class MyLittleCameraScript : MonoBehaviour {
         FMOD.Studio.Bus bus;
         bus = RuntimeManager.GetBus(busString);
         bus.setFaderLevel(0f);
+        ambientSound.GetComponent<FMODUnity.StudioEventEmitter>().Stop();
+        vaccuumSound.StopEngine();
         Debug.Log("MUTE");
     }
 }

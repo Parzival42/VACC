@@ -378,6 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   finalSound: {fileID: 0}
+  ambientSound: {fileID: 0}
 --- !u!114 &114625227548523022
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -97,9 +97,6 @@
         <property name="length">
             <value>6.6099319727891155</value>
         </property>
-        <property name="volume">
-            <value>-5.5</value>
-        </property>
         <relationship name="audioFile">
             <destination>{54568ffd-27dd-4fd7-a934-773bd5c4132b}</destination>
         </relationship>
@@ -112,7 +109,7 @@
             <value>14.314666666666668</value>
         </property>
         <property name="volume">
-            <value>-9.5</value>
+            <value>-7.5</value>
         </property>
         <relationship name="audioFile">
             <destination>{2155472b-0891-47d0-8d74-76b8819ac49b}</destination>
@@ -120,7 +117,7 @@
     </object>
     <object class="EventMixerGroup" id="{9e6d412c-b512-4bbb-a211-24fe73b0a92d}">
         <property name="volume">
-            <value>5</value>
+            <value>7</value>
         </property>
         <property name="name">
             <value>Audio 1</value>
@@ -203,7 +200,7 @@
             <value>LinearPiecewiseCurveStrategy{(-42.000000,-80.000000)(-39.000000,-60.000000)(-36.000000,-50.000000)(-32.000000,-40.000000)(-27.000000,-30.000000)(-20.000000,-20.000000)(-10.000000,-10.000000)(0.000000,0.000000)(10.000000,10.000000)}</value>
         </property>
         <property name="value">
-            <value>-20.5</value>
+            <value>-11</value>
         </property>
     </object>
     <object class="FloatPluginParameter" id="{16d147bb-a5ac-450b-a48d-d24782d43117}">

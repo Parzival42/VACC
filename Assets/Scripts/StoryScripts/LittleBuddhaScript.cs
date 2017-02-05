@@ -26,7 +26,7 @@ public class LittleBuddhaScript : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         gravity.StabGravityInTheBack(500000f);
 
-        yield return new WaitForSeconds(2f);
+      //  yield return new WaitForSeconds(2f);
         AnimationManager.Instance.DoEndstageCameraEffect();
     }
 }
