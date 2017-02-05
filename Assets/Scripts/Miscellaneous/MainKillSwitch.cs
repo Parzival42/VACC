@@ -9,16 +9,17 @@ public class MainKillSwitch : MonoBehaviour {
 
     public static event MainPowerHandler MainPowerChanged;
     private bool powerOn = false;
-    private FMOD_StudioEventEmitter emitter;
+    private FMODUnity.StudioEventEmitter sound;
 
 	// Use this for initialization
 	void Start () {
         OnMainPowerChanged(false);
-        emitter = GetComponent<FMOD_StudioEventEmitter>();
+        sound = GetComponent<FMODUnity.StudioEventEmitter>();
 	}
 
     void OnMouseDown()
     {
+        sound.Play();
         powerOn = !powerOn;
         OnMainPowerChanged(powerOn);
         Debug.Log("done");
