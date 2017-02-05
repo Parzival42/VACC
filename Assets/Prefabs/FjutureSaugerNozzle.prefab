@@ -367,6 +367,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b8721115fe6b7b4aa6534ac59c85c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodParticles: {fileID: 1492859082213036, guid: c18c0f2cddb96604fb421bb42fdae352,
+    type: 2}
   suckingPoint: {fileID: 4253879587554232}
   suckingRadius: 0.06
   brushStrength: -0.05
@@ -382,6 +384,7 @@ MonoBehaviour:
   collisionMaxLength: 0.4
   nosParticle: {fileID: 1633877331625634, guid: de499eefd42970e489bf77115ae6b1e9,
     type: 2}
+  bodySparks: {fileID: 0}
 --- !u!114 &114686140811947430
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -395,9 +398,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isRunning: 0
   startup: event:/DysonConvolution
+  shutdown: event:/DysonShutdown
+  energyBoost: event:/Nitro
   powerValue: 0
   dustOcclusionValue: 0
-  shutdown: event:/DysonShutdown
 --- !u!145 &145432472693008242
 SpringJoint:
   m_ObjectHideFlags: 1
