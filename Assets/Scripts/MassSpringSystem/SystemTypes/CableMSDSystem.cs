@@ -150,7 +150,7 @@ public class CableMSDSystem : CoreMSDSystem {
             go.transform.localScale = new Vector3(widthScale * 3, widthScale * 3, widthScale * 3);
             //go.GetComponent<Renderer>().enabled = false;
             Destroy(go.GetComponent<Renderer>());
-            go.layer = LayerMask.NameToLayer("MassSpring");
+            go.layer = LayerMask.NameToLayer("Ignore Raycast");
             go.tag = "Silent";
             Rigidbody rigid = go.AddComponent<Rigidbody>();
             rigid.useGravity = false;

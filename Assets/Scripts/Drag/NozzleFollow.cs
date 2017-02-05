@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NozzleFollow : MonoBehaviour {
 
-
+    #region variables
     [SerializeField]
     private Transform target;
 
@@ -27,9 +27,12 @@ public class NozzleFollow : MonoBehaviour {
     private float distance = 0.0f;
 
     private Vector3 lookAtVector = new Vector3();
-	
-	// Update is called once per frame
-	void Update () {
+    #endregion
+
+
+    #region methods
+    // Update is called once per frame
+    void Update () {
         distance = Vector3.Distance(this.transform.position, target.position);
         direction = target.position - this.transform.position;
         lookAtVector.Set(target.position.x, transform.position.y, target.position.z);
@@ -37,31 +40,16 @@ public class NozzleFollow : MonoBehaviour {
         Quaternion rotation = Quaternion.LookRotation(target.position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * turnSpeed  );
 
-        if ( distance > minDistance && distance < maxDistance)
-        {
-            
-
-
-        }else if(distance < minDistance)
+        if(distance < minDistance)
         {
             Rigidbody rigid = GetComponent<Rigidbody>();
             rigid.velocity = rigid.velocity * brakeForce;
-
         }
-        else if(distance > maxDistance-0.5f)
+        else if(distance > maxDistance)
         {
-            //transform.LookAt(lookAtVector);
             Rigidbody rigid = GetComponent<Rigidbody>();
-            rigid.AddForce(direction * forceMultiplier / maxDistance);
-
-          
+            rigid.AddForce(direction * forceMultiplier * Mathf.Pow(maxDistance-distance, 2));
         }
-
-
 	}
-
-
-
-
-    //private void RotationTween()
+    #endregion
 }

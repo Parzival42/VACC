@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 64059543223243698}
   - component: {fileID: 65454008370800500}
   - component: {fileID: 114296061286657020}
+  - component: {fileID: 114379036799793756}
   m_Layer: 9
   m_Name: FjutureSaugerBody
   m_TagString: Untagged
@@ -429,7 +430,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1514353369542158}
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -0, y: 0.008, z: -0.15}
+  m_LocalPosition: {x: 0, y: 0.008, z: -0.261}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4609813186690296}
@@ -885,6 +886,19 @@ MonoBehaviour:
   forceMultiplier: 9
   turnSpeed: 3
   brakeForce: 0.6
+--- !u!114 &114379036799793756
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1336438872014820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d03e0f769b6fec41ba0090fece6bdbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coll: event:/Collision
+  collisionSound: fjuture
 --- !u!114 &114455785038631954
 MonoBehaviour:
   m_ObjectHideFlags: 1
