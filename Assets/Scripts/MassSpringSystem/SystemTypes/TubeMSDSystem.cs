@@ -224,6 +224,7 @@ public class TubeMSDSystem : CoreMSDSystem {
         for (int i = 0; i < connections-2; i++)
         {
             GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            go.transform.parent = transform;
             go.transform.position = middleMassPointLine[i].Position;
             go.transform.localScale = new Vector3(widthScale * 3, widthScale * 3, widthScale * 3);
             go.GetComponent<Renderer>().enabled = false;
