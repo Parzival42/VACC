@@ -68,9 +68,6 @@ public class SuckingScript : MonoBehaviour
     [SerializeField]
     private GameObject dustParticles;
 
-    [SerializeField]
-    private GravityManager gravityManager;
-
     private DragScript drag;
     private bool dustSuckerActive = false;
 
@@ -147,10 +144,7 @@ public class SuckingScript : MonoBehaviour
     private IEnumerator GravityInverse()
     {
         yield return new WaitForSeconds(2.0f);
-        if (gravityManager != null)
-        {
-            gravityManager.StabGravityInTheBack(5.0f);
-        }
+        FindObjectOfType<GravityManager>().StabGravityInTheBack(5.0f);
     }
   
 

@@ -211,7 +211,7 @@ public class TubeMSDSystem : CoreMSDSystem {
         tubeScaler = GetComponent<TubeScaler>();
         tubeScaler.TubeSegments = tube.Bones;
         tubeMeshUpdater = GetComponent<TubeMeshUpdater>();
-        tubeMeshUpdater.Initialize(tube, startConnection);
+        tubeMeshUpdater.Initialize(tube, startConnection, endConnection);
 
         transform.rotation = startConnection.rotation;
 
