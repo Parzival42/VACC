@@ -151,11 +151,7 @@ public class CableMSDSystem : CoreMSDSystem {
             go.tag = "Silent";
             Rigidbody rigid = go.AddComponent<Rigidbody>();
             rigid.useGravity = false;
-            rigid.drag = 100;
-            rigid.angularDrag = 100;
-            //rigid.freezeRotation = true;
             rigid.constraints = RigidbodyConstraints.FreezeRotation;
-            //rigid.isKinematic = true;
             collisonObjects.Add(go.transform);
         }
     }
