@@ -228,7 +228,7 @@ public class TubeMSDSystem : CoreMSDSystem {
             go.transform.position = middleMassPointLine[i].Position;
             go.transform.localScale = new Vector3(widthScale * 3, widthScale * 3, widthScale * 3);
             go.GetComponent<Renderer>().enabled = false;
-            go.layer = LayerMask.NameToLayer("MassSpring");
+            go.layer = LayerMask.NameToLayer("Ignore Raycast");
             go.tag = "Silent";
             Rigidbody rigid = go.AddComponent<Rigidbody>();
             rigid.useGravity = false;
