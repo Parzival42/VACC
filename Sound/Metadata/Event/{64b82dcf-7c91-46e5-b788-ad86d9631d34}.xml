@@ -93,7 +93,10 @@
             <value>0</value>
         </property>
         <property name="length">
-            <value>11.075918367346938</value>
+            <value>10.935918367346941</value>
+        </property>
+        <property name="timelockedOffset">
+            <value>0.14000000000000001</value>
         </property>
         <relationship name="audioFile">
             <destination>{42470ddd-0e9d-41cd-bfcd-b29d45073c5e}</destination>
