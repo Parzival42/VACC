@@ -65,8 +65,8 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				float2 p = -1. + 2.*i.uv;
-				float t = _Time * 10;
-				float an = t*.25;
+				float t = _Time * 20;
+				float an = t*.5;
 				float2 r = float2(p.x*cos(an) - p.y*sin(an), p.x*sin(an) + p.y*cos(an)),
 				uv = float2(.25*r.x / abs(r.y), 0.5*t + .01 / abs(r.y));
 				uv = frac(uv);
