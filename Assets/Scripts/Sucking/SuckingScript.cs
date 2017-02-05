@@ -216,7 +216,7 @@ public class SuckingScript : MonoBehaviour
                 {
                     DeformType deformType = (DeformType)i+1;
                     OnTubeDeform(deformType);
-                    PlaySoundAndParticles(currentStage, hitInfo.transform.position);
+                    PlaySoundAndParticles(currentStage, hitInfo.transform.gameObject);
                     ChangeToMeltMaterial(hitInfo.transform.gameObject);
                     hitInfo.transform.gameObject.SendMessage("IsGettingSuckedIn", currentStage, SendMessageOptions.DontRequireReceiver);
                 }
@@ -225,14 +225,21 @@ public class SuckingScript : MonoBehaviour
         }
     }
 
-    private void PlaySoundAndParticles(NOS stage, Vector3 position)
+    private void PlaySoundAndParticles(NOS stage, GameObject obj)
     {
         FMOD.Studio.EventInstance e;
         if (stage == NOS.Stage3)
         {
-            e = FMODUnity.RuntimeManager.CreateInstance("event:/Scream");
+            if (obj.GetComponent<LittleBuddhaScript>())
+            {
+                e = FMODUnity.RuntimeManager.CreateInstance("event:/Buddha");
+            }
+            else
+            {
+                e = FMODUnity.RuntimeManager.CreateInstance("event:/Scream");
+            }
             GameObject go = Instantiate(bloodParticles) as GameObject;
-            go.transform.position = position;
+            go.transform.position = obj.transform.position;
             Destroy(go, 5f);
         }
         else
