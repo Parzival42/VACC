@@ -60,7 +60,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4240464040312744}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: tubeStartAnchor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 64271367176750666}
   - component: {fileID: 54561191371242574}
   - component: {fileID: 59470827891404448}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
