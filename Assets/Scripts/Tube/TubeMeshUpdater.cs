@@ -18,6 +18,7 @@ public class TubeMeshUpdater : MonoBehaviour {
     private Tube tube;
     private Transform[] bones;
     private Transform startConnection;
+    private Transform endConnection;
 
     private bool isInitialized = false;
 
@@ -26,7 +27,7 @@ public class TubeMeshUpdater : MonoBehaviour {
 
     #region methods
 	
-    public void Initialize(Tube tube, Transform startConnection)
+    public void Initialize(Tube tube, Transform startConnection, Transform endConnection)
     {
         this.tube = tube;
 
@@ -45,6 +46,7 @@ public class TubeMeshUpdater : MonoBehaviour {
         }
 
         this.startConnection = startConnection;
+        this.endConnection = endConnection;
         isInitialized = true;
     }
 
@@ -75,6 +77,11 @@ public class TubeMeshUpdater : MonoBehaviour {
 
             bones[index].rotation = Quaternion.LookRotation(direction);
             //bones[index].Rotate(Vector3.up, 180);
+        }
+
+        if(index == pointMassPositions.Count - 1)
+        {
+            bones[index].rotation = endConnection.rotation;
         }
     }
 

@@ -5872,16 +5872,7 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.8106847
       objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 9203c83473f78c248b45875b5599ea93, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 9203c83473f78c248b45875b5599ea93, type: 3}
-      propertyPath: m_TagString
-      value: Stage3
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 9500000, guid: 9203c83473f78c248b45875b5599ea93, type: 3}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9203c83473f78c248b45875b5599ea93, type: 3}
   m_IsPrefabParent: 0
 --- !u!1 &688401185 stripped
@@ -5915,17 +5906,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.9926517, y: 0.92989695, z: 1.4094034}
   m_Center: {x: -0.015450771, y: -0.0095665, z: 0.7040774}
---- !u!114 &688401188
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 688401185}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7621d056ecff5c74ab38e4af5c62cf2c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &701621273
 Prefab:
   m_ObjectHideFlags: 0
@@ -8159,6 +8139,11 @@ Prefab:
       propertyPath: endConnection
       value: 
       objectReference: {fileID: 744052685}
+    - target: {fileID: 114718723738828458, guid: e5b3d25ddef82754eab347ce43aa95e1,
+        type: 2}
+      propertyPath: tubeSegments
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e5b3d25ddef82754eab347ce43aa95e1, type: 2}
   m_IsPrefabParent: 0
@@ -9173,37 +9158,29 @@ Prefab:
       propertyPath: m_LightProbeVolumeOverride
       value: 
       objectReference: {fileID: 818516881}
-    - target: {fileID: 114455785038631954, guid: dbde72ae8ee119643ac551cf8ada47c4,
+    - target: {fileID: 4983381462194024, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.133
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983381462194024, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4983381462194024, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.185
+      objectReference: {fileID: 0}
+    - target: {fileID: 114296061286657020, guid: dbde72ae8ee119643ac551cf8ada47c4,
         type: 2}
-      propertyPath: changeEmissionRend
-      value: 
-      objectReference: {fileID: 1074174123}
-    - target: {fileID: 114455785038631954, guid: dbde72ae8ee119643ac551cf8ada47c4,
-        type: 2}
-      propertyPath: emissionOff
-      value: 
-      objectReference: {fileID: 2800000, guid: 68c4dfd07b8b75c4ebb0c84d58a4653a, type: 3}
-    - target: {fileID: 114455785038631954, guid: dbde72ae8ee119643ac551cf8ada47c4,
-        type: 2}
-      propertyPath: emissionStandby
-      value: 
-      objectReference: {fileID: 2800000, guid: 2a87bfaca9942a14c9be2bf51d356472, type: 3}
-    - target: {fileID: 114455785038631954, guid: dbde72ae8ee119643ac551cf8ada47c4,
-        type: 2}
-      propertyPath: emissionOn
-      value: 
-      objectReference: {fileID: 2800000, guid: 54fd019346ac32a4ca6cfd6ad05d91b4, type: 3}
+      propertyPath: maxDistance
+      value: 1.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1074174122 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1285855300218402, guid: dbde72ae8ee119643ac551cf8ada47c4,
-    type: 2}
-  m_PrefabInternal: {fileID: 1074174121}
---- !u!137 &1074174123 stripped
-SkinnedMeshRenderer:
-  m_PrefabParentObject: {fileID: 137517725310815766, guid: dbde72ae8ee119643ac551cf8ada47c4,
     type: 2}
   m_PrefabInternal: {fileID: 1074174121}
 --- !u!1001 &1089584461
