@@ -151,6 +151,9 @@
         <property name="length">
             <value>7</value>
         </property>
+        <property name="volume">
+            <value>1</value>
+        </property>
         <relationship name="audioFile">
             <destination>{aaa3aaaf-eb38-4657-84b2-4d7748f7f069}</destination>
         </relationship>
@@ -226,10 +229,13 @@
         <property name="value">
             <value>-80</value>
         </property>
+        <property name="curveShape">
+            <value>-0.465150803</value>
+        </property>
     </object>
     <object class="AutomationPoint" id="{8f13c16d-397a-43d7-b35e-c2f7f07f9fca}">
         <property name="position">
-            <value>2.875778078484438</value>
+            <value>0.8084300510044754</value>
         </property>
         <property name="value">
             <value>0</value>
