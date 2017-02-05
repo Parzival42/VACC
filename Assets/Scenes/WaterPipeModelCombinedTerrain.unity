@@ -3298,11 +3298,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e91977d5e1f5a2e45a67f22835b30273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraSensitivity: 90
+  cameraSensitivity: 60
   climbSpeed: 4
-  normalMoveSpeed: 10
+  normalMoveSpeed: 6
   slowMoveFactor: 0.25
-  fastMoveFactor: 3
+  fastMoveFactor: 1
 --- !u!43 &1885425087
 Mesh:
   m_ObjectHideFlags: 0
