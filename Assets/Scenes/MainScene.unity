@@ -9141,12 +9141,37 @@ Prefab:
       propertyPath: m_LightProbeVolumeOverride
       value: 
       objectReference: {fileID: 818516881}
+    - target: {fileID: 114455785038631954, guid: dbde72ae8ee119643ac551cf8ada47c4,
+        type: 2}
+      propertyPath: changeEmissionRend
+      value: 
+      objectReference: {fileID: 1074174123}
+    - target: {fileID: 114455785038631954, guid: dbde72ae8ee119643ac551cf8ada47c4,
+        type: 2}
+      propertyPath: emissionOff
+      value: 
+      objectReference: {fileID: 2800000, guid: 68c4dfd07b8b75c4ebb0c84d58a4653a, type: 3}
+    - target: {fileID: 114455785038631954, guid: dbde72ae8ee119643ac551cf8ada47c4,
+        type: 2}
+      propertyPath: emissionStandby
+      value: 
+      objectReference: {fileID: 2800000, guid: 2a87bfaca9942a14c9be2bf51d356472, type: 3}
+    - target: {fileID: 114455785038631954, guid: dbde72ae8ee119643ac551cf8ada47c4,
+        type: 2}
+      propertyPath: emissionOn
+      value: 
+      objectReference: {fileID: 2800000, guid: 54fd019346ac32a4ca6cfd6ad05d91b4, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dbde72ae8ee119643ac551cf8ada47c4, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1074174122 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1285855300218402, guid: dbde72ae8ee119643ac551cf8ada47c4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1074174121}
+--- !u!137 &1074174123 stripped
+SkinnedMeshRenderer:
+  m_PrefabParentObject: {fileID: 137517725310815766, guid: dbde72ae8ee119643ac551cf8ada47c4,
     type: 2}
   m_PrefabInternal: {fileID: 1074174121}
 --- !u!1001 &1089584461
