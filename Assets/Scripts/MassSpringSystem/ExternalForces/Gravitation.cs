@@ -10,6 +10,12 @@ public class Gravitation : MonoBehaviour, Force
 
     private Vector3 gravitation = new Vector3(0, -9.81f, 0);
 
+
+    public float Modifier
+    {
+        set { modifier = value; }
+    }
+
     public Vector3 getForce()
     {
         return gravitation * modifier;

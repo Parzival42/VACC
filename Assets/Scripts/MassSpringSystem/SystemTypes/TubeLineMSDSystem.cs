@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(TubeMeshUpdater), typeof(TubeGenerator))]
-public class TubeMSDSystem : CoreMSDSystem {
-
+[RequireComponent(typeof(LineRenderer))]
+public class TubeLineMSDSystem : CoreMSDSystem {
     #region variables
     [SerializeField]
     private Transform startConnection;
@@ -49,7 +49,7 @@ public class TubeMSDSystem : CoreMSDSystem {
 
     private TubeMeshUpdater tubeMeshUpdater;
     private TubeScaler tubeScaler;
-
+    private LineRenderer lineRenderer;
     private MonoBehaviour gravitationForce;
     #endregion
 
@@ -61,7 +61,7 @@ public class TubeMSDSystem : CoreMSDSystem {
 
         for (int i = 0; i < middleMassPointLine.Count; i++)
         {
-            if(i < middleMassPointLine.Count - 1)
+            if (i < middleMassPointLine.Count - 1)
             {
                 //line connections
                 constraintList.Add(new RegularConstraint(middleMassPointLine[i], middleMassPointLine[i + 1]));
@@ -76,7 +76,7 @@ public class TubeMSDSystem : CoreMSDSystem {
                 constraintList.Add(new RegularConstraint(leftMassPointLine[i], rightMassPointLine[i + 1]));
                 constraintList.Add(new RegularConstraint(rightMassPointLine[i], leftMassPointLine[i + 1]));
             }
-       
+
             //connect outer lines to the inner one
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], upperMassPointLine[i]));
             constraintList.Add(new RegularConstraint(middleMassPointLine[i], lowerMassPointLine[i]));
@@ -98,7 +98,7 @@ public class TubeMSDSystem : CoreMSDSystem {
                 constraintList.Add(new RegularConstraint(middleMassPointLine[i], rightMassPointLine[i - 2]));
             }
 
-            if(i > 0)
+            if (i > 0)
             {
                 //connection from the outer lines to the inner ones (1 point apart)
                 constraintList.Add(new RegularConstraint(middleMassPointLine[i], upperMassPointLine[i - 1]));
@@ -153,8 +153,14 @@ public class TubeMSDSystem : CoreMSDSystem {
             collisonObjects[i].position = middleMassPointLine[i].Position;
         }
 
+        ////update mesh
+        //tubeMeshUpdater.UpdateMesh(middleMassPointLine);
+
         //update mesh
-        tubeMeshUpdater.UpdateMesh(middleMassPointLine);
+        for (int i = 0; i < middleMassPointLine.Count; i++)
+        {
+            lineRenderer.SetPosition(i, middleMassPointLine[i].Position);
+        }
 
         //adjust spring factor
         for (int i = 0; i < constraintList.Count; i++)
@@ -166,9 +172,9 @@ public class TubeMSDSystem : CoreMSDSystem {
     public override void PreSimulationStep()
     {
         //update the mass points that are attached to 
-        for(int i = 0; i < fixedStartSegments; i++)
+        for (int i = 0; i < fixedStartSegments; i++)
         {
-            middleMassPointLine[i].Position = startConnection.position + startConnection.forward* i *lengthScale;
+            middleMassPointLine[i].Position = startConnection.position + startConnection.forward * i * lengthScale;
             upperMassPointLine[i].Position = startConnection.position + startConnection.up * widthScale + startConnection.forward * i * lengthScale;
             lowerMassPointLine[i].Position = startConnection.position - startConnection.up * widthScale + startConnection.forward * i * lengthScale;
             leftMassPointLine[i].Position = startConnection.position - startConnection.right * widthScale + startConnection.forward * i * lengthScale;
@@ -186,7 +192,7 @@ public class TubeMSDSystem : CoreMSDSystem {
         }
 
 
-        for (int i = 1; i < collisonObjects.Count-1; i++)
+        for (int i = 1; i < collisonObjects.Count - 1; i++)
         {
             middleMassPointLine[i].Position = collisonObjects[i].position;
         }
@@ -206,22 +212,27 @@ public class TubeMSDSystem : CoreMSDSystem {
     {
         GenerateCollisionObjects();
 
-        tubeGenerator = GetComponent<TubeGenerator>();
-        Tube tube = tubeGenerator.GenerateTube(widthScale);
-        tubeScaler = GetComponent<TubeScaler>();
-        tubeScaler.TubeSegments = tube.Bones;
-        tubeMeshUpdater = GetComponent<TubeMeshUpdater>();
-        tubeMeshUpdater.Initialize(tube, startConnection, endConnection);
+        lineRenderer = gameObject.GetComponent<LineRenderer>();
+        lineRenderer.numPositions = middleMassPointLine.Count;
+        for (int i = 0; i < middleMassPointLine.Count; i++)
+        {
+            lineRenderer.SetPosition(i, middleMassPointLine[i].Position);
+        }
+
 
         transform.rotation = startConnection.rotation;
 
-        gravitationForce = gameObject.AddComponent<Gravitation>();
+        gravitationForce = GetComponent<Gravitation>();
+        if (gravitationForce == null)
+        {
+            gravitationForce = gameObject.AddComponent<Gravitation>();
+        }
     }
 
     private void GenerateCollisionObjects()
     {
         collisonObjects = new List<Transform>();
-        for (int i = 0; i < connections-2; i++)
+        for (int i = 0; i < connections - 2; i++)
         {
             GameObject go = GameObject.CreatePrimitive(PrimitiveType.Sphere);
             go.transform.parent = transform;

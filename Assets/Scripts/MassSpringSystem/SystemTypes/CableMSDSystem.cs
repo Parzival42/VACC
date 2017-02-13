@@ -86,7 +86,11 @@ public class CableMSDSystem : CoreMSDSystem {
             lineRenderer.SetPosition(i, pointList[i].Position);
         }
 
-        gravitationForce = gameObject.AddComponent<Gravitation>();
+        gravitationForce = GetComponent<Gravitation>();
+        if (gravitationForce == null)
+        {
+            gravitationForce = gameObject.AddComponent<Gravitation>();
+        }
 
     }
 

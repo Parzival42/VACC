@@ -21,24 +21,6 @@ public class CurtainMSDSystem : CoreMSDSystem
     #endregion
 
     #region methods
-    public void SupplyMesh()
-    {
-        meshFilter = GetComponent<MeshFilter>();
-        mesh = meshFilter.mesh;
-        int[] indices = mesh.GetIndices(0);
-        List<int> newIndices = new List<int>();
-        for (int i = 0; i < mesh.GetIndices(0).Length; i += 3)
-        {
-            newIndices.Add(indices[i]);
-            newIndices.Add(indices[i + 1]);
-            newIndices.Add(indices[i + 2]);
-            newIndices.Add(indices[i + 2]);
-            newIndices.Add(indices[i + 1]);
-            newIndices.Add(indices[i]);
-        }
-        mesh.SetIndices(newIndices.ToArray(), MeshTopology.Triangles, 0);        
-    }
-    
     public override void GeneratePointMasses()
     {
         pointList = new List<PointMass>();
@@ -120,6 +102,8 @@ public class CurtainMSDSystem : CoreMSDSystem
         distance = Vector3.Distance(transform.TransformPoint(mesh.vertices[0]), transform.TransformPoint(mesh.vertices[1]));
 
         gravitationForce = gameObject.AddComponent<Gravitation>();
+        ((Gravitation)gravitationForce).Modifier = 9.0f;
+        
     }
     #endregion
 

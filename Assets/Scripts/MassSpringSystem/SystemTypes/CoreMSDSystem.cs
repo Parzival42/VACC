@@ -91,6 +91,7 @@ public abstract class CoreMSDSystem : MonoBehaviour {
         if (pointList!=null)
         {
             Vector3 size = new Vector3(0.05f, 0.05f, 0.05f);
+            Gizmos.color = Color.black;
             for (int i = 0; i < pointList.Count; i++)
             {
                 pointList[i].DrawPoint();
