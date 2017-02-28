@@ -10,7 +10,7 @@ public class StartSoundLerp : MonoBehaviour
     [SerializeField]
     private float fadeInTime = 3f;
 
-	private void Start ()
+	private void Awake ()
     {
         string masterBusString = "Bus:/";
         FMOD.Studio.Bus masterBus;

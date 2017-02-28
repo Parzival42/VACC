@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public delegate void NitrousStageHandler(int change);
 
@@ -38,6 +36,10 @@ public class NitrousOxideSystems : MonoBehaviour {
         {
             OnNitrousStageChanged();
         }
+    }
+
+    void OnDestroy(){
+        NitrousStageChanged = null;
     }
     #endregion
 }

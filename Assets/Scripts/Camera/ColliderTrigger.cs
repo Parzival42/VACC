@@ -29,4 +29,9 @@ public class ColliderTrigger : MonoBehaviour
                 OnTriggerExited();
         }
     }
+
+    void OnDestroy(){
+        OnTriggerEntered = null;
+        OnTriggerExited = null;
+    }
 }

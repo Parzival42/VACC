@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public delegate void MainPowerHandler(bool powerOn);
 
@@ -22,7 +20,6 @@ public class MainKillSwitch : MonoBehaviour {
         sound.Play();
         powerOn = !powerOn;
         OnMainPowerChanged(powerOn);
-        Debug.Log("done");
     }
 
     private void OnMainPowerChanged(bool powerOn)
@@ -31,5 +28,9 @@ public class MainKillSwitch : MonoBehaviour {
         {
             MainPowerChanged(powerOn);
         }
+    }
+
+    void OnDestroy(){
+        MainPowerChanged = null;
     }
 }

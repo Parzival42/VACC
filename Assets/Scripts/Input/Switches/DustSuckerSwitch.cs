@@ -97,5 +97,9 @@ public class DustSuckerSwitch : MonoBehaviour, Toggle {
             changeEmissionMat.SetTexture("_EmissionMap", emissionStandby);
         }
     }
+
+    void OnDestroy(){
+        DustSuckerStatus = null;
+    }
     #endregion
 }

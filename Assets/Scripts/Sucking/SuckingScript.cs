@@ -332,6 +332,10 @@ public class SuckingScript : MonoBehaviour
         }
     }
 
+    void OnDestroy(){
+        TubeDeform = null;
+    }
+
 
 
 #if UNITY_EDITOR

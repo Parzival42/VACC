@@ -79,5 +79,9 @@ public class ConnectorDragAndDrop : MonoBehaviour {
         }
     }
 
+    void OnDestroy(){
+        DustSuckerConnectionLost = null;
+    }
+
     #endregion
 }

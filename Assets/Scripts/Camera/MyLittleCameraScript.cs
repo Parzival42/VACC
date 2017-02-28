@@ -1,7 +1,7 @@
 ﻿using FMODUnity;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // this is my script
 public class MyLittleCameraScript : MonoBehaviour {
@@ -9,6 +9,10 @@ public class MyLittleCameraScript : MonoBehaviour {
     public GameObject finalSound;
     public GameObject ambientSound;
     public VacuumSound vaccuumSound;
+
+    void Awake(){
+        UnMuteCommonSounds();
+    }
 
     public void FadeOut()
     {
@@ -19,6 +23,13 @@ public class MyLittleCameraScript : MonoBehaviour {
     public void StartSound()
     {
         finalSound.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+    }
+
+    public void UnMuteCommonSounds(){
+        string busString = "Bus:/UsualSounds";
+        FMOD.Studio.Bus bus;
+        bus = RuntimeManager.GetBus(busString);
+        bus.setFaderLevel(1.0f);
     }
 
     public void MuteCommonSounds()
@@ -35,6 +46,6 @@ public class MyLittleCameraScript : MonoBehaviour {
     IEnumerator ReloadLevel()
     {
         yield return new WaitForSeconds(5);
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 }

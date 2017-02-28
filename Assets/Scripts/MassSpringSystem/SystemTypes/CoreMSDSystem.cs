@@ -73,6 +73,9 @@ public abstract class CoreMSDSystem : MonoBehaviour {
             }
         }
 
+        //check whether the deltatime is small enough (this is done because when pausing the next deltatime value can be large)
+        //float deltaTime = Time.fixedDeltaTime < 0.05f ? Time.fixedDeltaTime : 0.05f;
+
         //update pointmasses
         for (int i = 0; i < pointList.Count; i++)
         {

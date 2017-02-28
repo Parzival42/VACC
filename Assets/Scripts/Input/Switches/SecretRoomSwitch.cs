@@ -30,4 +30,8 @@ public class SecretRoomSwitch : MonoBehaviour, Toggle {
             SecretRoomOpenend(isOpen);
         }
     }
+
+    void OnDestroy(){
+        SecretRoomOpenend = null;
+    }
 }
