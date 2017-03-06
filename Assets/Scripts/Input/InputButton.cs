@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -7,8 +6,6 @@ using UnityEngine;
 public class InputButton : MonoBehaviour {
 
     #region variables
-    [SerializeField]
-    private bool useCooldown = false;
 
     [SerializeField]
     private float cooldownTime = 0.2f;
@@ -29,17 +26,9 @@ public class InputButton : MonoBehaviour {
     private bool shutOff = false;
     #endregion
 
-    #region property
-    public Camera CurrentCamera
-    {
-        set { currentCamera = value; }
-    }
-    #endregion
-
     #region methods
     void Start () {
         toggle = GetComponent<Toggle>();
-        currentCamera = Camera.main;
         coolDown = new WaitForSeconds(cooldownTime);
         material = GetComponent<Renderer>().material;
         material.color = offColor;

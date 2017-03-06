@@ -7,15 +7,9 @@ using UnityEngine;
 public class TubeMeshUpdater : MonoBehaviour {
 
     #region variables
-    [SerializeField]
-    [Range(0.0f, 10.0f)]
-    private float slider = 5.0f;
-
-
     //tube mesh
     private SkinnedMeshRenderer skinnedMeshRenderer;
     private Mesh mesh;
-    private Tube tube;
     private Transform[] bones;
     private Transform startConnection;
     private Transform endConnection;
@@ -29,8 +23,6 @@ public class TubeMeshUpdater : MonoBehaviour {
 	
     public void Initialize(Tube tube, Transform startConnection, Transform endConnection)
     {
-        this.tube = tube;
-
         if (tube != null)
         {
             skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();

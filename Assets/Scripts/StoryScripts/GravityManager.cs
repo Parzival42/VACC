@@ -16,13 +16,7 @@ public class GravityManager : MonoBehaviour {
     private float forceMultiplier = 1.0f;
 
     [SerializeField]
-    private float drag = 0.02f;
-
-    [SerializeField]
     private float torqueMultiplier = 1.0f;
-
-    [SerializeField]
-    private float angularDrag = 0.02f;
 
     [SerializeField]
     private bool test = false;

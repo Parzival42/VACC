@@ -18,7 +18,6 @@ public class IntroBlackFade : MonoBehaviour {
     [SerializeField]
     private Texture2D whiteTexture;
 
-    private int fadeDirection = -1;
     private float alphaValue = 1.0f;
 
     [SerializeField]

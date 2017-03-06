@@ -50,7 +50,6 @@ public class ConnectorDragAndDrop : MonoBehaviour {
                 OnDustSuckerConnectionLost();
             }
             attachedRigidbody.isKinematic = true;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         }
     }
     void OnMouseDrag()
