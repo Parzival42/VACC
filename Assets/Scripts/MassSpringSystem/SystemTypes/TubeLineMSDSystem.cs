@@ -153,7 +153,7 @@ public class TubeLineMSDSystem : CoreMSDSystem {
             collisonObjects[i].position = middleMassPointLine[i].Position;
         }
 
-        ////update mesh
+        //update mesh
         //tubeMeshUpdater.UpdateMesh(middleMassPointLine);
 
         //update mesh
@@ -240,7 +240,7 @@ public class TubeLineMSDSystem : CoreMSDSystem {
             //go.transform.localScale = new Vector3(widthScale * 3, widthScale * 3, widthScale * 3);
             go.transform.localScale = new Vector3(widthScale * 2, widthScale * 2, widthScale * 2);
 
-            go.GetComponent<Renderer>().enabled = false;
+            Destroy(go.GetComponent<Renderer>());
             go.layer = LayerMask.NameToLayer("MassSpring");
             go.tag = "Silent";
             Rigidbody rigid = go.AddComponent<Rigidbody>();

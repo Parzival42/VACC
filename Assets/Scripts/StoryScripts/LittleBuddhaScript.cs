@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using FMODUnity;
 
 public class LittleBuddhaScript : MonoBehaviour
 {
@@ -28,5 +29,14 @@ public class LittleBuddhaScript : MonoBehaviour
 
       //  yield return new WaitForSeconds(2f);
         AnimationManager.Instance.DoEndstageCameraEffect();
+
+
+        yield return new WaitForSeconds(4.5f);
+          FMOD.Studio.Bus masterBus;
+        masterBus = RuntimeManager.GetBus("Bus:/");
+
+        LeanTween.value(gameObject, 1.0f, 0.5f, 1.0f).setOnUpdate(
+            (float val) => {masterBus.setFaderLevel(val); }
+        ).setEase(LeanTweenType.easeInOutCubic).setUseEstimatedTime(true);
     }
 }

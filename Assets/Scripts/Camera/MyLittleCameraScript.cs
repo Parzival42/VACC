@@ -12,6 +12,7 @@ public class MyLittleCameraScript : MonoBehaviour {
 
     void Awake(){
         UnMuteCommonSounds();
+        Reset();
     }
 
     public void FadeOut()
@@ -23,6 +24,13 @@ public class MyLittleCameraScript : MonoBehaviour {
     public void StartSound()
     {
         finalSound.GetComponent<FMODUnity.StudioEventEmitter>().Play();
+    }
+
+    private void Reset(){
+        FMOD.Studio.Bus masterBus;
+        masterBus = RuntimeManager.GetBus("Bus:/");
+        masterBus.setFaderLevel(1.0f);
+        Time.timeScale = 1.0f;
     }
 
     public void UnMuteCommonSounds(){

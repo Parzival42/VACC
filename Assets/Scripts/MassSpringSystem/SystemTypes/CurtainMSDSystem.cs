@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
-using System;
 
 [RequireComponent(typeof(MeshFilter))]
 public class CurtainMSDSystem : CoreMSDSystem
@@ -58,12 +57,15 @@ public class CurtainMSDSystem : CoreMSDSystem
 
     public override void PostSimulationStep()
     {
+        Vector3[] newVertexPositions = new Vector3[mesh.vertexCount];
         for (int i = 0; i < pointList.Count; i++)
         {
             newVertexPositions[i] = gameObject.transform.InverseTransformPoint(pointList[i].Position);
+            newVertexPositions[i+pointList.Count] = gameObject.transform.InverseTransformPoint(pointList[i].Position);
         }
-        mesh.SetVertices(newVertexPositions);
+        mesh.vertices = newVertexPositions;
         mesh.RecalculateBounds();
+        mesh.RecalculateNormals();
     }
 
     public override void PreSimulationStep()
@@ -83,7 +85,7 @@ public class CurtainMSDSystem : CoreMSDSystem
         }
     }
 
-    public override void Initialize()
+   /* public override void Initialize()
     {
         //simply add backfaces to have a plane that is visible from both sides
         int[] indices = mesh.GetIndices(0);
@@ -100,10 +102,51 @@ public class CurtainMSDSystem : CoreMSDSystem
         mesh.SetIndices(newIndices.ToArray(), MeshTopology.Triangles, 0);
 
         distance = Vector3.Distance(transform.TransformPoint(mesh.vertices[0]), transform.TransformPoint(mesh.vertices[1]));
-
-        gravitationForce = gameObject.AddComponent<Gravitation>();
-        ((Gravitation)gravitationForce).Modifier = 9.0f;
         
+        gravitationForce = GetComponent<Gravitation>();
+        if(gravitationForce == null){
+            gravitationForce = gameObject.AddComponent<Gravitation>();
+            ((Gravitation)gravitationForce).Modifier = 9.0f;
+        }     
+      
+        
+    }*/
+
+    public override void Initialize(){
+        Vector3[] vertices = mesh.vertices;
+        List<Vector3> vertexList = new List<Vector3>();
+
+        for(int i = 0; i < vertices.Length; i++){
+            vertexList.Add(vertices[i]);
+        }
+        //duplicate all vertices
+         for(int i = 0; i < vertices.Length; i++){
+            vertexList.Add(vertices[i]);
+        }
+
+        int[] indices = mesh.GetIndices(0);
+        List<int> indexList = new List<int>();
+
+        for (int i = 0; i < mesh.GetIndices(0).Length; i += 3)
+        {
+            indexList.Add(indices[i]);
+            indexList.Add(indices[i + 1]);
+            indexList.Add(indices[i + 2]);
+            indexList.Add(indices[i + 2]+vertices.Length);
+            indexList.Add(indices[i + 1]+vertices.Length);
+            indexList.Add(indices[i]+vertices.Length);
+        }
+
+        mesh.SetVertices(vertexList);
+        mesh.SetIndices(indexList.ToArray(), MeshTopology.Triangles, 0);
+
+        distance = Vector3.Distance(transform.TransformPoint(mesh.vertices[0]), transform.TransformPoint(mesh.vertices[1]));
+
+        gravitationForce = GetComponent<Gravitation>();
+        if(gravitationForce == null){
+            gravitationForce = gameObject.AddComponent<Gravitation>();
+            ((Gravitation)gravitationForce).Modifier = 9.0f;
+        }       
     }
     #endregion
 
